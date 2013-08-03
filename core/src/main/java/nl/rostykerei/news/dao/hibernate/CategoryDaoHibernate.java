@@ -141,6 +141,22 @@ public class CategoryDaoHibernate implements CategoryDao {
         return category.getLevel() > 0;
     }
 
+    @Override
+    @Transactional
+    public void delete(Category category) {
+        getSession().createQuery("delete from Category cat " +
+                "where cat.leftIndex >= :left " +
+                "and cat.rightIndex <= :right").
+                setInteger("left", category.getLeftIndex()).
+                setInteger("right", category.getRightIndex()).
+                executeUpdate();
+
+        // Close gap in tree
+        int first = category.getRightIndex() + 1;
+        int delta = category.getLeftIndex() - category.getRightIndex() - 1;
+        shiftRLValues(first, 0, delta);
+    }
+
     private void shiftRLValues(int first, int last, int delta) {
         // Shift left values
         StringBuilder sbLeft = new StringBuilder();

@@ -25,4 +25,6 @@ public interface CategoryDao {
     boolean hasChildren(Category category);
 
     boolean hasParent(Category category);
+
+    void delete(Category category);
 }

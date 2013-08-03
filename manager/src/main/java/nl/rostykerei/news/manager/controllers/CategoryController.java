@@ -102,5 +102,24 @@ public class CategoryController extends AbstractController {
         }
     }
 
+    @RequestMapping(value = {"/category/{categoryId}/delete"})
+    public String deleteAction(@PathVariable int categoryId, RedirectAttributes attributes) {
+        Category category = categoryDao.getById(categoryId);
 
+        if (category == null) {
+            addRedirectErrorMessage(attributes, "Selected category does not exists");
+            return "redirect:/category/list";
+        }
+
+        try {
+            categoryDao.delete(category);
+        }
+        catch (Exception e) {
+            addRedirectErrorMessage(attributes, e, "Cannot delete selected category");
+            return "redirect:/category/list";
+        }
+
+        addRedirectInfoMessage(attributes, "Category has been successfully deleted");
+        return "redirect:/category/list";
+    }
 }

@@ -156,4 +156,23 @@ public class CategoryDaoTest {
 
         assert 5 == categoryDao.getAll().size();
     }
+
+    @Test
+    public void testDeleteNode() {
+        this.createBasicTree();
+
+        Category root = categoryDao.getById(progCat.getId());
+        assert 2 == categoryDao.getChildren(root).size();
+        assert 1 == root.getLeftIndex();
+        assert 6 == root.getRightIndex();
+
+        Category netCat2 = categoryDao.getById(netCat.getId());
+
+        categoryDao.delete(netCat2);
+
+        root = categoryDao.getById(progCat.getId());
+        assert 1 == categoryDao.getChildren(root).size();
+        assert 1 == root.getLeftIndex();
+        assert 4 == root.getRightIndex();
+    }
 }

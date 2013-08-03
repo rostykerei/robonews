@@ -100,7 +100,7 @@ public class ChannelController extends AbstractController {
             return "redirect:/channel/list";
         }
 
-        addRedirectInfoMessage(attributes, "Channel successfully deleted");
+        addRedirectInfoMessage(attributes, "Channel has been successfully deleted");
         return "redirect:/channel/list";
     }
 }
