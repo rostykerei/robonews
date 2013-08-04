@@ -14,4 +14,12 @@
         <appender-ref ref="consoleAppender"/>
     </root>
 
+    <!--<logger name="org.hibernate.SQL">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="org.hibernate.type">
+        <level value="TRACE" />
+    </logger>-->
+
 </log4j:configuration>

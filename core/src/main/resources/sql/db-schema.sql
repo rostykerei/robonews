@@ -72,7 +72,7 @@ CREATE TABLE `Feed` (
   `isVideo` bit(1) NOT NULL DEFAULT b'0',
   `lastCheck` timestamp NULL DEFAULT NULL,
   `plannedCheck` timestamp NULL DEFAULT NULL,
-  `inProgressSince` timestamp NULL DEFAULT NULL,
+  `inProcessSince` timestamp NULL DEFAULT NULL,
   `velocity` double NOT NULL DEFAULT '0',
   `minVelocityThreshold` double NOT NULL DEFAULT '0',
   `maxVelocityThreshold` double NOT NULL DEFAULT '60',
@@ -82,7 +82,7 @@ CREATE TABLE `Feed` (
   UNIQUE KEY `url` (`url`),
   KEY `feed_idx_1` (`channelId`),
   KEY `feed_idx_2` (`categoryId`),
-  KEY `feed_idx_3` (`inProgressSince`,`plannedCheck`),
+  KEY `feed_idx_3` (`inProcessSince`,`plannedCheck`),
   CONSTRAINT `feed_fk_1` FOREIGN KEY (`channelId`) REFERENCES `Channel` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `feed_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `Category` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=utf8;

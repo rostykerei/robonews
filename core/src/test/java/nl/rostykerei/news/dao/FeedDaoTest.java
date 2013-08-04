@@ -106,7 +106,7 @@ public class FeedDaoTest {
         List<Feed> list = feedDao.getAll();
         Assert.assertEquals(0, list.size());
 
-        Assert.assertNull(feedDao.getFeedToProcess());
+        Assert.assertNull(feedDao.pollFeedToProcess());
 
         Channel channel = new Channel();
         channel.setName("test-channel-1");
@@ -122,7 +122,7 @@ public class FeedDaoTest {
         feed1.setUrl("test-url-1");
         feed1.setName("test-feed-1");
         feed1.setLink("test-link-1");
-        feed1.setPlannedCheck(new Date());
+        feed1.setPlannedCheck(new Date( new Date().getTime() - 10000 ));
 
         int feedId1 = feedDao.create(feed1);
 
@@ -132,21 +132,21 @@ public class FeedDaoTest {
         feed2.setUrl("test-url-2");
         feed2.setName("test-feed-2");
         feed2.setLink("test-link-2");
-        feed2.setPlannedCheck(new Date( new Date().getTime() - 1000 ));
+        feed2.setPlannedCheck(new Date( new Date().getTime() - 3600000 ));
 
         int feedId2 = feedDao.create(feed2);
 
-        feed2 = feedDao.getFeedToProcess();
+        feed2 = feedDao.pollFeedToProcess();
         Assert.assertEquals(feedId2, feed2.getId());
 
-        feed1 = feedDao.getFeedToProcess();
+        feed1 = feedDao.pollFeedToProcess();
         Assert.assertEquals(feedId1, feed1.getId());
 
-        Assert.assertNull(feedDao.getFeedToProcess());
+        Assert.assertNull(feedDao.pollFeedToProcess());
 
         feedDao.releaseFeedInProcess(feed2);
 
-        feed2 = feedDao.getFeedToProcess();
+        feed2 = feedDao.pollFeedToProcess();
         Assert.assertEquals(feedId2, feed2.getId());
 
         feedDao.releaseFeedInProcess(feed1);
@@ -155,7 +155,7 @@ public class FeedDaoTest {
         feed1 = feedDao.getById(feedId1);
         feed2 = feedDao.getById(feedId1);
 
-        Assert.assertNull(feed1.getInProgressSince());
-        Assert.assertNull(feed2.getInProgressSince());
+        Assert.assertNull(feed1.getInProcessSince());
+        Assert.assertNull(feed2.getInProcessSince());
     }
 }

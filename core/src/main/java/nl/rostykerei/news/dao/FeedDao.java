@@ -13,7 +13,7 @@ public interface FeedDao extends AbstractDao<Feed, Integer> {
      *
      * @return feed
      */
-    Feed getFeedToProcess();
+    Feed pollFeedToProcess();
 
     void releaseFeedInProcess(Feed feed);
 }

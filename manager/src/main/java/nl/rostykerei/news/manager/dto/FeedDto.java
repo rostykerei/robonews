@@ -86,7 +86,7 @@ public class FeedDto {
         setVideo(feed.isVideo());
         setLastCheck(feed.getLastCheck());
         setPlannedCheck(feed.getPlannedCheck());
-        setInProgressSince(feed.getInProgressSince());
+        setInProgressSince(feed.getInProcessSince());
         setVelocity(feed.getVelocity());
         setMinVelocityThreshold(feed.getMinVelocityThreshold());
         setMaxVelocityThreshold(feed.getMaxVelocityThreshold());
@@ -107,7 +107,7 @@ public class FeedDto {
         feed.setVideo(isVideo());
         feed.setLastCheck(getLastCheck());
         feed.setPlannedCheck(getPlannedCheck());
-        feed.setInProgressSince(getInProgressSince());
+        feed.setInProcessSince(getInProgressSince());
         feed.setVelocity(getVelocity());
         feed.setMinVelocityThreshold(getMinVelocityThreshold());
         feed.setMaxVelocityThreshold(getMaxVelocityThreshold());

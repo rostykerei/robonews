@@ -32,13 +32,15 @@ public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implem
 
     @Override
     @Transactional
-    public Feed getFeedToProcess() {
+    public Feed pollFeedToProcess() {
         Feed feed = (Feed) getSession().
                 createQuery("from Feed f" +
                         " left join fetch f.category" +
                         " left join fetch f.channel" +
-                        " where f.inProgressSince is null" +
+                        " where f.inProcessSince is null" +
+                        " and f.plannedCheck <= :now" +
                         " order by f.plannedCheck asc").
+                setTimestamp("now", new Date()).
                 setMaxResults(1).
                 setLockMode("f", LockMode.UPGRADE_NOWAIT).
                 uniqueResult();
@@ -47,14 +49,15 @@ public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implem
             return null;
         }
 
-        feed.setInProgressSince(new Date());
+        feed.setInProcessSince(new Date());
         update(feed);
         return feed;
     }
 
     @Override
+    @Transactional
     public void releaseFeedInProcess(Feed feed) {
-        feed.setInProgressSince(null);
+        feed.setInProcessSince(null);
         feed.setLastCheck(new Date());
         update(feed);
     }

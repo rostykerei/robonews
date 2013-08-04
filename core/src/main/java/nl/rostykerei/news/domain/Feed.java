@@ -58,8 +58,8 @@ public class Feed {
     @Column(name = "plannedCheck")
     private Date plannedCheck;
 
-    @Column(name = "inProgressSince")
-    private Date inProgressSince;
+    @Column(name = "inProcessSince")
+    private Date inProcessSince;
 
     @Column(name = "velocity")
     private double velocity;
@@ -180,12 +180,12 @@ public class Feed {
         this.plannedCheck = plannedCheck;
     }
 
-    public Date getInProgressSince() {
-        return inProgressSince;
+    public Date getInProcessSince() {
+        return inProcessSince;
     }
 
-    public void setInProgressSince(Date inProgressSince) {
-        this.inProgressSince = inProgressSince;
+    public void setInProcessSince(Date inProgressSince) {
+        this.inProcessSince = inProgressSince;
     }
 
     public double getVelocity() {
