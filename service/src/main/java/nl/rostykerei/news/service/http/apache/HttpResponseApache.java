@@ -1,19 +1,17 @@
 package nl.rostykerei.news.service.http.apache;
 
 import nl.rostykerei.news.service.http.HttpResponse;
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.cookie.DateParseException;
+import org.apache.http.impl.cookie.DateUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
-/**
- * Created with IntelliJ IDEA.
- * User: rosty
- * Date: 7/25/13
- * Time: 11:51 PM
- * To change this template use File | Settings | File Templates.
- */
 public class HttpResponseApache implements HttpResponse {
 
     private org.apache.http.HttpResponse response;
@@ -36,6 +34,11 @@ public class HttpResponseApache implements HttpResponse {
     }
 
     @Override
+    public int getHttpStatus() {
+        return response.getStatusLine().getStatusCode();
+    }
+
+    @Override
     public void abort() {
         httpGet.abort();
     }
@@ -43,5 +46,31 @@ public class HttpResponseApache implements HttpResponse {
     @Override
     public void releaseConnection() {
         httpGet.releaseConnection();
+    }
+
+    @Override
+    public Date getLastModified() {
+        Header header = response.getFirstHeader(HttpHeaders.LAST_MODIFIED);
+
+        if (header != null) {
+            try {
+                return DateUtils.parseDate(header.getValue());
+            } catch (DateParseException e) {
+                return null;
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public String getEtag() {
+        Header header = response.getFirstHeader(HttpHeaders.ETAG);
+
+        if (header != null) {
+            return header.getValue();
+        }
+
+        return null;
     }
 }

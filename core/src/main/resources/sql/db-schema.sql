@@ -105,6 +105,7 @@ CREATE TABLE `Story` (
   `author` varchar(255) DEFAULT NULL,
   `link` varchar(255) NOT NULL,
   `guid` varchar(255) NOT NULL,
+  `isVideo` bit(1) NOT NULL DEFAULT b'0',
   `publicationDate` timestamp NULL DEFAULT NULL,
   `createdDate` timestamp NULL DEFAULT NULL,
   `description` text,

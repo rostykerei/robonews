@@ -23,6 +23,12 @@
                     <contextPath>/crawler</contextPath>
                     <jettyXml>src/test/resources/jetty-env.xml</jettyXml>
                     <webAppSourceDirectory>src/main/webapp</webAppSourceDirectory>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>spring.profiles.active</name>
+                            <value>fill-db,test</value>
+                        </systemProperty>
+                    </systemProperties>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -31,23 +37,6 @@
                         <version>1.4</version>
                     </dependency>
                 </dependencies>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <port>9092</port>
-                    <systemProperties>
-                        <spring.profiles.active>fill-db,test</spring.profiles.active>
-                        <com.sun.management.jmxremote>true</com.sun.management.jmxremote>
-                        <com.sun.management.jmxremote.port>9093</com.sun.management.jmxremote.port>
-                        <com.sun.management.jmxremote.ssl>false</com.sun.management.jmxremote.ssl>
-                        <com.sun.management.jmxremote.authenticate>false</com.sun.management.jmxremote.authenticate>
-                        <java.rmi.server.hostname>127.0.0.1</java.rmi.server.hostname>
-                    </systemProperties>
-                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -34,7 +34,7 @@ public class HttpServiceApache implements HttpService {
         Date lastModified = httpRequest.getLastModified();
 
         if (etag != null) {
-            httpGet.setHeader(HttpHeaders.IF_NONE_MATCH,etag);
+            httpGet.setHeader(HttpHeaders.IF_NONE_MATCH, etag);
         }
 
         if (lastModified != null) {

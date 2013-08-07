@@ -155,11 +155,19 @@ public class FeedController extends AbstractController {
         feedDto.setCopyright(syndicationFeed.getCopyright());
         feedDto.setImageUrl(syndicationFeed.getImageUrl());
 
-        // TODO
-        //feedDto.setVelocity(10);
-        //feedDto.setVelocity(syndicationFeed.getEntries().size());
-        feedDto.setVelocity(syndicationFeed.estimateVelocity());
-        feedDto.setMinVelocityThreshold((double) 1 / 12);
+        double estimatedVelocity = syndicationFeed.estimateVelocity();
+
+        if (estimatedVelocity < 1/24) {
+            feedDto.setVelocity(1/24);
+        }
+        else if (estimatedVelocity > 60) {
+            feedDto.setVelocity(60);
+        }
+        else {
+            feedDto.setVelocity(estimatedVelocity);
+        }
+
+        feedDto.setMinVelocityThreshold((double) 1 / 24);
         feedDto.setMaxVelocityThreshold(60);
         feedDto.setPlannedCheck(new Date());
 

@@ -1,5 +1,7 @@
 package nl.rostykerei.news.domain;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,6 +52,9 @@ public class Story {
     @Column(name = "guid", unique = false, nullable = false, length = 255)
     private String guid;
 
+    @Column(name = "isVideo")
+    private boolean video;
+
     @Column(name = "publicationDate", unique = false, nullable = false)
     private Date publicationDate;
 
@@ -95,10 +100,6 @@ public class Story {
         return guidHash;
     }
 
-    public void setGuidHash(String guidHash) {
-        this.guidHash = guidHash;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -129,6 +130,15 @@ public class Story {
 
     public void setGuid(String guid) {
         this.guid = guid;
+        this.guidHash = DigestUtils.sha1Hex(guid);
+    }
+
+    public boolean isVideo() {
+        return video;
+    }
+
+    public void setVideo(boolean video) {
+        this.video = video;
     }
 
     public Date getPublicationDate() {

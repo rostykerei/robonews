@@ -15,4 +15,7 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean id="storyDao" class="nl.rostykerei.news.dao.hibernate.StoryDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>

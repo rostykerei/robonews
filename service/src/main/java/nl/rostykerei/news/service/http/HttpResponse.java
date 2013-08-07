@@ -2,6 +2,7 @@ package nl.rostykerei.news.service.http;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,9 +15,13 @@ public interface HttpResponse {
 
     InputStream getStream() throws IOException;
 
+    int getHttpStatus();
+
     void abort();
 
     void releaseConnection();
 
+    Date getLastModified();
 
+    String getEtag();
 }
