@@ -1,10 +1,9 @@
 package nl.rostykerei.news.dao.hibernate;
 
+import java.util.List;
 import nl.rostykerei.news.dao.ChannelDao;
 import nl.rostykerei.news.domain.Channel;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 public class ChannelDaoHibernate extends AbstractDaoHibernate<Channel, Integer> implements ChannelDao {
 
@@ -13,6 +12,7 @@ public class ChannelDaoHibernate extends AbstractDaoHibernate<Channel, Integer> 
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
     public List<Channel> getAll() {
         return getSession().

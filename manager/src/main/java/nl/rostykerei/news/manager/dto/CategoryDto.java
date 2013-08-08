@@ -1,10 +1,9 @@
 package nl.rostykerei.news.manager.dto;
 
-import nl.rostykerei.news.domain.Category;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import nl.rostykerei.news.domain.Category;
 
 public class CategoryDto {
 

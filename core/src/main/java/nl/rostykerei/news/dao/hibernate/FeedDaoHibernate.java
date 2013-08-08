@@ -1,12 +1,11 @@
 package nl.rostykerei.news.dao.hibernate;
 
+import java.util.Date;
+import java.util.List;
 import nl.rostykerei.news.dao.FeedDao;
 import nl.rostykerei.news.domain.Feed;
 import org.hibernate.LockMode;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA on 7/25/13 at 6:19 PM
@@ -20,6 +19,7 @@ public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implem
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
     public List<Feed> getAll() {
         return getSession().

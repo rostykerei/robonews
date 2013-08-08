@@ -13,4 +13,15 @@ public interface HttpService {
 
     HttpResponse execute(HttpRequest httpRequest) throws IOException;
 
+    void setUserAgent(String userAgent);
+
+    String getUserAgent();
+
+    void setTimeout(int milliseconds);
+
+    int getTimeout();
+
+    void setMaxContentLength(long bytes);
+
+    long getMaxContentLength();
 }

@@ -1,8 +1,7 @@
 package nl.rostykerei.news.dao;
 
-import nl.rostykerei.news.domain.Category;
-
 import java.util.List;
+import nl.rostykerei.news.domain.Category;
 
 public interface CategoryDao {
 

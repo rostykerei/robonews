@@ -1,12 +1,11 @@
 package nl.rostykerei.news.dao.hibernate;
 
+import java.io.Serializable;
 import nl.rostykerei.news.dao.AbstractDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.io.Serializable;
 
 @Repository
 abstract class AbstractDaoHibernate <T, PK extends Serializable>
@@ -29,11 +28,13 @@ abstract class AbstractDaoHibernate <T, PK extends Serializable>
     }
 
     @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
     public T getById(PK id) {
         return (T) getSession().get(type, id);
     }
 
     @Transactional
+    @SuppressWarnings("unchecked")
     public PK create(T o) {
         return (PK) getSession().save(o);
     }

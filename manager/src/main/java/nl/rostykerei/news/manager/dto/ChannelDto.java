@@ -1,9 +1,8 @@
 package nl.rostykerei.news.manager.dto;
 
-import nl.rostykerei.news.domain.Channel;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import nl.rostykerei.news.domain.Channel;
 
 public class ChannelDto {
 

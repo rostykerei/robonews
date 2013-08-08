@@ -1,11 +1,10 @@
 package nl.rostykerei.news.dao;
 
-import nl.rostykerei.news.domain.Channel;
-
 import java.util.List;
+import nl.rostykerei.news.domain.Channel;
 
 public interface ChannelDao extends AbstractDao<Channel, Integer> {
 
-    List getAll();
+    List<Channel> getAll();
 
 }

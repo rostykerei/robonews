@@ -7,7 +7,7 @@
     <import resource="crawlerContext.xml"/>
 
     <task:scheduled-tasks scheduler="crawlScheduler">
-        <task:scheduled ref="crawler" method="run" fixed-delay="100"/>
+        <task:scheduled ref="crawler" method="run" fixed-delay="1000"/>
     </task:scheduled-tasks>
 
     <task:scheduler id="crawlScheduler"/>

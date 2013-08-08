@@ -1,5 +1,6 @@
 package nl.rostykerei.news.manager.controllers;
 
+import javax.validation.Valid;
 import nl.rostykerei.news.dao.ChannelDao;
 import nl.rostykerei.news.domain.Channel;
 import nl.rostykerei.news.manager.dto.ChannelDto;
@@ -14,8 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
 
 @Controller
 public class ChannelController extends AbstractController {

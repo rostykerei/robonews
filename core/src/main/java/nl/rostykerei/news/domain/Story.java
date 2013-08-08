@@ -1,7 +1,6 @@
 package nl.rostykerei.news.domain;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import org.apache.commons.codec.digest.DigestUtils;
 
 @Entity
 @Table(name = "Story", uniqueConstraints = @UniqueConstraint(columnNames = {"channelId", "guidHash"}))

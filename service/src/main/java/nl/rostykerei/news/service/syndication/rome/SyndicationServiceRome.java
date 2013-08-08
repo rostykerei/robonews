@@ -4,13 +4,12 @@ import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.ParsingFeedException;
 import com.sun.syndication.io.SyndFeedInput;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import nl.rostykerei.news.service.syndication.SyndicationFeed;
 import nl.rostykerei.news.service.syndication.SyndicationService;
 import nl.rostykerei.news.service.syndication.SyndicationServiceException;
 import nl.rostykerei.news.service.syndication.SyndicationServiceParsingException;
-import org.xml.sax.InputSource;
-
-import java.io.InputStream;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,7 +23,10 @@ public class SyndicationServiceRome implements SyndicationService {
     @Override
     public SyndicationFeed loadFeed(InputStream inputStream) throws SyndicationServiceException {
         try {
-            SyndFeed syndFeed = new SyndFeedInput().build(new InputSource(inputStream));
+            SyndFeedInput syndFeedInput = new SyndFeedInput();
+            syndFeedInput.setXmlHealerOn(true);
+
+            SyndFeed syndFeed = syndFeedInput.build(new InputStreamReader(inputStream));
             return new SyndicationFeedRome(syndFeed);
         }
         catch (ParsingFeedException exception) {

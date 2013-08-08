@@ -2,12 +2,11 @@ package nl.rostykerei.news.service.syndication.rome;
 
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
-import nl.rostykerei.news.service.syndication.SyndicationEntry;
-import nl.rostykerei.news.service.syndication.SyndicationFeed;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import nl.rostykerei.news.service.syndication.SyndicationEntry;
+import nl.rostykerei.news.service.syndication.SyndicationFeed;
 
 public class SyndicationFeedRome implements SyndicationFeed {
 
@@ -75,9 +74,9 @@ public class SyndicationFeedRome implements SyndicationFeed {
     public List<SyndicationEntry> getEntries() {
         List<SyndicationEntry> list = new ArrayList<SyndicationEntry>();
 
-        Iterator<SyndEntry> iterator = syndFeed.getEntries().iterator();
+        Iterator iterator = syndFeed.getEntries().iterator();
         while (iterator.hasNext()) {
-            list.add(new SyndicationEntryRome(iterator.next()));
+            list.add(new SyndicationEntryRome((SyndEntry) iterator.next()));
         }
 
         return list;
@@ -93,9 +92,9 @@ public class SyndicationFeedRome implements SyndicationFeed {
         long minDate = Long.MAX_VALUE;
         long maxDate = 0;
 
-        Iterator<SyndEntry> iterator = syndFeed.getEntries().iterator();
+        Iterator iterator = syndFeed.getEntries().iterator();
         while (iterator.hasNext()) {
-            SyndEntry entry = iterator.next();
+            SyndEntry entry = (SyndEntry) iterator.next();
             long pubDate = entry.getPublishedDate().getTime();
 
             minDate = pubDate < minDate ? pubDate : minDate;

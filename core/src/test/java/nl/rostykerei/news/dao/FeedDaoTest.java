@@ -1,5 +1,7 @@
 package nl.rostykerei.news.dao;
 
+import java.util.Date;
+import java.util.List;
 import nl.rostykerei.news.domain.Category;
 import nl.rostykerei.news.domain.Channel;
 import nl.rostykerei.news.domain.Feed;
@@ -12,9 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.List;
 
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:coreContext.xml" })

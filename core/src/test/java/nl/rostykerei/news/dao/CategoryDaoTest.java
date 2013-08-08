@@ -1,5 +1,7 @@
 package nl.rostykerei.news.dao;
 
+import java.util.Iterator;
+import java.util.List;
 import nl.rostykerei.news.domain.Category;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,9 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Iterator;
-import java.util.List;
 
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:coreContext.xml" })

@@ -1,9 +1,8 @@
 package nl.rostykerei.news.service.syndication.rome;
 
 import com.sun.syndication.feed.synd.SyndEntry;
-import nl.rostykerei.news.service.syndication.SyndicationEntry;
-
 import java.util.Date;
+import nl.rostykerei.news.service.syndication.SyndicationEntry;
 
 public class SyndicationEntryRome implements SyndicationEntry {
 

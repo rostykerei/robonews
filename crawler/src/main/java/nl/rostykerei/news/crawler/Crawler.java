@@ -1,5 +1,8 @@
 package nl.rostykerei.news.crawler;
 
+import java.io.IOException;
+import java.util.Date;
+import java.util.Set;
 import nl.rostykerei.news.crawler.processors.StoryPostProcessor;
 import nl.rostykerei.news.crawler.processors.StoryPreProcessor;
 import nl.rostykerei.news.dao.FeedDao;
@@ -14,6 +17,7 @@ import nl.rostykerei.news.service.http.impl.HttpRequestImpl;
 import nl.rostykerei.news.service.syndication.SyndicationEntry;
 import nl.rostykerei.news.service.syndication.SyndicationFeed;
 import nl.rostykerei.news.service.syndication.SyndicationService;
+import nl.rostykerei.news.service.syndication.SyndicationServiceParsingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +25,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.util.StringUtils;
-
-import java.util.Date;
-import java.util.Set;
 
 public class Crawler {
 
@@ -71,10 +72,6 @@ public class Crawler {
 
                     syndicationFeed = syndicationService.loadFeed(httpResponse.getStream());
 
-                    if (syndicationFeed == null) {
-                        throw new RuntimeException("Cannot load feed");
-                    }
-
                     for (SyndicationEntry syndEntry : syndicationFeed.getEntries()) {
                         if (!StringUtils.isEmpty(syndEntry.getGuid())) {
                             Story oldStory = storyDao.getByGuid(feed.getChannel(), syndEntry.getGuid());
@@ -96,7 +93,14 @@ public class Crawler {
                 else {
                     newStories = 0;
                 }
-            } catch (Exception e) {
+            }
+            catch (SyndicationServiceParsingException e) {
+                logger.info("Failed to parse", e);
+            }
+            catch (IOException e) {
+                logger.info("Failed to load feed", e);
+            }
+            catch (Exception e) {
                 logger.info("Failed to crawl", e);
             }
             finally {
@@ -119,7 +123,7 @@ public class Crawler {
     }
 
     void processAsNewStory(SyndicationEntry syndEntry, Feed feed, Date checkTime) {
-        for (StoryPreProcessor preProcessor : preProcessors) {
+        for (StoryPreProcessor preProcessor : getPreProcessors()) {
             syndEntry = preProcessor.preProcess(syndEntry);
         }
 
@@ -138,11 +142,11 @@ public class Crawler {
 
         storyDao.create(story);
 
-        for (StoryPostProcessor postProcessor : postProcessors) {
+        for (StoryPostProcessor postProcessor : getPostProcessors()) {
             postProcessor.postProcess(story);
         }
 
-        logger.info("NEWS: " + syndEntry.getTitle());
+        logger.debug("NEWS: " + syndEntry.getTitle());
     }
 
     void updateExistentStory(Story oldStory, Feed newFeed) {
@@ -227,5 +231,6 @@ public class Crawler {
         Crawler c = (Crawler) context.getBean("crawler");
 
         c.run();
+        System.exit(0);
     }
 }

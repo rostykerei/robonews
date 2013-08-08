@@ -1,5 +1,8 @@
 package nl.rostykerei.news.manager.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.validation.Valid;
 import nl.rostykerei.news.dao.CategoryDao;
 import nl.rostykerei.news.domain.Category;
 import nl.rostykerei.news.manager.dto.CategoryDto;
@@ -16,10 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @SessionAttributes(value = "category", types = CategoryDto.class)

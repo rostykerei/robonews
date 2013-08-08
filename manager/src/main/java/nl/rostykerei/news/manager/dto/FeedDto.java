@@ -1,11 +1,10 @@
 package nl.rostykerei.news.manager.dto;
 
-import nl.rostykerei.news.domain.Feed;
-
+import java.util.Date;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
-import java.util.Date;
+import nl.rostykerei.news.domain.Feed;
 
 /**
  * Created with IntelliJ IDEA on 7/31/13 at 3:57 PM

@@ -1,25 +1,40 @@
 package nl.rostykerei.news.service.http.apache;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
 import nl.rostykerei.news.service.http.HttpResponse;
+import org.apache.commons.io.input.BoundedInputStream;
+import org.apache.http.ContentTooLongException;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.cookie.DateParseException;
 import org.apache.http.impl.cookie.DateUtils;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
+import org.springframework.util.StringUtils;
 
 public class HttpResponseApache implements HttpResponse {
 
     private org.apache.http.HttpResponse response;
     private HttpGet httpGet;
+    private long maxContentLength;
 
-    public HttpResponseApache(org.apache.http.HttpResponse response, HttpGet httpGet) {
+    public HttpResponseApache(org.apache.http.HttpResponse response, HttpGet httpGet, long maxContentLength) throws IOException {
         this.response = response;
         this.httpGet = httpGet;
+        this.maxContentLength = maxContentLength;
+
+        Header contentLengthHeader = response.getFirstHeader(HttpHeaders.CONTENT_LENGTH);
+
+        if (contentLengthHeader != null && !StringUtils.isEmpty(contentLengthHeader.getValue())) {
+            long contentLength = Long.parseLong(contentLengthHeader.getValue());
+
+            if (contentLength > 0 && contentLength > maxContentLength) {
+                throw new ContentTooLongException("Content is too long: " + contentLength +
+                        " bytes expected, but only " + maxContentLength + " allowed");
+            }
+        }
     }
 
     @Override
@@ -27,7 +42,7 @@ public class HttpResponseApache implements HttpResponse {
         HttpEntity entity = response.getEntity();
 
         if (entity != null) {
-            return entity.getContent();
+            return new BoundedInputStream(entity.getContent(), maxContentLength);
         }
 
         return null;

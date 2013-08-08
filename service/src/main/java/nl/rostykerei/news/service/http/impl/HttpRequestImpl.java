@@ -1,8 +1,7 @@
 package nl.rostykerei.news.service.http.impl;
 
-import nl.rostykerei.news.service.http.HttpRequest;
-
 import java.util.Date;
+import nl.rostykerei.news.service.http.HttpRequest;
 
 public class HttpRequestImpl implements HttpRequest {
 

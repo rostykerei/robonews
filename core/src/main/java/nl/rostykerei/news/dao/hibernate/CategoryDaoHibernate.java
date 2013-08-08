@@ -1,5 +1,6 @@
 package nl.rostykerei.news.dao.hibernate;
 
+import java.util.List;
 import nl.rostykerei.news.dao.CategoryDao;
 import nl.rostykerei.news.domain.Category;
 import org.hibernate.Query;
@@ -7,8 +8,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Repository
 public class CategoryDaoHibernate implements CategoryDao {
@@ -76,6 +75,7 @@ public class CategoryDaoHibernate implements CategoryDao {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
     public List<Category> getAll() {
         return getSession().
@@ -107,6 +107,7 @@ public class CategoryDaoHibernate implements CategoryDao {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
     public List<Category> getChildren(Category category, int depth) {
         StringBuilder hql = new StringBuilder("from Category " +

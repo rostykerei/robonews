@@ -1,8 +1,7 @@
 package nl.rostykerei.news.dao;
 
-import nl.rostykerei.news.domain.Feed;
-
 import java.util.List;
+import nl.rostykerei.news.domain.Feed;
 
 public interface FeedDao extends AbstractDao<Feed, Integer> {
 
