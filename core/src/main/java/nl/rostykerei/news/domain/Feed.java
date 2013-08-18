@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 
@@ -53,12 +55,15 @@ public class Feed {
     @Column(name = "isVideo")
     private boolean video;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastCheck")
     private Date lastCheck;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "plannedCheck")
     private Date plannedCheck;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "inProcessSince")
     private Date inProcessSince;
 
@@ -74,6 +79,7 @@ public class Feed {
     @Column(name = "httpLastEtag")
     private String httpLastEtag;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "httpLastModified")
     private Date httpLastModified;
 

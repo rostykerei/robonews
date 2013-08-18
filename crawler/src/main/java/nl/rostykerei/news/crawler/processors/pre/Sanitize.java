@@ -17,16 +17,20 @@ public class Sanitize implements StoryPreProcessor {
 
     @Override
     public SyndicationEntry preProcess(SyndicationEntry syndEntry) {
-        String txt = syndEntry.getDescription();
 
-        txt = Jsoup.parse(txt).text();
-
-        txt = CharMatcher.WHITESPACE.replaceFrom(txt, " ");
-        txt = txt.trim();
-
-        syndEntry.setDescription(txt);
+        syndEntry.setAuthor( sanitizeText(syndEntry.getAuthor(), 255) );
+        syndEntry.setDescription( sanitizeText(syndEntry.getDescription(), 1024) );
+        syndEntry.setTitle( sanitizeText(syndEntry.getTitle(), 255) );
 
         return syndEntry;
+    }
+
+    public static String sanitizeText(String text, int maxLength) {
+        text = Jsoup.parse(text).text();
+        text = normalizeWhitespaces(text);
+        text = truncate(text, maxLength);
+
+        return text;
     }
 
     public static String normalizeWhitespaces(String text) {

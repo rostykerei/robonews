@@ -1,13 +1,20 @@
 package nl.rostykerei.news.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
@@ -55,9 +62,11 @@ public class Story {
     @Column(name = "isVideo")
     private boolean video;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "publicationDate", unique = false, nullable = false)
     private Date publicationDate;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createdDate", unique = false, nullable = false)
     private Date createdDate;
 
@@ -67,6 +76,15 @@ public class Story {
     @Version
     @Column(name = "version")
     private long version;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = NamedEntity.class)
+    @JoinTable(name = "StoryNamedEntity",
+            uniqueConstraints = @UniqueConstraint(columnNames = {"namedEntityId", "storyId"}),
+            joinColumns = {
+            @JoinColumn(name = "storyId", nullable = false, updatable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "namedEntityId",
+                    nullable = false, updatable = false) })
+    private Set<NamedEntity> namedEntities = new HashSet<NamedEntity>();
 
     public long getId() {
         return id;
@@ -176,4 +194,13 @@ public class Story {
     public void setVersion(long version) {
         this.version = version;
     }
+
+    public Set<NamedEntity> getNamedEntities() {
+        return namedEntities;
+    }
+
+    public void setNamedEntities(Set<NamedEntity> namedEntities) {
+        this.namedEntities = namedEntities;
+    }
+
 }

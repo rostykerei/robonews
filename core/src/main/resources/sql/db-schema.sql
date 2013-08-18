@@ -47,7 +47,7 @@ CREATE TABLE `Channel` (
   `description` varchar(255) DEFAULT NULL,
   `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  UNIQUE KEY `channel_idx_1` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -80,10 +80,10 @@ CREATE TABLE `Feed` (
   `httpLastModified` timestamp NULL DEFAULT NULL,
   `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `url` (`url`),
-  KEY `feed_idx_1` (`channelId`),
-  KEY `feed_idx_2` (`categoryId`),
-  KEY `feed_idx_3` (`inProcessSince`,`plannedCheck`),
+  UNIQUE KEY `feed_idx_1` (`url`),
+  KEY `feed_idx_2` (`channelId`),
+  KEY `feed_idx_3` (`categoryId`),
+  KEY `feed_idx_4` (`inProcessSince`,`plannedCheck`),
   CONSTRAINT `feed_fk_1` FOREIGN KEY (`channelId`) REFERENCES `Channel` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `feed_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `Category` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=utf8;
@@ -112,15 +112,45 @@ CREATE TABLE `Story` (
   `description` text,
   `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `channelId` (`channelId`,`guidHash`),
-  KEY `story_idx_1` (`channelId`,`publicationDate`),
-  KEY `story_idx_2` (`categoryId`,`publicationDate`),
-  KEY `story_idx_3` (`originalFeedId`,`publicationDate`),
-  KEY `story_idx_4` (`publicationDate`),
+  UNIQUE KEY `story_idx_1` (`channelId`,`guidHash`),
+  KEY `story_idx_2` (`channelId`,`publicationDate`),
+  KEY `story_idx_3` (`categoryId`,`publicationDate`),
+  KEY `story_idx_4` (`originalFeedId`,`publicationDate`),
+  KEY `story_idx_5` (`publicationDate`),
   CONSTRAINT `story_fk_1` FOREIGN KEY (`channelId`) REFERENCES `Channel` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `story_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `Category` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `story_fk_3` FOREIGN KEY (`originalFeedId`) REFERENCES `Feed` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `NamedEntityType`;
+CREATE TABLE `NamedEntityType` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type` varchar(64) NOT NULL,
+  `version` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `type` (`type`)
+) ENGINE=InnoDB CHARSET=utf8;
+
+DROP TABLE IF EXISTS `NamedEntity`;
+CREATE TABLE `NamedEntity` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `typeId` int(10) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `version` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `named_entity_idx_1` (`typeId`, `name`),
+  CONSTRAINT `named_entity_fk_1` FOREIGN KEY (`typeId`) REFERENCES `NamedEntityType` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT
+) ENGINE=InnoDB CHARSET=utf8;
+
+DROP TABLE IF EXISTS `StoryNamedEntity`;
+CREATE TABLE `StoryNamedEntity` (
+  `storyId` bigint(20) UNSIGNED NOT NULL,
+  `namedEntityId` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`storyId`, `namedEntityId`),
+  CONSTRAINT `story_named_entity_fk_1` FOREIGN KEY (`storyId`) REFERENCES `Story` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `story_named_entity_fk_2` FOREIGN KEY (`namedEntityId`) REFERENCES `NamedEntity` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT
+) ENGINE=InnoDB CHARSET=utf8;
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

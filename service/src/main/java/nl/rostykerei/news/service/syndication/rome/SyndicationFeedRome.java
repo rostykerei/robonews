@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import nl.rostykerei.news.service.syndication.SyndicationEntry;
 import nl.rostykerei.news.service.syndication.SyndicationFeed;
+import org.springframework.util.StringUtils;
 
 public class SyndicationFeedRome implements SyndicationFeed {
 
@@ -76,7 +77,14 @@ public class SyndicationFeedRome implements SyndicationFeed {
 
         Iterator iterator = syndFeed.getEntries().iterator();
         while (iterator.hasNext()) {
-            list.add(new SyndicationEntryRome((SyndEntry) iterator.next()));
+            SyndEntry syndEntry = (SyndEntry) iterator.next();
+
+            // TODO more validation here....
+            if (StringUtils.isEmpty(syndEntry.getLink()) || syndEntry.getLink().length() > 255) {
+                continue;
+            }
+
+            list.add(new SyndicationEntryRome(syndEntry));
         }
 
         return list;

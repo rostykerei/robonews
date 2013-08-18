@@ -45,6 +45,9 @@ INSERT INTO `Feed` (`id`, `channelId`, `categoryId`, `url`, `name`, `link`, `des
 /*!40000 ALTER TABLE `Feed` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+
+INSERT INTO NamedEntityType (`id`, `type`) VALUES (1, 'PERSON'), (2, 'LOCATION'), (3, 'ORGANIZATION'), (4, 'MISC');
 --
 -- Dumping data for table `Story`
 --

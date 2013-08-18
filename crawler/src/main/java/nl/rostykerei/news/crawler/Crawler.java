@@ -63,7 +63,9 @@ public class Crawler {
             HttpResponse httpResponse = null;
             SyndicationFeed syndicationFeed = null;
 
+            logger.info("Crawling " + feed.getUrl());
             try {
+
                 httpResponse = httpService.execute(httpRequest);
 
                 if (httpResponse.getHttpStatus() == 200) {
@@ -79,6 +81,7 @@ public class Crawler {
                             if (oldStory == null) {
                                 // Processing new story...
                                 processAsNewStory(syndEntry, feed, checkTime);
+                                newStories++;
                             }
                             else {
                                 // Processing existent story...
@@ -180,7 +183,7 @@ public class Crawler {
     }
 
     double calculateVelocity(Feed feed, Date checkTime, int newStories) {
-        // TODO
+        // TODO if lastcheck is null
         long lastCheck = feed.getLastCheck() != null ? feed.getLastCheck().getTime() : new Date().getTime() - 3600000L;
 
         double newVelocity = (feed.getVelocity() + newStories) / ( ((checkTime.getTime() - lastCheck) / 3600000D) + 1);

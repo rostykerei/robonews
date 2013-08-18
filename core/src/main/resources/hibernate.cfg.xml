@@ -13,5 +13,6 @@
         <mapping class="nl.rostykerei.news.domain.Category" />
         <mapping class="nl.rostykerei.news.domain.Feed" />
         <mapping class="nl.rostykerei.news.domain.Story"/>
+        <mapping class="nl.rostykerei.news.domain.NamedEntity"/>
     </session-factory>
 </hibernate-configuration>
