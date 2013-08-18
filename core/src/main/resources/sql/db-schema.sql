@@ -45,7 +45,7 @@ CREATE TABLE `Channel` (
   `name` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `version` bigint not null default '0',
+  `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
@@ -78,6 +78,7 @@ CREATE TABLE `Feed` (
   `maxVelocityThreshold` double NOT NULL DEFAULT '60',
   `httpLastEtag` varchar(255) DEFAULT NULL,
   `httpLastModified` timestamp NULL DEFAULT NULL,
+  `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `url` (`url`),
   KEY `feed_idx_1` (`channelId`),
@@ -109,6 +110,7 @@ CREATE TABLE `Story` (
   `publicationDate` timestamp NULL DEFAULT NULL,
   `createdDate` timestamp NULL DEFAULT NULL,
   `description` text,
+  `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `channelId` (`channelId`,`guidHash`),
   KEY `story_idx_1` (`channelId`,`publicationDate`),
@@ -130,4 +132,4 @@ CREATE TABLE `Story` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-02 18:01:52
+-- Dump completed on 2013-08-08 17:38:59

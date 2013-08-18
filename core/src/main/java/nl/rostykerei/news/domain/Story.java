@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -62,6 +63,10 @@ public class Story {
 
     @Column(name = "description", unique = false, nullable = false)
     private String description;
+
+    @Version
+    @Column(name = "version")
+    private long version;
 
     public long getId() {
         return id;
@@ -162,5 +167,13 @@ public class Story {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
     }
 }

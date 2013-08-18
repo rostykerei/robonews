@@ -79,11 +79,11 @@ public class HttpServiceApache implements HttpService {
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             public void run() {
-            synchronized (this) {
-                if(httpResponse != null) {
-                    httpGet.abort();
+                synchronized (this) {
+                    if(httpGet != null) {
+                        httpGet.abort();
+                    }
                 }
-            }
             }
         }, getTimeout());
 

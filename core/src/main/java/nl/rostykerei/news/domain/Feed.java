@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
 
 
 @Entity
@@ -75,6 +76,10 @@ public class Feed {
 
     @Column(name = "httpLastModified")
     private Date httpLastModified;
+
+    @Version
+    @Column(name = "version")
+    private long version;
 
     public int getId() {
         return id;
@@ -226,5 +231,13 @@ public class Feed {
 
     public void setHttpLastModified(Date httpLastModified) {
         this.httpLastModified = httpLastModified;
+    }
+
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
     }
 }

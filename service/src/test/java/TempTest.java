@@ -24,7 +24,7 @@ public class TempTest {
     @Test
     public void httpTest() {
         //HttpRequest httpRequest = new HttpRequestImpl("http://localhost/bbc.temp");
-        HttpRequest httpRequest = new HttpRequestImpl("http://feeds.bbci.co.uk/news/rss.xml");
+        HttpRequest httpRequest = new HttpRequestImpl("http://www.telegraph.co.uk/news/uknews/rss");
         httpRequest.setLastEtag("etag");
         httpRequest.setLastModified(new Date(new Date().getTime() - 31536000000L));
 
