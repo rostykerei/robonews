@@ -77,7 +77,7 @@ public class Story {
     @Column(name = "version")
     private long version;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Tag.class)
+    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Tag.class)
     @JoinTable(name = "story_tag",
             uniqueConstraints = @UniqueConstraint(columnNames = {"tagId", "storyId"}),
             joinColumns = {
