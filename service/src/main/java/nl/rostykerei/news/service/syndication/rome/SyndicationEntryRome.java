@@ -1,6 +1,5 @@
 package nl.rostykerei.news.service.syndication.rome;
 
-import com.sun.syndication.feed.synd.SyndContentImpl;
 import com.sun.syndication.feed.synd.SyndEntry;
 import java.util.Date;
 import nl.rostykerei.news.service.syndication.SyndicationEntry;

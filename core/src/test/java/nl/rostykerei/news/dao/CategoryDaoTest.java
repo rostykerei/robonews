@@ -45,7 +45,7 @@ public class CategoryDaoTest {
         this.netCat.setName(".NET");
 
         categoryDao.create(this.javaCat, this.progCat);
-        categoryDao.create(this.netCat, this.progCat);
+        categoryDao.create(this.netCat, this.progCat.getId());
     }
 
     @Test

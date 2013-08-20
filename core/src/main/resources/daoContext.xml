@@ -19,7 +19,7 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="namedEntityDao" class="nl.rostykerei.news.dao.hibernate.NamedEntityDaoHibernate">
+    <bean id="namedEntityDao" class="nl.rostykerei.news.dao.hibernate.TagDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 </beans>

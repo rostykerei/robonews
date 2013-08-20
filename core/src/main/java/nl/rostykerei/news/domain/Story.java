@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 import org.apache.commons.codec.digest.DigestUtils;
 
 @Entity
-@Table(name = "Story", uniqueConstraints = @UniqueConstraint(columnNames = {"channelId", "guidHash"}))
+@Table(name = "story", uniqueConstraints = @UniqueConstraint(columnNames = {"channelId", "guidHash"}))
 public class Story {
 
     @Id
@@ -77,14 +77,14 @@ public class Story {
     @Column(name = "version")
     private long version;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = NamedEntity.class)
-    @JoinTable(name = "StoryNamedEntity",
-            uniqueConstraints = @UniqueConstraint(columnNames = {"namedEntityId", "storyId"}),
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, targetEntity = Tag.class)
+    @JoinTable(name = "story_tag",
+            uniqueConstraints = @UniqueConstraint(columnNames = {"tagId", "storyId"}),
             joinColumns = {
             @JoinColumn(name = "storyId", nullable = false, updatable = false) },
-            inverseJoinColumns = { @JoinColumn(name = "namedEntityId",
+            inverseJoinColumns = { @JoinColumn(name = "tagId",
                     nullable = false, updatable = false) })
-    private Set<NamedEntity> namedEntities = new HashSet<NamedEntity>();
+    private Set<Tag> tags = new HashSet<Tag>();
 
     public long getId() {
         return id;
@@ -195,12 +195,12 @@ public class Story {
         this.version = version;
     }
 
-    public Set<NamedEntity> getNamedEntities() {
-        return namedEntities;
+    public Set<Tag> getTags() {
+        return tags;
     }
 
-    public void setNamedEntities(Set<NamedEntity> namedEntities) {
-        this.namedEntities = namedEntities;
+    public void setTags(Set<Tag> namedEntities) {
+        this.tags = namedEntities;
     }
 
 }

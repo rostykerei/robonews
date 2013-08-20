@@ -12,11 +12,14 @@
     <artifactId>service</artifactId>
 
     <dependencies>
+        <!-- RSS -->
         <dependency>
             <groupId>rome</groupId>
             <artifactId>rome</artifactId>
             <version>1.0</version>
         </dependency>
+
+        <!-- HTTP -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
@@ -27,6 +30,14 @@
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
         </dependency>
+
+        <!-- NLP -->
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework</groupId>

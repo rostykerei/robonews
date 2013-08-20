@@ -19,10 +19,10 @@
 -- Table structure for table `Category`
 --
 
-DROP TABLE IF EXISTS `Category`;
+DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Category` (
+CREATE TABLE `category` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `isPriority` bit(1) NOT NULL DEFAULT b'0',
@@ -37,10 +37,10 @@ CREATE TABLE `Category` (
 -- Table structure for table `Channel`
 --
 
-DROP TABLE IF EXISTS `Channel`;
+DROP TABLE IF EXISTS `channel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Channel` (
+CREATE TABLE `channel` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
@@ -55,10 +55,10 @@ CREATE TABLE `Channel` (
 -- Table structure for table `Feed`
 --
 
-DROP TABLE IF EXISTS `Feed`;
+DROP TABLE IF EXISTS `feed`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Feed` (
+CREATE TABLE `feed` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `channelId` int(10) unsigned NOT NULL,
   `categoryId` int(10) unsigned NOT NULL,
@@ -84,19 +84,54 @@ CREATE TABLE `Feed` (
   KEY `feed_idx_2` (`channelId`),
   KEY `feed_idx_3` (`categoryId`),
   KEY `feed_idx_4` (`inProcessSince`,`plannedCheck`),
-  CONSTRAINT `feed_fk_1` FOREIGN KEY (`channelId`) REFERENCES `Channel` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `feed_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `Category` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `feed_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `feed_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `Tag`
+--
+
+DROP TABLE IF EXISTS `tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tag` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `typeId` int(10) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `version` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `tag_idx_1` (`typeId`,`name`),
+  KEY `tag_idx_2` (`name`),
+  CONSTRAINT `tag_fk_1` FOREIGN KEY (`typeId`) REFERENCES `tag_type` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6364 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `tag_type`
+--
+
+DROP TABLE IF EXISTS `tag_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tag_type` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `type` varchar(64) NOT NULL,
+  `version` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `type` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `Story`
 --
 
-DROP TABLE IF EXISTS `Story`;
+DROP TABLE IF EXISTS `story`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Story` (
+CREATE TABLE `story` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `channelId` int(10) unsigned NOT NULL,
   `categoryId` int(10) unsigned NOT NULL,
@@ -117,40 +152,28 @@ CREATE TABLE `Story` (
   KEY `story_idx_3` (`categoryId`,`publicationDate`),
   KEY `story_idx_4` (`originalFeedId`,`publicationDate`),
   KEY `story_idx_5` (`publicationDate`),
-  CONSTRAINT `story_fk_1` FOREIGN KEY (`channelId`) REFERENCES `Channel` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `story_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `Category` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `story_fk_3` FOREIGN KEY (`originalFeedId`) REFERENCES `Feed` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `story_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `story_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `story_fk_3` FOREIGN KEY (`originalFeedId`) REFERENCES `feed` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4339 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `story_tag`
+--
+
+DROP TABLE IF EXISTS `story_tag`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `story_tag` (
+  `storyId` bigint(20) unsigned NOT NULL,
+  `tagId` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`storyId`,`tagId`),
+  KEY `story_tag_idx_1` (`storyId`),
+  KEY `story_tag_idx_2` (`tagId`),
+  CONSTRAINT `story_tag_fk_1` FOREIGN KEY (`storyId`) REFERENCES `story` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `story_tag_fk_2` FOREIGN KEY (`tagId`) REFERENCES `tag` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `NamedEntityType`;
-CREATE TABLE `NamedEntityType` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `type` varchar(64) NOT NULL,
-  `version` bigint(20) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `type` (`type`)
-) ENGINE=InnoDB CHARSET=utf8;
-
-DROP TABLE IF EXISTS `NamedEntity`;
-CREATE TABLE `NamedEntity` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `typeId` int(10) unsigned NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `version` bigint(20) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `named_entity_idx_1` (`typeId`, `name`),
-  CONSTRAINT `named_entity_fk_1` FOREIGN KEY (`typeId`) REFERENCES `NamedEntityType` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT
-) ENGINE=InnoDB CHARSET=utf8;
-
-DROP TABLE IF EXISTS `StoryNamedEntity`;
-CREATE TABLE `StoryNamedEntity` (
-  `storyId` bigint(20) UNSIGNED NOT NULL,
-  `namedEntityId` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`storyId`, `namedEntityId`),
-  CONSTRAINT `story_named_entity_fk_1` FOREIGN KEY (`storyId`) REFERENCES `Story` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
-  CONSTRAINT `story_named_entity_fk_2` FOREIGN KEY (`namedEntityId`) REFERENCES `NamedEntity` (`id`) ON UPDATE CASCADE ON DELETE RESTRICT
-) ENGINE=InnoDB CHARSET=utf8;
-
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -162,4 +185,4 @@ CREATE TABLE `StoryNamedEntity` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-08 17:38:59
+-- Dump completed on 2013-08-19 13:06:50

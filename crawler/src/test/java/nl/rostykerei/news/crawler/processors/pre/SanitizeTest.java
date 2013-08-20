@@ -1,7 +1,5 @@
 package nl.rostykerei.news.crawler.processors.pre;
 
-import java.util.Date;
-import nl.rostykerei.news.service.syndication.SyndicationEntry;
 import org.junit.Assert;
 import org.junit.Test;
 

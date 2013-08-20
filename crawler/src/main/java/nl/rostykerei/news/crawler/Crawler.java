@@ -227,7 +227,7 @@ public class Crawler {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        System.setProperty("spring.profiles.active", "fill-db,test");
+        System.setProperty("spring.profiles.active", "fill-masterdata,fill-db,test");
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("crawlerContext.xml");
 

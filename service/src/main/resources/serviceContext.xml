@@ -3,6 +3,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- Syndycation -->
+    <bean id="syndicationService" class="nl.rostykerei.news.service.syndication.rome.SyndicationServiceRome"/>
+
+    <!-- HTTP Client -->
     <bean id="httpClient" class="org.apache.http.impl.client.DefaultHttpClient">
         <constructor-arg>
             <bean class="org.apache.http.impl.conn.PoolingClientConnectionManager"/>
@@ -17,5 +21,9 @@
         <property name="maxContentLength" value="262144"/>
     </bean>
 
-    <bean id="syndicationService" class="nl.rostykerei.news.service.syndication.rome.SyndicationServiceRome"/>
+    <!-- NLP -->
+    <bean id="namedEntityRecognizerService" class="nl.rostykerei.news.service.nlp.stanford.NamedEntityRecognizerServiceStanford">
+        <constructor-arg value="nlp/english.conll.4class.distsim.crf.ser.gz"/>
+    </bean>
+
 </beans>

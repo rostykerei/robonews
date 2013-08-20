@@ -23,18 +23,6 @@
         </property>
     </bean>
 
-    <bean id="textProcessor" class="nl.rostykerei.news.nlp.impl.TextProcessorStanford">
-        <constructor-arg>
-            <bean class="edu.stanford.nlp.pipeline.StanfordCoreNLP">
-                <constructor-arg>
-                    <props>
-                        <prop key="annotators">tokenize,ssplit,pos,lemma,ner</prop>
-                    </props>
-                </constructor-arg>
-            </bean>
-        </constructor-arg>
-    </bean>
-
     <context:component-scan base-package="nl.rostykerei.news.crawler"/>
 
 </beans>

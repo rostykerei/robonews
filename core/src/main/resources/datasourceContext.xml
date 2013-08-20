@@ -24,6 +24,12 @@
         </jdbc:initialize-database>
     </beans>
 
+    <beans profile="fill-masterdata">
+        <jdbc:initialize-database data-source="dataSource">
+            <jdbc:script location="classpath:sql/db-masterdata.sql"/>
+        </jdbc:initialize-database>
+    </beans>
+
     <beans profile="fill-db">
         <jdbc:initialize-database data-source="dataSource">
             <jdbc:script location="classpath:sql/db-data.sql"/>

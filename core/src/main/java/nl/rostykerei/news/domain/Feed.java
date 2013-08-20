@@ -15,7 +15,7 @@ import javax.persistence.Version;
 
 
 @Entity
-@Table(name = "Feed", uniqueConstraints = @UniqueConstraint(columnNames = "url"))
+@Table(name = "feed", uniqueConstraints = @UniqueConstraint(columnNames = "url"))
 public class Feed {
 
     @Id

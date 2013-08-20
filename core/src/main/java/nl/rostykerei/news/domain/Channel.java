@@ -13,7 +13,7 @@ import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "Channel", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@Table(name = "channel", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Channel {
 
     @Id

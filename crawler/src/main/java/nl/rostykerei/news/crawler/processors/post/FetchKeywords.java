@@ -1,22 +1,22 @@
 package nl.rostykerei.news.crawler.processors.post;
 
-import nl.rostykerei.news.crawler.processors.StoryPostProcessor;
-import nl.rostykerei.news.dao.NamedEntityDao;
-import nl.rostykerei.news.dao.StoryDao;
-import nl.rostykerei.news.domain.Story;
-import nl.rostykerei.news.nlp.TextNamedEntity;
-import nl.rostykerei.news.nlp.TextProcessor;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.Set;
+import nl.rostykerei.news.crawler.processors.StoryPostProcessor;
+import nl.rostykerei.news.dao.StoryDao;
+import nl.rostykerei.news.dao.TagDao;
+import nl.rostykerei.news.domain.Story;
+import nl.rostykerei.news.domain.Tag;
+import nl.rostykerei.news.service.nlp.NamedEntityRecognizerService;
+import nl.rostykerei.news.service.nlp.impl.NamedEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class FetchKeywords implements StoryPostProcessor {
 
     @Autowired
-    private TextProcessor textProcessor;
+    private NamedEntityRecognizerService namedEntityRecognizerService;
 
     @Autowired
-    private NamedEntityDao namedEntityDao;
+    private TagDao tagDao;
 
     @Autowired
     private StoryDao storyDao;
@@ -25,10 +25,16 @@ public class FetchKeywords implements StoryPostProcessor {
     public Story postProcess(Story story) {
         String text = story.getTitle() + ". " + story.getDescription();
 
-        Set<TextNamedEntity> textNamedEntities = textProcessor.getNamedEntities(text);
+        Set<NamedEntity> namedEntities = namedEntityRecognizerService.getNamedEntities(text);
 
-        for (TextNamedEntity textNamedEntity : textNamedEntities) {
-            story.getNamedEntities().add( namedEntityDao.findOrCreateNamedEntity(textNamedEntity.getName(), textNamedEntity.getType()) );
+        for (NamedEntity namedEntity : namedEntities) {
+            try {
+                Tag tag = tagDao.findOrCreateNamedEntity(namedEntity.getName(), Tag.Type.valueOf(namedEntity.getType().toString()));
+                story.getTags().add(tag);
+            }
+            catch (Exception e) {
+
+            }
         }
 
         try {
