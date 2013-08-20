@@ -23,6 +23,9 @@ public class TagAlternative {
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
+    @Column(name = "confidence")
+    private float confidence;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tagId", nullable = false)
     private Tag tag;
@@ -41,6 +44,14 @@ public class TagAlternative {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public float getConfidence() {
+        return confidence;
+    }
+
+    public void setConfidence(float confidence) {
+        this.confidence = confidence;
     }
 
     public Tag getTag() {

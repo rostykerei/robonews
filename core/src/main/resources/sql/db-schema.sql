@@ -30,7 +30,7 @@ CREATE TABLE `category` (
   `leftIndex` int(10) unsigned NOT NULL,
   `rightIndex` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `channel` (
   `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `channel_idx_1` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `feed` (
   KEY `feed_idx_4` (`inProcessSince`,`plannedCheck`),
   CONSTRAINT `feed_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `feed_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `story` (
   CONSTRAINT `story_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `story_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `story_fk_3` FOREIGN KEY (`originalFeedId`) REFERENCES `feed` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4343 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4346 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `tag` (
   UNIQUE KEY `tag_idx_2` (`freebase_mid`),
   KEY `tag_idx_3` (`name`),
   CONSTRAINT `tag_fk_1` FOREIGN KEY (`typeId`) REFERENCES `tag_type` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6365 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6370 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -173,11 +173,12 @@ CREATE TABLE `tag_alternative` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tagId` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
+  `confidence` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `tag_alternative_idx_1` (`name`),
   KEY `tag_alternative_idx_2` (`tagId`),
   CONSTRAINT `tag_alternative_fk_2` FOREIGN KEY (`tagId`) REFERENCES `tag` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,7 +194,7 @@ CREATE TABLE `tag_ambiguous` (
   `effort` int(10) unsigned DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `tag_ambiguous_idx_1` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,4 +222,4 @@ CREATE TABLE `tag_type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-20 13:56:17
+-- Dump completed on 2013-08-20 15:30:39

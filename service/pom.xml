@@ -38,6 +38,12 @@
             <version>3.2.0</version>
         </dependency>
 
+        <!-- Freebase -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>

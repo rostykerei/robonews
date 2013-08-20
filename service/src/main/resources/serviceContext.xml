@@ -26,4 +26,10 @@
         <constructor-arg value="nlp/english.conll.4class.distsim.crf.ser.gz"/>
     </bean>
 
+    <!-- Freebase -->
+    <bean id="freebaseService" class="nl.rostykerei.news.service.freebase.google.FreebaseServiceGoogle">
+        <constructor-arg value="AIzaSyC4COoAiufFHk9VGbSRhIZYL9kVVmjUFeI"/>
+        <constructor-arg ref="httpService"/>
+    </bean>
+
 </beans>

@@ -16,7 +16,9 @@ public class TagDaoHibernate extends AbstractDaoHibernate<Tag, Integer> implemen
     @Transactional(readOnly = true)
     public Tag findByFreebaseMid(String freebaseMid) {
         return (Tag) getSession().
-                createQuery("from Tag t where t.freebaseMid = :mid").
+                createQuery("from Tag t " +
+                        "left join fetch t.tagAlternatives " +
+                        "where t.freebaseMid = :mid").
                 setString("mid", freebaseMid).
                 setMaxResults(1).
                 uniqueResult();

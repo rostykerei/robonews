@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import nl.rostykerei.news.service.http.HttpResponse;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.BoundedInputStream;
 import org.apache.http.ContentTooLongException;
 import org.apache.http.Header;
