@@ -128,8 +128,8 @@ public class Tag {
 
         if (id != tag.id) return false;
         if (type != tag.type) return false;
-        if (version != tag.version) return false;
-        if (freebaseMid != null ? !freebaseMid.equals(tag.freebaseMid) : tag.freebaseMid != null) return false;
+        //if (version != tag.version) return false;
+        if (freebaseMid != null ? !freebaseMid.equalsIgnoreCase(tag.freebaseMid) : tag.freebaseMid != null) return false;
         if (name != null ? !name.equalsIgnoreCase(tag.name) : tag.name != null) return false;
 
         return true;
@@ -139,9 +139,9 @@ public class Tag {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + type;
-        result = 31 * result + (freebaseMid != null ? freebaseMid.hashCode() : 0);
+        result = 31 * result + (freebaseMid != null ? freebaseMid.toLowerCase().hashCode() : 0);
         result = 31 * result + (name != null ? name.toLowerCase().hashCode() : 0);
-        result = 31 * result + (int) (version ^ (version >>> 32));
+       // result = 31 * result + (int) (version ^ (version >>> 32));
         return result;
     }
 }

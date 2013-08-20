@@ -45,4 +45,8 @@ public class TagAmbiguous {
     public void setEffort(int effort) {
         this.effort = effort;
     }
+
+    public void incrementEffort() {
+        this.effort++;
+    }
 }

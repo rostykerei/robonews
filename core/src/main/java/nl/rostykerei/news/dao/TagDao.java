@@ -6,11 +6,17 @@ import nl.rostykerei.news.domain.TagAmbiguous;
 
 public interface TagDao extends AbstractDao<Tag, Integer> {
 
-    Tag findByFreebaseMid(String freebaseMid);
+    Tag findOrCreateTagWithAlternative(String tagName, String alternativeName,
+                                       float alternativeConfidence,
+                                       String freebaseMid, Tag.Type type);
 
     Tag findByAlternative(String altName);
 
-    void logAmbiguous(String ambiguousName);
+    // TagAmbiguous
 
     TagAmbiguous findTagAmbiguous(String ambiguousName);
+
+    void createTagAmbiguous(String ambiguousName);
+
+    void saveTagAmbiguous(TagAmbiguous tagAmbiguous);
 }

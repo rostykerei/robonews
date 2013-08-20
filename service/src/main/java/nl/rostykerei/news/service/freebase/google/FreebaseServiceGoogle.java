@@ -16,6 +16,7 @@ import nl.rostykerei.news.service.http.HttpRequest;
 import nl.rostykerei.news.service.http.HttpResponse;
 import nl.rostykerei.news.service.http.HttpService;
 import nl.rostykerei.news.service.http.impl.HttpRequestImpl;
+import org.springframework.util.StringUtils;
 
 public class FreebaseServiceGoogle implements FreebaseService {
 
@@ -126,6 +127,10 @@ public class FreebaseServiceGoogle implements FreebaseService {
 
                 if (data != null && data.getResult() != null && data.getResult().size() > 0) {
                     FreebaseData.Result result = data.getResult().get(0);
+
+                    if (StringUtils.isEmpty(result.getName()) || StringUtils.isEmpty(result.getMid())) {
+                        return null;
+                    }
 
                     FreebaseSearchResult ret = new FreebaseSearchResult();
                     ret.setName(result.getName());

@@ -26,7 +26,7 @@ public class TagAlternative {
     @Column(name = "confidence")
     private float confidence;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tagId", nullable = false)
     private Tag tag;
 

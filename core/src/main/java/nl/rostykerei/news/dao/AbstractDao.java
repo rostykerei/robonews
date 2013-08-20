@@ -12,6 +12,8 @@ public interface AbstractDao <T, PK extends Serializable> {
 
     void update(T transientObject);
 
+    void merge(T transientObject);
+
     void delete(T persistentObject);
 
     int getCountAll();

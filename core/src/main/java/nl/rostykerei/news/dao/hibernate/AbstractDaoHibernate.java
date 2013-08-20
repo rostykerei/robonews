@@ -46,6 +46,11 @@ abstract class AbstractDaoHibernate <T, PK extends Serializable>
     }
 
     @Transactional
+    public void merge(T o) {
+        getSession().update(o);
+    }
+
+    @Transactional
     public void createOrUpdate(T o) {
         getSession().saveOrUpdate(o);
     }

@@ -1,0 +1,4 @@
+select tag.name, story_tag.tagId, count(story_tag.storyId) as c from story_tag
+left join tag on tag.id = story_tag.tagId
+group by tagId order by c desc
+
