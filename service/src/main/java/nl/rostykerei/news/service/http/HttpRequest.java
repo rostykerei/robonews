@@ -22,4 +22,8 @@ public interface HttpRequest {
     Date getLastModified();
 
     void setLastModified(Date lastModified);
+
+    String getAccept();
+
+    void setAccept(String accept);
 }

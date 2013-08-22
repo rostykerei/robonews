@@ -1,6 +1,5 @@
 package nl.rostykerei.news.service.freebase;
 
-import nl.rostykerei.news.service.freebase.impl.FreebaseSearchResult;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -2,21 +2,16 @@ package nl.rostykerei.news.dao;
 
 import nl.rostykerei.news.domain.Tag;
 import nl.rostykerei.news.domain.TagAlternative;
-import nl.rostykerei.news.domain.TagAmbiguous;
 
 public interface TagDao extends AbstractDao<Tag, Integer> {
 
-    Tag findOrCreateTagWithAlternative(String tagName, String alternativeName,
-                                       float alternativeConfidence,
-                                       String freebaseMid, Tag.Type type);
+    Tag createTagWithAlternative(String tagName, Tag.Type type, String freebaseMid, boolean isAmbiguous,
+                                 String altName, float altConfidence);
 
-    Tag findByAlternative(String altName);
+    TagAlternative createTagAlternative(Tag tag, Tag.Type altType, String altName, float altConfidence);
 
-    // TagAmbiguous
+    Tag findByFreebaseMind(String freebaseMid);
 
-    TagAmbiguous findTagAmbiguous(String ambiguousName);
+    Tag findByAlternative(String altName, Tag.Type type);
 
-    void createTagAmbiguous(String ambiguousName);
-
-    void saveTagAmbiguous(TagAmbiguous tagAmbiguous);
 }

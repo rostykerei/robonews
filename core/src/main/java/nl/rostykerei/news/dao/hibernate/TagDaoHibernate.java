@@ -3,8 +3,6 @@ package nl.rostykerei.news.dao.hibernate;
 import nl.rostykerei.news.dao.TagDao;
 import nl.rostykerei.news.domain.Tag;
 import nl.rostykerei.news.domain.TagAlternative;
-import nl.rostykerei.news.domain.TagAmbiguous;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.transaction.annotation.Transactional;
 
 public class TagDaoHibernate extends AbstractDaoHibernate<Tag, Integer> implements TagDao {
@@ -13,78 +11,69 @@ public class TagDaoHibernate extends AbstractDaoHibernate<Tag, Integer> implemen
         super(Tag.class);
     }
 
+
     @Override
     @Transactional
-    public Tag findOrCreateTagWithAlternative(String tagName, String alternativeName,
-                                              float alternativeConfidence,
-                                              String freebaseMid, Tag.Type type) {
-        Tag tag = (Tag) getSession().
-                createQuery("from Tag t where t.freebaseMid = :mid").
-                setString("mid", freebaseMid).
-                setMaxResults(1).
-                uniqueResult();
+    public Tag createTagWithAlternative(String tagName, Tag.Type type, String freebaseMid,
+                                        boolean isAmbiguous, String altName, float altConfidence) {
 
-        if (tag == null) {
-            tag = new Tag();
+        Tag tag = new Tag();
 
-            tag.setType(type);
-            tag.setFreebaseMid(freebaseMid);
-            tag.setName(tagName);
-        }
+        tag.setType(type);
+        tag.setFreebaseMid(freebaseMid);
+        tag.setName(tagName);
+        tag.setAmbiguous(isAmbiguous);
 
         TagAlternative tagAlternative = new TagAlternative();
-        tagAlternative.setName(alternativeName);
-        tagAlternative.setConfidence(alternativeConfidence);
+        tagAlternative.setName(altName);
+        tagAlternative.setType(type);
+        tagAlternative.setConfidence(altConfidence);
 
         tagAlternative.setTag(tag);
         tag.getTagAlternatives().add(tagAlternative);
 
-        try {
-            createOrUpdate(tag);
-        }
-        catch (RuntimeException e) {
-            throw  e;
-        }
-
+        create(tag);
 
         return tag;
     }
 
     @Override
+    @Transactional
+    public TagAlternative createTagAlternative(Tag tag, Tag.Type altType, String altName, float altConfidence) {
+        TagAlternative tagAlternative = new TagAlternative();
+        tagAlternative.setName(altName);
+        tagAlternative.setType(altType);
+        tagAlternative.setConfidence(altConfidence);
+
+        //tag.getTagAlternatives().add(tagAlternative);
+        tagAlternative.setTag(tag);
+
+        getSession().save(tagAlternative);
+
+        return tagAlternative;
+    }
+
+    @Override
     @Transactional(readOnly = true)
-    public Tag findByAlternative(String altName) {
+    public Tag findByFreebaseMind(String freebaseMid) {
+        return (Tag) getSession().
+                createQuery("from Tag t " +
+                        "where t.freebaseMid = :freebaseMid").
+                setString("freebaseMid", freebaseMid).
+                setMaxResults(1).
+                uniqueResult();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Tag findByAlternative(String altName, Tag.Type type) {
         return (Tag) getSession().
                 createQuery("select t from Tag t " +
                         "left join t.tagAlternatives alt " +
-                        "where alt.name = :altName").
+                        "where alt.name = :altName and alt.type = :type").
                 setString("altName", altName).
+                setInteger("type", type.getId()).
                 setMaxResults(1).
                 uniqueResult();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public TagAmbiguous findTagAmbiguous(String ambiguousName) {
-        return (TagAmbiguous) getSession().
-                createQuery("from TagAmbiguous ta where ta.name = :name").
-                setString("name", ambiguousName).
-                setMaxResults(1).
-                uniqueResult();
-    }
-
-    @Override
-    @Transactional
-    public void createTagAmbiguous(String ambiguousName) {
-        TagAmbiguous tagAmbiguous = new TagAmbiguous();
-        tagAmbiguous.setName(ambiguousName);
-        tagAmbiguous.setEffort(1);
-
-        saveTagAmbiguous(tagAmbiguous);
-    }
-
-    @Override
-    @Transactional
-    public void saveTagAmbiguous(TagAmbiguous tagAmbiguous) {
-        getSession().saveOrUpdate(tagAmbiguous);
     }
 }

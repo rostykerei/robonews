@@ -48,7 +48,6 @@ public class Crawler {
 
     @Async
     public void run() {
-        logger.info("Crawler starts, thread " + Thread.currentThread().getName());
 
         Feed feed = feedDao.pollFeedToProcess();
 
@@ -57,6 +56,10 @@ public class Crawler {
 
             httpRequest.setLastEtag(feed.getHttpLastEtag());
             httpRequest.setLastModified(feed.getHttpLastModified());
+            httpRequest.setAccept("application/rss+xml," +
+                    "application/rdf+xml," +
+                    "application/atom+xml," +
+                    "application/xml,text/xml");
 
             int newStories = 0;
             Date checkTime = new Date();
@@ -73,6 +76,8 @@ public class Crawler {
                     feed.setHttpLastModified(httpResponse.getLastModified());
 
                     syndicationFeed = syndicationService.loadFeed(httpResponse.getStream());
+
+                    httpResponse.releaseConnection();
 
                     for (SyndicationEntry syndEntry : syndicationFeed.getEntries()) {
                         if (!StringUtils.isEmpty(syndEntry.getGuid())) {
@@ -94,6 +99,8 @@ public class Crawler {
                     newStories = 0;
                 }
                 else {
+                    // Bad HTTP response
+                    logger.info("Failed to crawl " + feed.getUrl() + ", host returned HTTP error: " + httpResponse.getHttpStatus());
                     newStories = 0;
                 }
             }
@@ -121,8 +128,6 @@ public class Crawler {
                 feedDao.update(feed);
             }
         }
-
-        logger.info("Crawler ends, thread " + Thread.currentThread().getName());
     }
 
     void processAsNewStory(SyndicationEntry syndEntry, Feed feed, Date checkTime) {
@@ -148,8 +153,6 @@ public class Crawler {
         for (StoryPostProcessor postProcessor : getPostProcessors()) {
             postProcessor.postProcess(story);
         }
-
-        logger.debug("NEWS: " + syndEntry.getTitle());
     }
 
     void updateExistentStory(Story oldStory, Feed newFeed) {
@@ -227,7 +230,8 @@ public class Crawler {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        System.setProperty("spring.profiles.active", "fill-masterdata,fill-db,test");
+        System.setProperty("spring.profiles.active", "create-db,fill-masterdata,fill-db,test");
+        //System.setProperty("spring.profiles.active", "test");
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("crawlerContext.xml");
 

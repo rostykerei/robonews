@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration({ "classpath:coreContext.xml" })
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles({"test", "fill-masterdata"})
+@ActiveProfiles({"test", "create-db", "fill-masterdata"})
 public class StoryDaoTest {
 
     @Autowired
@@ -143,7 +143,7 @@ public class StoryDaoTest {
 
         storyDao.update(story1);
 
-        Tag tag3 = tagDao.findByAlternative("test-tag-alt-1");
+        Tag tag3 = tagDao.findByAlternative("test-tag-alt-1", Tag.Type.MISC);
 
         Assert.assertEquals("test-tag-1", tag3.getName());
 

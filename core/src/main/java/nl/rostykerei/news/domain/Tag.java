@@ -17,8 +17,8 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "tag", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"typeId", "name"}),
-        @UniqueConstraint(columnNames = {"freebase_mid"})})
+        @UniqueConstraint(columnNames = {"freebase_mid"})
+})
 public class Tag {
 
     @Id
@@ -29,15 +29,14 @@ public class Tag {
     @Column(name = "typeId")
     private int type;
 
-    @Column(name = "freebase_mid", nullable = false, length = 255)
+    @Column(name = "freebase_mid", nullable = true, length = 255)
     private String freebaseMid;
+
+    @Column(name = "isAmbiguous", nullable = false)
+    private boolean ambiguous;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;
-
-    @Version
-    @Column(name = "version")
-    private long version;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tag", targetEntity = TagAlternative.class, cascade = CascadeType.ALL)
     private Set<TagAlternative> tagAlternatives = new HashSet<TagAlternative>();
@@ -103,12 +102,12 @@ public class Tag {
         this.freebaseMid = freebaseMid;
     }
 
-    public long getVersion() {
-        return version;
+    public boolean isAmbiguous() {
+        return ambiguous;
     }
 
-    public void setVersion(long version) {
-        this.version = version;
+    public void setAmbiguous(boolean ambiguous) {
+        this.ambiguous = ambiguous;
     }
 
     public Set<TagAlternative> getTagAlternatives() {
@@ -128,8 +127,7 @@ public class Tag {
 
         if (id != tag.id) return false;
         if (type != tag.type) return false;
-        //if (version != tag.version) return false;
-        if (freebaseMid != null ? !freebaseMid.equalsIgnoreCase(tag.freebaseMid) : tag.freebaseMid != null) return false;
+        if (freebaseMid != null ? !freebaseMid.equals(tag.freebaseMid) : tag.freebaseMid != null) return false;
         if (name != null ? !name.equalsIgnoreCase(tag.name) : tag.name != null) return false;
 
         return true;
@@ -139,9 +137,8 @@ public class Tag {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + type;
-        result = 31 * result + (freebaseMid != null ? freebaseMid.toLowerCase().hashCode() : 0);
+        result = 31 * result + (freebaseMid != null ? freebaseMid.hashCode() : 0);
         result = 31 * result + (name != null ? name.toLowerCase().hashCode() : 0);
-       // result = 31 * result + (int) (version ^ (version >>> 32));
         return result;
     }
 }

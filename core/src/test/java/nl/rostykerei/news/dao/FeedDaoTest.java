@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration({ "classpath:coreContext.xml" })
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles("test")
+@ActiveProfiles({"test", "create-db"})
 public class FeedDaoTest {
 
     @Autowired

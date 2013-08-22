@@ -15,6 +15,5 @@
         <mapping class="nl.rostykerei.news.domain.Story"/>
         <mapping class="nl.rostykerei.news.domain.Tag"/>
         <mapping class="nl.rostykerei.news.domain.TagAlternative"/>
-        <mapping class="nl.rostykerei.news.domain.TagAmbiguous"/>
     </session-factory>
 </hibernate-configuration>

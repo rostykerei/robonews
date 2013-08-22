@@ -2,7 +2,6 @@ package nl.rostykerei.news.dao;
 
 import nl.rostykerei.news.domain.Tag;
 import nl.rostykerei.news.domain.TagAlternative;
-import nl.rostykerei.news.domain.TagAmbiguous;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,33 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration({ "classpath:coreContext.xml" })
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles({"test", "fill-masterdata"})
+@ActiveProfiles({"test", "create-db", "fill-masterdata"})
 public class TagDaoTest {
 
     @Autowired
     private TagDao tagDao;
-
-    @Test
-    public void testFindOrCreateTagWithAlternative() throws Exception {
-        Assert.assertEquals(0, tagDao.getCountAll());
-
-        Tag tag1 = tagDao.findOrCreateTagWithAlternative("test-tag-1", "test-tag-alt-1", 100f, "test-freebase-1", Tag.Type.MISC);
-
-        Assert.assertEquals(1, tagDao.getCountAll());
-
-        Tag tag2 = tagDao.findOrCreateTagWithAlternative("test-tag-1", "test-tag-alt-2", 100f, "test-freebase-1", Tag.Type.MISC);
-
-        Assert.assertEquals(1, tagDao.getCountAll());
-
-        Tag tag3 = tagDao.findOrCreateTagWithAlternative("test-tag-2", "test-tag-alt-3", 100f, "test-freebase-2", Tag.Type.MISC);
-
-        Assert.assertEquals(2, tagDao.getCountAll());
-
-        Assert.assertEquals(tag1, tag2);
-        Assert.assertEquals(tag1, tagDao.findByAlternative("test-tag-alt-1"));
-        Assert.assertEquals(tag1, tagDao.findByAlternative("test-tag-alt-2"));
-        Assert.assertEquals(tag3, tagDao.findByAlternative("test-tag-alt-3"));
-    }
 
     @Test
     public void testFindByAlternative() throws Exception {
@@ -65,23 +42,48 @@ public class TagDaoTest {
 
         tagDao.create(tag1);
 
-        Tag tag2 = tagDao.findByAlternative("test-tag-alt-1");
+        Tag tag2 = tagDao.findByAlternative("test-tag-alt-1", Tag.Type.MISC);
 
         Assert.assertEquals("test-tag-1", tag2.getName());
     }
 
     @Test
-    public void testTagAmbiguous() throws Exception {
+    public void testFreebaseMidCaseSensitive() {
+        Tag tag1 = new Tag();
+        tag1.setName("test-tag-1");
+        tag1.setType(Tag.Type.MISC);
+        tag1.setFreebaseMid("ABC");
 
-        tagDao.createTagAmbiguous("xxx");
+        Tag tag2 = new Tag();
+        tag2.setName("test-tag-1");
+        tag2.setType(Tag.Type.MISC);
+        tag2.setFreebaseMid("AbC");
 
-        TagAmbiguous tagAmbiguous = tagDao.findTagAmbiguous("xxx");
-        tagAmbiguous.incrementEffort();
+        Assert.assertNotEquals(tag1.hashCode(), tag2.hashCode());
 
-        tagDao.saveTagAmbiguous(tagAmbiguous);
+        tagDao.create(tag1);
+        tagDao.create(tag2);
 
-        TagAmbiguous tagAmbiguous2 = tagDao.findTagAmbiguous("xxx");
+        Tag tag3 = tagDao.findByFreebaseMind("ABC");
+        Tag tag4 = tagDao.findByFreebaseMind("AbC");
 
-        Assert.assertEquals(1, tagAmbiguous2.getEffort());
+        Assert.assertEquals(tag1, tag3);
+        Assert.assertEquals(tag2, tag4);
+
+        Assert.assertNotNull(tag3.getId());
+        Assert.assertNotNull(tag4.getId());
+
+        Assert.assertNotEquals(tag3.getId(), tag4.getId());
     }
+
+    @Test
+    public void testDiffTypes() {
+        Tag tag1 = tagDao.createTagWithAlternative("Gore", Tag.Type.PERSON, "XXX", false, "Gore", 100);
+        Tag tag2 = tagDao.createTagWithAlternative("Gore", Tag.Type.LOCATION, "YYY", false, "Gore", 100);
+
+        Assert.assertEquals(tag1, tagDao.findByAlternative("Gore", Tag.Type.PERSON));
+        Assert.assertEquals(tag2, tagDao.findByAlternative("Gore", Tag.Type.LOCATION));
+    }
+
+
 }

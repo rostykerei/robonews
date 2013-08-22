@@ -2,20 +2,24 @@ package nl.rostykerei.news.service.freebase.google;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Date;
 import java.util.List;
 import nl.rostykerei.news.service.freebase.FreebaseService;
-import nl.rostykerei.news.service.freebase.FreebaseServiceException;
+import nl.rostykerei.news.service.freebase.exception.AmbiguousResultException;
+import nl.rostykerei.news.service.freebase.exception.FreebaseServiceException;
+import nl.rostykerei.news.service.freebase.exception.NotFoundException;
+import nl.rostykerei.news.service.freebase.exception.ParserException;
+import nl.rostykerei.news.service.freebase.exception.ServiceUnavailableException;
 import nl.rostykerei.news.service.freebase.impl.FreebaseSearchResult;
 import nl.rostykerei.news.service.http.HttpRequest;
 import nl.rostykerei.news.service.http.HttpResponse;
 import nl.rostykerei.news.service.http.HttpService;
 import nl.rostykerei.news.service.http.impl.HttpRequestImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 public class FreebaseServiceGoogle implements FreebaseService {
@@ -24,101 +28,61 @@ public class FreebaseServiceGoogle implements FreebaseService {
 
     private String apiKey;
 
-    private final String BASE_URL = "https://www.googleapis.com/freebase/v1/search";
+    private Logger logger = LoggerFactory.getLogger(FreebaseServiceGoogle.class);
 
-    public FreebaseServiceGoogle(String apiKey, HttpService httpService) {
-        this.apiKey = apiKey;
+    public FreebaseServiceGoogle(HttpService httpService) {
         this.httpService = httpService;
     }
 
     @Override
     public FreebaseSearchResult searchForPerson(String person) throws FreebaseServiceException {
-        try {
-            return searchFreebase(
-                    new StringBuilder(BASE_URL).
-                    append("?query=").
-                    append(URLEncoder.encode(person, "UTF-8")).
-                    append("&filter=").
-                    append("(any+type:/people/person)").
-                    append("&lang=en").
-                    append("&limit=1").
-                    append("&key=").
-                    append(apiKey).
-                    toString()
-            );
-        }
-        catch (UnsupportedEncodingException e) {
-            throw new FreebaseServiceException();
-        }
+        return searchFreebase(person, "(any+type:/people/person)");
     }
 
     @Override
     public FreebaseSearchResult searchForLocation(String location) throws FreebaseServiceException {
-        try {
-            return searchFreebase(
-                    new StringBuilder(BASE_URL).
-                            append("?query=").
-                            append(URLEncoder.encode(location, "UTF-8")).
-                            append("&filter=").
-                            append("(any+type:/location/)").
-                            append("&lang=en").
-                            append("&limit=1").
-                            append("&key=").
-                            append(apiKey).
-                            toString()
-            );
-        }
-        catch (UnsupportedEncodingException e) {
-            throw new FreebaseServiceException();
-        }
+        return searchFreebase(location, "(any+type:/location/)");
     }
 
     @Override
     public FreebaseSearchResult searchForOrganization(String organization) throws FreebaseServiceException {
-        try {
-            return searchFreebase(
-                    new StringBuilder(BASE_URL).
-                            append("?query=").
-                            append(URLEncoder.encode(organization, "UTF-8")).
-                            append("&filter=").
-                            append("(should+type:%22organization%22)").
-                            append("&lang=en").
-                            append("&limit=1").
-                            append("&key=").
-                            append(apiKey).
-                            toString()
-            );
-        }
-        catch (UnsupportedEncodingException e) {
-            throw new FreebaseServiceException();
-        }
+        return searchFreebase(organization, "(should+type:%22organization%22)");
     }
 
     @Override
     public FreebaseSearchResult searchForMiscellaneous(String misc) throws FreebaseServiceException {
-        try {
-            return searchFreebase(
-                    new StringBuilder(BASE_URL).
-                            append("?query=").
-                            append(URLEncoder.encode(misc, "UTF-8")).
-                            append("&lang=en").
-                            append("&limit=1").
-                            append("&key=").
-                            append(apiKey).
-                            toString()
-            );
-        }
-        catch (UnsupportedEncodingException e) {
-            throw new FreebaseServiceException();
-        }
+        return searchFreebase(misc, null);
     }
 
-    private FreebaseSearchResult searchFreebase(String url) throws FreebaseServiceException {
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
+    private FreebaseSearchResult searchFreebase(String query, String filter) throws FreebaseServiceException {
+
+        StringBuilder url = new StringBuilder("https://www.googleapis.com/freebase/v1/search").
+                                    append("?query=").
+                                    append(urlEncode(query));
+
+        if (!StringUtils.isEmpty(filter)) {
+            url.append("&filter=").append(filter);
+        }
+
+        if (!StringUtils.isEmpty(getApiKey())) {
+            url.append("&key=").append(getApiKey());
+        }
+
+        url.append("&lang=en").append("&limit=1");
 
         HttpResponse httpResponse = null;
 
         try {
-            HttpRequest httpRequest = new HttpRequestImpl(url);
+            HttpRequest httpRequest = new HttpRequestImpl(url.toString());
+            httpRequest.setAccept("application/json");
 
             httpResponse = httpService.execute(httpRequest);
 
@@ -129,7 +93,7 @@ public class FreebaseServiceGoogle implements FreebaseService {
                     FreebaseData.Result result = data.getResult().get(0);
 
                     if (StringUtils.isEmpty(result.getName()) || StringUtils.isEmpty(result.getMid())) {
-                        return null;
+                        throw new AmbiguousResultException();
                     }
 
                     FreebaseSearchResult ret = new FreebaseSearchResult();
@@ -139,19 +103,20 @@ public class FreebaseServiceGoogle implements FreebaseService {
 
                     return ret;
                 }
+                else {
+                    throw new NotFoundException();
+                }
             }
             else {
-                // TODO non 200
+                throw new ServiceUnavailableException();
             }
-
         }
         catch (IOException e) {
-            // TODO http exception
-            throw new FreebaseServiceException();
+            throw new ServiceUnavailableException();
         }
         catch (JsonParseException e) {
-            // TODO parse exception
-            throw new FreebaseServiceException();
+            logger.error("Could not parse Freebase response", e);
+            throw new ParserException();
         }
         finally {
             synchronized (this) {
@@ -160,8 +125,16 @@ public class FreebaseServiceGoogle implements FreebaseService {
                 }
             }
         }
+    }
 
-        return null;
+    private String urlEncode(String input) throws FreebaseServiceException {
+        try {
+            return URLEncoder.encode(input, "UTF-8");
+        }
+        catch (UnsupportedEncodingException e) {
+            logger.error("Could not encode URL param " + input + ":", e);
+            throw new FreebaseServiceException();
+        }
     }
 
     class FreebaseData {

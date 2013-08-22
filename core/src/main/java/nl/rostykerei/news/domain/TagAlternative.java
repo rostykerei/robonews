@@ -20,6 +20,9 @@ public class TagAlternative {
     @GeneratedValue
     private long id;
 
+    @Column(name = "typeId")
+    private int type;
+
     @Column(name = "name", nullable = false, length = 255)
     private String name;
 
@@ -44,6 +47,14 @@ public class TagAlternative {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Tag.Type getType() {
+        return Tag.Type.getType(type);
+    }
+
+    public void setType(Tag.Type type) {
+        this.type = type.getId();
     }
 
     public float getConfidence() {

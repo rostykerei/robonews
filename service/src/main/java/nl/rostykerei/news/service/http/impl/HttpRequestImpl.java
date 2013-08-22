@@ -11,6 +11,8 @@ public class HttpRequestImpl implements HttpRequest {
 
     private Date lastModified;
 
+    private String accept;
+
     public HttpRequestImpl(String url) {
         this.url = url;
     }
@@ -37,5 +39,15 @@ public class HttpRequestImpl implements HttpRequest {
 
     public void setLastModified(Date lastModified) {
         this.lastModified = lastModified;
+    }
+
+    @Override
+    public String getAccept() {
+        return accept;
+    }
+
+    @Override
+    public void setAccept(String accept) {
+        this.accept = accept;
     }
 }

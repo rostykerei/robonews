@@ -30,7 +30,7 @@ CREATE TABLE `category` (
   `leftIndex` int(10) unsigned NOT NULL,
   `rightIndex` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `channel` (
   `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `channel_idx_1` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +86,7 @@ CREATE TABLE `feed` (
   KEY `feed_idx_4` (`inProcessSince`,`plannedCheck`),
   CONSTRAINT `feed_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `feed_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `story` (
   CONSTRAINT `story_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `story_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `story_fk_3` FOREIGN KEY (`originalFeedId`) REFERENCES `feed` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4346 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,15 +151,16 @@ DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `typeId` int(10) unsigned NOT NULL,
-  `freebase_mid` varchar(255) NOT NULL,
+  `freebase_mid` varchar(255) BINARY NULL,
+  `isAmbiguous` bit(1) NOT NULL DEFAULT b'0',
   `name` varchar(255) NOT NULL,
   `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `tag_idx_1` (`typeId`,`name`),
-  UNIQUE KEY `tag_idx_2` (`freebase_mid`),
-  KEY `tag_idx_3` (`name`),
+  UNIQUE KEY `tag_idx_1` (`freebase_mid`),
+  KEY `tag_idx_2` (`name`),
+  KEY `tag_idx_3` (`typeId`,`name`),
   CONSTRAINT `tag_fk_1` FOREIGN KEY (`typeId`) REFERENCES `tag_type` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6370 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,30 +173,16 @@ DROP TABLE IF EXISTS `tag_alternative`;
 CREATE TABLE `tag_alternative` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tagId` int(10) unsigned NOT NULL,
+  `typeId` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `confidence` float DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `tag_alternative_idx_1` (`name`),
+  UNIQUE KEY `tag_alternative_idx_1` (`name`, `typeId`),
   KEY `tag_alternative_idx_2` (`tagId`),
   CONSTRAINT `tag_alternative_fk_2` FOREIGN KEY (`tagId`) REFERENCES `tag` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `tag_ambiguous`
---
-
-DROP TABLE IF EXISTS `tag_ambiguous`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tag_ambiguous` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `effort` int(10) unsigned DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `tag_ambiguous_idx_1` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `tag_type`
@@ -210,7 +197,7 @@ CREATE TABLE `tag_type` (
   `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `type` (`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

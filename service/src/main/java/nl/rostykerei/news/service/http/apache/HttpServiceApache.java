@@ -15,14 +15,8 @@ import org.apache.http.client.protocol.ResponseContentEncoding;
 import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.cookie.DateUtils;
 import org.apache.http.protocol.HttpContext;
+import org.springframework.util.StringUtils;
 
-/**
- * Created with IntelliJ IDEA.
- * User: rosty
- * Date: 7/25/13
- * Time: 10:39 PM
- * To change this template use File | Settings | File Templates.
- */
 public class HttpServiceApache implements HttpService {
 
     private AbstractHttpClient httpClient;
@@ -48,10 +42,6 @@ public class HttpServiceApache implements HttpService {
                 request.setHeader(HttpHeaders.ACCEPT_ENCODING, "gzip,deflate");
                 request.setHeader(HttpHeaders.CACHE_CONTROL, "public");
                 request.setHeader(HttpHeaders.CONNECTION, "close");
-                request.setHeader(HttpHeaders.ACCEPT, "application/rss+xml," +
-                        "application/rdf+xml," +
-                        "application/atom+xml," +
-                        "application/xml,text/xml");
             }
         });
 
@@ -62,14 +52,19 @@ public class HttpServiceApache implements HttpService {
     public HttpResponse execute(HttpRequest httpRequest) throws IOException {
         final HttpGet httpGet = new HttpGet(httpRequest.getUrl());
 
+        String accept = httpRequest.getAccept();
         String etag = httpRequest.getLastEtag();
         Date lastModified = httpRequest.getLastModified();
 
-        if (etag != null) {
+        if (!StringUtils.isEmpty(accept)) {
+            httpGet.setHeader(HttpHeaders.ACCEPT, accept);
+        }
+
+        if (!StringUtils.isEmpty(etag)) {
             httpGet.setHeader(HttpHeaders.IF_NONE_MATCH, etag);
         }
 
-        if (lastModified != null) {
+        if (!StringUtils.isEmpty(lastModified)) {
             String ifModifiedSinceString = DateUtils.formatDate(lastModified, "EEE, d MMM yyyy HH:mm:ss 'GMT'");
             httpGet.setHeader(HttpHeaders.IF_MODIFIED_SINCE, ifModifiedSinceString );
         }
