@@ -73,10 +73,6 @@ public class Story {
     @Column(name = "description", unique = false, nullable = false)
     private String description;
 
-    @Version
-    @Column(name = "version")
-    private long version;
-
     @ManyToMany(cascade = CascadeType.ALL, targetEntity = Tag.class)
     @JoinTable(name = "story_tag",
             uniqueConstraints = @UniqueConstraint(columnNames = {"tagId", "storyId"}),
@@ -185,14 +181,6 @@ public class Story {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public long getVersion() {
-        return version;
-    }
-
-    public void setVersion(long version) {
-        this.version = version;
     }
 
     public Set<Tag> getTags() {

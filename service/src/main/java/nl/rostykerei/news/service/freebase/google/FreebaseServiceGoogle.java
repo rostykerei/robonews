@@ -36,12 +36,12 @@ public class FreebaseServiceGoogle implements FreebaseService {
 
     @Override
     public FreebaseSearchResult searchForPerson(String person) throws FreebaseServiceException {
-        return searchFreebase(person, "(any+type:/people/person)");
+        return searchFreebase(person, "(should+type:/people/person)");
     }
 
     @Override
     public FreebaseSearchResult searchForLocation(String location) throws FreebaseServiceException {
-        return searchFreebase(location, "(any+type:/location/)");
+        return searchFreebase(location, "(should+type:/location/)");
     }
 
     @Override

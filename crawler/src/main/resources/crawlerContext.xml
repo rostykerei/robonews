@@ -8,7 +8,9 @@
     <import resource="classpath:coreContext.xml"/>
     <import resource="classpath:serviceContext.xml"/>
 
-    <bean id="crawler" class="nl.rostykerei.news.crawler.Crawler">
+    <bean id="crawler" class="nl.rostykerei.news.crawler.Crawler"/>
+
+    <bean id="feedCrawler" class="nl.rostykerei.news.crawler.FeedCrawler">
         <property name="preProcessors">
             <set>
                 <bean class="nl.rostykerei.news.crawler.processors.pre.Sanitize"/>
