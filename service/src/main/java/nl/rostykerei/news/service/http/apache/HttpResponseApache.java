@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import nl.rostykerei.news.service.http.HttpResponse;
-import org.apache.commons.io.input.BoundedInputStream;
 import org.apache.http.ContentTooLongException;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -41,8 +40,14 @@ public class HttpResponseApache implements HttpResponse {
     public InputStream getStream() throws IOException {
         HttpEntity entity = response.getEntity();
 
+        long contentLength = entity.getContentLength();
+        if (contentLength > 0 && contentLength > maxContentLength) {
+            throw new ContentTooLongException("Content is too long: " + contentLength +
+                    " bytes expected, but only " + maxContentLength + " allowed");
+        }
+
         if (entity != null) {
-            return new BoundedInputStream(entity.getContent(), maxContentLength);
+            return new LimitedInputStream(entity.getContent(), maxContentLength);
         }
 
         return null;

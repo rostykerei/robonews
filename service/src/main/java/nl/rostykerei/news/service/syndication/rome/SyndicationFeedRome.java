@@ -109,10 +109,10 @@ public class SyndicationFeedRome implements SyndicationFeed {
             maxDate = pubDate > maxDate ? pubDate : maxDate;
         }
 
-        long dateDiff = (maxDate - minDate) / (3600 * 1000) % 24;
+        long dateDiff = maxDate - minDate;
 
         if (dateDiff > 0) {
-            return size / (double) dateDiff;
+            return (size * 3600000L) / (double) dateDiff;
         }
 
         return 0;

@@ -1,5 +1,6 @@
 package nl.rostykerei.news.service.syndication;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -11,6 +12,6 @@ import java.io.InputStream;
  */
 public interface SyndicationService {
 
-    SyndicationFeed loadFeed(InputStream inputStream) throws SyndicationServiceException;
+    SyndicationFeed loadFeed(InputStream inputStream) throws SyndicationServiceException, IOException;
 
 }

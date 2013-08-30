@@ -4,8 +4,9 @@ import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.ParsingFeedException;
 import com.sun.syndication.io.SyndFeedInput;
+import com.sun.syndication.io.XmlReader;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import nl.rostykerei.news.service.syndication.SyndicationFeed;
 import nl.rostykerei.news.service.syndication.SyndicationService;
 import nl.rostykerei.news.service.syndication.SyndicationServiceException;
@@ -21,12 +22,12 @@ import nl.rostykerei.news.service.syndication.SyndicationServiceParsingException
 public class SyndicationServiceRome implements SyndicationService {
 
     @Override
-    public SyndicationFeed loadFeed(InputStream inputStream) throws SyndicationServiceException {
+    public SyndicationFeed loadFeed(InputStream inputStream) throws SyndicationServiceException, IOException {
         try {
             SyndFeedInput syndFeedInput = new SyndFeedInput();
             syndFeedInput.setXmlHealerOn(true);
 
-            SyndFeed syndFeed = syndFeedInput.build(new InputStreamReader(inputStream));
+            SyndFeed syndFeed = syndFeedInput.build(new XmlReader(inputStream));
             return new SyndicationFeedRome(syndFeed);
         }
         catch (ParsingFeedException exception) {

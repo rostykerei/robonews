@@ -1,6 +1,7 @@
 package nl.rostykerei.news.manager.controllers;
 
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -128,7 +129,7 @@ public class FeedController extends AbstractController {
             addModelErrorMessage(model, e, "Feed could not be parsed");
             return "feed/create";
         }
-        catch (Exception e) {
+        catch (IOException e) {
             errors.rejectValue("url", null, "incorrect URL");
             addModelErrorMessage(model, e, "Cannot fetch URL");
             return "feed/create";

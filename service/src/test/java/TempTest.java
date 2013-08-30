@@ -1,4 +1,11 @@
+import com.sun.syndication.feed.synd.SyndEntry;
+import com.sun.syndication.feed.synd.SyndFeed;
+import com.sun.syndication.io.SyndFeedInput;
+import com.sun.syndication.io.XmlReader;
+import java.net.URL;
+import java.util.Iterator;
 import nl.rostykerei.news.service.http.HttpService;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
@@ -13,6 +20,30 @@ public class TempTest {
 
     @Autowired
     private HttpService httpService;
+
+    @Test
+    public void rssTest() throws Exception {
+        URL url  = new URL("http://k.img.com.ua/rss/ru/news.xml");
+        XmlReader reader = null;
+
+        try {
+
+            reader = new XmlReader(url);
+            SyndFeed feed = new SyndFeedInput().build(reader);
+            System.out.println("Feed Title: "+ feed.getAuthor());
+
+            for (Iterator i = feed.getEntries().iterator(); i.hasNext();) {
+                SyndEntry entry = (SyndEntry) i.next();
+                System.out.println(entry.getTitle());
+            }
+        }
+        finally {
+            if (reader != null)
+                reader.close();
+        }
+    }
+
+
                 /*
     @Test
     public void httpTest() {
