@@ -31,6 +31,7 @@ public class TagDaoTest {
 
         TagAlternative tagAlternative1 = new TagAlternative();
         tagAlternative1.setName("test-tag-alt-1");
+        tagAlternative1.setType(Tag.Type.MISC);
         tagAlternative1.setTag(tag1);
 
         TagAlternative tagAlternative2 = new TagAlternative();

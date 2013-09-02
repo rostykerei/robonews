@@ -129,6 +129,7 @@ public class StoryDaoTest {
 
         TagAlternative tagAlternative1 = new TagAlternative();
         tagAlternative1.setName("test-tag-alt-1");
+        tagAlternative1.setType(Tag.Type.MISC);
 
         tagAlternative1.setTag(tag1);
         tag1.getTagAlternatives().add(tagAlternative1);
