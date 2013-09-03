@@ -1,9 +1,6 @@
 package nl.rostykerei.news.crawler;
 
 import nl.rostykerei.news.crawler.controller.CrawlerController;
-import nl.rostykerei.news.dao.FeedDao;
-import nl.rostykerei.news.domain.Feed;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

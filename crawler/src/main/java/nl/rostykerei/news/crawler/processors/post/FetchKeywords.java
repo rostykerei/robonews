@@ -61,8 +61,10 @@ public class FetchKeywords implements StoryPostProcessor {
 
     @Transactional
     private Tag getTagByNamedEntity(NamedEntity namedEntity) {
-        Tag.Type tagType = Tag.Type.valueOf(namedEntity.getType().toString());
-        Tag tag = tagDao.findByAlternative(namedEntity.getName(), tagType);
+
+        Tag.Type altType = Tag.Type.valueOf(namedEntity.getType().toString());
+
+        Tag tag = tagDao.findByAlternative(namedEntity.getName(), altType);
 
         if (tag != null) {
             return tag;
@@ -71,32 +73,19 @@ public class FetchKeywords implements StoryPostProcessor {
         FreebaseSearchResult freebaseSearchResult = null;
 
         try {
-            switch (namedEntity.getType()) {
-                case PERSON:
-                    freebaseSearchResult = freebaseService.searchForPerson(namedEntity.getName());
-                    break;
-                case LOCATION:
-                    freebaseSearchResult = freebaseService.searchForLocation(namedEntity.getName());
-                    break;
-                case ORGANIZATION:
-                    freebaseSearchResult = freebaseService.searchForOrganization(namedEntity.getName());
-                    break;
-                case MISC:
-                    freebaseSearchResult = freebaseService.searchForMiscellaneous(namedEntity.getName());
-                    break;
-            }
+            freebaseSearchResult = freebaseService.search(namedEntity);
         }
         catch (NotFoundException e) {
             return tagDao.createTagWithAlternative(
                     namedEntity.getName(),
-                    tagType,
-                    null, true, namedEntity.getName(), 0f);
+                    altType,
+                    null, true, namedEntity.getName(), altType, 0f);
         }
         catch (AmbiguousResultException e) {
             return tagDao.createTagWithAlternative(
                     namedEntity.getName(),
-                    tagType,
-                    null, true, namedEntity.getName(), 0f);
+                    altType,
+                    null, true, namedEntity.getName(), altType, 0f);
         }
         catch (FreebaseServiceException e) {
             logger.info("Freebase service exception", e);
@@ -107,12 +96,12 @@ public class FetchKeywords implements StoryPostProcessor {
 
         if (tag == null) {
             return tagDao.createTagWithAlternative(freebaseSearchResult.getName(),
-                    tagType,
+                    Tag.Type.valueOf(freebaseSearchResult.getType().toString()),
                     freebaseSearchResult.getMid(),
-                    false, namedEntity.getName(), freebaseSearchResult.getScore());
+                    false, namedEntity.getName(), altType, freebaseSearchResult.getScore());
         }
         else {
-            tagDao.createTagAlternative(tag, tagType, namedEntity.getName(), freebaseSearchResult.getScore());
+            tagDao.createTagAlternative(tag, altType, namedEntity.getName(), freebaseSearchResult.getScore());
             return tag;
         }
     }

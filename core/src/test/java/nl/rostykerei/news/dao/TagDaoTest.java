@@ -79,8 +79,8 @@ public class TagDaoTest {
 
     @Test
     public void testDiffTypes() {
-        Tag tag1 = tagDao.createTagWithAlternative("Gore", Tag.Type.PERSON, "XXX", false, "Gore", 100);
-        Tag tag2 = tagDao.createTagWithAlternative("Gore", Tag.Type.LOCATION, "YYY", false, "Gore", 100);
+        Tag tag1 = tagDao.createTagWithAlternative("Gore", Tag.Type.PERSON, "XXX", false, "Gore", Tag.Type.PERSON, 100);
+        Tag tag2 = tagDao.createTagWithAlternative("Gore", Tag.Type.LOCATION, "YYY", false, "Gore", Tag.Type.LOCATION, 100);
 
         Assert.assertEquals(tag1, tagDao.findByAlternative("Gore", Tag.Type.PERSON));
         Assert.assertEquals(tag2, tagDao.findByAlternative("Gore", Tag.Type.LOCATION));

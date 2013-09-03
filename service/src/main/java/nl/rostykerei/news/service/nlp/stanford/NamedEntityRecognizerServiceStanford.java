@@ -7,6 +7,7 @@ import edu.stanford.nlp.util.Triple;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import nl.rostykerei.news.service.core.NamedEntityType;
 import nl.rostykerei.news.service.nlp.NamedEntityRecognizerService;
 import nl.rostykerei.news.service.nlp.impl.NamedEntity;
 import org.slf4j.Logger;
@@ -31,7 +32,7 @@ public class NamedEntityRecognizerServiceStanford implements NamedEntityRecogniz
         if (neTriples != null && neTriples.size() > 0) {
             for (Triple<String,Integer,Integer> neTriple : neTriples) {
                 try {
-                    NamedEntity.Type neType = NamedEntity.Type.valueOf(neTriple.first());
+                    NamedEntityType neType = NamedEntityType.valueOf(neTriple.first());
                     String neName= text.substring(neTriple.second(), neTriple.third());
 
                     result.add(new NamedEntity(neType, neName));

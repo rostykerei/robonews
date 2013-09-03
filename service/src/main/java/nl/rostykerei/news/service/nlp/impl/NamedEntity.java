@@ -1,5 +1,7 @@
 package nl.rostykerei.news.service.nlp.impl;
 
+import nl.rostykerei.news.service.core.NamedEntityType;
+
 /**
  * Created with IntelliJ IDEA on 8/20/13 at 10:28 AM
  *
@@ -7,26 +9,19 @@ package nl.rostykerei.news.service.nlp.impl;
  */
 public class NamedEntity {
 
-    public static enum Type {
-        PERSON,
-        LOCATION,
-        ORGANIZATION,
-        MISC;
-    }
-
-    private Type type;
+    private NamedEntityType type;
     private String name;
 
-    public NamedEntity(Type type, String name) {
+    public NamedEntity(NamedEntityType type, String name) {
         this.type = type;
         this.name = name;
     }
 
-    public Type getType() {
+    public NamedEntityType getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(NamedEntityType type) {
         this.type = type;
     }
 

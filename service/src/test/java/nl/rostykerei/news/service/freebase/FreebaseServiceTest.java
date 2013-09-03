@@ -1,5 +1,7 @@
 package nl.rostykerei.news.service.freebase;
 
+import nl.rostykerei.news.service.core.NamedEntityType;
+import nl.rostykerei.news.service.nlp.impl.NamedEntity;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,22 +20,22 @@ public class FreebaseServiceTest {
 
     @Test
     public void testSearchForPerson() throws Exception {
-        Assert.assertEquals("Barack Obama", freebaseService.searchForPerson("Obama").getName());
-        Assert.assertEquals("Vladimir Putin", freebaseService.searchForPerson("Putin").getName());
+        Assert.assertEquals("Barack Obama", freebaseService.search(new NamedEntity(NamedEntityType.PERSON, "Obama")).getName());
+        Assert.assertEquals("Vladimir Putin", freebaseService.search(new NamedEntity(NamedEntityType.PERSON, "Putin")).getName());
     }
 
     @Test
     public void testSearchForLocation() throws Exception {
-        Assert.assertEquals("United States of America", freebaseService.searchForLocation("U.S.").getName());
+        Assert.assertEquals("United States of America", freebaseService.search(new NamedEntity(NamedEntityType.LOCATION, "U.S.")).getName());
     }
 
     @Test
     public void testSearchForOrganization() throws Exception {
-        Assert.assertEquals("Transportation Security Administration", freebaseService.searchForOrganization("TSA").getName());
+        Assert.assertEquals("Transportation Security Administration", freebaseService.search(new NamedEntity(NamedEntityType.ORGANIZATION, "TSA")).getName());
     }
 
     @Test
     public void testSearchForMiscellaneous() throws Exception {
-        Assert.assertEquals("Olympic Games", freebaseService.searchForMiscellaneous("Olympic").getName());
+        Assert.assertEquals("Olympic Games", freebaseService.search(new NamedEntity(NamedEntityType.MISC, "Olympic")).getName());
     }
 }

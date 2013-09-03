@@ -1,5 +1,7 @@
 package nl.rostykerei.news.service.freebase.impl;
 
+import nl.rostykerei.news.service.core.NamedEntityType;
+
 public class FreebaseSearchResult {
 
     private String mid;
@@ -7,6 +9,8 @@ public class FreebaseSearchResult {
     private String name;
 
     private float score;
+
+    private NamedEntityType type;
 
     public String getMid() {
         return mid;
@@ -30,5 +34,13 @@ public class FreebaseSearchResult {
 
     public void setScore(float score) {
         this.score = score;
+    }
+
+    public NamedEntityType getType() {
+        return type;
+    }
+
+    public void setType(NamedEntityType type) {
+        this.type = type;
     }
 }

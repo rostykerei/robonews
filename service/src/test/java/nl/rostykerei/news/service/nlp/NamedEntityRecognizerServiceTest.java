@@ -2,6 +2,7 @@ package nl.rostykerei.news.service.nlp;
 
 import java.util.HashSet;
 import java.util.Set;
+import nl.rostykerei.news.service.core.NamedEntityType;
 import nl.rostykerei.news.service.nlp.impl.NamedEntity;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,11 +23,11 @@ public class NamedEntityRecognizerServiceTest {
     @Test
     public void testGetNamedEntities() throws Exception {
         Set<NamedEntity> expected = new HashSet<NamedEntity>();
-        expected.add(new NamedEntity(NamedEntity.Type.PERSON, "Joe"));
-        expected.add(new NamedEntity(NamedEntity.Type.PERSON, "John"));
-        expected.add(new NamedEntity(NamedEntity.Type.PERSON, "David Smith"));
-        expected.add(new NamedEntity(NamedEntity.Type.LOCATION, "San Francisco"));
-        expected.add(new NamedEntity(NamedEntity.Type.LOCATION, "US"));
+        expected.add(new NamedEntity(NamedEntityType.PERSON, "Joe"));
+        expected.add(new NamedEntity(NamedEntityType.PERSON, "John"));
+        expected.add(new NamedEntity(NamedEntityType.PERSON, "David Smith"));
+        expected.add(new NamedEntity(NamedEntityType.LOCATION, "San Francisco"));
+        expected.add(new NamedEntity(NamedEntityType.LOCATION, "US"));
 
         Assert.assertEquals(expected, namedEntityRecognizerService.getNamedEntities("Joe, John and David Smith were walking in San Francisco, US with John"));
     }

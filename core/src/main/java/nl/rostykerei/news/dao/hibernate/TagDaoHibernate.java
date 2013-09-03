@@ -11,22 +11,19 @@ public class TagDaoHibernate extends AbstractDaoHibernate<Tag, Integer> implemen
         super(Tag.class);
     }
 
-
     @Override
     @Transactional
-    public Tag createTagWithAlternative(String tagName, Tag.Type type, String freebaseMid,
-                                        boolean isAmbiguous, String altName, float altConfidence) {
-
+    public Tag createTagWithAlternative(String tagName, Tag.Type tagType, String freebaseMid, boolean isAmbiguous, String altName, Tag.Type altType, float altConfidence) {
         Tag tag = new Tag();
 
-        tag.setType(type);
+        tag.setType(tagType);
         tag.setFreebaseMid(freebaseMid);
         tag.setName(tagName);
         tag.setAmbiguous(isAmbiguous);
 
         TagAlternative tagAlternative = new TagAlternative();
         tagAlternative.setName(altName);
-        tagAlternative.setType(type);
+        tagAlternative.setType(altType);
         tagAlternative.setConfidence(altConfidence);
 
         tagAlternative.setTag(tag);

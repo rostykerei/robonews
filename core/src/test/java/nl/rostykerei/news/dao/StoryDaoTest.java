@@ -5,7 +5,6 @@ import nl.rostykerei.news.domain.Category;
 import nl.rostykerei.news.domain.Channel;
 import nl.rostykerei.news.domain.Feed;
 import nl.rostykerei.news.domain.Story;
-import nl.rostykerei.news.domain.StoryTag;
 import nl.rostykerei.news.domain.Tag;
 import nl.rostykerei.news.domain.TagAlternative;
 import org.junit.Assert;
@@ -16,7 +15,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @TransactionConfiguration(defaultRollback = true)

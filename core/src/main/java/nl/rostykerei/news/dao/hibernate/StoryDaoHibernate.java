@@ -5,7 +5,6 @@ import nl.rostykerei.news.domain.Channel;
 import nl.rostykerei.news.domain.Story;
 import nl.rostykerei.news.domain.StoryTag;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> implements StoryDao {
