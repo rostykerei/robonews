@@ -3,7 +3,9 @@ package nl.rostykerei.news.dao.hibernate;
 import nl.rostykerei.news.dao.StoryDao;
 import nl.rostykerei.news.domain.Channel;
 import nl.rostykerei.news.domain.Story;
+import nl.rostykerei.news.domain.StoryTag;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> implements StoryDao {
@@ -29,5 +31,14 @@ public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> impleme
                 setString("guidHash", guidHash).
                 setMaxResults(1).
                 uniqueResult();
+    }
+
+    @Override
+    @Transactional
+    public void saveStoryTag(StoryTag storyTag) {
+
+        getSession().save(storyTag);
+        //getSession().flush();
+        //getSession().clear();
     }
 }

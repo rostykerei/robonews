@@ -5,6 +5,7 @@ import nl.rostykerei.news.crawler.processors.StoryPostProcessor;
 import nl.rostykerei.news.dao.StoryDao;
 import nl.rostykerei.news.dao.TagDao;
 import nl.rostykerei.news.domain.Story;
+import nl.rostykerei.news.domain.StoryTag;
 import nl.rostykerei.news.domain.Tag;
 import nl.rostykerei.news.service.freebase.FreebaseService;
 import nl.rostykerei.news.service.freebase.exception.AmbiguousResultException;
@@ -13,7 +14,10 @@ import nl.rostykerei.news.service.freebase.exception.NotFoundException;
 import nl.rostykerei.news.service.freebase.impl.FreebaseSearchResult;
 import nl.rostykerei.news.service.nlp.NamedEntityRecognizerService;
 import nl.rostykerei.news.service.nlp.impl.NamedEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 public class FetchKeywords implements StoryPostProcessor {
 
@@ -29,6 +33,9 @@ public class FetchKeywords implements StoryPostProcessor {
     @Autowired
     private FreebaseService freebaseService;
 
+    private Logger logger = LoggerFactory.getLogger(FetchKeywords.class);
+
+
     @Override
     public Story postProcess(Story story) {
         String text = story.getTitle() + ". " + story.getDescription();
@@ -36,24 +43,23 @@ public class FetchKeywords implements StoryPostProcessor {
         Set<NamedEntity> namedEntities = namedEntityRecognizerService.getNamedEntities(text);
 
         for (NamedEntity namedEntity : namedEntities) {
-            Tag tag = getTagByNamedEntity(namedEntity);
+            try {
+                Tag tag = getTagByNamedEntity(namedEntity);
 
-            if (tag != null) {
-                story.getTags().remove(tag);
-                story.getTags().add(tag);
+                if (tag != null && !story.getTags().contains(tag)) {
+                    story.getTags().add(tag);
+                    storyDao.saveStoryTag(new StoryTag(story, tag));
+                }
             }
-        }
-
-        try {
-            storyDao.merge(story);
-        }
-        catch (Exception e) {
-            System.out.println("xxxxxxxxxxxxxxxxxx");
+            catch (RuntimeException e) {
+                continue;
+            }
         }
 
         return story;
     }
 
+    @Transactional
     private Tag getTagByNamedEntity(NamedEntity namedEntity) {
         Tag.Type tagType = Tag.Type.valueOf(namedEntity.getType().toString());
         Tag tag = tagDao.findByAlternative(namedEntity.getName(), tagType);
@@ -93,6 +99,7 @@ public class FetchKeywords implements StoryPostProcessor {
                     null, true, namedEntity.getName(), 0f);
         }
         catch (FreebaseServiceException e) {
+            logger.info("Freebase service exception", e);
             return null;
         }
 
@@ -108,6 +115,5 @@ public class FetchKeywords implements StoryPostProcessor {
             tagDao.createTagAlternative(tag, tagType, namedEntity.getName(), freebaseSearchResult.getScore());
             return tag;
         }
-
     }
 }

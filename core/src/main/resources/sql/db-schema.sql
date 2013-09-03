@@ -192,7 +192,6 @@ DROP TABLE IF EXISTS `tag_type`;
 CREATE TABLE `tag_type` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(64) NOT NULL,
-  `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `type` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

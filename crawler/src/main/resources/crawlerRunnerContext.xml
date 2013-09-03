@@ -7,15 +7,15 @@
     <import resource="crawlerContext.xml"/>
 
     <task:scheduled-tasks scheduler="crawlScheduler">
-        <task:scheduled ref="crawler" method="run" fixed-delay="1000"/>
+        <task:scheduled ref="crawler" method="execute" fixed-delay="1000"/>
     </task:scheduled-tasks>
 
     <task:scheduler id="crawlScheduler"/>
 
     <task:executor id="crawlExecutor"
-                   pool-size="1-25"
+                   pool-size="30"
                    rejection-policy="DISCARD"
-                   queue-capacity="100"/>
+                   queue-capacity="50"/>
 
     <task:annotation-driven scheduler="crawlScheduler" executor="crawlExecutor"/>
 </beans>

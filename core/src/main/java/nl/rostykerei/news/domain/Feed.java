@@ -87,6 +87,10 @@ public class Feed {
     @Column(name = "version")
     private long version;
 
+    public String toString() {
+        return "Feed: [id: " + getId() + ", name: " + getName() + "]";
+    }
+
     public int getId() {
         return id;
     }

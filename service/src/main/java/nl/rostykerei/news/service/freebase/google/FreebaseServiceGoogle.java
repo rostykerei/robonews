@@ -108,7 +108,7 @@ public class FreebaseServiceGoogle implements FreebaseService {
                 }
             }
             else {
-                throw new ServiceUnavailableException();
+                throw new ServiceUnavailableException("http error: " + httpResponse.getHttpStatus());
             }
         }
         catch (IOException e) {

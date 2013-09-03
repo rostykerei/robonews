@@ -8,19 +8,19 @@
     <import resource="classpath:coreContext.xml"/>
     <import resource="classpath:serviceContext.xml"/>
 
-    <bean id="crawler" class="nl.rostykerei.news.crawler.Crawler"/>
 
-    <bean id="feedCrawler" class="nl.rostykerei.news.crawler.FeedCrawler">
+    <bean id="crawlerDao" class="nl.rostykerei.news.crawler.dao.impl.CrawlerDaoImpl">
         <property name="preProcessors">
             <set>
                 <bean class="nl.rostykerei.news.crawler.processors.pre.Sanitize"/>
             </set>
         </property>
+    </bean>
 
+    <bean id="crawler" class="nl.rostykerei.news.crawler.controller.impl.CrawlerControllerImpl">
         <property name="postProcessors">
             <set>
                 <bean class="nl.rostykerei.news.crawler.processors.post.FetchKeywords"/>
-                <bean class="nl.rostykerei.news.crawler.processors.post.FetchImages"/>
             </set>
         </property>
     </bean>

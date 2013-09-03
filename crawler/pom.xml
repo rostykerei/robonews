@@ -26,7 +26,7 @@
                     <systemProperties>
                         <systemProperty>
                             <name>spring.profiles.active</name>
-                            <value>fill-masterdata,fill-db,test</value>
+                            <value>create-db,fill-masterdata,fill-db,test</value>
                         </systemProperty>
                     </systemProperties>
                 </configuration>

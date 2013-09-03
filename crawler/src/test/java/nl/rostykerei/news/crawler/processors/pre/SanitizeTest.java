@@ -17,11 +17,10 @@ public class SanitizeTest {
 
     @Test
     public void testTruncate() {
-        /*Assert.assertEquals("abc xyz…", Sanitize.truncate("abc xyz qwe 123 ope", 10));
+        Assert.assertEquals("abc xyz…", Sanitize.truncate("abc xyz qwe 123 ope", 10));
         Assert.assertEquals("abc xyz…", Sanitize.truncate("abc xyz, qwe 123 ope", 10));
         Assert.assertEquals("abc xyz…", Sanitize.truncate("abc xyz! Qwe 123 ope", 10));
         Assert.assertEquals("abc xyz q…", Sanitize.truncate("abc xyz q? safdsf", 10));
-        */
         Assert.assertEquals("123456789…", Sanitize.truncate("12345678901234567", 10));
     }
 }
