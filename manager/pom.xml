@@ -30,7 +30,7 @@
                     <systemProperties>
                         <systemProperty>
                             <name>spring.profiles.active</name>
-                            <value>create-db,fill-db,test</value>
+                            <value>test</value>
                         </systemProperty>
                     </systemProperties>
                 </configuration>
@@ -44,7 +44,7 @@
                     <path>/manager</path>
                     <port>9091</port>
                     <systemProperties>
-                        <spring.profiles.active>create-db,fill-db,test</spring.profiles.active>
+                        <spring.profiles.active>test</spring.profiles.active>
                     </systemProperties>
                 </configuration>
             </plugin>
