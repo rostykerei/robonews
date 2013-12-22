@@ -1,0 +1,5 @@
+LOCK TABLES `tag_type` WRITE;
+/*!40000 ALTER TABLE `tag_type` DISABLE KEYS */;
+INSERT INTO `tag_type` (`id`, `type`) VALUES (1,'PERSON'),(2,'LOCATION'),(3,'ORGANIZATION'),(4,'MISC');
+/*!40000 ALTER TABLE `tag_type` ENABLE KEYS */;
+UNLOCK TABLES;
