@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<spring:url value="/css/ui-bootstrap/jquery-ui-1.10.0.custom.css"/>" rel="stylesheet"/>
     <link href="<spring:url value="/css/bootstrap.min.css"/>" rel="stylesheet" media="screen">
+    <link href="<spring:url value="/css/bootstrap-datatables.css"/>" rel="stylesheet" media="screen">
     <link href="<spring:url value="/css/main.css"/>" rel="stylesheet" media="screen">
 </head>
 <body>
@@ -15,8 +16,10 @@
 <script src="<spring:url value="/js/jquery.min.js"/>"></script>
 <script src="<spring:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<spring:url value="/js/jquery-timepicker.js"/>"></script>
+<script src="<spring:url value="/js/jquery-datatables.js"/>"></script>
 <script src="<spring:url value="/js/bootstrap.min.js"/>"></script>
 <script src="<spring:url value="/js/bootbox.min.js"/>"></script>
+<script src="<spring:url value="/js/datatables-bootstrap.js"/>"></script>
 <script src="<spring:url value="/js/main.js"/>"></script>
 
 <div class="navbar navbar-inverse navbar-fixed-top">

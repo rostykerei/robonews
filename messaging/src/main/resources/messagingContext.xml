@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <rabbit:connection-factory id="connectionFactory"/>
+
+    <bean  id="newStoryTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="exchange" value="newStoryExchange"/>
+        <property name="messageConverter">
+            <bean class="org.springframework.amqp.support.converter.JsonMessageConverter"/>
+        </property>
+    </bean>
+
+    <rabbit:admin connection-factory="connectionFactory" />
+
+    <rabbit:queue name="tagQueue" durable="true"/>
+
+    <rabbit:queue name="imageQueue" durable="true"/>
+
+    <rabbit:fanout-exchange name="newStoryExchange" durable="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="tagQueue"/>
+            <rabbit:binding queue="imageQueue"/>
+        </rabbit:bindings>
+    </rabbit:fanout-exchange>
+
+</beans>

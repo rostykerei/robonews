@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import nl.rostykerei.news.service.core.NamedEntityType;
 import nl.rostykerei.news.service.nlp.impl.NamedEntity;
+import nl.rostykerei.news.service.nlp.stanford.NamedEntityRecognizerServiceStanford;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-@ContextConfiguration({ "classpath:serviceContext.xml" })
+@ContextConfiguration({ "classpath:serviceNlpContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
 public class NamedEntityRecognizerServiceTest {

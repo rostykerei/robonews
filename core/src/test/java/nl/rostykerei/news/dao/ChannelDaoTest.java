@@ -14,10 +14,10 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @TransactionConfiguration(defaultRollback = true)
-@ContextConfiguration({ "classpath:coreContext.xml" })
+@ContextConfiguration({ "classpath:datasourceContext.xml", "classpath:coreContext.xml" })
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles({"test", "create-db"})
+@ActiveProfiles({"create-db"})
 public class ChannelDaoTest {
 
     @Autowired

@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @Table(name = "category")
@@ -36,6 +37,7 @@ public class Category {
     @Column(name = "rightIndex", updatable = false)
     private int rightIndex;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private Collection<Feed> feeds;
 

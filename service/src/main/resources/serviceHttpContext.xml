@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="httpClient" class="org.apache.http.impl.client.DefaultHttpClient">
+        <constructor-arg>
+            <bean class="org.apache.http.impl.conn.PoolingClientConnectionManager"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="httpService" class="nl.rostykerei.news.service.http.apache.HttpServiceApache">
+        <constructor-arg ref="httpClient"/>
+
+        <property name="userAgent" value="Mozilla/5.0 (compatible; RssCrawler/1.0; +http://news.rostykerei.nl/crawler.html)"/>
+        <property name="timeout" value="10000"/>
+        <property name="maxContentLength" value="262144"/>
+    </bean>
+
+</beans>

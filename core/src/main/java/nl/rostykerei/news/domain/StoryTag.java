@@ -57,5 +57,25 @@ public class StoryTag {
         void setTagId(long tagId) {
             this.tagId = tagId;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            StoryTagPK that = (StoryTagPK) o;
+
+            if (storyId != that.storyId) return false;
+            if (tagId != that.tagId) return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = (int) (storyId ^ (storyId >>> 32));
+            result = 31 * result + (int) (tagId ^ (tagId >>> 32));
+            return result;
+        }
     }
 }

@@ -1,744 +1,999 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?><?xml-stylesheet type="text/css" media="screen" href="http://feeds.reuters.com/~d/styles/itemcontent.css"?>
-<rss
-        xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" version="2.0">
+<?xml version='1.0' encoding='UTF-8'?><?xml-stylesheet type='text/xsl' href='http://telegraph.feedsportal.com/xsl/eng/rss.xsl'?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     version="2.0">
     <channel>
-        <title>Reuters: Top News</title>
-        <link>http://www.reuters.com</link>
-        <description>Reuters.com is your source for breaking news, business, financial and investing news, including
-            personal finance and stocks. Reuters is the leading global provider of news, financial information and
-            technology solutions to the world's media, financial institutions, businesses and individuals.
+        <title>Telegraph.co.uk - Telegraph online, Daily Telegraph, Sunday Telegraph</title>
+        <link>http://www.telegraph.co.uk/</link>
+        <description>Latest news, business, sport, comment, lifestyle and culture from the Daily Telegraph and Sunday
+            Telegraph newspapers and video from Telegraph TV.
         </description>
-        <language>en-us</language>
-        <copyright>All rights reserved. Users may download and print extracts of content from this website for their own
-            personal and non-commercial use only. Republication or redistribution of Reuters content, including by
-            framing or similar means, is expressly prohibited without the prior written consent of Reuters. Reuters and
-            the Reuters sphere logo are registered trademarks or trademarks of the Reuters group of companies around the
-            world. © Reuters 2013
+        <language>en-uk</language>
+        <copyright>℗ &amp; © 2013 of Telegraph Media Group Limited. Please refer to the Terms and Conditions of Use at
+            http://www.telegraph.co.uk/rss
         </copyright>
-        <pubDate>Thu, 08 Aug 2013 14:42:35 GMT</pubDate>
-        <lastBuildDate>Thu, 08 Aug 2013 14:42:35 GMT</lastBuildDate>
+        <pubDate>Wed, 27 Nov 2013 10:05:32 GMT</pubDate>
+        <lastBuildDate>Wed, 27 Nov 2013 10:35:20 GMT</lastBuildDate>
         <ttl>5</ttl>
         <image>
-            <title>Reuters: Top News</title>
-            <url>http://www.reuters.com/resources_v2/images/reuters125.png</url>
-            <link>http://www.reuters.com</link>
+            <title>Telegraph.co.uk - Telegraph online, Daily Telegraph, Sunday Telegraph</title>
+            <url>http://www.telegraph.co.uk/telegraph/template/ver1-0/i/rss/tcuk_main.png</url>
+            <link>http://www.telegraph.co.uk/</link>
         </image>
-        <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml"
-                     href="http://feeds.reuters.com/reuters/topNews"/>
-        <feedburner:info uri="reuters/topnews"/>
-        <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/"/>
-        <feedburner:feedFlare href="http://add.my.yahoo.com/rss?url=http%3A%2F%2Ffeeds.reuters.com%2Freuters%2FtopNews"
-                              src="http://us.i1.yimg.com/us.yimg.com/i/us/my/addtomyyahoo4.gif">Subscribe with My Yahoo!
-        </feedburner:feedFlare>
-        <feedburner:feedFlare
-                href="http://www.newsgator.com/ngs/subscriber/subext.aspx?url=http%3A%2F%2Ffeeds.reuters.com%2Freuters%2FtopNews"
-                src="http://www.newsgator.com/images/ngsub1.gif">Subscribe with NewsGator
-        </feedburner:feedFlare>
-        <feedburner:feedFlare
-                href="http://feeds.my.aol.com/add.jsp?url=http%3A%2F%2Ffeeds.reuters.com%2Freuters%2FtopNews"
-                src="http://o.aolcdn.com/favorites.my.aol.com/webmaster/ffclient/webroot/locale/en-US/images/myAOLButtonSmall.gif">
-            Subscribe with My AOL
-        </feedburner:feedFlare>
-        <feedburner:feedFlare href="http://www.bloglines.com/sub/http://feeds.reuters.com/reuters/topNews"
-                              src="http://www.bloglines.com/images/sub_modern11.gif">Subscribe with Bloglines
-        </feedburner:feedFlare>
-        <feedburner:feedFlare
-                href="http://www.netvibes.com/subscribe.php?url=http%3A%2F%2Ffeeds.reuters.com%2Freuters%2FtopNews"
-                src="http://www.netvibes.com/img/add2netvibes.gif">Subscribe with Netvibes
-        </feedburner:feedFlare>
-        <feedburner:feedFlare
-                href="http://fusion.google.com/add?feedurl=http%3A%2F%2Ffeeds.reuters.com%2Freuters%2FtopNews"
-                src="http://buttons.googlesyndication.com/fusion/add.gif">Subscribe with Google
-        </feedburner:feedFlare>
-        <feedburner:feedFlare
-                href="http://www.pageflakes.com/subscribe.aspx?url=http%3A%2F%2Ffeeds.reuters.com%2Freuters%2FtopNews"
-                src="http://www.pageflakes.com/ImageFile.ashx?instanceId=Static_4&amp;fileName=ATP_blu_91x17.gif">
-            Subscribe with Pageflakes
-        </feedburner:feedFlare>
         <item>
-            <title>Suicide bomber kills 30 at policeman's funeral in Pakistan</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/vMGX5-JD74U/story01.htm</link>
-            <description>QUETTA, Pakistan (Reuters) - A suicide bomber killed 30 people at the funeral of a policeman in
-                Pakistan on Thursday, including five senior police officers, in the third deadly attack on government
-                targets in two weeks.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb6bf3d/sc/11/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487841203/u/49/f/654200/c/35217/s/2fb6bf3d/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487841203/u/49/f/654200/c/35217/s/2fb6bf3d/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Pictures of the day: 27 November 2013</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/342675ca/sc/40/l/0L0Stelegraph0O0Cnews0Cpicturegalleries0Cpicturesoftheday0C10A4774390CPictures0Eof0Ethe0Eday0E270ENovember0E20A130Bhtml/story01.htm
+            </link>
+            <description>Unrest in Egypt, a murmuration of starlings and dog DNA&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/342675ca/sc/40/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fpicturegalleries%2Fpicturesoftheday%2F10477439%2FPictures-of-the-day-27-November-2013.html&amp;t=Pictures+of+the+day%3A+27+November+2013"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fpicturegalleries%2Fpicturesoftheday%2F10477439%2FPictures-of-the-day-27-November-2013.html&amp;t=Pictures+of+the+day%3A+27+November+2013"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fpicturegalleries%2Fpicturesoftheday%2F10477439%2FPictures-of-the-day-27-November-2013.html&amp;t=Pictures+of+the+day%3A+27+November+2013"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fpicturegalleries%2Fpicturesoftheday%2F10477439%2FPictures-of-the-day-27-November-2013.html&amp;t=Pictures+of+the+day%3A+27+November+2013"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fpicturegalleries%2Fpicturesoftheday%2F10477439%2FPictures-of-the-day-27-November-2013.html&amp;t=Pictures+of+the+day%3A+27+November+2013"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264768699/u/396/f/579330/c/32726/s/342675ca/sc/40/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264768699/u/396/f/579330/c/32726/s/342675ca/sc/40/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264768699/u/396/f/579330/c/32726/s/342675ca/sc/40/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264768699/u/396/f/579330/c/32726/s/342675ca/sc/40/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264768699/u/396/f/579330/c/32726/s/342675ca/sc/40/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264768699/u/396/f/579330/c/32726/s/342675ca/sc/40/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264768699/u/396/f/579330/c/32726/s/342675ca/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264768699/u/396/f/579330/c/32726/s/342675ca/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487841203/u/49/f/654200/c/35217/s/2fb6bf3d/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=vMGX5-JD74U:PiO8FbgMRtc:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=vMGX5-JD74U:PiO8FbgMRtc:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=vMGX5-JD74U:PiO8FbgMRtc:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=vMGX5-JD74U:PiO8FbgMRtc:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=vMGX5-JD74U:PiO8FbgMRtc:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/vMGX5-JD74U" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 14:37:26 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180264768699/u/396/f/579330/c/32726/s/342675ca/a2t.img"
+                border="0"/&gt;</description>
+            <category domain="">photography</category>
+            <category domain="">Honduras</category>
+            <category domain="">picture gallery</category>
+            <category domain="">Prince Harry</category>
+            <category domain="">Egypt</category>
+            <category domain="">Ukraine</category>
+            <category domain="">Mexico</category>
+            <category domain="">news</category>
+            <category domain="">Thanksgiving</category>
+            <category domain="">Pictures</category>
+            <category domain="">best photos of the day</category>
+            <category domain=""/>
+            <category domain="">turkey</category>
+            <category domain="">best pictures of the day</category>
+            <category domain="">slideshow</category>
+            <pubDate>Wed, 27 Nov 2013 10:05:32 GMT</pubDate>
+            <author>Telegraph Staff</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-pakistan-bomb-idUSBRE9770F420130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/news/picturegalleries/picturesoftheday/10477439/Pictures-of-the-day-27-November-2013.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb6bf3d/sc/11/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Epakistan0Ebomb0EidUSBRE9770AF420A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Analysis: Oil majors to stay onshore Nigeria despite grumbles</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/UZ19Dp2uXdc/story01.htm</link>
-            <description>ABUJA (Reuters) - A wave of planned sales of onshore Nigerian assets by oil majors has prompted
-                speculation that they are finally leaving the Niger Delta because of oil theft, gangsterism and
-                political uncertainty.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb4aff9/sc/2/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487875450/u/49/f/654200/c/35217/s/2fb4aff9/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487875450/u/49/f/654200/c/35217/s/2fb4aff9/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Monty Python: this pressure doesn't compare to playing in the Ashes</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/342675db/sc/38/l/0L0Stelegraph0O0Cculture0Ccomedy0Ccomedy0Enews0C10A4774960CMonty0EPython0Ethis0Epressure0Edoesnt0Ecompare0Eto0Eplaying0Ein0Ethe0EAshes0Bhtml/story01.htm
+            </link>
+            <description>John Cleese, who is part of the veteran comedy troupe Monty Python, says the pressure of
+                performing at the O2 Arena next year does not match what the English Ashes batsmen are experiencing in
+                Australia&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/342675db/sc/38/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fcomedy%2Fcomedy-news%2F10477496%2FMonty-Python-this-pressure-doesnt-compare-to-playing-in-the-Ashes.html&amp;t=Monty+Python%3A+this+pressure+doesn%27t+compare+to+playing+in+the+Ashes"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fcomedy%2Fcomedy-news%2F10477496%2FMonty-Python-this-pressure-doesnt-compare-to-playing-in-the-Ashes.html&amp;t=Monty+Python%3A+this+pressure+doesn%27t+compare+to+playing+in+the+Ashes"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fcomedy%2Fcomedy-news%2F10477496%2FMonty-Python-this-pressure-doesnt-compare-to-playing-in-the-Ashes.html&amp;t=Monty+Python%3A+this+pressure+doesn%27t+compare+to+playing+in+the+Ashes"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fcomedy%2Fcomedy-news%2F10477496%2FMonty-Python-this-pressure-doesnt-compare-to-playing-in-the-Ashes.html&amp;t=Monty+Python%3A+this+pressure+doesn%27t+compare+to+playing+in+the+Ashes"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fcomedy%2Fcomedy-news%2F10477496%2FMonty-Python-this-pressure-doesnt-compare-to-playing-in-the-Ashes.html&amp;t=Monty+Python%3A+this+pressure+doesn%27t+compare+to+playing+in+the+Ashes"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264768698/u/396/f/579330/c/32726/s/342675db/sc/38/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264768698/u/396/f/579330/c/32726/s/342675db/sc/38/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264768698/u/396/f/579330/c/32726/s/342675db/sc/38/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264768698/u/396/f/579330/c/32726/s/342675db/sc/38/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264768698/u/396/f/579330/c/32726/s/342675db/sc/38/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264768698/u/396/f/579330/c/32726/s/342675db/sc/38/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264768698/u/396/f/579330/c/32726/s/342675db/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264768698/u/396/f/579330/c/32726/s/342675db/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487875450/u/49/f/654200/c/35217/s/2fb4aff9/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=UZ19Dp2uXdc:8BxVsRtoAj0:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=UZ19Dp2uXdc:8BxVsRtoAj0:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=UZ19Dp2uXdc:8BxVsRtoAj0:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=UZ19Dp2uXdc:8BxVsRtoAj0:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=UZ19Dp2uXdc:8BxVsRtoAj0:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/UZ19Dp2uXdc" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 14:35:28 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180264768698/u/396/f/579330/c/32726/s/342675db/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/342675db/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27410Cmontypythonnew0I2741675i0Bjpg/montypythonnew_2741675i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 10:03:12 GMT</pubDate>
+            <author>Patrick Smith</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-nigeria-oil-analysis-idUSBRE9770DN20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/culture/comedy/comedy-news/10477496/Monty-Python-this-pressure-doesnt-compare-to-playing-in-the-Ashes.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb4aff9/sc/2/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Enigeria0Eoil0Eanalysis0EidUSBRE9770ADN20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Gauge of U.S. layoffs falls to pre-recession level</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/O_vMazjr5NY/story01.htm</link>
-            <description>WASHINGTON (Reuters) - A gauge of the trend in layoffs of American workers fell last week to
-                its lowest since before the 2007-09 recession, a hopeful sign for the U.S. economy.&lt;img width='1'
-                height='1' src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb69f7a/sc/2/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487883490/u/49/f/654200/c/35217/s/2fb69f7a/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487883490/u/49/f/654200/c/35217/s/2fb69f7a/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>One in five struggle with serious debt</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/342661aa/sc/25/l/0L0Stelegraph0O0Cfinance0Cpersonalfinance0Cborrowing0C10A4775380COne0Ein0Efive0Estruggle0Ewith0Eserious0Edebt0Bhtml/story01.htm
+            </link>
+            <description>Almost nine million people in the UK are in serious debt and in some areas, such as as
+                Liverpool and Nottingham, over 40pc of adults are struggling to pay their bills&lt;img width='1'
+                height='1' src='http://telegraph.feedsportal.com/c/32726/f/579330/s/342661aa/sc/25/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fborrowing%2F10477538%2FOne-in-five-struggle-with-serious-debt.html&amp;t=One+in+five+struggle+with+serious+debt"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fborrowing%2F10477538%2FOne-in-five-struggle-with-serious-debt.html&amp;t=One+in+five+struggle+with+serious+debt"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fborrowing%2F10477538%2FOne-in-five-struggle-with-serious-debt.html&amp;t=One+in+five+struggle+with+serious+debt"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fborrowing%2F10477538%2FOne-in-five-struggle-with-serious-debt.html&amp;t=One+in+five+struggle+with+serious+debt"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fborrowing%2F10477538%2FOne-in-five-struggle-with-serious-debt.html&amp;t=One+in+five+struggle+with+serious+debt"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958262/u/396/f/579330/c/32726/s/342661aa/sc/25/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958262/u/396/f/579330/c/32726/s/342661aa/sc/25/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958262/u/396/f/579330/c/32726/s/342661aa/sc/25/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958262/u/396/f/579330/c/32726/s/342661aa/sc/25/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958262/u/396/f/579330/c/32726/s/342661aa/sc/25/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958262/u/396/f/579330/c/32726/s/342661aa/sc/25/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958262/u/396/f/579330/c/32726/s/342661aa/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958262/u/396/f/579330/c/32726/s/342661aa/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487883490/u/49/f/654200/c/35217/s/2fb69f7a/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=O_vMazjr5NY:lujVW5La5gA:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=O_vMazjr5NY:lujVW5La5gA:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=O_vMazjr5NY:lujVW5La5gA:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=O_vMazjr5NY:lujVW5La5gA:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=O_vMazjr5NY:lujVW5La5gA:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/O_vMazjr5NY" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 14:28:46 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263958262/u/396/f/579330/c/32726/s/342661aa/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/342661aa/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A2680A0Cliverpool0I2680A40A4i0Bjpg/liverpool_2680404i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 09:46:09 GMT</pubDate>
+            <author>Nicole Blackmore</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-usa-economy-idUSBRE9770K220130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/finance/personalfinance/borrowing/10477538/One-in-five-struggle-with-serious-debt.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb69f7a/sc/2/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Eusa0Eeconomy0EidUSBRE9770AK220A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>India accuses Pakistan army of killing soldiers in ambush</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/x814MCyFVTY/story01.htm</link>
-            <description>NEW DELHI (Reuters) - India for the first time directly accused the Pakistan army of
-                involvement in an ambush that killed five Indian soldiers, and hinted on Thursday at retaliation for
-                possibly the worst such attack since the neighbors signed a ceasefire in 2003.&lt;img width='1'
-                height='1' src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb773e5/sc/16/mf.gif' border='0'/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=x814MCyFVTY:ahI96_oRJmE:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=x814MCyFVTY:ahI96_oRJmE:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=x814MCyFVTY:ahI96_oRJmE:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=x814MCyFVTY:ahI96_oRJmE:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=x814MCyFVTY:ahI96_oRJmE:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/x814MCyFVTY" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 14:21:45 GMT</pubDate>
-            <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-india-pakistan-idUSBRE97707Y20130808?feedType=RSS&amp;feedName=topNews
-            </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb773e5/sc/16/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Eindia0Epakistan0EidUSBRE9770A7Y20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
-        </item>
-        <item>
-            <title>In wishing Bush well, Putin has message for Obama</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/B9MV_oe-DFM/story01.htm</link>
-            <description>MOSCOW (Reuters) - Russian President Vladimir Putin sent a telegram on Thursday to his old
-                sparring partner, former U.S. President George W. Bush, wishing him a quick recovery from heart surgery.&lt;img
-                width='1' height='1' src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb78aff/sc/1/mf.gif'
-                border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487911923/u/49/f/654200/c/35217/s/2fb78aff/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487911923/u/49/f/654200/c/35217/s/2fb78aff/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Chico Hamilton, jazz drummer, dies</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/342661b0/sc/38/l/0L0Stelegraph0O0Cculture0Cmusic0Cworldfolkandjazz0C10A4774730CChico0EHamilton0Ejazz0Edrummer0Edies0Bhtml/story01.htm
+            </link>
+            <description>Bandleader Chico Hamilton, one of the modern greats of jazz drumming, dies aged 92 in New York&lt;img
+                width='1' height='1' src='http://telegraph.feedsportal.com/c/32726/f/579330/s/342661b0/sc/38/mf.gif'
+                border='0'/&gt;&lt;br clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td
+                valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fmusic%2Fworldfolkandjazz%2F10477473%2FChico-Hamilton-jazz-drummer-dies.html&amp;t=Chico+Hamilton%2C+jazz+drummer%2C+dies"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fmusic%2Fworldfolkandjazz%2F10477473%2FChico-Hamilton-jazz-drummer-dies.html&amp;t=Chico+Hamilton%2C+jazz+drummer%2C+dies"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fmusic%2Fworldfolkandjazz%2F10477473%2FChico-Hamilton-jazz-drummer-dies.html&amp;t=Chico+Hamilton%2C+jazz+drummer%2C+dies"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fmusic%2Fworldfolkandjazz%2F10477473%2FChico-Hamilton-jazz-drummer-dies.html&amp;t=Chico+Hamilton%2C+jazz+drummer%2C+dies"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fmusic%2Fworldfolkandjazz%2F10477473%2FChico-Hamilton-jazz-drummer-dies.html&amp;t=Chico+Hamilton%2C+jazz+drummer%2C+dies"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958261/u/396/f/579330/c/32726/s/342661b0/sc/38/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958261/u/396/f/579330/c/32726/s/342661b0/sc/38/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958261/u/396/f/579330/c/32726/s/342661b0/sc/38/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958261/u/396/f/579330/c/32726/s/342661b0/sc/38/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958261/u/396/f/579330/c/32726/s/342661b0/sc/38/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958261/u/396/f/579330/c/32726/s/342661b0/sc/38/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958261/u/396/f/579330/c/32726/s/342661b0/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958261/u/396/f/579330/c/32726/s/342661b0/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487911923/u/49/f/654200/c/35217/s/2fb78aff/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=B9MV_oe-DFM:drtqCb6p0fQ:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=B9MV_oe-DFM:drtqCb6p0fQ:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=B9MV_oe-DFM:drtqCb6p0fQ:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=B9MV_oe-DFM:drtqCb6p0fQ:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=B9MV_oe-DFM:drtqCb6p0fQ:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/B9MV_oe-DFM" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 14:07:08 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263958261/u/396/f/579330/c/32726/s/342661b0/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/342661b0/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27470Cchicohamilton0I2747246i0Bjpg/chicohamilton_2747246i.jpg"
+                    length="99" type="image/jpeg"/>
+            <category domain="">music</category>
+            <category domain="">jazz</category>
+            <category domain="">new york</category>
+            <category domain="">drummer</category>
+            <category domain="">dies</category>
+            <category domain="">count basie</category>
+            <category domain="">Chico Hamilton</category>
+            <category domain="">gerry mulligan</category>
+            <pubDate>Wed, 27 Nov 2013 09:43:11 GMT</pubDate>
+            <author>Martin Chilton</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-russia-usa-presidents-idUSBRE9770OE20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/culture/music/worldfolkandjazz/10477473/Chico-Hamilton-jazz-drummer-dies.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb78aff/sc/1/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Erussia0Eusa0Epresidents0EidUSBRE9770AOE20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Gunman kills at least four people in Texas, police say</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/i_myr__Aceo/story01.htm</link>
-            <description>(Reuters) - A gunman in Texas killed at least four people in a Dallas-area shooting rampage on
-                Wednesday night which also wounded four other people, police said on Thursday.&lt;img width='1'
-                height='1' src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb6435a/sc/11/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487877939/u/49/f/654200/c/35217/s/2fb6435a/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487877939/u/49/f/654200/c/35217/s/2fb6435a/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Watch live: Vince Cable and Michael Fallon quizzed by MPs on Royal Mail sell off</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/342661b3/sc/25/l/0L0Stelegraph0O0Cnews0Cuknews0Croyal0Email0C10A4774790CWatch0Elive0EVince0ECable0Eand0EMichael0EFallon0Equizzed0Eby0EMPs0Eon0ERoyal0EMail0Esell0Eoff0Bhtml/story01.htm
+            </link>
+            <description>The Government's controversial privatisation of Royal Mail will come under renewed scrutiny
+                today when the Business Secretary will be quizzed again by MPs and the company will publish new
+                financial results&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/342661b3/sc/25/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fuknews%2Froyal-mail%2F10477479%2FWatch-live-Vince-Cable-and-Michael-Fallon-quizzed-by-MPs-on-Royal-Mail-sell-off.html&amp;t=Watch+live%3A+Vince+Cable+and+Michael+Fallon+quizzed+by+MPs+on+Royal+Mail+sell+off"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fuknews%2Froyal-mail%2F10477479%2FWatch-live-Vince-Cable-and-Michael-Fallon-quizzed-by-MPs-on-Royal-Mail-sell-off.html&amp;t=Watch+live%3A+Vince+Cable+and+Michael+Fallon+quizzed+by+MPs+on+Royal+Mail+sell+off"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fuknews%2Froyal-mail%2F10477479%2FWatch-live-Vince-Cable-and-Michael-Fallon-quizzed-by-MPs-on-Royal-Mail-sell-off.html&amp;t=Watch+live%3A+Vince+Cable+and+Michael+Fallon+quizzed+by+MPs+on+Royal+Mail+sell+off"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fuknews%2Froyal-mail%2F10477479%2FWatch-live-Vince-Cable-and-Michael-Fallon-quizzed-by-MPs-on-Royal-Mail-sell-off.html&amp;t=Watch+live%3A+Vince+Cable+and+Michael+Fallon+quizzed+by+MPs+on+Royal+Mail+sell+off"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fuknews%2Froyal-mail%2F10477479%2FWatch-live-Vince-Cable-and-Michael-Fallon-quizzed-by-MPs-on-Royal-Mail-sell-off.html&amp;t=Watch+live%3A+Vince+Cable+and+Michael+Fallon+quizzed+by+MPs+on+Royal+Mail+sell+off"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958260/u/396/f/579330/c/32726/s/342661b3/sc/25/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958260/u/396/f/579330/c/32726/s/342661b3/sc/25/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958260/u/396/f/579330/c/32726/s/342661b3/sc/25/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958260/u/396/f/579330/c/32726/s/342661b3/sc/25/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958260/u/396/f/579330/c/32726/s/342661b3/sc/25/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958260/u/396/f/579330/c/32726/s/342661b3/sc/25/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263958260/u/396/f/579330/c/32726/s/342661b3/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263958260/u/396/f/579330/c/32726/s/342661b3/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487877939/u/49/f/654200/c/35217/s/2fb6435a/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=i_myr__Aceo:JpYKYjrRU3I:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=i_myr__Aceo:JpYKYjrRU3I:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=i_myr__Aceo:JpYKYjrRU3I:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=i_myr__Aceo:JpYKYjrRU3I:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=i_myr__Aceo:JpYKYjrRU3I:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/i_myr__Aceo" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 13:21:43 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263958260/u/396/f/579330/c/32726/s/342661b3/a2t.img"
+                border="0"/&gt;</description>
+            <pubDate>Wed, 27 Nov 2013 09:30:55 GMT</pubDate>
+            <author>Telegraph Staff</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-usa-texas-shooting-idUSBRE9770IT20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/news/uknews/royal-mail/10477479/Watch-live-Vince-Cable-and-Michael-Fallon-quizzed-by-MPs-on-Royal-Mail-sell-off.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb6435a/sc/11/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Eusa0Etexas0Eshooting0EidUSBRE9770AIT20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Politics to fore as Egyptian rivals celebrate Eid</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/JHEP3gu2m2E/story01.htm</link>
-            <description>CAIRO (Reuters) - Bitterly divided Egyptians prayed in public and children played as they
-                celebrated the Eid al-Fitr holiday on Thursday.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb5744d/sc/11/mf.gif' border='0'/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=JHEP3gu2m2E:PvHT5ffn6gM:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=JHEP3gu2m2E:PvHT5ffn6gM:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=JHEP3gu2m2E:PvHT5ffn6gM:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=JHEP3gu2m2E:PvHT5ffn6gM:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=JHEP3gu2m2E:PvHT5ffn6gM:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/JHEP3gu2m2E" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 11:28:58 GMT</pubDate>
-            <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-egypt-protests-eid-idUSBRE9770GH20130808?feedType=RSS&amp;feedName=topNews
-            </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb5744d/sc/11/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Eegypt0Eprotests0Eeid0EidUSBRE9770AGH20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
-        </item>
-        <item>
-            <title>Local Russian TV channel broadcasts rare critical segment about Putin</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/iSTNRurAXcg/story01.htm</link>
-            <description>MOSCOW (Reuters) - A television station in the remote Russian city of Chelyabinsk broadcast a
-                two-minute clip criticizing President Vladimir Putin, a rare event in a country where television is
-                tightly controlled.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb570a1/sc/8/mf.gif' border='0'/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=iSTNRurAXcg:VUVOnmAZmZk:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=iSTNRurAXcg:VUVOnmAZmZk:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=iSTNRurAXcg:VUVOnmAZmZk:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=iSTNRurAXcg:VUVOnmAZmZk:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=iSTNRurAXcg:VUVOnmAZmZk:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/iSTNRurAXcg" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 10:55:46 GMT</pubDate>
-            <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-russia-tv-putin-idUSBRE9770FX20130808?feedType=RSS&amp;feedName=topNews
-            </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb570a1/sc/8/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Erussia0Etv0Eputin0EidUSBRE9770AFX20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
-        </item>
-        <item>
-            <title>Assad shown unharmed after Syria rebels report attack</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/FGLiaGVPDcQ/story01.htm</link>
-            <description>AMMAN (Reuters) - Syrian rebels said on Thursday they targeted President Bashar al-Assad's
-                motorcade heading to a Damascus mosque to mark the Muslim holiday of Eid al-Fitr, but state television
-                showed him unharmed and the government denied he had been attacked.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb24f42/sc/20/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487866894/u/49/f/654200/c/35217/s/2fb24f42/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487866894/u/49/f/654200/c/35217/s/2fb24f42/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Amazing spinning ice circle spotted in US river</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eaa/sc/10/l/0L0Stelegraph0O0Ctopics0Cweather0C10A4774280CAmazing0Espinning0Eice0Ecircle0Espotted0Ein0EUS0Eriver0Bhtml/story01.htm
+            </link>
+            <description>A retired engineer out hunting in North Dakota on Saturday spotted a huge circle of ice
+                spinning on the Sheyenne River, over 50 feet in diameter&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eaa/sc/10/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ftopics%2Fweather%2F10477428%2FAmazing-spinning-ice-circle-spotted-in-US-river.html&amp;t=Amazing+spinning+ice+circle+spotted+in+US+river"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ftopics%2Fweather%2F10477428%2FAmazing-spinning-ice-circle-spotted-in-US-river.html&amp;t=Amazing+spinning+ice+circle+spotted+in+US+river"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ftopics%2Fweather%2F10477428%2FAmazing-spinning-ice-circle-spotted-in-US-river.html&amp;t=Amazing+spinning+ice+circle+spotted+in+US+river"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ftopics%2Fweather%2F10477428%2FAmazing-spinning-ice-circle-spotted-in-US-river.html&amp;t=Amazing+spinning+ice+circle+spotted+in+US+river"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ftopics%2Fweather%2F10477428%2FAmazing-spinning-ice-circle-spotted-in-US-river.html&amp;t=Amazing+spinning+ice+circle+spotted+in+US+river"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957741/u/396/f/579330/c/32726/s/34265eaa/sc/10/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957741/u/396/f/579330/c/32726/s/34265eaa/sc/10/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957741/u/396/f/579330/c/32726/s/34265eaa/sc/10/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957741/u/396/f/579330/c/32726/s/34265eaa/sc/10/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957741/u/396/f/579330/c/32726/s/34265eaa/sc/10/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957741/u/396/f/579330/c/32726/s/34265eaa/sc/10/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957741/u/396/f/579330/c/32726/s/34265eaa/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957741/u/396/f/579330/c/32726/s/34265eaa/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487866894/u/49/f/654200/c/35217/s/2fb24f42/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=FGLiaGVPDcQ:E8lhsmCmK7Y:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=FGLiaGVPDcQ:E8lhsmCmK7Y:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=FGLiaGVPDcQ:E8lhsmCmK7Y:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=FGLiaGVPDcQ:E8lhsmCmK7Y:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=FGLiaGVPDcQ:E8lhsmCmK7Y:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/FGLiaGVPDcQ" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 10:51:40 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263957741/u/396/f/579330/c/32726/s/34265eaa/a2t.img"
+                border="0"/&gt;</description>
+            <pubDate>Wed, 27 Nov 2013 09:23:36 GMT</pubDate>
+            <author>Telegraph Staff</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-syria-crisis-assad-idUSBRE97705B20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/topics/weather/10477428/Amazing-spinning-ice-circle-spotted-in-US-river.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb24f42/sc/20/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Esyria0Ecrisis0Eassad0EidUSBRE9770A5B20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Egypt Islamists stage Eid protests as military holds off</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/mShAlzXlplE/story01.htm</link>
-            <description>CAIRO (Reuters) - Islamist supporters of Egypt's deposed president held a festive rally for the
-                Eid al-Fitr holiday on Thursday to demand his restoration after the military-led authorities that
-                removed him held off from a threat to break up protest sit-ins.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb0c958/sc/20/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487816398/u/49/f/654200/c/35217/s/2fb0c958/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487816398/u/49/f/654200/c/35217/s/2fb0c958/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Only Mexicans have a worse state pension than the British</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eab/sc/7/l/0L0Stelegraph0O0Cfinance0Cpersonalfinance0Cpensions0C10A47750A30COnly0EMexicans0Ehave0Ea0Eworse0Estate0Epension0Ethan0Ethe0EBritish0Bhtml/story01.htm
+            </link>
+            <description>Only by saving into private pensions can Britons bring retirement income to the rich nation
+                average, says the OECD.&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eab/sc/7/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10477503%2FOnly-Mexicans-have-a-worse-state-pension-than-the-British.html&amp;t=Only+Mexicans+have+a+worse+state+pension+than+the+British"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10477503%2FOnly-Mexicans-have-a-worse-state-pension-than-the-British.html&amp;t=Only+Mexicans+have+a+worse+state+pension+than+the+British"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10477503%2FOnly-Mexicans-have-a-worse-state-pension-than-the-British.html&amp;t=Only+Mexicans+have+a+worse+state+pension+than+the+British"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10477503%2FOnly-Mexicans-have-a-worse-state-pension-than-the-British.html&amp;t=Only+Mexicans+have+a+worse+state+pension+than+the+British"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10477503%2FOnly-Mexicans-have-a-worse-state-pension-than-the-British.html&amp;t=Only+Mexicans+have+a+worse+state+pension+than+the+British"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957740/u/396/f/579330/c/32726/s/34265eab/sc/7/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957740/u/396/f/579330/c/32726/s/34265eab/sc/7/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957740/u/396/f/579330/c/32726/s/34265eab/sc/7/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957740/u/396/f/579330/c/32726/s/34265eab/sc/7/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957740/u/396/f/579330/c/32726/s/34265eab/sc/7/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957740/u/396/f/579330/c/32726/s/34265eab/sc/7/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957740/u/396/f/579330/c/32726/s/34265eab/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957740/u/396/f/579330/c/32726/s/34265eab/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487816398/u/49/f/654200/c/35217/s/2fb0c958/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=mShAlzXlplE:7NQtW4j-eKU:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=mShAlzXlplE:7NQtW4j-eKU:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=mShAlzXlplE:7NQtW4j-eKU:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=mShAlzXlplE:7NQtW4j-eKU:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=mShAlzXlplE:7NQtW4j-eKU:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/mShAlzXlplE" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 10:49:13 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263957740/u/396/f/579330/c/32726/s/34265eab/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34265eab/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A220A50Cmexico0Echurch0I220A5233i0Bjpg/mexico-church_2205233i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 09:16:44 GMT</pubDate>
+            <author>Georgia Graham</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-egypt-protests-idUSBRE9760EF20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/finance/personalfinance/pensions/10477503/Only-Mexicans-have-a-worse-state-pension-than-the-British.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb0c958/sc/20/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Eegypt0Eprotests0EidUSBRE9760AEF20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Lawyer says not allowed to represent China's disgraced Bo Xilai</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/7W6Q7eyVAcY/story01.htm</link>
-            <description>BEIJING (Reuters) - A lawyer appointed to represent disgraced Chinese politician Bo Xilai in
-                his corruption case said on Thursday he has been denied permission to act on his behalf, a move likely
-                to reinforce belief that Bo's conviction is a foregone conclusion.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb35d90/sc/39/mf.gif' border='0'/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=7W6Q7eyVAcY:WJ7E4RDRk-0:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=7W6Q7eyVAcY:WJ7E4RDRk-0:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=7W6Q7eyVAcY:WJ7E4RDRk-0:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=7W6Q7eyVAcY:WJ7E4RDRk-0:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=7W6Q7eyVAcY:WJ7E4RDRk-0:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/7W6Q7eyVAcY" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 10:24:37 GMT</pubDate>
-            <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-china-politics-bo-idUSBRE97708V20130808?feedType=RSS&amp;feedName=topNews
-            </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb35d90/sc/39/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Echina0Epolitics0Ebo0EidUSBRE9770A8V20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
-        </item>
-        <item>
-            <title>Three injured, hundreds evacuated as Southern California wildfire rages</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/2jyaPw3azKM/story01.htm</link>
-            <description>LOS ANGELES (Reuters) - A wildfire raged out of control in the high desert east of Los Angeles
-                on Wednesday, injuring two firefighters and one civilian and forcing the evacuation of hundreds of
-                residents of three small communities.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb24f46/sc/3/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487866029/u/49/f/654200/c/35217/s/2fb24f46/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487866029/u/49/f/654200/c/35217/s/2fb24f46/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Meet the students planning to row the Atlantic</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eae/sc/33/l/0L0Stelegraph0O0Ceducation0Cuniversityeducation0Cstudent0Elife0C10A4762130CMeet0Ethe0Estudents0Eplanning0Eto0Erow0Ethe0EAtlantic0Bhtml/story01.htm
+            </link>
+            <description>This December, students Luke Birch and Jamie Sparks will set out on what has been described as
+                'the world's toughest endurance race'.&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eae/sc/33/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Feducation%2Funiversityeducation%2Fstudent-life%2F10476213%2FMeet-the-students-planning-to-row-the-Atlantic.html&amp;t=Meet+the+students+planning+to+row+the+Atlantic"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Feducation%2Funiversityeducation%2Fstudent-life%2F10476213%2FMeet-the-students-planning-to-row-the-Atlantic.html&amp;t=Meet+the+students+planning+to+row+the+Atlantic"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Feducation%2Funiversityeducation%2Fstudent-life%2F10476213%2FMeet-the-students-planning-to-row-the-Atlantic.html&amp;t=Meet+the+students+planning+to+row+the+Atlantic"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Feducation%2Funiversityeducation%2Fstudent-life%2F10476213%2FMeet-the-students-planning-to-row-the-Atlantic.html&amp;t=Meet+the+students+planning+to+row+the+Atlantic"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Feducation%2Funiversityeducation%2Fstudent-life%2F10476213%2FMeet-the-students-planning-to-row-the-Atlantic.html&amp;t=Meet+the+students+planning+to+row+the+Atlantic"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957739/u/396/f/579330/c/32726/s/34265eae/sc/33/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957739/u/396/f/579330/c/32726/s/34265eae/sc/33/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957739/u/396/f/579330/c/32726/s/34265eae/sc/33/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957739/u/396/f/579330/c/32726/s/34265eae/sc/33/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957739/u/396/f/579330/c/32726/s/34265eae/sc/33/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957739/u/396/f/579330/c/32726/s/34265eae/sc/33/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957739/u/396/f/579330/c/32726/s/34265eae/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957739/u/396/f/579330/c/32726/s/34265eae/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487866029/u/49/f/654200/c/35217/s/2fb24f46/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=2jyaPw3azKM:KLWGzOnWKCU:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=2jyaPw3azKM:KLWGzOnWKCU:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=2jyaPw3azKM:KLWGzOnWKCU:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=2jyaPw3azKM:KLWGzOnWKCU:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=2jyaPw3azKM:KLWGzOnWKCU:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/2jyaPw3azKM" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 09:55:49 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263957739/u/396/f/579330/c/32726/s/34265eae/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34265eae/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27460CLukeandJamie20I2746668i0Bjpg/LukeandJamie2_2746668i.jpg"
+                    length="99" type="image/jpeg"/>
+            <category domain="">Jamie Sparks</category>
+            <category domain="">Talisker Whisky Atlantic Challenge</category>
+            <category domain="">2 boys in a boat</category>
+            <category domain="">Student Life</category>
+            <category domain="">Atlantic</category>
+            <category domain="">Luke Birch</category>
+            <pubDate>Wed, 27 Nov 2013 08:50:11 GMT</pubDate>
+            <author>Josie Gurney-Read</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-usa-wildfire-california-idUSBRE97702320130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/education/universityeducation/student-life/10476213/Meet-the-students-planning-to-row-the-Atlantic.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb24f46/sc/3/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Eusa0Ewildfire0Ecalifornia0EidUSBRE9770A2320A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>BOJ chief calls for fiscal discipline as tax hike debate heats up</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/U32TylXlZk8/story01.htm</link>
-            <description>TOKYO (Reuters) - Bank of Japan Governor Haruhiko Kuroda issued a strong warning on Thursday
-                against easing up on fiscal discipline, stressing that the country can raise the sales tax and still
-                keep the economy strong enough to put an end to grinding deflation.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb1c579/sc/2/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487863540/u/49/f/654200/c/35217/s/2fb1c579/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487863540/u/49/f/654200/c/35217/s/2fb1c579/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>US prayer book sells for record breaking £8m</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eb0/sc/38/l/0L0Stelegraph0O0Cculture0Cculturevideo0Cbooksvideo0C10A477450A0CUS0Eprayer0Ebook0Esells0Efor0Erecord0Ebreaking0E8m0Bhtml/story01.htm
+            </link>
+            <description>A tiny book of psalms from 1640, believed to be the first book printed in the US, sells for
+                $14.2 million (£8.8m) setting an auction record for a printed book&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eb0/sc/38/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fculturevideo%2Fbooksvideo%2F10477450%2FUS-prayer-book-sells-for-record-breaking-8m.html&amp;t=US+prayer+book+sells+for+record+breaking+%C2%A38m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fculturevideo%2Fbooksvideo%2F10477450%2FUS-prayer-book-sells-for-record-breaking-8m.html&amp;t=US+prayer+book+sells+for+record+breaking+%C2%A38m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fculturevideo%2Fbooksvideo%2F10477450%2FUS-prayer-book-sells-for-record-breaking-8m.html&amp;t=US+prayer+book+sells+for+record+breaking+%C2%A38m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fculturevideo%2Fbooksvideo%2F10477450%2FUS-prayer-book-sells-for-record-breaking-8m.html&amp;t=US+prayer+book+sells+for+record+breaking+%C2%A38m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fculturevideo%2Fbooksvideo%2F10477450%2FUS-prayer-book-sells-for-record-breaking-8m.html&amp;t=US+prayer+book+sells+for+record+breaking+%C2%A38m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957738/u/396/f/579330/c/32726/s/34265eb0/sc/38/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957738/u/396/f/579330/c/32726/s/34265eb0/sc/38/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957738/u/396/f/579330/c/32726/s/34265eb0/sc/38/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957738/u/396/f/579330/c/32726/s/34265eb0/sc/38/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957738/u/396/f/579330/c/32726/s/34265eb0/sc/38/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957738/u/396/f/579330/c/32726/s/34265eb0/sc/38/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957738/u/396/f/579330/c/32726/s/34265eb0/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957738/u/396/f/579330/c/32726/s/34265eb0/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487863540/u/49/f/654200/c/35217/s/2fb1c579/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=U32TylXlZk8:vVBs5qLb0eE:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=U32TylXlZk8:vVBs5qLb0eE:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=U32TylXlZk8:vVBs5qLb0eE:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=U32TylXlZk8:vVBs5qLb0eE:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=U32TylXlZk8:vVBs5qLb0eE:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/U32TylXlZk8" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 09:22:07 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263957738/u/396/f/579330/c/32726/s/34265eb0/a2t.img"
+                border="0"/&gt;</description>
+            <pubDate>Wed, 27 Nov 2013 08:47:13 GMT</pubDate>
+            <author>Telegraph Staff</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-japan-economy-boj-idUSBRE97616U20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/culture/culturevideo/booksvideo/10477450/US-prayer-book-sells-for-record-breaking-8m.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb1c579/sc/2/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Ejapan0Eeconomy0Eboj0EidUSBRE97616U20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Czech parliament to hold session to dissolve itself next week</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/ejMwXwjzOH4/story01.htm</link>
-            <description>PRAGUE (Reuters) - The lower house of the Czech parliament will hold a session to dissolve
-                itself sometime next week, opening the way to an early election, two deputies told Reuters.&lt;img
-                width='1' height='1' src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb409c7/sc/2/mf.gif'
-                border='0'/&gt;&lt;div class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=ejMwXwjzOH4:o4tBEiw5tOw:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=ejMwXwjzOH4:o4tBEiw5tOw:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=ejMwXwjzOH4:o4tBEiw5tOw:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=ejMwXwjzOH4:o4tBEiw5tOw:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=ejMwXwjzOH4:o4tBEiw5tOw:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/ejMwXwjzOH4" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 09:17:54 GMT</pubDate>
-            <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-czech-government-idUSBRE9770AT20130808?feedType=RSS&amp;feedName=topNews
-            </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb409c7/sc/2/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Eczech0Egovernment0EidUSBRE9770AAT20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
-        </item>
-        <item>
-            <title>China threatens heavier fines after milk powder probe</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/lFLm-JvbQ5Q/story01.htm</link>
-            <description>SHANGHAI (Reuters) - China threatened heavier fines against companies breaking the law on
-                Thursday, a day after six milk powder producers were hit with a total of $110 million in penalties for
-                price fixing and anti-competitive behavior.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb22152/sc/2/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487859130/u/49/f/654200/c/35217/s/2fb22152/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487859130/u/49/f/654200/c/35217/s/2fb22152/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Australian men need to 'soften the f--- up'</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eb6/sc/19/l/0L0Stelegraph0O0Cmen0Cactive0C10A4765930CAustralian0Emen0Eneed0Eto0Esoften0Ethe0Ef0Eup0Bhtml/story01.htm
+            </link>
+            <description>Cricketer Jonathan Trott showed great bravery in opening up about his mental health problems.
+                It's something many Australian men could learn from, says Dr Phil Hammond&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eb6/sc/19/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Factive%2F10476593%2FAustralian-men-need-to-soften-the-f-up.html&amp;t=Australian+men+need+to+%27soften+the+f---+up%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Factive%2F10476593%2FAustralian-men-need-to-soften-the-f-up.html&amp;t=Australian+men+need+to+%27soften+the+f---+up%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Factive%2F10476593%2FAustralian-men-need-to-soften-the-f-up.html&amp;t=Australian+men+need+to+%27soften+the+f---+up%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Factive%2F10476593%2FAustralian-men-need-to-soften-the-f-up.html&amp;t=Australian+men+need+to+%27soften+the+f---+up%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Factive%2F10476593%2FAustralian-men-need-to-soften-the-f-up.html&amp;t=Australian+men+need+to+%27soften+the+f---+up%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957737/u/396/f/579330/c/32726/s/34265eb6/sc/19/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957737/u/396/f/579330/c/32726/s/34265eb6/sc/19/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957737/u/396/f/579330/c/32726/s/34265eb6/sc/19/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957737/u/396/f/579330/c/32726/s/34265eb6/sc/19/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957737/u/396/f/579330/c/32726/s/34265eb6/sc/19/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957737/u/396/f/579330/c/32726/s/34265eb6/sc/19/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263957737/u/396/f/579330/c/32726/s/34265eb6/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263957737/u/396/f/579330/c/32726/s/34265eb6/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487859130/u/49/f/654200/c/35217/s/2fb22152/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=lFLm-JvbQ5Q:-oGh1Y4e95E:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=lFLm-JvbQ5Q:-oGh1Y4e95E:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=lFLm-JvbQ5Q:-oGh1Y4e95E:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=lFLm-JvbQ5Q:-oGh1Y4e95E:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=lFLm-JvbQ5Q:-oGh1Y4e95E:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/lFLm-JvbQ5Q" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 08:33:15 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263957737/u/396/f/579330/c/32726/s/34265eb6/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34265eb6/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27460Caustralia0Ecricket0E0I2746783i0Bjpg/australia-cricket-_2746783i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 08:46:52 GMT</pubDate>
+            <author>Dr Phil Hammond</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-china-milkpowder-idUSBRE97703V20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/men/active/10476593/Australian-men-need-to-soften-the-f-up.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb22152/sc/2/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Echina0Emilkpowder0EidUSBRE9770A3V20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Sanofi says taking China bribery claim 'seriously'</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/d66tG4z8ROM/story01.htm</link>
-            <description>SHANGHAI (Reuters) - French drugmaker Sanofi SA said it took "very seriously" allegations
-                published in a Chinese newspaper on Thursday that its staff bribed more than 500 doctors in China in
-                2007 to raise sales.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb407d8/sc/2/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487897808/u/49/f/654200/c/35217/s/2fb407d8/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487897808/u/49/f/654200/c/35217/s/2fb407d8/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>'London schools are a UK education success story'</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/342661b6/sc/33/l/0L0Stelegraph0O0Ceducation0Ceducationopinion0C10A4750A0A0A0CLondon0Eschools0Eare0Ea0EUK0Eeducation0Esuccess0Estory0Bhtml/story01.htm
+            </link>
+            <description>We need to learn what - if anything - can be shared with the rest of the country, says Steve
+                Munby.&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/342661b6/sc/33/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Feducation%2Feducationopinion%2F10475000%2FLondon-schools-are-a-UK-education-success-story.html&amp;t=%27London+schools+are+a+UK+education+success+story%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Feducation%2Feducationopinion%2F10475000%2FLondon-schools-are-a-UK-education-success-story.html&amp;t=%27London+schools+are+a+UK+education+success+story%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Feducation%2Feducationopinion%2F10475000%2FLondon-schools-are-a-UK-education-success-story.html&amp;t=%27London+schools+are+a+UK+education+success+story%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Feducation%2Feducationopinion%2F10475000%2FLondon-schools-are-a-UK-education-success-story.html&amp;t=%27London+schools+are+a+UK+education+success+story%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Feducation%2Feducationopinion%2F10475000%2FLondon-schools-are-a-UK-education-success-story.html&amp;t=%27London+schools+are+a+UK+education+success+story%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/342661b6/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A11120Cschool0Ichildren0I1112974i0Bjpg/school_children_1112974i.jpg"
+                    length="99" type="image/jpeg"/>
+            <category domain="">CfBT Education Trust</category>
+            <category domain="">London schools</category>
+            <category domain="">Steve Munby</category>
+            <category domain="">education</category>
+            <category domain="">London Challenge</category>
+            <pubDate>Wed, 27 Nov 2013 08:30:03 GMT</pubDate>
+            <author>Steve Munby</author>
+            <guid isPermaLink="false">
+                http://www.telegraph.co.uk/education/educationopinion/10475000/London-schools-are-a-UK-education-success-story.html
+            </guid>
+        </item>
+        <item>
+            <title>Royal Mail delivers jump in profits to £233m</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/342657d7/sc/3/l/0L0Stelegraph0O0Cfinance0Cnewsbysector0Cindustry0C10A4772930CRoyal0EMail0Edelivers0Ejump0Ein0Eprofits0Eto0E233m0Bhtml/story01.htm
+            </link>
+            <description>Maiden half-year profits at the Royal Mail jump as Vince Cable and Michael Fallon face MPs over
+                the company's valuation&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/342657d7/sc/3/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fnewsbysector%2Findustry%2F10477293%2FRoyal-Mail-delivers-jump-in-profits-to-233m.html&amp;t=Royal+Mail+delivers+jump+in+profits+to+%C2%A3233m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fnewsbysector%2Findustry%2F10477293%2FRoyal-Mail-delivers-jump-in-profits-to-233m.html&amp;t=Royal+Mail+delivers+jump+in+profits+to+%C2%A3233m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fnewsbysector%2Findustry%2F10477293%2FRoyal-Mail-delivers-jump-in-profits-to-233m.html&amp;t=Royal+Mail+delivers+jump+in+profits+to+%C2%A3233m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fnewsbysector%2Findustry%2F10477293%2FRoyal-Mail-delivers-jump-in-profits-to-233m.html&amp;t=Royal+Mail+delivers+jump+in+profits+to+%C2%A3233m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fnewsbysector%2Findustry%2F10477293%2FRoyal-Mail-delivers-jump-in-profits-to-233m.html&amp;t=Royal+Mail+delivers+jump+in+profits+to+%C2%A3233m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263956437/u/396/f/579330/c/32726/s/342657d7/sc/3/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263956437/u/396/f/579330/c/32726/s/342657d7/sc/3/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263956437/u/396/f/579330/c/32726/s/342657d7/sc/3/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263956437/u/396/f/579330/c/32726/s/342657d7/sc/3/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263956437/u/396/f/579330/c/32726/s/342657d7/sc/3/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263956437/u/396/f/579330/c/32726/s/342657d7/sc/3/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263956437/u/396/f/579330/c/32726/s/342657d7/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263956437/u/396/f/579330/c/32726/s/342657d7/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487897808/u/49/f/654200/c/35217/s/2fb407d8/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=d66tG4z8ROM:gQk2OGr9B7Q:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=d66tG4z8ROM:gQk2OGr9B7Q:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=d66tG4z8ROM:gQk2OGr9B7Q:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=d66tG4z8ROM:gQk2OGr9B7Q:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=d66tG4z8ROM:gQk2OGr9B7Q:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/d66tG4z8ROM" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 08:14:56 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263956437/u/396/f/579330/c/32726/s/342657d7/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/342657d7/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A23820Cmail0I2382420Ai0Bjpg/mail_2382420i.jpg"
+                    length="99" type="image/jpeg"/>
+            <category domain="">Vince Cable</category>
+            <category domain="">maiden results</category>
+            <category domain="">profits</category>
+            <category domain="">Royal Mail</category>
+            <category domain="">MPs</category>
+            <category domain="">unions</category>
+            <category domain="">CWU</category>
+            <category domain="">Michael Fallon</category>
+            <category domain="">grilling</category>
+            <pubDate>Wed, 27 Nov 2013 08:22:38 GMT</pubDate>
+            <author>Louise Armitstead</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-sanofi-china-idUSBRE9770AM20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/finance/newsbysector/industry/10477293/Royal-Mail-delivers-jump-in-profits-to-233m.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb407d8/sc/2/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Esanofi0Echina0EidUSBRE9770AAM20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Iran has new rocket site, ballistic missile tests possible: report</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/BnUUWVIdtEk/story01.htm</link>
-            <description>DUBAI (Reuters) - Iran has constructed a rocket-launching site that could be used for testing
-                ballistic missiles, a report from a military intelligence publication said on Thursday.&lt;img width='1'
-                height='1' src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb407d4/sc/20/mf.gif' border='0'/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=BnUUWVIdtEk:t5OuZ6OFIEo:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=BnUUWVIdtEk:t5OuZ6OFIEo:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=BnUUWVIdtEk:t5OuZ6OFIEo:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=BnUUWVIdtEk:t5OuZ6OFIEo:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=BnUUWVIdtEk:t5OuZ6OFIEo:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/BnUUWVIdtEk" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 08:11:32 GMT</pubDate>
-            <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-iran-space-idUSBRE9770A920130808?feedType=RSS&amp;feedName=topNews
-            </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb407d4/sc/20/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Eiran0Espace0EidUSBRE9770AA920A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
-        </item>
-        <item>
-            <title>Japan protests to China after ships linger for a day near isles</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/8uuaAF8OC3g/story01.htm</link>
-            <description>TOKYO (Reuters) - Four Chinese ships spent more than 24 hours in what Japan sees as its
-                territorial waters, prompting a Japanese protest to China on Thursday at a time when Japan has been
-                signaling its desire for a summit.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb32557/sc/2/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487866388/u/49/f/654200/c/35217/s/2fb32557/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487866388/u/49/f/654200/c/35217/s/2fb32557/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Royal Mail delivers jumps in profits to £233m</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34252d0a/sc/24/l/0L0Stelegraph0O0Cfinance0Cnewsbysector0Cindustry0C10A4772930CRoyal0EMail0Edelivers0Ejumps0Ein0Eprofits0Eto0E233m0Bhtml/story01.htm
+            </link>
+            <description>Maiden half-year profits at the Royal Mail jump as Vince Cable and Michael Fallon face MPs over
+                the company's valuation&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34252d0a/sc/24/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fnewsbysector%2Findustry%2F10477293%2FRoyal-Mail-delivers-jumps-in-profits-to-233m.html&amp;t=Royal+Mail+delivers+jumps+in+profits+to+%C2%A3233m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fnewsbysector%2Findustry%2F10477293%2FRoyal-Mail-delivers-jumps-in-profits-to-233m.html&amp;t=Royal+Mail+delivers+jumps+in+profits+to+%C2%A3233m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fnewsbysector%2Findustry%2F10477293%2FRoyal-Mail-delivers-jumps-in-profits-to-233m.html&amp;t=Royal+Mail+delivers+jumps+in+profits+to+%C2%A3233m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fnewsbysector%2Findustry%2F10477293%2FRoyal-Mail-delivers-jumps-in-profits-to-233m.html&amp;t=Royal+Mail+delivers+jumps+in+profits+to+%C2%A3233m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fnewsbysector%2Findustry%2F10477293%2FRoyal-Mail-delivers-jumps-in-profits-to-233m.html&amp;t=Royal+Mail+delivers+jumps+in+profits+to+%C2%A3233m"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955200/u/396/f/579330/c/32726/s/34252d0a/sc/24/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955200/u/396/f/579330/c/32726/s/34252d0a/sc/24/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955200/u/396/f/579330/c/32726/s/34252d0a/sc/24/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955200/u/396/f/579330/c/32726/s/34252d0a/sc/24/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955200/u/396/f/579330/c/32726/s/34252d0a/sc/24/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955200/u/396/f/579330/c/32726/s/34252d0a/sc/24/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955200/u/396/f/579330/c/32726/s/34252d0a/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955200/u/396/f/579330/c/32726/s/34252d0a/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487866388/u/49/f/654200/c/35217/s/2fb32557/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=8uuaAF8OC3g:loIayzlOAtg:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=8uuaAF8OC3g:loIayzlOAtg:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=8uuaAF8OC3g:loIayzlOAtg:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=8uuaAF8OC3g:loIayzlOAtg:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=8uuaAF8OC3g:loIayzlOAtg:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/8uuaAF8OC3g" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 07:25:11 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263955200/u/396/f/579330/c/32726/s/34252d0a/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34252d0a/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A23820Cmail0I2382420Ai0Bjpg/mail_2382420i.jpg"
+                    length="99" type="image/jpeg"/>
+            <category domain="">Vince Cable</category>
+            <category domain="">maiden results</category>
+            <category domain="">profits</category>
+            <category domain="">Royal Mail</category>
+            <category domain="">MPs</category>
+            <category domain="">unions</category>
+            <category domain="">CWU</category>
+            <category domain="">Michael Fallon</category>
+            <category domain="">grilling</category>
+            <pubDate>Wed, 27 Nov 2013 07:53:59 GMT</pubDate>
+            <author>Louise Armitstead</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-japan-china-islands-idUSBRE97707G20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/finance/newsbysector/industry/10477293/Royal-Mail-delivers-jumps-in-profits-to-233m.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb32557/sc/2/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Ejapan0Echina0Eislands0EidUSBRE9770A7G20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Analysis: Ottawa set to leave telecom door open for Verizon</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/43qlAIPAWyo/story01.htm</link>
-            <description>TORONTO (Reuters) - Canada's wireless industry is bracing for its biggest shakeup in decades as
-                Ottawa appears impervious to pleas that it block U.S. giant Verizon Communications Inc from the
-                lucrative market.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb215e8/sc/8/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487861966/u/49/f/654200/c/35217/s/2fb215e8/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487861966/u/49/f/654200/c/35217/s/2fb215e8/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Prince William sings with Jon Bon Jovi and Taylor Swift</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eb7/sc/3/l/0L0Stelegraph0O0Cnews0Cuknews0Cprince0Ewilliam0C10A4773360CPrince0EWilliam0Esings0Ewith0EJon0EBon0EJovi0Eand0ETaylor0ESwift0Bhtml/story01.htm
+            </link>
+            <description>Prince William belts out Bon Jovi's Livin' On A Prayer rock anthem after joining him and US pop
+                star Taylor Swift on stage at a charity event&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eb7/sc/3/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fuknews%2Fprince-william%2F10477336%2FPrince-William-sings-with-Jon-Bon-Jovi-and-Taylor-Swift.html&amp;t=Prince+William+sings+with+Jon+Bon+Jovi+and+Taylor+Swift"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fuknews%2Fprince-william%2F10477336%2FPrince-William-sings-with-Jon-Bon-Jovi-and-Taylor-Swift.html&amp;t=Prince+William+sings+with+Jon+Bon+Jovi+and+Taylor+Swift"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fuknews%2Fprince-william%2F10477336%2FPrince-William-sings-with-Jon-Bon-Jovi-and-Taylor-Swift.html&amp;t=Prince+William+sings+with+Jon+Bon+Jovi+and+Taylor+Swift"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fuknews%2Fprince-william%2F10477336%2FPrince-William-sings-with-Jon-Bon-Jovi-and-Taylor-Swift.html&amp;t=Prince+William+sings+with+Jon+Bon+Jovi+and+Taylor+Swift"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fuknews%2Fprince-william%2F10477336%2FPrince-William-sings-with-Jon-Bon-Jovi-and-Taylor-Swift.html&amp;t=Prince+William+sings+with+Jon+Bon+Jovi+and+Taylor+Swift"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</description>
+            <pubDate>Wed, 27 Nov 2013 07:31:30 GMT</pubDate>
+            <author>Telegraph Staff</author>
+            <guid isPermaLink="false">
+                http://www.telegraph.co.uk/news/uknews/prince-william/10477336/Prince-William-sings-with-Jon-Bon-Jovi-and-Taylor-Swift.html
+            </guid>
+        </item>
+        <item>
+            <title>New UK millionaire after Lottery ticket holder wins £26m jackpot</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34265399/sc/3/l/0L0Stelegraph0O0Clifestyle0C10A4772150CNew0EUK0Emillionaire0Eafter0ELottery0Eticket0Eholder0Ewins0E26m0Ejackpot0Bhtml/story01.htm
+            </link>
+            <description>A ticket holder from the UK has won more than £26 million in the EuroMillions jackpot&lt;img
+                width='1' height='1' src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34265399/sc/3/mf.gif'
+                border='0'/&gt;&lt;br clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td
+                valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Flifestyle%2F10477215%2FNew-UK-millionaire-after-Lottery-ticket-holder-wins-26m-jackpot.html&amp;t=New+UK+millionaire+after+Lottery+ticket+holder+wins+%C2%A326m+jackpot"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Flifestyle%2F10477215%2FNew-UK-millionaire-after-Lottery-ticket-holder-wins-26m-jackpot.html&amp;t=New+UK+millionaire+after+Lottery+ticket+holder+wins+%C2%A326m+jackpot"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Flifestyle%2F10477215%2FNew-UK-millionaire-after-Lottery-ticket-holder-wins-26m-jackpot.html&amp;t=New+UK+millionaire+after+Lottery+ticket+holder+wins+%C2%A326m+jackpot"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Flifestyle%2F10477215%2FNew-UK-millionaire-after-Lottery-ticket-holder-wins-26m-jackpot.html&amp;t=New+UK+millionaire+after+Lottery+ticket+holder+wins+%C2%A326m+jackpot"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Flifestyle%2F10477215%2FNew-UK-millionaire-after-Lottery-ticket-holder-wins-26m-jackpot.html&amp;t=New+UK+millionaire+after+Lottery+ticket+holder+wins+%C2%A326m+jackpot"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34265399/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A25750Cballs0I2575472i0Bjpg/balls_2575472i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 07:30:49 GMT</pubDate>
+            <author>Claire Carter</author>
+            <guid isPermaLink="false">
+                http://www.telegraph.co.uk/lifestyle/10477215/New-UK-millionaire-after-Lottery-ticket-holder-wins-26m-jackpot.html
+            </guid>
+        </item>
+        <item>
+            <title>Angela Merkel agrees to form coalition with Social Democrats</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34252d0f/sc/2/l/0L0Stelegraph0O0Cnews0Cworldnews0Ceurope0Cgermany0C10A4772720CAngela0EMerkel0Eagrees0Eto0Eform0Ecoalition0Ewith0ESocial0EDemocrats0Bhtml/story01.htm
+            </link>
+            <description>Christian Democratic Union, their Bavarian allies the CSU and the Social Democratic Party agree
+                deal after marathon talks lasting 17 hours&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34252d0f/sc/2/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fworldnews%2Feurope%2Fgermany%2F10477272%2FAngela-Merkel-agrees-to-form-coalition-with-Social-Democrats.html&amp;t=Angela+Merkel+agrees+to+form+coalition+with+Social+Democrats"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fworldnews%2Feurope%2Fgermany%2F10477272%2FAngela-Merkel-agrees-to-form-coalition-with-Social-Democrats.html&amp;t=Angela+Merkel+agrees+to+form+coalition+with+Social+Democrats"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fworldnews%2Feurope%2Fgermany%2F10477272%2FAngela-Merkel-agrees-to-form-coalition-with-Social-Democrats.html&amp;t=Angela+Merkel+agrees+to+form+coalition+with+Social+Democrats"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fworldnews%2Feurope%2Fgermany%2F10477272%2FAngela-Merkel-agrees-to-form-coalition-with-Social-Democrats.html&amp;t=Angela+Merkel+agrees+to+form+coalition+with+Social+Democrats"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fnews%2Fworldnews%2Feurope%2Fgermany%2F10477272%2FAngela-Merkel-agrees-to-form-coalition-with-Social-Democrats.html&amp;t=Angela+Merkel+agrees+to+form+coalition+with+Social+Democrats"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955199/u/396/f/579330/c/32726/s/34252d0f/sc/2/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955199/u/396/f/579330/c/32726/s/34252d0f/sc/2/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955199/u/396/f/579330/c/32726/s/34252d0f/sc/2/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955199/u/396/f/579330/c/32726/s/34252d0f/sc/2/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955199/u/396/f/579330/c/32726/s/34252d0f/sc/2/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955199/u/396/f/579330/c/32726/s/34252d0f/sc/2/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955199/u/396/f/579330/c/32726/s/34252d0f/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955199/u/396/f/579330/c/32726/s/34252d0f/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487861966/u/49/f/654200/c/35217/s/2fb215e8/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=43qlAIPAWyo:LB0tMO4QPGg:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=43qlAIPAWyo:LB0tMO4QPGg:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=43qlAIPAWyo:LB0tMO4QPGg:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=43qlAIPAWyo:LB0tMO4QPGg:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=43qlAIPAWyo:LB0tMO4QPGg:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/43qlAIPAWyo" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 05:11:53 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263955199/u/396/f/579330/c/32726/s/34252d0f/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34252d0f/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A2710A0Cmerkel0I2710A142i0Bjpg/merkel_2710142i.jpg"
+                    length="99" type="image/jpeg"/>
+            <category domain="">germany</category>
+            <category domain="">coalition</category>
+            <category domain="">angela merkel</category>
+            <category domain="">social democrats</category>
+            <pubDate>Wed, 27 Nov 2013 07:28:30 GMT</pubDate>
+            <author>Matt Tempest</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-telecoms-analysis-idUSBRE97704B20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/news/worldnews/europe/germany/10477272/Angela-Merkel-agrees-to-form-coalition-with-Social-Democrats.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb215e8/sc/8/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Etelecoms0Eanalysis0EidUSBRE9770A4B20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Fonterra CEO says sees no drop in orders after food safety scare</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/A18t50ZDEsU/story01.htm</link>
-            <description>WELLINGTON (Reuters) - Fonterra CEO Theo Spierings on Thursday said that he had not seen a
-                reduction in the dairy exporter's customers since it was found to have produced contaminated dairy
-                ingredients, while acknowledging the risk that its bottom line may take a hit in the future.&lt;img
-                width='1' height='1' src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb1c1aa/sc/2/mf.gif'
-                border='0'/&gt;&lt;div class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=A18t50ZDEsU:Y2nUOTeNImE:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=A18t50ZDEsU:Y2nUOTeNImE:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=A18t50ZDEsU:Y2nUOTeNImE:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=A18t50ZDEsU:Y2nUOTeNImE:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=A18t50ZDEsU:Y2nUOTeNImE:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/A18t50ZDEsU" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 04:04:29 GMT</pubDate>
-            <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-fonterra-milk-idUSBRE97702S20130808?feedType=RSS&amp;feedName=topNews
-            </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb1c1aa/sc/2/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Efonterra0Emilk0EidUSBRE9770A2S20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
-        </item>
-        <item>
-            <title>Investor group sues California city over eminent domain loan plan</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/St7fIJNssTU/story01.htm</link>
-            <description>(Reuters) - An investor group filed a federal lawsuit against Richmond, California, to prevent
-                the city from using eminent domain to seize mortgages of local residents who owe more than their
-                properties are worth in a bid to keep them in their homes.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb1ad66/sc/22/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487888670/u/49/f/654200/c/35217/s/2fb1ad66/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487888670/u/49/f/654200/c/35217/s/2fb1ad66/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Best value holidays for winter ski or sun</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34252d10/sc/10/l/0L0Stelegraph0O0Cfinance0Cpersonalfinance0Cinsurance0Ctravel0C10A4761730CBest0Evalue0Eholidays0Efor0Ewinter0Eski0Eor0Esun0Bhtml/story01.htm
+            </link>
+            <description>The holiday destinations where you get more for your pound than this time a year ago&lt;img
+                width='1' height='1' src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34252d10/sc/10/mf.gif'
+                border='0'/&gt;&lt;br clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td
+                valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Finsurance%2Ftravel%2F10476173%2FBest-value-holidays-for-winter-ski-or-sun.html&amp;t=Best+value+holidays+for+winter+ski+or+sun"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Finsurance%2Ftravel%2F10476173%2FBest-value-holidays-for-winter-ski-or-sun.html&amp;t=Best+value+holidays+for+winter+ski+or+sun"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Finsurance%2Ftravel%2F10476173%2FBest-value-holidays-for-winter-ski-or-sun.html&amp;t=Best+value+holidays+for+winter+ski+or+sun"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Finsurance%2Ftravel%2F10476173%2FBest-value-holidays-for-winter-ski-or-sun.html&amp;t=Best+value+holidays+for+winter+ski+or+sun"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Finsurance%2Ftravel%2F10476173%2FBest-value-holidays-for-winter-ski-or-sun.html&amp;t=Best+value+holidays+for+winter+ski+or+sun"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955198/u/396/f/579330/c/32726/s/34252d10/sc/10/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955198/u/396/f/579330/c/32726/s/34252d10/sc/10/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955198/u/396/f/579330/c/32726/s/34252d10/sc/10/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955198/u/396/f/579330/c/32726/s/34252d10/sc/10/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955198/u/396/f/579330/c/32726/s/34252d10/sc/10/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955198/u/396/f/579330/c/32726/s/34252d10/sc/10/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263955198/u/396/f/579330/c/32726/s/34252d10/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263955198/u/396/f/579330/c/32726/s/34252d10/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487888670/u/49/f/654200/c/35217/s/2fb1ad66/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=St7fIJNssTU:YfwdzTAWag8:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=St7fIJNssTU:YfwdzTAWag8:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=St7fIJNssTU:YfwdzTAWag8:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=St7fIJNssTU:YfwdzTAWag8:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=St7fIJNssTU:YfwdzTAWag8:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/St7fIJNssTU" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 03:38:38 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263955198/u/396/f/579330/c/32726/s/34252d10/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34252d10/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A18390Cski0Ezermatt0I1839418i0Bjpg/ski-zermatt_1839418i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 07:08:27 GMT</pubDate>
+            <author>Telegraph reporters</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-usa-eminentdomain-richmond-idUSBRE97702I20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/finance/personalfinance/insurance/travel/10476173/Best-value-holidays-for-winter-ski-or-sun.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb1ad66/sc/22/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Eusa0Eeminentdomain0Erichmond0EidUSBRE9770A2I20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Hilton selects banks to lead initial public offering: sources</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/bclMCiKQbrQ/story01.htm</link>
-            <description>NEW YORK (Reuters) - Blackstone Group LP has selected banks to lead an initial public offering
-                of Hilton Worldwide Inc as it prepares to bring one of the largest leveraged buyouts back to the stock
-                market, three people familiar with the matter said on Wednesday.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb15c6a/sc/2/mf.gif' border='0'/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=bclMCiKQbrQ:67uLWPUdkpI:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=bclMCiKQbrQ:67uLWPUdkpI:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=bclMCiKQbrQ:67uLWPUdkpI:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=bclMCiKQbrQ:67uLWPUdkpI:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=bclMCiKQbrQ:67uLWPUdkpI:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/bclMCiKQbrQ" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 02:03:14 GMT</pubDate>
+            <title>Pension charges cap 'could be lower than 0.75pc'</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eb8/sc/25/l/0L0Stelegraph0O0Cfinance0Cpersonalfinance0Cpensions0C10A4766510CPension0Echarges0Ecap0Ecould0Ebe0Elower0Ethan0E0A0B75pc0Bhtml/story01.htm
+            </link>
+            <description>The excessive charges on company pension schemes could still be capped at less than 0.75pc,
+                says minister&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eb8/sc/25/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10476651%2FPension-charges-cap-could-be-lower-than-0.75pc.html&amp;t=Pension+charges+cap+%27could+be+lower+than+0.75pc%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10476651%2FPension-charges-cap-could-be-lower-than-0.75pc.html&amp;t=Pension+charges+cap+%27could+be+lower+than+0.75pc%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10476651%2FPension-charges-cap-could-be-lower-than-0.75pc.html&amp;t=Pension+charges+cap+%27could+be+lower+than+0.75pc%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10476651%2FPension-charges-cap-could-be-lower-than-0.75pc.html&amp;t=Pension+charges+cap+%27could+be+lower+than+0.75pc%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10476651%2FPension-charges-cap-could-be-lower-than-0.75pc.html&amp;t=Pension+charges+cap+%27could+be+lower+than+0.75pc%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34265eb8/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27170CSTEVE0EWEBB0I2717812i0Bjpg/STEVE-WEBB_2717812i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 07:03:29 GMT</pubDate>
+            <author>Dan Hyde</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-hilton-ipo-idUSBRE97617B20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/finance/personalfinance/pensions/10476651/Pension-charges-cap-could-be-lower-than-0.75pc.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb15c6a/sc/2/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Ehilton0Eipo0EidUSBRE97617B20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Detroit manager's hope: a clean balance sheet in 14 months</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/oojlK_Hde0I/story01.htm</link>
-            <description>DETROIT (Reuters) - Detroit's emergency manager voiced confidence on Wednesday that the city
-                could emerge from bankruptcy before his term expires in October 2014 and possibly without having to
-                borrow more money.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb1248e/sc/24/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487886202/u/49/f/654200/c/35217/s/2fb1248e/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487886202/u/49/f/654200/c/35217/s/2fb1248e/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Pension charges cap 'could be lower than 0.75pc '</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/342657da/sc/25/l/0L0Stelegraph0O0Cfinance0Cpersonalfinance0Cpensions0C10A4766510CPension0Echarges0Ecap0Ecould0Ebe0Elower0Ethan0E0A0B75pc0E0Bhtml/story01.htm
+            </link>
+            <description>The excessive charges on company pension schemes could still be capped at less than 0.75pc, the
+                minister responsible says&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/342657da/sc/25/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10476651%2FPension-charges-cap-could-be-lower-than-0.75pc-.html&amp;t=Pension+charges+cap+%27could+be+lower+than+0.75pc+%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10476651%2FPension-charges-cap-could-be-lower-than-0.75pc-.html&amp;t=Pension+charges+cap+%27could+be+lower+than+0.75pc+%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10476651%2FPension-charges-cap-could-be-lower-than-0.75pc-.html&amp;t=Pension+charges+cap+%27could+be+lower+than+0.75pc+%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10476651%2FPension-charges-cap-could-be-lower-than-0.75pc-.html&amp;t=Pension+charges+cap+%27could+be+lower+than+0.75pc+%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ffinance%2Fpersonalfinance%2Fpensions%2F10476651%2FPension-charges-cap-could-be-lower-than-0.75pc-.html&amp;t=Pension+charges+cap+%27could+be+lower+than+0.75pc+%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/342657da/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27170CSTEVE0EWEBB0I2717812i0Bjpg/STEVE-WEBB_2717812i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 07:03:29 GMT</pubDate>
+            <author>Dan Hyde</author>
+            <guid isPermaLink="false">
+                http://www.telegraph.co.uk/finance/personalfinance/pensions/10476651/Pension-charges-cap-could-be-lower-than-0.75pc-.html
+            </guid>
+        </item>
+        <item>
+            <title>Christmas 2013: best photography books of the year</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34253cae/sc/38/l/0L0Stelegraph0O0Ctopics0Cchristmas0Cchristmas0Egift0Eideas0C10A4753890CChristmas0E20A130Ebest0Ephotography0Ebooks0Eof0Ethe0Eyear0Bhtml/story01.htm
+            </link>
+            <description>Whether it's the glamour of Dior or reportage from the war in Iraq, there is a wealth of
+                striking images from which to choose, finds Lucy Davies&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34253cae/sc/38/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ftopics%2Fchristmas%2Fchristmas-gift-ideas%2F10475389%2FChristmas-2013-best-photography-books-of-the-year.html&amp;t=Christmas+2013%3A+best+photography+books+of+the+year"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ftopics%2Fchristmas%2Fchristmas-gift-ideas%2F10475389%2FChristmas-2013-best-photography-books-of-the-year.html&amp;t=Christmas+2013%3A+best+photography+books+of+the+year"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ftopics%2Fchristmas%2Fchristmas-gift-ideas%2F10475389%2FChristmas-2013-best-photography-books-of-the-year.html&amp;t=Christmas+2013%3A+best+photography+books+of+the+year"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ftopics%2Fchristmas%2Fchristmas-gift-ideas%2F10475389%2FChristmas-2013-best-photography-books-of-the-year.html&amp;t=Christmas+2013%3A+best+photography+books+of+the+year"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Ftopics%2Fchristmas%2Fchristmas-gift-ideas%2F10475389%2FChristmas-2013-best-photography-books-of-the-year.html&amp;t=Christmas+2013%3A+best+photography+books+of+the+year"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264764635/u/396/f/579330/c/32726/s/34253cae/sc/38/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264764635/u/396/f/579330/c/32726/s/34253cae/sc/38/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264764635/u/396/f/579330/c/32726/s/34253cae/sc/38/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264764635/u/396/f/579330/c/32726/s/34253cae/sc/38/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264764635/u/396/f/579330/c/32726/s/34253cae/sc/38/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264764635/u/396/f/579330/c/32726/s/34253cae/sc/38/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180264764635/u/396/f/579330/c/32726/s/34253cae/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180264764635/u/396/f/579330/c/32726/s/34253cae/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487886202/u/49/f/654200/c/35217/s/2fb1248e/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=oojlK_Hde0I:T9rcDlqe0uE:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=oojlK_Hde0I:T9rcDlqe0uE:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=oojlK_Hde0I:T9rcDlqe0uE:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=oojlK_Hde0I:T9rcDlqe0uE:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=oojlK_Hde0I:T9rcDlqe0uE:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/oojlK_Hde0I" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 01:54:39 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180264764635/u/396/f/579330/c/32726/s/34253cae/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34253cae/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27460CDior0IGlamour0I2746324i0Bjpg/Dior_Glamour_2746324i.jpg"
+                    length="99" type="image/jpeg"/>
+            <category domain="">photography</category>
+            <category domain="">Steve McCurry</category>
+            <category domain="">christmas books</category>
+            <category domain="">presents</category>
+            <category domain="">Kate Moss</category>
+            <category domain="">gifts</category>
+            <category domain="">Iraq war</category>
+            <category domain="">Fashion photography</category>
+            <category domain="">JFK</category>
+            <category domain="">Lee Miller</category>
+            <pubDate>Wed, 27 Nov 2013 07:00:41 GMT</pubDate>
+            <author>Lucy Davies</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-usa-detroit-kevynorr-idUSBRE97617N20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/topics/christmas/christmas-gift-ideas/10475389/Christmas-2013-best-photography-books-of-the-year.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb1248e/sc/24/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Eusa0Edetroit0Ekevynorr0EidUSBRE97617N20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>Exclusive: IRS manual detailed DEA's use of hidden intel evidence</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/pVa6TcUKPjM/story01.htm</link>
-            <description>WASHINGTON (Reuters) - Details of a U.S. Drug Enforcement Administration program that feeds
-                tips to federal agents and then instructs them to alter the investigative trail were published in a
-                manual used by agents of the Internal Revenue Service for two years.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb0f80f/sc/7/mf.gif' border='0'/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=pVa6TcUKPjM:pkmW_LxdyHE:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=pVa6TcUKPjM:pkmW_LxdyHE:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=pVa6TcUKPjM:pkmW_LxdyHE:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=pVa6TcUKPjM:pkmW_LxdyHE:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=pVa6TcUKPjM:pkmW_LxdyHE:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/pVa6TcUKPjM" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 01:23:36 GMT</pubDate>
+            <title>Running a pub - how hard can it be?</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eb9/sc/19/l/0L0Stelegraph0O0Cmen0Cthinking0Eman0C10A4735650CRunning0Ea0Epub0Ehow0Ehard0Ecan0Eit0Ebe0Bhtml/story01.htm
+            </link>
+            <description>Many men dream of running their own pub, but is it as much fun as it sounds? Restaurateur
+                Russell Norman is about to find out...&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eb9/sc/19/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Fthinking-man%2F10473565%2FRunning-a-pub-how-hard-can-it-be.html&amp;t=Running+a+pub+-+how+hard+can+it+be%3F"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Fthinking-man%2F10473565%2FRunning-a-pub-how-hard-can-it-be.html&amp;t=Running+a+pub+-+how+hard+can+it+be%3F"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Fthinking-man%2F10473565%2FRunning-a-pub-how-hard-can-it-be.html&amp;t=Running+a+pub+-+how+hard+can+it+be%3F"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Fthinking-man%2F10473565%2FRunning-a-pub-how-hard-can-it-be.html&amp;t=Running+a+pub+-+how+hard+can+it+be%3F"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Fthinking-man%2F10473565%2FRunning-a-pub-how-hard-can-it-be.html&amp;t=Running+a+pub+-+how+hard+can+it+be%3F"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34265eb9/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27460Csting0Elock0Estock0E10I2746871i0Bjpg/sting-lock-stock-1_2746871i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 07:00:23 GMT</pubDate>
+            <author>Russell Norman</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-dea-irs-idUSBRE9761AZ20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/men/thinking-man/10473565/Running-a-pub-how-hard-can-it-be.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb0f80f/sc/7/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Edea0Eirs0EidUSBRE9761AZ20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
         </item>
         <item>
-            <title>JPMorgan faces criminal and civil probes over mortgages</title>
-            <link>http://feeds.reuters.com/~r/reuters/topNews/~3/QUHU7uCAoaU/story01.htm</link>
-            <description>(Reuters) - JPMorgan Chase &amp; Co, the biggest U.S. bank by assets, said on Wednesday that it
-                faces a criminal probe by the U.S. Department of Justice over sales of mortgage-backed securities and
-                that civil investigators have already concluded it violated securities laws.&lt;img width='1' height='1'
-                src='http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb09db1/sc/2/mf.gif' border='0'/&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
-                href="http://da.feedsportal.com/r/172487858486/u/49/f/654200/c/35217/s/2fb09db1/a2.htm"&gt;&lt;img
-                src="http://da.feedsportal.com/r/172487858486/u/49/f/654200/c/35217/s/2fb09db1/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
+            <title>Jonny Brownlee: how to be a better cyclist</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eba/sc/7/l/0L0Stelegraph0O0Cmen0Cactive0C10A4732680CJonny0EBrownlee0Ehow0Eto0Ebe0Ea0Ebetter0Ecyclist0Bhtml/story01.htm
+            </link>
+            <description>The Olympic bronze medal winner discusses his collection of bikes and how an amateur triathlete
+                or cyclist can improve their pedal performance&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34265eba/sc/7/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Factive%2F10473268%2FJonny-Brownlee-how-to-be-a-better-cyclist.html&amp;t=Jonny+Brownlee%3A+how+to+be+a+better+cyclist"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Factive%2F10473268%2FJonny-Brownlee-how-to-be-a-better-cyclist.html&amp;t=Jonny+Brownlee%3A+how+to+be+a+better+cyclist"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Factive%2F10473268%2FJonny-Brownlee-how-to-be-a-better-cyclist.html&amp;t=Jonny+Brownlee%3A+how+to+be+a+better+cyclist"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Factive%2F10473268%2FJonny-Brownlee-how-to-be-a-better-cyclist.html&amp;t=Jonny+Brownlee%3A+how+to+be+a+better+cyclist"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fmen%2Factive%2F10473268%2FJonny-Brownlee-how-to-be-a-better-cyclist.html&amp;t=Jonny+Brownlee%3A+how+to+be+a+better+cyclist"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34265eba/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27450Cjonny0Ebrownlee0Ebik0I2745377i0Bjpg/jonny-brownlee-bik_2745377i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 07:00:22 GMT</pubDate>
+            <author>Jonny Brownlee</author>
+            <guid isPermaLink="false">
+                http://www.telegraph.co.uk/men/active/10473268/Jonny-Brownlee-how-to-be-a-better-cyclist.html
+            </guid>
+        </item>
+        <item>
+            <title>Celia Walden goes shopping online</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34252828/sc/36/l/0L0Stelegraph0O0Cwomen0Cwomens0Elife0C10A4765180CCelia0EWalden0Egoes0Eshopping0Eonline0Bhtml/story01.htm
+            </link>
+            <description>Celia Walden falls victim to the new way of shopping&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34252828/sc/36/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fwomen%2Fwomens-life%2F10476518%2FCelia-Walden-goes-shopping-online.html&amp;t=Celia+Walden+goes+shopping+online"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fwomen%2Fwomens-life%2F10476518%2FCelia-Walden-goes-shopping-online.html&amp;t=Celia+Walden+goes+shopping+online"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fwomen%2Fwomens-life%2F10476518%2FCelia-Walden-goes-shopping-online.html&amp;t=Celia+Walden+goes+shopping+online"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fwomen%2Fwomens-life%2F10476518%2FCelia-Walden-goes-shopping-online.html&amp;t=Celia+Walden+goes+shopping+online"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fwomen%2Fwomens-life%2F10476518%2FCelia-Walden-goes-shopping-online.html&amp;t=Celia+Walden+goes+shopping+online"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263954400/u/396/f/579330/c/32726/s/34252828/sc/36/rc/1/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263954400/u/396/f/579330/c/32726/s/34252828/sc/36/rc/1/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263954400/u/396/f/579330/c/32726/s/34252828/sc/36/rc/2/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263954400/u/396/f/579330/c/32726/s/34252828/sc/36/rc/2/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263954400/u/396/f/579330/c/32726/s/34252828/sc/36/rc/3/rc.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263954400/u/396/f/579330/c/32726/s/34252828/sc/36/rc/3/rc.img"
+                border="0"/&gt;&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;&lt;a
+                href="http://da.feedsportal.com/r/180263954400/u/396/f/579330/c/32726/s/34252828/a2.htm"&gt;&lt;img
+                src="http://da.feedsportal.com/r/180263954400/u/396/f/579330/c/32726/s/34252828/a2.img" border="0"/&gt;&lt;/a&gt;&lt;img
                 width="1" height="1"
-                src="http://pi.feedsportal.com/r/172487858486/u/49/f/654200/c/35217/s/2fb09db1/a2t.img" border="0"/&gt;&lt;div
-                class="feedflare"&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=QUHU7uCAoaU:xqNTurjXNNo:yIl2AUoC8zA"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?d=yIl2AUoC8zA" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=QUHU7uCAoaU:xqNTurjXNNo:V_sGLiPBpWU"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=QUHU7uCAoaU:xqNTurjXNNo:V_sGLiPBpWU" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;a href="http://feeds.reuters.com/~ff/reuters/topNews?a=QUHU7uCAoaU:xqNTurjXNNo:-BTjWOF_DHI"&gt;&lt;img
-                src="http://feeds.feedburner.com/~ff/reuters/topNews?i=QUHU7uCAoaU:xqNTurjXNNo:-BTjWOF_DHI" border="0"&gt;&lt;/img&gt;&lt;/a&gt;
-                &lt;/div&gt;&lt;img src="http://feeds.feedburner.com/~r/reuters/topNews/~4/QUHU7uCAoaU" height="1"
-                width="1"/&gt;</description>
-            <category domain="">topNews</category>
-            <pubDate>Thu, 08 Aug 2013 00:40:16 GMT</pubDate>
+                src="http://pi.feedsportal.com/r/180263954400/u/396/f/579330/c/32726/s/34252828/a2t.img"
+                border="0"/&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34252828/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27460CCelia30ANOV0I2746790Ai0Bjpg/Celia30NOV_2746790i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 07:00:16 GMT</pubDate>
+            <author>Celia Walden</author>
             <guid isPermaLink="false">
-                http://www.reuters.com/article/2013/08/08/us-jpmorgan-probes-idUSBRE97617T20130808?feedType=RSS&amp;feedName=topNews
+                http://www.telegraph.co.uk/women/womens-life/10476518/Celia-Walden-goes-shopping-online.html
             </guid>
-            <feedburner:origLink>
-                http://reuters.us.feedsportal.com/c/35217/f/654200/s/2fb09db1/sc/2/l/0L0Sreuters0N0Carticle0C20A130C0A80C0A80Cus0Ejpmorgan0Eprobes0EidUSBRE97617T20A130A80A80DfeedType0FRSS0GfeedName0FtopNews/story01.htm
-            </feedburner:origLink>
+        </item>
+        <item>
+            <title>Circa Waves - New Music</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34252d11/sc/38/l/0L0Stelegraph0O0Cculture0Cmusic0Cnew0Emusic0C10A4767820CCirca0EWaves0ENew0EMusic0Bhtml/story01.htm
+            </link>
+            <description>Liverpool quartet Circa Waves are winding back the clock a decade with brash indie-pop tunes,
+                says Alice Vincent&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34252d11/sc/38/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fmusic%2Fnew-music%2F10476782%2FCirca-Waves-New-Music.html&amp;t=Circa+Waves+-+New+Music"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fmusic%2Fnew-music%2F10476782%2FCirca-Waves-New-Music.html&amp;t=Circa+Waves+-+New+Music"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fmusic%2Fnew-music%2F10476782%2FCirca-Waves-New-Music.html&amp;t=Circa+Waves+-+New+Music"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fmusic%2Fnew-music%2F10476782%2FCirca-Waves-New-Music.html&amp;t=Circa+Waves+-+New+Music"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fculture%2Fmusic%2Fnew-music%2F10476782%2FCirca-Waves-New-Music.html&amp;t=Circa+Waves+-+New+Music"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34252d11/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27460Ccirca0Ewaves0I2746940Ai0Bjpg/circa-waves_2746940i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 07:00:09 GMT</pubDate>
+            <author>Alice Vincent</author>
+            <guid isPermaLink="false">
+                http://www.telegraph.co.uk/culture/music/new-music/10476782/Circa-Waves-New-Music.html
+            </guid>
+        </item>
+        <item>
+            <title>FA director Heather Rabbatts: I don't take on challenging roles to be 'Miss Popularity'</title>
+            <link>
+                http://telegraph.feedsportal.com/c/32726/f/579330/s/34252d12/sc/40/l/0L0Stelegraph0O0Cwomen0Cwomens0Ebusiness0C10A4676310CFA0Edirector0EHeather0ERabbatts0EI0Edont0Etake0Eon0Echallenging0Eroles0Eto0Ebe0EMiss0EPopularity0Bhtml/story01.htm
+            </link>
+            <description>The Football Association's only female board member talks to Emma Barnett about causing 'civil
+                war' at the FA and how to manage difficult men&lt;img width='1' height='1'
+                src='http://telegraph.feedsportal.com/c/32726/f/579330/s/34252d12/sc/40/mf.gif' border='0'/&gt;&lt;br
+                clear='all'/&gt;&lt;div class='mf-viral'&gt;&lt;table border='0'&gt;&lt;tr&gt;&lt;td valign='middle'&gt;&lt;a
+                href="http://share.feedsportal.com/share/twitter/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fwomen%2Fwomens-business%2F10467631%2FFA-director-Heather-Rabbatts-I-dont-take-on-challenging-roles-to-be-Miss-Popularity.html&amp;t=FA+director+Heather+Rabbatts%3A+I+don%27t+take+on+challenging+roles+to+be+%27Miss+Popularity%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/twitter.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/facebook/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fwomen%2Fwomens-business%2F10467631%2FFA-director-Heather-Rabbatts-I-dont-take-on-challenging-roles-to-be-Miss-Popularity.html&amp;t=FA+director+Heather+Rabbatts%3A+I+don%27t+take+on+challenging+roles+to+be+%27Miss+Popularity%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/facebook.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/linkedin/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fwomen%2Fwomens-business%2F10467631%2FFA-director-Heather-Rabbatts-I-dont-take-on-challenging-roles-to-be-Miss-Popularity.html&amp;t=FA+director+Heather+Rabbatts%3A+I+don%27t+take+on+challenging+roles+to+be+%27Miss+Popularity%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/linkedin.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/gplus/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fwomen%2Fwomens-business%2F10467631%2FFA-director-Heather-Rabbatts-I-dont-take-on-challenging-roles-to-be-Miss-Popularity.html&amp;t=FA+director+Heather+Rabbatts%3A+I+don%27t+take+on+challenging+roles+to+be+%27Miss+Popularity%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/googleplus.png" border="0" /&gt;&lt;/a&gt;&amp;nbsp;&lt;a
+                href="http://share.feedsportal.com/share/email/?u=http%3A%2F%2Fwww.telegraph.co.uk%2Fwomen%2Fwomens-business%2F10467631%2FFA-director-Heather-Rabbatts-I-dont-take-on-challenging-roles-to-be-Miss-Popularity.html&amp;t=FA+director+Heather+Rabbatts%3A+I+don%27t+take+on+challenging+roles+to+be+%27Miss+Popularity%27"
+                target="_blank"&gt;&lt;img src="http://res3.feedsportal.com/social/email.png" border="0" /&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</description>
+            <enclosure
+                    url="http://telegraph.feedsportal.com/c/32726/f/579330/e/1/s/34252d12/l/0Li0Btelegraph0O0Cmultimedia0Carchive0C0A27420Cheather0Erabbatts0I274290A7i0Bjpg/heather-rabbatts_2742907i.jpg"
+                    length="99" type="image/jpeg"/>
+            <pubDate>Wed, 27 Nov 2013 07:00:08 GMT</pubDate>
+            <author>Emma Barnett</author>
+            <guid isPermaLink="false">
+                http://www.telegraph.co.uk/women/womens-business/10467631/FA-director-Heather-Rabbatts-I-dont-take-on-challenging-roles-to-be-Miss-Popularity.html
+            </guid>
         </item>
     </channel>
 </rss>

@@ -10,9 +10,10 @@
     <modules>
         <module>core</module>
         <module>web</module>
-        <module>crawler</module>
         <module>manager</module>
         <module>service</module>
+        <module>messaging</module>
+        <module>worker-crawler</module>
     </modules>
     <packaging>pom</packaging>
 

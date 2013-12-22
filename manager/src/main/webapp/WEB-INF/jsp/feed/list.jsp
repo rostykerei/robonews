@@ -21,13 +21,17 @@
 </c:if>
 
 
-<table class="table table-striped table-bordered table-hover">
-    <tr>
-        <th>Title</th>
-        <th>URL</th>
-        <th>Actions</th>
-    </tr>
-    <c:forEach items="${feeds}" var="feed">
+<!-- table class="table table-striped table-bordered table-hover" -->
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="feeds">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    <%--<c:forEach items="${feeds}" var="feed">
         <tr>
             <td>${feed.name}<c:if test="${feed.video}"> <span class="label label-success">Video</span></c:if></td>
             <td><a href="${feed.url}" target="_blank">${feed.url}</a></td>
@@ -37,8 +41,43 @@
                 <a href="<c:url value="/feed/${feed.id}/delete"/>" class="btn btn-mini btn-danger confirm"><i class="icon-remove icon-white"></i> Delete</a>
             </td>
         </tr>
-    </c:forEach>
+    </c:forEach>--%>
+    </tbody>
 </table>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#feeds').dataTable( {
+                "sAjaxSource": "table",
+                "bProcessing": true,
+                "bServerSide": true,
+                "sPaginationType": "bootstrap",
+                "oLanguage": {"sLengthMenu": "_MENU_ records per page",
+                    "sInfo": "Displaying _START_ to _END_ of _TOTAL_ records"},
+                "aoColumns":[
+                    {"mDataProp":"id"},
+                    {"mDataProp":"name"}
+                ]
+            } );
+        } );
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
 

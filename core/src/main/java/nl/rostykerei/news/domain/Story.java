@@ -3,30 +3,51 @@ package nl.rostykerei.news.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name = "story", uniqueConstraints = @UniqueConstraint(columnNames = {"channelId", "guidHash"}))
+@Table(name = "story",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"channelId", "guidHash"}),
+                @UniqueConstraint(columnNames = {"channelId", "contentHash"}),
+        })
 public class Story {
 
     @Id
     @Column(name = "id")
     @GeneratedValue
     private long id;
+
+
+    public UUID getUid() {
+        return uid;
+    }
+
+    public void setUid(UUID uid) {
+        this.uid = uid;
+    }
+
+    @Column(name = "uid")
+    @GeneratedValue
+    private UUID uid = UUID.randomUUID();
 
     @NotNull
     @ManyToOne
@@ -44,7 +65,10 @@ public class Story {
     private Feed originalFeed;
 
     @Column(name = "guidHash", unique = false, nullable = false, length = 40)
-    private String guidHash;
+    private byte[] guidHash;
+
+    @Column(name = "contentHash", unique = false, nullable = false, length = 40)
+    private byte[] contentHash;
 
     @Column(name = "title", unique = false, nullable = false, length = 255)
     private String title;
@@ -113,8 +137,12 @@ public class Story {
         this.originalFeed = originalFeed;
     }
 
-    public String getGuidHash() {
+    public byte[] getGuidHash() {
         return guidHash;
+    }
+
+    public byte[] getContentHash() {
+        return contentHash;
     }
 
     public String getTitle() {
@@ -123,6 +151,7 @@ public class Story {
 
     public void setTitle(String title) {
         this.title = title;
+        updateContentHash();
     }
 
     public String getAuthor() {
@@ -147,7 +176,7 @@ public class Story {
 
     public void setGuid(String guid) {
         this.guid = guid;
-        this.guidHash = DigestUtils.sha1Hex(guid);
+        this.guidHash = DigestUtils.sha1(guid);
     }
 
     public boolean isVideo() {
@@ -180,6 +209,7 @@ public class Story {
 
     public void setDescription(String description) {
         this.description = description;
+        updateContentHash();
     }
 
     public Set<Tag> getTags() {
@@ -188,6 +218,12 @@ public class Story {
 
     public void setTags(Set<Tag> namedEntities) {
         this.tags = namedEntities;
+    }
+
+    private void updateContentHash() {
+        this.contentHash = DigestUtils.sha1(
+            new StringBuffer().append(getTitle()).append(getDescription()).toString()
+        );
     }
 
 }

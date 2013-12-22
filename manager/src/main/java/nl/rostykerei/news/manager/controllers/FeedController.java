@@ -13,6 +13,8 @@ import nl.rostykerei.news.dao.FeedDao;
 import nl.rostykerei.news.domain.Category;
 import nl.rostykerei.news.domain.Channel;
 import nl.rostykerei.news.domain.Feed;
+import nl.rostykerei.news.manager.datatable.PagingCriteria;
+import nl.rostykerei.news.manager.datatable.TableParam;
 import nl.rostykerei.news.manager.dto.CategoryDto;
 import nl.rostykerei.news.manager.dto.FeedDto;
 import nl.rostykerei.news.manager.dto.FeedUrlDto;
@@ -36,6 +38,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -90,6 +93,12 @@ public class FeedController extends AbstractController {
     @ModelAttribute("channels")
     public List<Channel> channelsList() {
         return channelDao.getAll();
+    }
+
+    @RequestMapping(value="/feed/table", method=RequestMethod.GET, produces = "application/json" )
+    public @ResponseBody List<Feed> getCustomers(@TableParam PagingCriteria criteria)
+    {
+        return feedDao.getAll();
     }
 
     @RequestMapping(value = {"/feed/list"}, method = RequestMethod.GET)

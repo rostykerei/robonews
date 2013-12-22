@@ -1,6 +1,7 @@
 package nl.rostykerei.news.dao;
 
 import java.util.Date;
+import java.util.UUID;
 import nl.rostykerei.news.domain.Category;
 import nl.rostykerei.news.domain.Channel;
 import nl.rostykerei.news.domain.Feed;
@@ -18,10 +19,10 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @TransactionConfiguration(defaultRollback = true)
-@ContextConfiguration({ "classpath:coreContext.xml" })
+@ContextConfiguration({ "classpath:datasourceContext.xml", "classpath:coreContext.xml" })
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles({"test", "create-db", "fill-masterdata"})
+@ActiveProfiles({"create-db", "fill-masterdata"})
 public class StoryDaoTest {
 
     @Autowired
@@ -88,6 +89,9 @@ public class StoryDaoTest {
 
         Assert.assertNotEquals(story2.getId(), story3.getId());
         Assert.assertEquals(story1.getId(), story3.getId());
+
+        Assert.assertEquals(story1.getContentHash(), story3.getContentHash());
+        Assert.assertEquals(story1.getUid(), story3.getUid());
     }
 
     @Test
@@ -149,6 +153,16 @@ public class StoryDaoTest {
         Assert.assertEquals("test-tag-1", tag3.getName());
     }
 
+
+    @Test
+    public void testUuid() throws Exception {
+        UUID uuid = UUID.randomUUID();
+
+        String uuidStr = uuid.toString();
+        Long uuidLong = uuid.getLeastSignificantBits();
+
+        System.out.println();
+    }
    /* @Test
     public void testStoryTagEntity() throws Exception {
         Channel channel = new Channel();

@@ -1,9 +1,15 @@
+import com.drew.imaging.ImageMetadataReader;
+import com.drew.metadata.Directory;
+import com.drew.metadata.Metadata;
+import com.drew.metadata.Tag;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
+import java.io.File;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.List;
 import nl.rostykerei.news.service.http.HttpService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +19,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
-@ContextConfiguration({ "classpath:serviceContext.xml" })
+@ContextConfiguration({ "classpath:serviceHttpContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
 public class TempTest {
@@ -21,9 +27,21 @@ public class TempTest {
     @Autowired
     private HttpService httpService;
 
+    /*@Test
+    public void imgTest() throws Exception {
+        File jpegFile = new File("/home/rosty/Downloads/David-Cameron-008.jpg");
+        Metadata metadata = ImageMetadataReader.readMetadata(jpegFile);
+
+        for (Directory directory : metadata.getDirectories()) {
+            for (Tag tag : directory.getTags()) {
+                System.out.println(tag);
+            }
+        }
+    } */
+
     @Test
     public void rssTest() throws Exception {
-        URL url  = new URL("http://k.img.com.ua/rss/ru/news.xml");
+        URL url  = new URL("http://www.telegraph.co.uk/rss");
         XmlReader reader = null;
 
         try {
@@ -34,7 +52,13 @@ public class TempTest {
 
             for (Iterator i = feed.getEntries().iterator(); i.hasNext();) {
                 SyndEntry entry = (SyndEntry) i.next();
+
+                List enclosures = entry.getEnclosures();
+                Object fo = entry.getForeignMarkup();
+
+
                 System.out.println(entry.getTitle());
+
             }
         }
         finally {
@@ -42,7 +66,6 @@ public class TempTest {
                 reader.close();
         }
     }
-
 
                 /*
     @Test

@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @Table(name = "channel", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
@@ -34,6 +35,7 @@ public class Channel {
     @Column(name = "version")
     private long version;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Feed.class, mappedBy = "channel")
     private Collection<Feed> feeds;
 

@@ -16,9 +16,6 @@ public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> impleme
     @Override
     @Transactional(readOnly = true)
     public Story getByGuid(Channel channel, String storyGuid) {
-
-        String guidHash = DigestUtils.sha1Hex(storyGuid);
-
         return (Story) getSession().
                 createQuery("from Story s " +
                         "left join fetch s.channel " +
@@ -27,7 +24,7 @@ public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> impleme
                         "where s.channel.id = :channelId " +
                         "and s.guidHash = :guidHash").
                 setInteger("channelId", channel.getId()).
-                setString("guidHash", guidHash).
+                setBinary("guidHash", DigestUtils.sha1(storyGuid)).
                 setMaxResults(1).
                 uniqueResult();
     }
@@ -35,9 +32,6 @@ public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> impleme
     @Override
     @Transactional
     public void saveStoryTag(StoryTag storyTag) {
-
         getSession().save(storyTag);
-        //getSession().flush();
-        //getSession().clear();
     }
 }
