@@ -4,6 +4,15 @@
        xmlns:jee="http://www.springframework.org/schema/jee"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
-    <jee:jndi-lookup id="dataSource" jndi-name="jdbc/NewsDS" expected-type="javax.sql.DataSource"/>
+    <!--<jee:jndi-lookup id="dataSource" jndi-name="jdbc/NewsDS" expected-type="javax.sql.DataSource"/>-->
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
 
 </beans>

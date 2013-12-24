@@ -8,9 +8,7 @@
     <bean  id="newStoryTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="exchange" value="newStoryExchange"/>
-        <property name="messageConverter">
-            <bean class="org.springframework.amqp.support.converter.JsonMessageConverter"/>
-        </property>
+        <property name="messageConverter" ref="jsonMessageConverter"/>
     </bean>
 
     <rabbit:admin connection-factory="connectionFactory" />
@@ -22,8 +20,9 @@
     <rabbit:fanout-exchange name="newStoryExchange" durable="true">
         <rabbit:bindings>
             <rabbit:binding queue="tagQueue"/>
-            <rabbit:binding queue="imageQueue"/>
+            <!--<rabbit:binding queue="imageQueue"/>-->
         </rabbit:bindings>
     </rabbit:fanout-exchange>
 
+    <bean id="jsonMessageConverter" class="org.springframework.amqp.support.converter.JsonMessageConverter"/>
 </beans>

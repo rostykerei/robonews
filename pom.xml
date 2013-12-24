@@ -14,13 +14,29 @@
         <module>service</module>
         <module>messaging</module>
         <module>worker-crawler</module>
+        <module>worker-tagger</module>
     </modules>
     <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
         <spring.version>3.2.3.RELEASE</spring.version>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>add-mysql-dependency</id>
+            <dependencies>
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>5.1.25</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
