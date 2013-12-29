@@ -1,0 +1,3 @@
+Check robots.txt
+Check for images inside news page meta tags (thumbnailUrl, open graph)
+io domain (news.io) - gandi.net registara

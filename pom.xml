@@ -11,11 +11,11 @@
         <module>core</module>
         <module>web</module>
         <module>manager</module>
-        <module>service</module>
         <module>messaging</module>
-        <module>worker-crawler</module>
-        <module>worker-tagger</module>
+        <module>workers</module>
+        <module>services</module>
     </modules>
+
     <packaging>pom</packaging>
 
     <properties>
@@ -28,6 +28,9 @@
     <profiles>
         <profile>
             <id>add-mysql-dependency</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <dependencies>
                 <dependency>
                     <groupId>mysql</groupId>

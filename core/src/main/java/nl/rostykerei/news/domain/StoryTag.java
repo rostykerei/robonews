@@ -34,6 +34,23 @@ public class StoryTag {
         this.pk = pk;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        StoryTag storyTag = (StoryTag) o;
+
+        if (pk != null ? !pk.equals(storyTag.pk) : storyTag.pk != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return pk != null ? pk.hashCode() : 0;
+    }
+
     @Embeddable
     class StoryTagPK implements Serializable {
 

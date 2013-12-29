@@ -14,7 +14,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @TransactionConfiguration(defaultRollback = true)
-@ContextConfiguration({ "classpath:datasourceContext.xml", "classpath:coreContext.xml" })
+@ContextConfiguration({"classpath:coreContext.xml" })
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles({"create-db"})

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <import resource="crawlerContext.xml"/>
+
+    <task:scheduled-tasks scheduler="crawlScheduler">
+        <task:scheduled ref="crawler" method="execute" fixed-delay="1000"/>
+    </task:scheduled-tasks>
+
+    <task:scheduler id="crawlScheduler"/>
+
+    <task:executor id="crawlExecutor"
+                   pool-size="30"
+                   rejection-policy="DISCARD"
+                   queue-capacity="50"/>
+
+    <task:annotation-driven scheduler="crawlScheduler" executor="crawlExecutor"/>
+
+</beans>
