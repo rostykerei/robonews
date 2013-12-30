@@ -3,6 +3,7 @@ package nl.rostykerei.news.service.syndication.rome;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import nl.rostykerei.news.service.syndication.SyndicationEntry;
@@ -79,9 +80,20 @@ public class SyndicationFeedRome implements SyndicationFeed {
         while (iterator.hasNext()) {
             SyndEntry syndEntry = (SyndEntry) iterator.next();
 
-            // TODO more validation here....
-            if (StringUtils.isEmpty(syndEntry.getLink()) || syndEntry.getLink().length() > 255) {
+            if (StringUtils.isEmpty(syndEntry.getTitle())) {
                 continue;
+            }
+
+            if (StringUtils.isEmpty(syndEntry.getLink())) {
+                continue;
+            }
+
+            if (StringUtils.isEmpty(syndEntry.getUri())) {
+                continue;
+            }
+
+            if (syndEntry.getPublishedDate() == null) {
+                syndEntry.setPublishedDate(new Date());
             }
 
             list.add(new SyndicationEntryRome(syndEntry));

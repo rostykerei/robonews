@@ -2,23 +2,69 @@ package nl.rostykerei.news.worker.crawler.util;
 
 import com.google.common.base.CharMatcher;
 import nl.rostykerei.news.service.syndication.SyndicationEntry;
+import org.apache.commons.validator.routines.UrlValidator;
 import org.jsoup.Jsoup;
 
-
-/**
- * Created with IntelliJ IDEA.
- * User: rosty
- * Date: 8/7/13
- * Time: 11:08 PM
- * To change this template use File | Settings | File Templates.
- */
 public class Sanitizer {
 
-    public static SyndicationEntry sanitize(SyndicationEntry syndEntry) {
+    public static SyndicationEntry sanitize(SyndicationEntry syndEntry) throws SanitizerException {
 
-        syndEntry.setAuthor( sanitizeText(syndEntry.getAuthor(), 255) );
-        syndEntry.setDescription( sanitizeText(syndEntry.getDescription(), 1024) );
-        syndEntry.setTitle( sanitizeText(syndEntry.getTitle(), 255) );
+        if (syndEntry == null) {
+            throw new SanitizerException("SyndicationEntry is null");
+        }
+
+        if (syndEntry.getAuthor() != null) {
+            syndEntry.setAuthor( sanitizeText(syndEntry.getAuthor(), 255));
+        }
+
+        if (syndEntry.getGuid() != null) {
+            if (syndEntry.getGuid().length() > 255) {
+                throw new SanitizerException("GUID is too long");
+            }
+        }
+        else {
+            throw new SanitizerException("GUID is null");
+        }
+
+        if (syndEntry.getLink() != null) {
+            String link = syndEntry.getLink();
+
+            if (link.length() > 255) {
+                throw new SanitizerException("Link is too long");
+            }
+
+            UrlValidator urlValidator = new UrlValidator(new String[] {"http", "https"});
+
+            if (!urlValidator.isValid(link)) {
+                throw new SanitizerException("Link is not valid");
+            }
+
+        }
+        else {
+            throw new SanitizerException("Link is null");
+        }
+
+        if (syndEntry.getTitle() != null) {
+            String title = sanitizeText(syndEntry.getTitle(), 255);
+
+            if (title.length() > 4) {
+                syndEntry.setTitle(title);
+            }
+            else {
+                throw new SanitizerException("Title is too short");
+            }
+        }
+        else {
+            throw new SanitizerException("Title is null");
+        }
+
+        if (syndEntry.getPubDate() == null) {
+            throw new SanitizerException("PubDate is null");
+        }
+
+        if (syndEntry.getDescription() != null) {
+            syndEntry.setDescription( sanitizeText(syndEntry.getDescription(), 1024));
+        }
 
         return syndEntry;
     }

@@ -18,7 +18,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.HashSet;
@@ -46,9 +45,9 @@ public class TagQueueListenerTest {
 
     private Tag existentTag;
 
-    private Tag persTag;
-    private Tag locTag;
-    private Tag orgTag;
+    private Tag personTag;
+    private Tag locationTag;
+    private Tag organizationTag;
     private Tag miscTag;
     private Tag ambiguousTag;
 
@@ -100,19 +99,19 @@ public class TagQueueListenerTest {
 
         // person tag (new)
         when(tagDao.findByFreebaseMind("pers")).thenReturn(null);
-        persTag = new Tag();
-        persTag.setId(200L);
-        when(tagDao.createTagWithAlternative("freebase-person", Tag.Type.PERSON, "pers", false, "new-person", Tag.Type.PERSON, 1f)).thenReturn(persTag);
+        personTag = new Tag();
+        personTag.setId(200L);
+        when(tagDao.createTagWithAlternative("freebase-person", Tag.Type.PERSON, "pers", false, "new-person", Tag.Type.PERSON, 1f)).thenReturn(personTag);
 
         // location tag
-        locTag = new Tag();
-        locTag.setId(300L);
-        when(tagDao.findByFreebaseMind("loc")).thenReturn(locTag);
+        locationTag = new Tag();
+        locationTag.setId(300L);
+        when(tagDao.findByFreebaseMind("loc")).thenReturn(locationTag);
 
         // organization tag
-        orgTag = new Tag();
-        orgTag.setId(400L);
-        when(tagDao.findByFreebaseMind("org")).thenReturn(orgTag);
+        organizationTag = new Tag();
+        organizationTag.setId(400L);
+        when(tagDao.findByFreebaseMind("org")).thenReturn(organizationTag);
 
         // misc tag
         miscTag = new Tag();
@@ -170,10 +169,10 @@ public class TagQueueListenerTest {
 
     @Test
     public void testCreateNewPersonTag() throws Exception {
-        Story story = mock(Story.class);
-        when(story.getId()).thenReturn(1000L);
-        when(story.getTitle()).thenReturn("person");
-        when(story.getDescription()).thenReturn("new");
+        Story story = new Story();
+        story.setId(1000L);
+        story.setTitle("person");
+        story.setDescription("new");
 
         when(storyDao.getById(1000L)).thenReturn(story);
 
@@ -187,15 +186,15 @@ public class TagQueueListenerTest {
         verify(tagDao).findByAlternative("new-person", Tag.Type.PERSON);
         verify(freebaseService).searchPerson("new-person");
         verify(tagDao).createTagWithAlternative("freebase-person", Tag.Type.PERSON, "pers", false, "new-person", Tag.Type.PERSON, 1f);
-        verify(storyDao).saveStoryTag(new StoryTag(story, persTag));
+        verify(storyDao).saveStoryTag(new StoryTag(story, personTag));
     }
 
     @Test
     public void testCreateExistentPersonTag() throws Exception {
-        Story story = mock(Story.class);
-        when(story.getId()).thenReturn(1000L);
-        when(story.getTitle()).thenReturn("person");
-        when(story.getDescription()).thenReturn("existent");
+        Story story = new Story();
+        story.setId(1000L);
+        story.setTitle("person");
+        story.setDescription("existent");
 
         when(storyDao.getById(1000L)).thenReturn(story);
 
@@ -212,9 +211,9 @@ public class TagQueueListenerTest {
 
     @Test
     public void testCreateAltLocationTag() throws Exception {
-        Story story = mock(Story.class);
-        when(story.getId()).thenReturn(1000L);
-        when(story.getTitle()).thenReturn("location");
+        Story story = new Story();
+        story.setId(1000L);
+        story.setTitle("location");
 
         when(storyDao.getById(1000L)).thenReturn(story);
 
@@ -227,15 +226,15 @@ public class TagQueueListenerTest {
         verify(namedEntityRecognizerService).getNamedEntities("location. ");
         verify(tagDao).findByAlternative("location", Tag.Type.LOCATION);
         verify(freebaseService).searchLocation("location");
-        verify(tagDao).createTagAlternative(locTag, Tag.Type.LOCATION, "location", 1F);
-        verify(storyDao).saveStoryTag(new StoryTag(story, locTag));
+        verify(tagDao).createTagAlternative(locationTag, Tag.Type.LOCATION, "location", 1F);
+        verify(storyDao).saveStoryTag(eq(new StoryTag(story, locationTag)));
     }
 
     @Test
     public void testCreateAltOrganizationTag() throws Exception {
-        Story story = mock(Story.class);
-        when(story.getId()).thenReturn(1000L);
-        when(story.getTitle()).thenReturn("organization");
+        Story story = new Story();
+        story.setId(1000L);
+        story.setTitle("organization");
 
         when(storyDao.getById(1000L)).thenReturn(story);
 
@@ -248,15 +247,15 @@ public class TagQueueListenerTest {
         verify(namedEntityRecognizerService).getNamedEntities("organization. ");
         verify(tagDao).findByAlternative("organization", Tag.Type.ORGANIZATION);
         verify(freebaseService).searchOrganization("organization");
-        verify(tagDao).createTagAlternative(orgTag, Tag.Type.ORGANIZATION, "organization", 1F);
-        verify(storyDao).saveStoryTag(new StoryTag(story, orgTag));
+        verify(tagDao).createTagAlternative(organizationTag, Tag.Type.ORGANIZATION, "organization", 1F);
+        verify(storyDao).saveStoryTag(new StoryTag(story, organizationTag));
     }
 
     @Test
     public void testCreateAltMiscTag() throws Exception {
-        Story story = mock(Story.class);
-        when(story.getId()).thenReturn(1000L);
-        when(story.getTitle()).thenReturn("misc");
+        Story story = new Story();
+        story.setId(1000L);
+        story.setTitle("misc");
 
         when(storyDao.getById(1000L)).thenReturn(story);
 
@@ -275,10 +274,10 @@ public class TagQueueListenerTest {
 
     @Test
     public void testFreebaseNotFound() {
-        Story story = mock(Story.class);
-        when(story.getId()).thenReturn(1000L);
-        when(story.getTitle()).thenReturn("not-found");
-        when(story.getDescription()).thenReturn("exception");
+        Story story = new Story();
+        story.setId(1000L);
+        story.setTitle("not-found");
+        story.setDescription("exception");
 
         when(storyDao.getById(1000L)).thenReturn(story);
 
@@ -296,10 +295,10 @@ public class TagQueueListenerTest {
 
     @Test
     public void testFreebaseAmbiguous() {
-        Story story = mock(Story.class);
-        when(story.getId()).thenReturn(1000L);
-        when(story.getTitle()).thenReturn("ambiguous");
-        when(story.getDescription()).thenReturn("exception");
+        Story story = new Story();
+        story.setId(1000L);
+        story.setTitle("ambiguous");
+        story.setDescription("exception");
 
         when(storyDao.getById(1000L)).thenReturn(story);
 
@@ -317,10 +316,10 @@ public class TagQueueListenerTest {
 
     @Test
     public void testFreebaseException() {
-        Story story = mock(Story.class);
-        when(story.getId()).thenReturn(1000L);
-        when(story.getTitle()).thenReturn("freebase");
-        when(story.getDescription()).thenReturn("exception");
+        Story story = new Story();
+        story.setId(1000L);
+        story.setTitle("freebase");
+        story.setDescription("exception");
 
         when(storyDao.getById(1000L)).thenReturn(story);
 
@@ -339,10 +338,10 @@ public class TagQueueListenerTest {
 
     @Test
     public void testRuntimeException() {
-        Story story = mock(Story.class);
-        when(story.getId()).thenReturn(1000L);
-        when(story.getTitle()).thenReturn("runtime");
-        when(story.getDescription()).thenReturn("exception");
+        Story story = new Story();
+        story.setId(1000L);
+        story.setTitle("runtime");
+        story.setDescription("exception");
 
         when(storyDao.getById(1000L)).thenReturn(story);
 
@@ -361,9 +360,9 @@ public class TagQueueListenerTest {
 
     @Test
     public void testNullResult() {
-        Story story = mock(Story.class);
-        when(story.getId()).thenReturn(1000L);
-        when(story.getTitle()).thenReturn("null");
+        Story story = new Story();
+        story.setId(1000L);
+        story.setTitle("null");
 
         when(storyDao.getById(1000L)).thenReturn(story);
 

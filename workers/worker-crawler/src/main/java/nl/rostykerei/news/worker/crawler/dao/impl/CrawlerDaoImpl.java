@@ -7,6 +7,7 @@ import nl.rostykerei.news.domain.Category;
 import nl.rostykerei.news.domain.Feed;
 import nl.rostykerei.news.domain.Story;
 import nl.rostykerei.news.service.syndication.SyndicationEntry;
+import nl.rostykerei.news.worker.crawler.util.SanitizerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +28,12 @@ public class CrawlerDaoImpl implements CrawlerDao {
             return null;
         }
         else {
-            syndEntry = Sanitizer.sanitize(syndEntry);
+            try {
+                syndEntry = Sanitizer.sanitize(syndEntry);
+            }
+            catch (SanitizerException e) {
+                return null;
+            }
 
             Story story = new Story();
             story.setAuthor(syndEntry.getAuthor());
