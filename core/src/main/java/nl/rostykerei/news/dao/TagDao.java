@@ -10,7 +10,7 @@ public interface TagDao extends AbstractDao<Tag, Integer> {
 
     TagAlternative createTagAlternative(Tag tag, Tag.Type altType, String altName, float altConfidence);
 
-    Tag findByFreebaseMind(String freebaseMid);
+    Tag findByFreebaseMid(String freebaseMid);
 
     Tag findByAlternative(String altName, Tag.Type type);
 

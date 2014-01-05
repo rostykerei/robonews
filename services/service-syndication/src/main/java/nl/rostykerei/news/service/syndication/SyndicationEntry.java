@@ -1,6 +1,7 @@
 package nl.rostykerei.news.service.syndication;
 
 import java.util.Date;
+import java.util.Set;
 
 public interface SyndicationEntry {
 
@@ -27,5 +28,9 @@ public interface SyndicationEntry {
     void setPubDate(Date pubDate);
 
     Date getPubDate();
+
+    void setMediaKeywords(Set<String> keywords);
+
+    Set<String> getMediaKeywords();
 
 }

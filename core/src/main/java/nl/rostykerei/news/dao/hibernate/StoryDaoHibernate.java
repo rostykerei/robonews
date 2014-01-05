@@ -15,6 +15,20 @@ public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> impleme
 
     @Override
     @Transactional(readOnly = true)
+    public Story getByIdWithTags(Long id) {
+        return (Story) getSession().
+                createQuery("from Story s " +
+                        "left join fetch s.channel " +
+                        "left join fetch s.category " +
+                        "left join fetch s.originalFeed " +
+                        "left join fetch s.tags " +
+                        "where s.id = :id").
+                setLong("id", id).
+                uniqueResult();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Story getByGuid(Channel channel, String storyGuid) {
         return (Story) getSession().
                 createQuery("from Story s " +

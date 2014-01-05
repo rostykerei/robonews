@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -13,10 +14,11 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @TransactionConfiguration(defaultRollback = true)
-@ContextConfiguration({ "classpath:coreContext.xml" })
+@ContextConfiguration({ "classpath:testContext.xml" })
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles({"create-db", "fill-masterdata"})
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class TagDaoTest {
 
     @Autowired
@@ -65,8 +67,8 @@ public class TagDaoTest {
         tagDao.create(tag1);
         tagDao.create(tag2);
 
-        Tag tag3 = tagDao.findByFreebaseMind("ABC");
-        Tag tag4 = tagDao.findByFreebaseMind("AbC");
+        Tag tag3 = tagDao.findByFreebaseMid("ABC");
+        Tag tag4 = tagDao.findByFreebaseMid("AbC");
 
         Assert.assertEquals(tag1, tag3);
         Assert.assertEquals(tag2, tag4);

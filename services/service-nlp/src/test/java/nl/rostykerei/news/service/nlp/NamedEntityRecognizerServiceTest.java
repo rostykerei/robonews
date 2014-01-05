@@ -28,4 +28,11 @@ public class NamedEntityRecognizerServiceTest {
 
         Assert.assertEquals(expected, namedEntityRecognizerService.getNamedEntities("Joe, John and David Smith were walking in San Francisco, US with John"));
     }
+
+    @Test
+    public void test2() {
+        Set<NamedEntity> n = namedEntityRecognizerService.getNamedEntities("Youth Football Leagues Hope for Boost From NFL Settlement.");
+
+        System.out.print(n);
+    }
 }

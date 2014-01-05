@@ -12,6 +12,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,10 +20,11 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 @TransactionConfiguration(defaultRollback = true)
-@ContextConfiguration({"classpath:coreContext.xml" })
+@ContextConfiguration({ "classpath:testContext.xml" })
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles({"create-db", "fill-masterdata"})
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class StoryDaoTest {
 
     @Autowired
@@ -153,18 +155,8 @@ public class StoryDaoTest {
         Assert.assertEquals("test-tag-1", tag3.getName());
     }
 
-
     @Test
-    public void testUuid() throws Exception {
-        UUID uuid = UUID.randomUUID();
-
-        String uuidStr = uuid.toString();
-        Long uuidLong = uuid.getLeastSignificantBits();
-
-        System.out.println();
-    }
-   /* @Test
-    public void testStoryTagEntity() throws Exception {
+    public void testGetStoryWithTags() throws Exception {
         Channel channel = new Channel();
         channel.setName("test-channel-1");
         channel.setUrl("test-url-1");
@@ -200,16 +192,25 @@ public class StoryDaoTest {
         tag1.setType(Tag.Type.MISC);
         tag1.setFreebaseMid("test-freebase-1");
 
-        tagDao.create(tag1);
+        TagAlternative tagAlternative1 = new TagAlternative();
+        tagAlternative1.setName("test-tag-alt-1");
+        tagAlternative1.setType(Tag.Type.MISC);
 
-        //story1.getTags().add(tag1);
+        tagAlternative1.setTag(tag1);
+        tag1.getTagAlternatives().add(tagAlternative1);
 
-        StoryTag storyTag = new StoryTag(story1, tag1);
-        storyDao.saveStoryTag(storyTag);
+        Tag tag2 = new Tag();
+        tag2.setName("test-tag-2");
+        tag2.setType(Tag.Type.ORGANIZATION);
+        tag2.setFreebaseMid("test-freebase-2");
 
-        Story story2 = storyDao.getByGuid(channel, "test-story-guid-1");
-        Assert.assertEquals(1, story2.getTags().size());
+        story1.getTags().add(tag1);
+        story1.getTags().add(tag2);
 
+        storyDao.update(story1);
 
-    }          */
+        Story story = storyDao.getByIdWithTags(story1.getId());
+
+        Assert.assertEquals(2, story.getTags().size());
+    }
 }

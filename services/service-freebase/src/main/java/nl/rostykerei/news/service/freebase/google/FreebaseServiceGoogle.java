@@ -97,6 +97,14 @@ public class FreebaseServiceGoogle implements FreebaseService {
                         throw new AmbiguousResultException();
                     }
 
+                    if ( (result.getMid().length() < 2) || (result.getMid().length() > 64) ) {
+                        throw new AmbiguousResultException();
+                    }
+
+                    if ( (result.getName().length() < 2) || (result.getName().length() > 64) ) {
+                        throw new AmbiguousResultException();
+                    }
+
                     FreebaseSearchResult ret = new FreebaseSearchResult();
                     ret.setName(result.getName());
                     ret.setMid(result.getMid());

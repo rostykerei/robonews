@@ -7,17 +7,18 @@ import nl.rostykerei.news.domain.StoryTag;
 import nl.rostykerei.news.domain.Tag;
 import nl.rostykerei.news.messaging.domain.NewStoryMessage;
 import nl.rostykerei.news.service.freebase.FreebaseService;
-import nl.rostykerei.news.service.freebase.exception.AmbiguousResultException;
 import nl.rostykerei.news.service.freebase.exception.FreebaseServiceException;
-import nl.rostykerei.news.service.freebase.exception.NotFoundException;
 import nl.rostykerei.news.service.freebase.impl.FreebaseSearchResult;
 import nl.rostykerei.news.service.nlp.NamedEntityRecognizerService;
 import nl.rostykerei.news.service.nlp.impl.NamedEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.util.StringUtils;
 
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class TagQueueListener {
 
@@ -28,44 +29,70 @@ public class TagQueueListener {
     private TagDao tagDao;
 
     @Autowired
-    private NamedEntityRecognizerService namedEntityRecognizerService;
+    private FreebaseService freebaseService;
 
     @Autowired
-    private FreebaseService freebaseService;
+    private NamedEntityRecognizerService namedEntityRecognizerService;
+
+    private ConcurrentHashMap<String, Object> locks = new ConcurrentHashMap<String, Object>();
 
     private Logger logger = LoggerFactory.getLogger(TagQueueListener.class);
 
     public void listen(NewStoryMessage message) {
 
-        Story story = storyDao.getById(message.getId());
+        Story story = storyDao.getByIdWithTags(message.getId());
 
         if (story == null) {
             return;
         }
 
-        String text = story.getTitle() != null ? story.getTitle() + ". " : "";
-        text = text + (story.getDescription() != null ? story.getDescription() : "");
-
-        Set<NamedEntity> namedEntities = namedEntityRecognizerService.getNamedEntities(text);
+        Set<NamedEntity> namedEntities = namedEntityRecognizerService.getNamedEntities(compileText(story, message));
 
         for (NamedEntity namedEntity : namedEntities) {
-            try {
-                Tag tag = getTagByNamedEntity(namedEntity);
 
-                if (tag != null && !story.getTags().contains(tag)) {
+            if (namedEntity == null) {
+                continue;
+            }
+
+            String namedEntityName = namedEntity.getName();
+
+            if (namedEntityName == null) {
+                continue;
+            }
+            else if (namedEntityName.length() < 2) {
+                continue;
+            }
+            else if (namedEntityName.length() > 64) {
+                continue;
+            }
+            else if (namedEntityName.equals(story.getTitle())) {
+                continue;
+            }
+
+            try {
+
+                Tag tag;
+
+                locks.putIfAbsent(namedEntityName, new Object());
+
+                synchronized (locks.get(namedEntityName)) {
+                    tag = getTagByNamedEntity(namedEntity);
+                }
+
+                locks.remove(namedEntityName);
+
+                if ((tag != null) && !story.getTags().contains(tag) && (story.getTags().size() < Story.MAXIMUM_ALLOWED_TAGS)) {
                     story.getTags().add(tag);
                     storyDao.saveStoryTag(new StoryTag(story, tag));
                 }
             }
             catch (RuntimeException e) {
                 logger.warn("Cannot process named entity", e);
-                continue;
             }
         }
     }
 
-    //@Transactional ???
-    private Tag getTagByNamedEntity(NamedEntity namedEntity) {
+    public Tag getTagByNamedEntity(NamedEntity namedEntity) {
 
         Tag.Type altType = Tag.Type.valueOf(namedEntity.getType().toString());
 
@@ -75,7 +102,7 @@ public class TagQueueListener {
             return tag;
         }
 
-        FreebaseSearchResult freebaseSearchResult = null;
+        FreebaseSearchResult freebaseSearchResult;
 
         try {
             switch (namedEntity.getType()) {
@@ -92,56 +119,99 @@ public class TagQueueListener {
                     freebaseSearchResult = freebaseService.searchMisc(namedEntity.getName());
                     break;
             }
-
-        }
-        catch (NotFoundException e) {
-            return tagDao.createTagWithAlternative(
-                    namedEntity.getName(),
-                    altType,
-                    null, true, namedEntity.getName(), altType, 0f);
-        }
-        catch (AmbiguousResultException e) {
-            return tagDao.createTagWithAlternative(
-                    namedEntity.getName(),
-                    altType,
-                    null, true, namedEntity.getName(), altType, 0f);
         }
         catch (FreebaseServiceException e) {
-            logger.warn("Freebase service exception", e);
-            return null;
+            return createAmbiguousTag(namedEntity, altType);
+        }
+        catch (Exception e) {
+            logger.warn("Freebase exception", e);
+            return createAmbiguousTag(namedEntity, altType);
         }
 
         if (freebaseSearchResult == null) {
-            return null;
+            logger.warn("Freebase service returned null");
+            return createAmbiguousTag(namedEntity, altType);
         }
 
-        tag = tagDao.findByFreebaseMind(freebaseSearchResult.getMid());
+        tag = tagDao.findByFreebaseMid(freebaseSearchResult.getMid());
 
         if (tag == null) {
-            return tagDao.createTagWithAlternative(freebaseSearchResult.getName(),
-                    Tag.Type.valueOf(freebaseSearchResult.getType().toString()),
-                    freebaseSearchResult.getMid(),
-                    false, namedEntity.getName(), altType, freebaseSearchResult.getScore());
+            synchronized (this) {
+                try {
+                    return tagDao.createTagWithAlternative(freebaseSearchResult.getName(),
+                            Tag.Type.valueOf(freebaseSearchResult.getType().toString()),
+                            freebaseSearchResult.getMid(),
+                            false, namedEntity.getName(), altType, freebaseSearchResult.getScore());
+                }
+                catch (DataIntegrityViolationException e) {
+                    tag = tagDao.findByFreebaseMid(freebaseSearchResult.getMid());
+
+                    if (tag != null) {
+                        return tag;
+                    }
+                    else  {
+                        throw e;
+                    }
+                }
+            }
         }
         else {
-            tagDao.createTagAlternative(tag, altType, namedEntity.getName(), freebaseSearchResult.getScore());
+            try {
+                tagDao.createTagAlternative(tag, altType, namedEntity.getName(), freebaseSearchResult.getScore());
+            }
+            catch (DataIntegrityViolationException e) {
+                // Already there ...
+            }
+
             return tag;
         }
     }
 
-    public void setStoryDao(StoryDao storyDao) {
-        this.storyDao = storyDao;
+    private Tag createAmbiguousTag(NamedEntity namedEntity, Tag.Type type) {
+        try {
+            return tagDao.createTagWithAlternative(
+                    namedEntity.getName(),
+                    type,
+                    null, true, namedEntity.getName(), type, 0f);
+        }
+        catch (DataIntegrityViolationException e) {
+            Tag tag = tagDao.findByAlternative(namedEntity.getName(), type);
+
+            if (tag != null) {
+                return tag;
+            }
+            else {
+                throw e;
+            }
+        }
     }
 
-    public void setTagDao(TagDao tagDao) {
-        this.tagDao = tagDao;
-    }
+    private String compileText(Story story, NewStoryMessage message) {
+        StringBuilder textBuffer = new StringBuilder();
 
-    public void setNamedEntityRecognizerService(NamedEntityRecognizerService namedEntityRecognizerService) {
-        this.namedEntityRecognizerService = namedEntityRecognizerService;
-    }
+        if ( !StringUtils.isEmpty(story.getTitle()) ) {
+            textBuffer.append(story.getTitle());
+            textBuffer.append(". ");
+        }
 
-    public void setFreebaseService(FreebaseService freebaseService) {
-        this.freebaseService = freebaseService;
+        if ( !StringUtils.isEmpty(story.getDescription()) ) {
+            textBuffer.append(story.getDescription());
+            textBuffer.append(". ");
+        }
+
+        if (message.getFoundKeywords() != null && message.getFoundKeywords().length > 0) {
+            for (String keyword : message.getFoundKeywords()) {
+                textBuffer.append(keyword);
+                textBuffer.append(", ");
+            }
+        }
+
+        String text = textBuffer.toString().trim();
+
+        if (text.endsWith(",")) {
+            text = text.substring(0, text.length() - 1);
+        }
+
+        return text;
     }
 }

@@ -76,36 +76,40 @@ public class CrawlerControllerImpl implements CrawlerController {
                     httpResponse.releaseConnection();
                     httpResponse = null;
 
-                    for (SyndicationEntry syndEntry : syndicationFeed.getEntries()) {
-                        try {
-                            Story story = crawlerDao.createStory(syndEntry, feed, checkTime);
+                    if (syndicationFeed != null) {
+                        for (SyndicationEntry syndEntry : syndicationFeed.getEntries()) {
+                            try {
+                                Story story = crawlerDao.createStory(syndEntry, feed, checkTime);
 
-                            if (story == null) {
+                                if (story == null) {
+                                    continue;
+                                }
+
+                                newStories++;
+
+                                sendStoryMessage(syndEntry, story);
+                            }
+                            catch (DataIntegrityViolationException e){
+                                logger.info("Duplicate story: " + syndEntry.getGuid());
                                 continue;
                             }
+                            catch (RuntimeException e) {
+                                logger.info("Failed to create story: ", e);
+                                continue;
+                            }
+                        }
 
-                            newStories++;
-
-                            sendStoryMessage(syndEntry, story);
-                        }
-                        catch (DataIntegrityViolationException e){
-                            logger.info("Duplicate story: " + syndEntry.getGuid());
-                            continue;
-                        }
-                        catch (RuntimeException e) {
-                            logger.info("Failed to create story: ", e);
-                            continue;
-                        }
+                    }
+                    else {
+                        logger.info("Failed to parse feed [" + feed + "], Syndication service returned null");
                     }
                 }
                 else if (httpResponse.getHttpStatus() == 304) {
                     // Feed is not modified
                     newStories = 0;
-                    httpResponse.releaseConnection();
                 }
                 else {
                     logger.info("Failed to crawl feed [" + feed + "], http status: " + httpResponse.getHttpStatus());
-                    httpResponse.releaseConnection();
                     httpResponse = null;
                 }
             }
@@ -178,9 +182,10 @@ public class CrawlerControllerImpl implements CrawlerController {
     private void sendStoryMessage(SyndicationEntry syndEntry, Story story) {
         NewStoryMessage message = new NewStoryMessage();
         message.setId(story.getId());
-        message.setUid(story.getUid());
+        message.setFoundKeywords(syndEntry.getMediaKeywords().toArray(new String[0]));
+        /*message.setUid(story.getUid());
         message.setTitle(story.getTitle());
-        message.setDescription(story.getDescription());
+        message.setDescription(story.getDescription());*/
 
         messagingTemplate.convertAndSend(message);
     }

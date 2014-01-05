@@ -6,11 +6,7 @@ public class NewStoryMessage {
 
     private long id;
 
-    private UUID uid;
-
-    private String title;
-
-    private String description;
+    private String[] foundKeywords;
 
     public long getId() {
         return id;
@@ -20,28 +16,11 @@ public class NewStoryMessage {
         this.id = id;
     }
 
-    public UUID getUid() {
-        return uid;
+    public String[] getFoundKeywords() {
+        return foundKeywords;
     }
 
-    public void setUid(UUID uid) {
-        this.uid = uid;
+    public void setFoundKeywords(String[] foundKeywords) {
+        this.foundKeywords = foundKeywords;
     }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 }

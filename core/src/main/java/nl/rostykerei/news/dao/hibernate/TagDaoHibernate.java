@@ -52,7 +52,7 @@ public class TagDaoHibernate extends AbstractDaoHibernate<Tag, Integer> implemen
 
     @Override
     @Transactional(readOnly = true)
-    public Tag findByFreebaseMind(String freebaseMid) {
+    public Tag findByFreebaseMid(String freebaseMid) {
         return (Tag) getSession().
                 createQuery("from Tag t " +
                         "where t.freebaseMid = :freebaseMid").

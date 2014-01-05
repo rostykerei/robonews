@@ -11,8 +11,8 @@
     <bean class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" id="sessionFactory">
         <property name="hibernateProperties">
             <props>
-                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>-->
-                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.showSql}</prop>
                 <prop key="hibernate.connection.useUnicode">true</prop>
                 <prop key="hibernate.connection.characterEncoding">UTF-8</prop>
                 <prop key="hibernate.connection.charSet">UTF-8</prop>
@@ -24,7 +24,7 @@
         </property>
     </bean>
 
-    <tx:annotation-driven/>
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate4.HibernateTransactionManager">

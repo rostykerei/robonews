@@ -2,14 +2,28 @@ package nl.rostykerei.news.service.syndication.rome;
 
 import com.sun.syndication.feed.synd.SyndEntry;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import nl.rostykerei.news.service.syndication.SyndicationEntry;
+import org.jdom.Element;
 
 public class SyndicationEntryRome implements SyndicationEntry {
 
     private SyndEntry syndEntry;
 
+    private Set<String> mediaKeywords = new HashSet<String>();
+
     public SyndicationEntryRome(SyndEntry syndEntry) {
         this.syndEntry = syndEntry;
+
+        try {
+            processForeignMarkup(syndEntry);
+        }
+        catch (RuntimeException e) {
+            // Do nothing
+        }
     }
 
     @Override
@@ -71,4 +85,55 @@ public class SyndicationEntryRome implements SyndicationEntry {
     public Date getPubDate() {
         return syndEntry.getPublishedDate();
     }
+
+    @Override
+    public void setMediaKeywords(Set<String> keywords) {
+        this.mediaKeywords = keywords;
+    }
+
+    @Override
+    public Set<String> getMediaKeywords() {
+        return mediaKeywords;
+    }
+
+    private void processForeignMarkup(SyndEntry syndEntry) {
+        if (syndEntry.getForeignMarkup() == null) {
+            return;
+        }
+
+        List foreignMarkup = (List) syndEntry.getForeignMarkup();
+
+        if (foreignMarkup == null || foreignMarkup.size() == 0) {
+            return;
+        }
+
+        for (Object aForeignMarkup : foreignMarkup) {
+            Element element = (Element) aForeignMarkup;
+
+            if (element == null) {
+                continue;
+            }
+
+            if ("media".equalsIgnoreCase(element.getNamespacePrefix())) {
+
+                if ("keywords".equalsIgnoreCase(element.getName())) {
+                    processMediaKeywords(element.getValue());
+                }
+
+            }
+        }
+    }
+
+    private void processMediaKeywords(String keywords) {
+        if (keywords == null || keywords.length() == 0) {
+            return;
+        }
+
+        String[] l = keywords.split(",");
+
+        for (String kw : l) {
+            mediaKeywords.add(kw.trim());
+        }
+    }
+
 }

@@ -1,3 +1,7 @@
+Process http://www.rssboard.org/media-rss
+DONE Add media-rss <media:keyword/> to NLP parser
+Add media-rss <media:thumbnails / images>
+Remove long tags which are the same as story.title
 Check robots.txt
 Check for images inside news page meta tags (thumbnailUrl, open graph)
-io domain (news.io) - gandi.net registara
+io domain (news.io) - gandi.net registara (promo code IO4LESS)

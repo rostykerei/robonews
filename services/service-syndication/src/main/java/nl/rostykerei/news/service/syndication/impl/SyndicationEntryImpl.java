@@ -1,6 +1,9 @@
 package nl.rostykerei.news.service.syndication.impl;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import nl.rostykerei.news.service.syndication.SyndicationEntry;
 
 /**
@@ -16,6 +19,7 @@ public class SyndicationEntryImpl implements SyndicationEntry {
     private String guid;
     private String author;
     private Date pubDate;
+    private Set<String> keywords = new HashSet<String>();
 
     @Override
     public void setTitle(String title) {
@@ -76,4 +80,16 @@ public class SyndicationEntryImpl implements SyndicationEntry {
     public Date getPubDate() {
         return pubDate;
     }
+
+    @Override
+    public void setMediaKeywords(Set<String> keywords) {
+        this.keywords = keywords;
+    }
+
+    @Override
+    public Set<String> getMediaKeywords() {
+        return keywords;
+    }
+
+
 }
