@@ -5,7 +5,7 @@ import nl.rostykerei.news.dao.TagDao;
 import nl.rostykerei.news.domain.Story;
 import nl.rostykerei.news.domain.StoryTag;
 import nl.rostykerei.news.domain.Tag;
-import nl.rostykerei.news.messaging.domain.NewStoryMessage;
+import nl.rostykerei.news.messaging.domain.TagMessage;
 import nl.rostykerei.news.service.freebase.FreebaseService;
 import nl.rostykerei.news.service.freebase.exception.FreebaseServiceException;
 import nl.rostykerei.news.service.freebase.impl.FreebaseSearchResult;
@@ -38,9 +38,9 @@ public class TagQueueListener {
 
     private Logger logger = LoggerFactory.getLogger(TagQueueListener.class);
 
-    public void listen(NewStoryMessage message) {
+    public void listen(TagMessage message) {
 
-        Story story = storyDao.getByIdWithTags(message.getId());
+        Story story = storyDao.getByIdWithTags(message.getStoryId());
 
         if (story == null) {
             return;
@@ -186,7 +186,7 @@ public class TagQueueListener {
         }
     }
 
-    private String compileText(Story story, NewStoryMessage message) {
+    private String compileText(Story story, TagMessage message) {
         StringBuilder textBuffer = new StringBuilder();
 
         if ( !StringUtils.isEmpty(story.getTitle()) ) {

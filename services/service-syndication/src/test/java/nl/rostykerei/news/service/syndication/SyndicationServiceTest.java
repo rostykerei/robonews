@@ -25,8 +25,9 @@ public class SyndicationServiceTest {
 
     @Test
     public void test() throws Exception {
-        // URL url = new URL("http://feeds.theguardian.com/theguardian/uk/culture/rss");
-        URL url = new URL("http://feeds.bbci.co.uk/news/rss.xml");
+        //URL url = new URL("http://www.dailymail.co.uk/home/index.rss");
+        //URL url = new URL("http://feeds.bbci.co.uk/news/rss.xml");
+        URL url = new URL("http://feeds.theguardian.com/theguardian/uk/rss");
         URLConnection conn = url.openConnection();
 
         SyndicationFeed syndicationFeed = syndicationService.loadFeed(conn.getInputStream());
@@ -34,7 +35,7 @@ public class SyndicationServiceTest {
         syndicationFeed.getEntries();
 
         for (SyndicationEntry syndicationEntry : syndicationFeed.getEntries()) {
-            System.out.println(syndicationEntry.getTitle() +"----" +syndicationEntry.getMediaKeywords());
+            System.out.println(syndicationEntry.getTitle() +"----" +syndicationEntry.getMediaImages());
         }
 
 

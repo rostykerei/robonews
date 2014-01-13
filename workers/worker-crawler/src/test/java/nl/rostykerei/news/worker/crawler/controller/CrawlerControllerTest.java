@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.Date;
 import nl.rostykerei.news.dao.FeedDao;
 import nl.rostykerei.news.domain.Feed;
-import nl.rostykerei.news.messaging.domain.NewStoryMessage;
+import nl.rostykerei.news.messaging.domain.TagMessage;
 import nl.rostykerei.news.service.http.HttpRequest;
 import nl.rostykerei.news.service.http.HttpResponse;
 import nl.rostykerei.news.service.http.HttpService;
@@ -54,7 +54,7 @@ public class CrawlerControllerTest {
 
         verify(httpService, times(0)).execute(any(HttpRequest.class));
         verify(crawlerDao, times(0)).createStory(any(SyndicationEntry.class), any(Feed.class), any(Date.class));
-        verify(messagingTemplate, times(0)).convertAndSend(any(NewStoryMessage.class));
+        verify(messagingTemplate, times(0)).convertAndSend(any(TagMessage.class));
     }
 
     @Test

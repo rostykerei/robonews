@@ -1,19 +1,17 @@
 package nl.rostykerei.news.messaging.domain;
 
-import java.util.UUID;
+public class TagMessage {
 
-public class NewStoryMessage {
+    private long storyId = 0;
 
-    private long id;
+    private String[] foundKeywords = {};
 
-    private String[] foundKeywords;
-
-    public long getId() {
-        return id;
+    public long getStoryId() {
+        return storyId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setStoryId(long id) {
+        this.storyId = id;
     }
 
     public String[] getFoundKeywords() {

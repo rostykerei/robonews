@@ -13,7 +13,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 
-
 @Entity
 @Table(name = "feed", uniqueConstraints = @UniqueConstraint(columnNames = "url"))
 public class Feed {

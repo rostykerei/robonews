@@ -11,9 +11,15 @@
             password="${rabbit.password}"
     />
 
-    <bean  id="newStoryTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
+    <bean  id="tagMessagingTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
-        <property name="exchange" value="newStoryExchange"/>
+        <property name="exchange" value="tagExchange"/>
+        <property name="messageConverter" ref="jsonMessageConverter"/>
+    </bean>
+
+    <bean  id="imageMessagingTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="exchange" value="imageExchange"/>
         <property name="messageConverter" ref="jsonMessageConverter"/>
     </bean>
 
@@ -23,10 +29,15 @@
 
     <rabbit:queue name="imageQueue" durable="true"/>
 
-    <rabbit:fanout-exchange name="newStoryExchange" durable="true">
+    <rabbit:fanout-exchange name="tagExchange" durable="true">
         <rabbit:bindings>
             <rabbit:binding queue="tagQueue"/>
-            <!--<rabbit:binding queue="imageQueue"/>-->
+        </rabbit:bindings>
+    </rabbit:fanout-exchange>
+
+    <rabbit:fanout-exchange name="imageExchange" durable="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="imageQueue"/>
         </rabbit:bindings>
     </rabbit:fanout-exchange>
 

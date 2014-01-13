@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.32, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.34, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: news-test
 -- ------------------------------------------------------
--- Server version	5.5.32-0ubuntu0.12.04.1
+-- Server version	5.5.34-0ubuntu0.12.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -48,7 +48,7 @@ CREATE TABLE `channel` (
   `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `channel_idx_1` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,6 +90,56 @@ CREATE TABLE `feed` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `image`
+--
+
+DROP TABLE IF EXISTS `image`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `image` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` char(11) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `sourceChannelId` int(10) unsigned NOT NULL,
+  `sourceStoryId` bigint(20) unsigned NOT NULL,
+  `typeId` int(2) unsigned NOT NULL,
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `size` bigint(16) NOT NULL,
+  `width` int(4) NOT NULL,
+  `height` int(4) NOT NULL,
+  `ratio` float NOT NULL,
+  `crcHash` bigint(20) NOT NULL,
+  `pHash` binary(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `image_uid` (`uid`),
+  UNIQUE KEY `image_idx1` (`url`),
+  UNIQUE KEY `image_idx2` (`crcHash`),
+  KEY `image_idx_3` (`sourceChannelId`),
+  KEY `image_idx_4` (`sourceStoryId`),
+  KEY `image_idx_5` (`width`,`height`),
+  KEY `image_idx_6` (`pHash`),
+  KEY `image_fk_3` (`typeId`),
+  CONSTRAINT `image_fk_1` FOREIGN KEY (`sourceChannelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `image_fk_2` FOREIGN KEY (`sourceStoryId`) REFERENCES `story` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `image_fk_3` FOREIGN KEY (`typeId`) REFERENCES `image_type` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `image_type`
+--
+
+DROP TABLE IF EXISTS `image_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `image_type` (
+  `id` int(2) unsigned NOT NULL AUTO_INCREMENT,
+  `type` varchar(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `type` (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `story`
 --
 
@@ -98,7 +148,7 @@ DROP TABLE IF EXISTS `story`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `story` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` binary(16) not null,
+  `uid` char(11) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `channelId` int(10) unsigned NOT NULL,
   `categoryId` int(10) unsigned NOT NULL,
   `originalFeedId` int(10) unsigned NOT NULL,
@@ -111,7 +161,7 @@ CREATE TABLE `story` (
   `isVideo` bit(1) NOT NULL DEFAULT b'0',
   `publicationDate` timestamp NULL DEFAULT NULL,
   `createdDate` timestamp NULL DEFAULT NULL,
-  `description` text,
+  `description` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `story_uid` (`uid`),
   UNIQUE KEY `story_idx_1` (`channelId`,`guidHash`),
@@ -154,7 +204,7 @@ DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `typeId` int(10) unsigned NOT NULL,
-  `freebase_mid` varchar(255) BINARY NULL,
+  `freebase_mid` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `isAmbiguous` bit(1) NOT NULL DEFAULT b'0',
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
@@ -179,12 +229,11 @@ CREATE TABLE `tag_alternative` (
   `name` varchar(255) NOT NULL,
   `confidence` float DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `tag_alternative_idx_1` (`name`, `typeId`),
+  UNIQUE KEY `tag_alternative_idx_1` (`name`,`typeId`),
   KEY `tag_alternative_idx_2` (`tagId`),
   CONSTRAINT `tag_alternative_fk_2` FOREIGN KEY (`tagId`) REFERENCES `tag` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 
 --
 -- Table structure for table `tag_type`
@@ -210,4 +259,4 @@ CREATE TABLE `tag_type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-20 15:30:39
+-- Dump completed on 2014-01-12 13:55:51

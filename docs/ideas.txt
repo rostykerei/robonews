@@ -1,7 +1,13 @@
 Process http://www.rssboard.org/media-rss
-DONE Add media-rss <media:keyword/> to NLP parser
-Add media-rss <media:thumbnails / images>
-Remove long tags which are the same as story.title
+[DONE] Add media-rss <media:keyword/> to NLP parser
+[DONE] Remove long tags which are the same as story.title
+[DONE] Store UUID as Base64 strings
+[DONE] Make uid field in MySQL table case-sensitive
+[DONE] Ensure story.descr is 1024 bytes long
+[DONE] Add aspect-ratio field to Image
+Redo SQL ID types (bigint(20) -- is way tooo overkill)
+Make sure story.uid in not always (unneccessarry) generated...
+Investigate RPM/DEB package generation
 Check robots.txt
 Check for images inside news page meta tags (thumbnailUrl, open graph)
 io domain (news.io) - gandi.net registara (promo code IO4LESS)

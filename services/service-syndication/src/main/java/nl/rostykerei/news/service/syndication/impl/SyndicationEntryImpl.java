@@ -20,6 +20,7 @@ public class SyndicationEntryImpl implements SyndicationEntry {
     private String author;
     private Date pubDate;
     private Set<String> keywords = new HashSet<String>();
+    private Set<String> images = new HashSet<String>();
 
     @Override
     public void setTitle(String title) {
@@ -89,6 +90,16 @@ public class SyndicationEntryImpl implements SyndicationEntry {
     @Override
     public Set<String> getMediaKeywords() {
         return keywords;
+    }
+
+    @Override
+    public void setMediaImages(Set<String> urls) {
+        this.images = urls;
+    }
+
+    @Override
+    public Set<String> getMediaImages() {
+        return images;
     }
 
 

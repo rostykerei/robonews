@@ -42,7 +42,6 @@ public class TagDaoHibernate extends AbstractDaoHibernate<Tag, Integer> implemen
         tagAlternative.setType(altType);
         tagAlternative.setConfidence(altConfidence);
 
-        //tag.getTagAlternatives().add(tagAlternative);
         tagAlternative.setTag(tag);
 
         getSession().save(tagAlternative);

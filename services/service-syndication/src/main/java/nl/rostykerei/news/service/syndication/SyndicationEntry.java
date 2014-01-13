@@ -33,4 +33,8 @@ public interface SyndicationEntry {
 
     Set<String> getMediaKeywords();
 
+    void setMediaImages(Set<String> urls);
+
+    Set<String> getMediaImages();
+
 }

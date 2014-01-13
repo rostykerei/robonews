@@ -27,6 +27,7 @@ public class NamedEntityRecognizerServiceTest {
         expected.add(new NamedEntity(NamedEntity.Type.LOCATION, "US"));
 
         Assert.assertEquals(expected, namedEntityRecognizerService.getNamedEntities("Joe, John and David Smith were walking in San Francisco, US with John"));
+
     }
 
     @Test

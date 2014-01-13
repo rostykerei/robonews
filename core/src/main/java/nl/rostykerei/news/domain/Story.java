@@ -3,18 +3,19 @@ package nl.rostykerei.news.domain;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import nl.rostykerei.news.util.KeyGenerator;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "story",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"channelId", "guidHash"}),
-                @UniqueConstraint(columnNames = {"channelId", "contentHash"}),
-        })
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"uid"}),
+        @UniqueConstraint(columnNames = {"channelId", "guidHash"}),
+        @UniqueConstraint(columnNames = {"channelId", "contentHash"}),
+    })
 public class Story {
 
     @Id
@@ -22,18 +23,9 @@ public class Story {
     @GeneratedValue
     private long id;
 
-
-    public UUID getUid() {
-        return uid;
-    }
-
-    public void setUid(UUID uid) {
-        this.uid = uid;
-    }
-
     @Column(name = "uid")
     @GeneratedValue
-    private UUID uid = UUID.randomUUID();
+    private String uid = KeyGenerator.generateKey();
 
     @NotNull
     @ManyToOne
@@ -50,10 +42,10 @@ public class Story {
     @JoinColumn(name = "originalFeedId", referencedColumnName = "id", nullable = false)
     private Feed originalFeed;
 
-    @Column(name = "guidHash", unique = false, nullable = false, length = 40)
+    @Column(name = "guidHash", unique = false, nullable = false, length = 20)
     private byte[] guidHash;
 
-    @Column(name = "contentHash", unique = false, nullable = false, length = 40)
+    @Column(name = "contentHash", unique = false, nullable = false, length = 20)
     private byte[] contentHash;
 
     @Column(name = "title", unique = false, nullable = false, length = 255)
@@ -99,6 +91,10 @@ public class Story {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getUid() {
+        return uid;
     }
 
     public Channel getChannel() {
@@ -210,7 +206,7 @@ public class Story {
 
     private void updateContentHash() {
         this.contentHash = DigestUtils.sha1(
-            new StringBuffer().append(getTitle()).append(getDescription()).toString()
+            new StringBuilder().append(getTitle()).append(getDescription()).toString()
         );
     }
 

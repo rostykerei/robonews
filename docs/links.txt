@@ -1,2 +1,1 @@
-http://datatables.net/blog/Twitter_Bootstrap_2
 http://bthurley.wordpress.com/2012/07/18/spring-mvc-with-restful-datatables/

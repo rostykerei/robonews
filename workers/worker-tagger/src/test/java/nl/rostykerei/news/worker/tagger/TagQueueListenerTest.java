@@ -5,7 +5,7 @@ import nl.rostykerei.news.dao.TagDao;
 import nl.rostykerei.news.domain.Story;
 import nl.rostykerei.news.domain.StoryTag;
 import nl.rostykerei.news.domain.Tag;
-import nl.rostykerei.news.messaging.domain.NewStoryMessage;
+import nl.rostykerei.news.messaging.domain.TagMessage;
 import nl.rostykerei.news.service.freebase.FreebaseService;
 import nl.rostykerei.news.service.freebase.exception.AmbiguousResultException;
 import nl.rostykerei.news.service.freebase.exception.FreebaseServiceException;
@@ -51,8 +51,8 @@ public class TagQueueListenerTest {
 
         when(storyDao.getByIdWithTags(1000L)).thenReturn(story);
 
-        NewStoryMessage newStoryMessage1 = new NewStoryMessage();
-        newStoryMessage1.setId(1000L);
+        TagMessage tagMessage1 = new TagMessage();
+        tagMessage1.setStoryId(1000L);
 
         Set<NamedEntity> newPersonSet = new HashSet<NamedEntity>();
         newPersonSet.add(new NamedEntity(NamedEntity.Type.PERSON, "new-person"));
@@ -71,7 +71,7 @@ public class TagQueueListenerTest {
         when(tagDao.createTagWithAlternative("freebase-person", Tag.Type.PERSON, "pers", false, "new-person", Tag.Type.PERSON, 1f)).thenReturn(personTag);
 
         // Test call
-        tagQueueListener.listen(newStoryMessage1);
+        tagQueueListener.listen(tagMessage1);
 
         verify(namedEntityRecognizerService).getNamedEntities("person. new.");
         verify(tagDao).findByAlternative("new-person", Tag.Type.PERSON);
@@ -89,8 +89,8 @@ public class TagQueueListenerTest {
 
         when(storyDao.getByIdWithTags(1000L)).thenReturn(story);
 
-        NewStoryMessage newStoryMessage1 = new NewStoryMessage();
-        newStoryMessage1.setId(1000L);
+        TagMessage tagMessage1 = new TagMessage();
+        tagMessage1.setStoryId(1000L);
 
         Set<NamedEntity> existentPersonSet = new HashSet<NamedEntity>();
         existentPersonSet.add(new NamedEntity(NamedEntity.Type.PERSON, "existent-person"));
@@ -101,7 +101,7 @@ public class TagQueueListenerTest {
         when(tagDao.findByAlternative("existent-person", Tag.Type.PERSON)).thenReturn(existentTag);
 
         // Test call
-        tagQueueListener.listen(newStoryMessage1);
+        tagQueueListener.listen(tagMessage1);
 
         verify(namedEntityRecognizerService).getNamedEntities("person. existent.");
         verify(tagDao).findByAlternative("existent-person", Tag.Type.PERSON);
@@ -116,8 +116,8 @@ public class TagQueueListenerTest {
 
         when(storyDao.getByIdWithTags(1000L)).thenReturn(story);
 
-        NewStoryMessage newStoryMessage1 = new NewStoryMessage();
-        newStoryMessage1.setId(1000L);
+        TagMessage tagMessage1 = new TagMessage();
+        tagMessage1.setStoryId(1000L);
 
         FreebaseSearchResult locRes = new FreebaseSearchResult();
         locRes.setMid("loc");
@@ -135,7 +135,7 @@ public class TagQueueListenerTest {
         when(tagDao.findByFreebaseMid("loc")).thenReturn(locationTag);
 
         // Test call
-        tagQueueListener.listen(newStoryMessage1);
+        tagQueueListener.listen(tagMessage1);
 
         verify(namedEntityRecognizerService).getNamedEntities("test-location.");
         verify(tagDao).findByAlternative("location", Tag.Type.LOCATION);
@@ -152,8 +152,8 @@ public class TagQueueListenerTest {
 
         when(storyDao.getByIdWithTags(1000L)).thenReturn(story);
 
-        NewStoryMessage newStoryMessage1 = new NewStoryMessage();
-        newStoryMessage1.setId(1000L);
+        TagMessage tagMessage1 = new TagMessage();
+        tagMessage1.setStoryId(1000L);
 
         FreebaseSearchResult orgRes = new FreebaseSearchResult();
         orgRes.setMid("org");
@@ -171,7 +171,7 @@ public class TagQueueListenerTest {
         when(namedEntityRecognizerService.getNamedEntities("test-organization.")).thenReturn(orgSet);
 
         // Test call
-        tagQueueListener.listen(newStoryMessage1);
+        tagQueueListener.listen(tagMessage1);
 
         verify(namedEntityRecognizerService).getNamedEntities("test-organization.");
         verify(tagDao).findByAlternative("organization", Tag.Type.ORGANIZATION);
@@ -188,8 +188,8 @@ public class TagQueueListenerTest {
 
         when(storyDao.getByIdWithTags(1000L)).thenReturn(story);
 
-        NewStoryMessage newStoryMessage1 = new NewStoryMessage();
-        newStoryMessage1.setId(1000L);
+        TagMessage tagMessage1 = new TagMessage();
+        tagMessage1.setStoryId(1000L);
 
         FreebaseSearchResult miscRes = new FreebaseSearchResult();
         miscRes.setMid("misc");
@@ -207,7 +207,7 @@ public class TagQueueListenerTest {
         when(namedEntityRecognizerService.getNamedEntities("test-misc.")).thenReturn(miscSet);
 
         // Test call
-        tagQueueListener.listen(newStoryMessage1);
+        tagQueueListener.listen(tagMessage1);
 
         verify(namedEntityRecognizerService).getNamedEntities("test-misc.");
         verify(tagDao).findByAlternative("misc", Tag.Type.MISC);
@@ -225,8 +225,8 @@ public class TagQueueListenerTest {
 
         when(storyDao.getByIdWithTags(1000L)).thenReturn(story);
 
-        NewStoryMessage newStoryMessage1 = new NewStoryMessage();
-        newStoryMessage1.setId(1000L);
+        TagMessage tagMessage1 = new TagMessage();
+        tagMessage1.setStoryId(1000L);
 
         when(freebaseService.searchPerson("not-found-exception")).thenThrow(new NotFoundException());
 
@@ -239,7 +239,7 @@ public class TagQueueListenerTest {
         when(namedEntityRecognizerService.getNamedEntities("not-found. exception.")).thenReturn(notFoundSet);
 
         // Test call
-        tagQueueListener.listen(newStoryMessage1);
+        tagQueueListener.listen(tagMessage1);
 
         verify(namedEntityRecognizerService).getNamedEntities("not-found. exception.");
         verify(tagDao).findByAlternative("not-found-exception", Tag.Type.PERSON);
@@ -256,8 +256,8 @@ public class TagQueueListenerTest {
 
         when(storyDao.getByIdWithTags(1000L)).thenReturn(story);
 
-        NewStoryMessage newStoryMessage1 = new NewStoryMessage();
-        newStoryMessage1.setId(1000L);
+        TagMessage tagMessage1 = new TagMessage();
+        tagMessage1.setStoryId(1000L);
 
         when(freebaseService.searchLocation("ambiguous-exception")).thenThrow(new AmbiguousResultException());
 
@@ -270,7 +270,7 @@ public class TagQueueListenerTest {
         when(namedEntityRecognizerService.getNamedEntities("ambiguous. exception.")).thenReturn(ambiguousSet);
 
         // Test call
-        tagQueueListener.listen(newStoryMessage1);
+        tagQueueListener.listen(tagMessage1);
 
         verify(namedEntityRecognizerService).getNamedEntities("ambiguous. exception.");
         verify(tagDao).findByAlternative("ambiguous-exception", Tag.Type.LOCATION);
@@ -287,8 +287,8 @@ public class TagQueueListenerTest {
 
         when(storyDao.getByIdWithTags(1000L)).thenReturn(story);
 
-        NewStoryMessage newStoryMessage1 = new NewStoryMessage();
-        newStoryMessage1.setId(1000L);
+        TagMessage tagMessage1 = new TagMessage();
+        tagMessage1.setStoryId(1000L);
 
         Set<NamedEntity> exceptionSet = new HashSet<NamedEntity>();
         exceptionSet.add(new NamedEntity(NamedEntity.Type.ORGANIZATION, "freebase-exception"));
@@ -297,7 +297,7 @@ public class TagQueueListenerTest {
         when(freebaseService.searchOrganization("freebase-exception")).thenThrow(new FreebaseServiceException());
 
         // Test call
-        tagQueueListener.listen(newStoryMessage1);
+        tagQueueListener.listen(tagMessage1);
 
         verify(namedEntityRecognizerService).getNamedEntities("freebase. exception.");
         verify(tagDao).findByAlternative("freebase-exception", Tag.Type.ORGANIZATION);
@@ -315,8 +315,8 @@ public class TagQueueListenerTest {
 
         when(storyDao.getByIdWithTags(1000L)).thenReturn(story);
 
-        NewStoryMessage newStoryMessage1 = new NewStoryMessage();
-        newStoryMessage1.setId(1000L);
+        TagMessage tagMessage1 = new TagMessage();
+        tagMessage1.setStoryId(1000L);
 
         when(freebaseService.searchMisc("runtime-exception")).thenThrow(new RuntimeException());
 
@@ -325,7 +325,7 @@ public class TagQueueListenerTest {
         when(namedEntityRecognizerService.getNamedEntities("runtime. exception.")).thenReturn(runtimeExceptionSet);
 
         // Test call
-        tagQueueListener.listen(newStoryMessage1);
+        tagQueueListener.listen(tagMessage1);
 
         verify(namedEntityRecognizerService).getNamedEntities("runtime. exception.");
         verify(tagDao).findByAlternative("runtime-exception", Tag.Type.MISC);
@@ -342,8 +342,8 @@ public class TagQueueListenerTest {
 
         when(storyDao.getByIdWithTags(1000L)).thenReturn(story);
 
-        NewStoryMessage newStoryMessage1 = new NewStoryMessage();
-        newStoryMessage1.setId(1000L);
+        TagMessage tagMessage1 = new TagMessage();
+        tagMessage1.setStoryId(1000L);
 
         when(freebaseService.searchMisc("null-result")).thenReturn(null);
 
@@ -352,7 +352,7 @@ public class TagQueueListenerTest {
         when(namedEntityRecognizerService.getNamedEntities("null.")).thenReturn(nullSet);
 
         // Test call
-        tagQueueListener.listen(newStoryMessage1);
+        tagQueueListener.listen(tagMessage1);
 
         verify(namedEntityRecognizerService).getNamedEntities("null.");
         verify(tagDao).findByAlternative("null-result", Tag.Type.MISC);
@@ -363,8 +363,8 @@ public class TagQueueListenerTest {
 
     @Test
     public void testListenUnknownStory() {
-        NewStoryMessage unknownStoryMessage = new NewStoryMessage();
-        unknownStoryMessage.setId(8000L);
+        TagMessage unknownStoryMessage = new TagMessage();
+        unknownStoryMessage.setStoryId(8000L);
 
         tagQueueListener.listen(unknownStoryMessage);
     }

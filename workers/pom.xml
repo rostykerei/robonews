@@ -17,6 +17,7 @@
     <modules>
         <module>worker-crawler</module>
         <module>worker-tagger</module>
+        <module>worker-image-crawler</module>
     </modules>
 
     <build>

@@ -98,7 +98,7 @@ DROP TABLE IF EXISTS `story`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `story` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` binary(16) not null,
+  `uid` char(11) BINARY not null,
   `channelId` int(10) unsigned NOT NULL,
   `categoryId` int(10) unsigned NOT NULL,
   `originalFeedId` int(10) unsigned NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE `story` (
   `isVideo` bit(1) NOT NULL DEFAULT b'0',
   `publicationDate` timestamp NULL DEFAULT NULL,
   `createdDate` timestamp NULL DEFAULT NULL,
-  `description` text,
+  `description` varchar(1024),
   PRIMARY KEY (`id`),
   UNIQUE KEY `story_uid` (`uid`),
   UNIQUE KEY `story_idx_1` (`channelId`,`guidHash`),

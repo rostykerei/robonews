@@ -1,0 +1,15 @@
+img table
+
++ id
++ sourceChannelId
++ sourceStoryId
++ uid
++ url
++ urlHash
++ type
++ size
++ width
++ height
++ crc32
++ phash
++ createdDate

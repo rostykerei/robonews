@@ -1,7 +1,7 @@
 package nl.rostykerei.news.dao;
 
 import java.util.Date;
-import java.util.UUID;
+
 import nl.rostykerei.news.domain.Category;
 import nl.rostykerei.news.domain.Channel;
 import nl.rostykerei.news.domain.Feed;
