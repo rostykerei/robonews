@@ -2,15 +2,21 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
 
     <import resource="classpath:coreContext.xml"/>
     <import resource="classpath:messagingContext.xml"/>
+    <import resource="classpath:serviceHttpContext.xml"/>
+
+    <rabbit:listener-container connection-factory="connectionFactory" concurrency="${workerImageCrawler.threads}" message-converter="jsonMessageConverter">
+        <rabbit:listener ref="imageQueueListener" method="listen" queue-names="imageQueue"/>
+    </rabbit:listener-container>
+
+    <bean id="imageQueueListener" class="nl.rostykerei.news.worker.image.crawler.ImageQueueListener"/>
 
     <context:annotation-config/>
-
     <context:component-scan base-package="nl.rostykerei.news.worker.image.crawler"/>
-
     <context:property-placeholder  location="file:${config.file}"/>
 
 </beans>

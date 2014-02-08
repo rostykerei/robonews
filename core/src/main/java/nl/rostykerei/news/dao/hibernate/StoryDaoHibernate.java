@@ -3,6 +3,7 @@ package nl.rostykerei.news.dao.hibernate;
 import nl.rostykerei.news.dao.StoryDao;
 import nl.rostykerei.news.domain.Channel;
 import nl.rostykerei.news.domain.Story;
+import nl.rostykerei.news.domain.StoryImage;
 import nl.rostykerei.news.domain.StoryTag;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,5 +48,11 @@ public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> impleme
     @Transactional
     public void saveStoryTag(StoryTag storyTag) {
         getSession().save(storyTag);
+    }
+
+    @Override
+    @Transactional
+    public void saveStoryImage(StoryImage storyImage) {
+        getSession().save(storyImage);
     }
 }

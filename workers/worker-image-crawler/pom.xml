@@ -40,10 +40,28 @@
 
         <dependency>
             <groupId>nl.rostykerei.news</groupId>
+            <artifactId>service-http</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>nl.rostykerei.news</groupId>
+            <artifactId>service-image-tools</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>nl.rostykerei.news</groupId>
             <artifactId>messaging</artifactId>
             <version>${project.version}</version>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+    </dependencies>
 
 </project>

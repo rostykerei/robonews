@@ -4,6 +4,7 @@ import nl.rostykerei.news.util.KeyGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import java.util.Map;
     uniqueConstraints = {
         @UniqueConstraint(columnNames = {"uid"}),
         @UniqueConstraint(columnNames = {"url"}),
-        @UniqueConstraint(columnNames = {"crcHash"})
+        @UniqueConstraint(columnNames = {"sourceChannelId", "size", "crcHash"})
     })
 public class Image {
 
@@ -66,6 +67,10 @@ public class Image {
     @NotNull
     @Column(name = "pHash", nullable = false)
     private byte[] pHash;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "createdDate", unique = false, nullable = false)
+    private Date createdDate;
 
     public long getId() {
         return id;
@@ -156,6 +161,14 @@ public class Image {
 
     public void setpHash(byte[] pHash) {
         this.pHash = pHash;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public static enum Type {

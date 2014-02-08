@@ -13,5 +13,6 @@
         <mapping class="nl.rostykerei.news.domain.TagAlternative"/>
         <mapping class="nl.rostykerei.news.domain.StoryTag"/>
         <mapping class="nl.rostykerei.news.domain.Image"/>
+        <mapping class="nl.rostykerei.news.domain.StoryImage"/>
     </session-factory>
 </hibernate-configuration>

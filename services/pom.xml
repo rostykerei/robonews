@@ -20,7 +20,7 @@
         <module>service-syndication</module>
         <module>service-nlp</module>
         <module>service-freebase</module>
-        <module>service-phash</module>
+        <module>service-image-tools</module>
     </modules>
 
     <dependencies>
