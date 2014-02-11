@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.34, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.35, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: news-test
 -- ------------------------------------------------------
--- Server version	5.5.34-0ubuntu0.12.04.1
+-- Server version	5.5.35-0ubuntu0.12.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -48,7 +48,7 @@ CREATE TABLE `channel` (
   `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `channel_idx_1` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,6 @@ DROP TABLE IF EXISTS `image`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `image` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` char(11) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `sourceChannelId` int(10) unsigned NOT NULL,
   `sourceStoryId` bigint(20) unsigned NOT NULL,
   `typeId` int(2) unsigned NOT NULL,
@@ -109,11 +108,10 @@ CREATE TABLE `image` (
   `ratio` float NOT NULL,
   `crcHash` bigint(20) NOT NULL,
   `pHash` binary(8) NOT NULL,
-  `createdDate` timestamp NOT NULL,
+  `createdDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `image_uid` (`uid`),
   UNIQUE KEY `image_idx_1` (`url`),
-  UNIQUE KEY `image_idx_2` (`sourceChannelId`, `size`, `crcHash`),
+  UNIQUE KEY `image_idx_2` (`sourceChannelId`,`size`,`crcHash`),
   KEY `image_idx_3` (`sourceChannelId`),
   KEY `image_idx_4` (`sourceStoryId`),
   KEY `image_idx_5` (`width`,`height`),
@@ -123,6 +121,39 @@ CREATE TABLE `image` (
   CONSTRAINT `image_fk_1` FOREIGN KEY (`sourceChannelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `image_fk_2` FOREIGN KEY (`sourceStoryId`) REFERENCES `story` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `image_fk_3` FOREIGN KEY (`typeId`) REFERENCES `image_type` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `image_copy`
+--
+
+DROP TABLE IF EXISTS `image_copy`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `image_copy` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `uid` char(11) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `imageId` int(10) unsigned NOT NULL,
+  `typeId` int(2) unsigned NOT NULL,
+  `directory` char(8) NOT NULL,
+  `width` int(4) NOT NULL,
+  `height` int(4) NOT NULL,
+  `ratio` float NOT NULL,
+  `size` bigint(16) NOT NULL,
+  `createdDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleteAfterDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `image_copy_uid` (`uid`),
+  KEY `image_copy_idx_1` (`imageId`),
+  KEY `image_copy_idx_2` (`typeId`),
+  KEY `image_copy_idx_3` (`directory`),
+  KEY `image_copy_idx_4` (`width`,`height`),
+  KEY `image_copy_idx_5` (`width`,`ratio`),
+  KEY `image_copy_idx_6` (`createdDate`),
+  KEY `image_copy_idx_7` (`deleteAfterDate`),
+  CONSTRAINT `image_copy_fk_1` FOREIGN KEY (`imageId`) REFERENCES `image` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `image_copy_fk_2` FOREIGN KEY (`typeId`) REFERENCES `image_type` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -161,8 +192,8 @@ CREATE TABLE `story` (
   `link` varchar(255) NOT NULL,
   `guid` varchar(255) NOT NULL,
   `isVideo` bit(1) NOT NULL DEFAULT b'0',
-  `publicationDate` timestamp NOT NULL,
-  `createdDate` timestamp NOT NULL,
+  `publicationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `description` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `story_uid` (`uid`),
@@ -232,7 +263,7 @@ CREATE TABLE `tag` (
   KEY `tag_idx_2` (`name`),
   KEY `tag_idx_3` (`typeId`,`name`),
   CONSTRAINT `tag_fk_1` FOREIGN KEY (`typeId`) REFERENCES `tag_type` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -252,7 +283,7 @@ CREATE TABLE `tag_alternative` (
   UNIQUE KEY `tag_alternative_idx_1` (`name`,`typeId`),
   KEY `tag_alternative_idx_2` (`tagId`),
   CONSTRAINT `tag_alternative_fk_2` FOREIGN KEY (`tagId`) REFERENCES `tag` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,4 +310,4 @@ CREATE TABLE `tag_type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-14 21:33:20
+-- Dump completed on 2014-02-09 19:10:58

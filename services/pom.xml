@@ -21,6 +21,7 @@
         <module>service-nlp</module>
         <module>service-freebase</module>
         <module>service-image-tools</module>
+        <module>service-storage</module>
     </modules>
 
     <dependencies>

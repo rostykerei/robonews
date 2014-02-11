@@ -1,7 +1,5 @@
 package nl.rostykerei.news.domain;
 
-import nl.rostykerei.news.util.KeyGenerator;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -11,7 +9,6 @@ import java.util.Map;
 @Entity
 @Table(name = "image",
     uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"uid"}),
         @UniqueConstraint(columnNames = {"url"}),
         @UniqueConstraint(columnNames = {"sourceChannelId", "size", "crcHash"})
     })
@@ -21,10 +18,6 @@ public class Image {
     @Column(name = "id")
     @GeneratedValue
     private long id;
-
-    @Column(name = "uid")
-    @GeneratedValue
-    private String uid = KeyGenerator.generateKey();
 
     @NotNull
     @ManyToOne
@@ -86,10 +79,6 @@ public class Image {
 
     public void setSourceStory(Story sourceStory) {
         this.sourceStory = sourceStory;
-    }
-
-    public String getUid() {
-        return uid;
     }
 
     public Channel getSourceChannel() {

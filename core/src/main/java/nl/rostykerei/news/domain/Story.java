@@ -23,7 +23,7 @@ public class Story {
     @GeneratedValue
     private long id;
 
-    @Column(name = "uid")
+    @Column(name = "uid", length = 11, nullable = false, unique = true)
     @GeneratedValue
     private String uid = KeyGenerator.generateKey();
 

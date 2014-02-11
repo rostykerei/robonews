@@ -1,9 +1,7 @@
 package nl.rostykerei.news.worker.image.crawler;
 
-import org.junit.Test;
-
 public class ImageQueueListenerTest {
-
+    /*
     @Test
     public void testListen() throws Exception {
         try {
@@ -13,5 +11,5 @@ public class ImageQueueListenerTest {
         finally {
             System.out.println("2");
         }
-    }
+    }       */
 }

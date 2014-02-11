@@ -46,6 +46,12 @@
 
         <dependency>
             <groupId>nl.rostykerei.news</groupId>
+            <artifactId>service-storage</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>nl.rostykerei.news</groupId>
             <artifactId>service-image-tools</artifactId>
             <version>${project.version}</version>
         </dependency>

@@ -26,4 +26,8 @@
     <bean id="imageDao" class="nl.rostykerei.news.dao.hibernate.ImageDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <bean id="imageCopyDao" class="nl.rostykerei.news.dao.hibernate.ImageCopyDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>

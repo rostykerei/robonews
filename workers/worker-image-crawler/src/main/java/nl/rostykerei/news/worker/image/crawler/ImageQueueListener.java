@@ -1,18 +1,22 @@
 package nl.rostykerei.news.worker.image.crawler;
 
-import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
-import java.awt.image.ColorConvertOp;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+import nl.rostykerei.news.dao.ImageCopyDao;
 import nl.rostykerei.news.dao.ImageDao;
 import nl.rostykerei.news.dao.StoryDao;
 import nl.rostykerei.news.domain.Image;
+import nl.rostykerei.news.domain.ImageCopy;
 import nl.rostykerei.news.domain.Story;
 import nl.rostykerei.news.domain.StoryImage;
 import nl.rostykerei.news.messaging.domain.ImageMessage;
@@ -21,6 +25,9 @@ import nl.rostykerei.news.service.http.HttpResponse;
 import nl.rostykerei.news.service.http.HttpService;
 import nl.rostykerei.news.service.http.impl.HttpRequestImpl;
 import nl.rostykerei.news.service.image.tools.ImageHash;
+import nl.rostykerei.news.service.image.tools.ImageSave;
+import nl.rostykerei.news.service.image.tools.ImageScale;
+import nl.rostykerei.news.service.storage.StorageService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -37,11 +44,19 @@ public class ImageQueueListener {
     private ImageDao imageDao;
 
     @Autowired
+    private ImageCopyDao imageCopyDao;
+
+    @Autowired
     private HttpService httpService;
+
+    @Autowired
+    private StorageService storageService;
 
     private Logger logger = LoggerFactory.getLogger(ImageQueueListener.class);
 
-    private static ColorConvertOp colorConvert = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+    private static final float JPEG_COMPRESSION_RATE = 0.85F;
+
+    private static final Format STORAGE_DIR_FORMAT = new SimpleDateFormat("yyyyMMdd");
 
     public void listen(ImageMessage message) {
         try {
@@ -105,6 +120,23 @@ public class ImageQueueListener {
             }
 
             storyDao.saveStoryImage(new StoryImage(story, image));
+
+            if (image.getRatio() < 0.4167 || image.getRatio() > 2.4) {
+                // Very un-proportional image
+                return;
+            }
+
+            if (image.getWidth() >= 750 && image.getRatio() >= 1.333) {
+                resizeAndUpload(image, imageFile, 750);
+            }
+
+            if (image.getWidth() >= 360) {
+                resizeAndUpload(image, imageFile, 360);
+            }
+
+            if (image.getWidth() >= 165) {
+                resizeAndUpload(image, imageFile, 165);
+            }
         }
         finally {
             tempImageFile.delete();
@@ -141,6 +173,68 @@ public class ImageQueueListener {
         }
 
         return tempFile;
+    }
+
+    private void resizeAndUpload(Image image, BufferedImage bufferedImage, int newWidth) {
+        BufferedImage resizedImage = ImageScale.resize(bufferedImage, newWidth);
+
+        File resizedImageFile;
+        String fileExtension;
+        Image.Type fileType;
+
+        try {
+            if (image.getType() == Image.Type.PNG) {
+                resizedImageFile = ImageSave.saveTempPng(resizedImage);
+                fileType = Image.Type.PNG;
+                fileExtension = ".png";
+            }
+            else {
+                resizedImageFile = ImageSave.saveTempJpeg(resizedImage, JPEG_COMPRESSION_RATE);
+                fileType = Image.Type.JPEG;
+                fileExtension = ".jpg";
+            }
+        }
+        catch (IOException e) {
+            logger.error("Could not save resized image", e);
+            return;
+        }
+
+        Date creationDate = new Date();
+
+        ImageCopy imageCopy = new ImageCopy();
+        imageCopy.setImage(image);
+        imageCopy.setType(fileType);
+        imageCopy.setWidth(resizedImage.getWidth());
+        imageCopy.setHeight(resizedImage.getHeight());
+        imageCopy.setSize(resizedImageFile.length());
+        imageCopy.setCreatedDate(creationDate);
+        imageCopy.setDeleteAfterDate(calculateDeleteAfterDate(creationDate));
+        imageCopy.setDirectory(STORAGE_DIR_FORMAT.format(creationDate));
+
+        try {
+            storageService.putFile(
+                resizedImageFile,
+                imageCopy.getUid() + fileExtension,
+                imageCopy.getDirectory(),
+                imageCopy.getDeleteAfterDate()
+            );
+
+            imageCopyDao.create(imageCopy);
+
+        } catch (IOException e) {
+            logger.error("Could not store imageCopy", e);
+            return;
+        } catch (Exception e) {
+            logger.error("Could not save imageCopy", e);
+            return;
+        }
+    }
+
+    private Date calculateDeleteAfterDate(Date creationDate) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(creationDate);
+        cal.add(Calendar.MONTH, 1);
+        return cal.getTime();
     }
 
     private Image.Type determinateImageType(File imageFile) throws IOException {
