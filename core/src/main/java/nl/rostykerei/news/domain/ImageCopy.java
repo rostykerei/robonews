@@ -33,8 +33,13 @@ public class ImageCopy {
     private int type;
 
     @NotNull
-    @Column(name = "directory", length = 8, nullable = false)
+    @Column(name = "directory", length = 6, nullable = false)
     private String directory;
+
+    @NotNull
+    @Column(name = "seed", nullable = false, unique = true)
+    @GeneratedValue
+    private int seed = KeyGenerator.generateSeed();
 
     @NotNull
     @Column(name = "width", nullable = false)
@@ -94,6 +99,10 @@ public class ImageCopy {
 
     public void setDirectory(String directory) {
         this.directory = directory;
+    }
+
+    public int getSeed() {
+        return seed;
     }
 
     public int getWidth() {

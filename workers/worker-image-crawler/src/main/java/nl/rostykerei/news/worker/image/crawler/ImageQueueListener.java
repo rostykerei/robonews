@@ -56,7 +56,7 @@ public class ImageQueueListener {
 
     private static final float JPEG_COMPRESSION_RATE = 0.85F;
 
-    private static final Format STORAGE_DIR_FORMAT = new SimpleDateFormat("yyyyMMdd");
+    private static final Format STORAGE_DIR_FORMAT = new SimpleDateFormat("yyMMdd");
 
     public void listen(ImageMessage message) {
         try {
@@ -216,6 +216,7 @@ public class ImageQueueListener {
                 resizedImageFile,
                 imageCopy.getUid() + fileExtension,
                 imageCopy.getDirectory(),
+                    "", //TODO
                 imageCopy.getDeleteAfterDate()
             );
 
@@ -228,6 +229,14 @@ public class ImageQueueListener {
             logger.error("Could not save imageCopy", e);
             return;
         }
+        finally {
+            try {
+                resizedImageFile.delete();
+            }
+            catch (Exception e) {
+                // ignore..
+            }
+        }
     }
 
     private Date calculateDeleteAfterDate(Date creationDate) {
@@ -236,6 +245,8 @@ public class ImageQueueListener {
         cal.add(Calendar.MONTH, 1);
         return cal.getTime();
     }
+
+
 
     private Image.Type determinateImageType(File imageFile) throws IOException {
         ImageInputStream iis = ImageIO.createImageInputStream(imageFile);

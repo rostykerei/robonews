@@ -13,5 +13,13 @@
     <name>Service Storage</name>
     <artifactId>service-storage</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.jclouds.provider</groupId>
+            <artifactId>cloudfiles-us</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+    </dependencies>
+
 
 </project>

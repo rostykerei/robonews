@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Date;
+
+import nl.rostykerei.news.service.storage.StorageService;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,7 +15,7 @@ public class StorageServiceFileTest {
 
     @Test
     public void testPutFile() throws Exception {
-        StorageServiceFile storageService = new StorageServiceFile(TEMP_DIR);
+        StorageService storageService = new StorageServiceFile(TEMP_DIR);
 
         File tempFile = File.createTempFile("temp-file-", ".txt");
         tempFile.deleteOnExit();
@@ -30,7 +32,7 @@ public class StorageServiceFileTest {
             new File(TEMP_DIR + File.separator + dirName).exists()
         );
 
-        storageService.putFile(tempFile, "temp-copy.txt", dirName, new Date());
+        storageService.putFile(tempFile, "temp-copy.txt", dirName, null, new Date());
 
         File copyFile = new File(TEMP_DIR + File.separator + dirName + File.separator + "temp-copy.txt");
 

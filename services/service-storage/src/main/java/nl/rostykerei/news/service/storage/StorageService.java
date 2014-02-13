@@ -6,6 +6,6 @@ import java.util.Date;
 
 public interface StorageService {
 
-    void putFile(File source, String filename, String directory, Date deleteAfterDate) throws IOException;
+    void putFile(File source, String filename, String directory, String contentType, Date deleteAfterDate) throws IOException;
 
 }

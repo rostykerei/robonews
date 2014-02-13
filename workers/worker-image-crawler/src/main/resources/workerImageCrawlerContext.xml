@@ -15,8 +15,11 @@
 
     <bean id="imageQueueListener" class="nl.rostykerei.news.worker.image.crawler.ImageQueueListener"/>
 
-    <bean id="imageStorage" class="nl.rostykerei.news.service.storage.file.StorageServiceFile">
+    <!--<bean id="imageStorage" class="nl.rostykerei.news.service.storage.file.StorageServiceFile">
         <constructor-arg value="/home/rosty/test/img"/>
+    </bean>-->
+
+    <bean id="imageStorage" class="nl.rostykerei.news.service.storage.rackspace.StorageServiceRackspace">
     </bean>
 
     <context:annotation-config/>

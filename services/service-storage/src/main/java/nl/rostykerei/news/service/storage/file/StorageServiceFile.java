@@ -17,15 +17,16 @@ public class StorageServiceFile implements StorageService {
         this.rootDir = rootDir;
     }
 
-
     @Override
-    public void putFile(File source, String filename, String directory, Date deleteAfterDate) throws IOException {
+    public void putFile(File source, String filename, String directory, String contentType, Date deleteAfterDate) throws IOException {
 
-        if (!new File(rootDir + directory).exists()) {
-            boolean dirSuccess = new File(rootDir + directory).mkdirs();
+        synchronized (this) {
+            if (!new File(rootDir + directory).exists()) {
+                boolean dirSuccess = new File(rootDir + directory).mkdirs();
 
-            if (!dirSuccess) {
-                throw new IOException("Could not create directory: " + rootDir + directory);
+                if (!dirSuccess) {
+                    throw new IOException("Could not create directory: " + rootDir + directory);
+                }
             }
         }
 
