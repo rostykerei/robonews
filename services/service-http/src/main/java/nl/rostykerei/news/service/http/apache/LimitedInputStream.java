@@ -1,3 +1,9 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2014 Rosty Kerei.
+ * All rights reserved.
+ */
 package nl.rostykerei.news.service.http.apache;
 
 import java.io.FilterInputStream;
@@ -5,11 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import org.apache.http.ContentTooLongException;
 
-/**
- * Created with IntelliJ IDEA on 8/30/13 at 2:34 PM
- *
- * @author Rosty Kerei
- */
 public class LimitedInputStream extends FilterInputStream {
 
     /** the wrapped input stream */

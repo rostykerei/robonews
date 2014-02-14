@@ -1,3 +1,9 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2014 Rosty Kerei.
+ * All rights reserved.
+ */
 package nl.rostykerei.news.worker.crawler.dao.impl;
 
 import nl.rostykerei.news.worker.crawler.dao.CrawlerDao;

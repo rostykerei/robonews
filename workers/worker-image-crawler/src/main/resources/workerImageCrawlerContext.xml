@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Robonews.io
+
+    Copyright (c) 2013-2014 Rosty Kerei.
+    All rights reserved.
+
+-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -15,11 +23,10 @@
 
     <bean id="imageQueueListener" class="nl.rostykerei.news.worker.image.crawler.ImageQueueListener"/>
 
-    <!--<bean id="imageStorage" class="nl.rostykerei.news.service.storage.file.StorageServiceFile">
-        <constructor-arg value="/home/rosty/test/img"/>
-    </bean>-->
-
     <bean id="imageStorage" class="nl.rostykerei.news.service.storage.rackspace.StorageServiceRackspace">
+        <constructor-arg name="apiUsername" value="${rackspace.username}"/>
+        <constructor-arg name="apiKey" value="${rackspace.key}"/>
+        <constructor-arg name="container" value="${rackspace.container.images}"/>
     </bean>
 
     <context:annotation-config/>

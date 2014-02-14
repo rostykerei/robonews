@@ -1,3 +1,9 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2014 Rosty Kerei.
+ * All rights reserved.
+ */
 package nl.rostykerei.news.service.syndication.impl;
 
 import java.util.Date;
@@ -6,11 +12,6 @@ import java.util.Set;
 
 import nl.rostykerei.news.service.syndication.SyndicationEntry;
 
-/**
- * Created with IntelliJ IDEA on 9/3/13 at 12:27 PM
- *
- * @author Rosty Kerei
- */
 public class SyndicationEntryImpl implements SyndicationEntry {
 
     private String title;

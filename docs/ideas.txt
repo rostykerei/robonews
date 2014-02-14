@@ -14,4 +14,6 @@ Make sure story.uid in not always (unneccessarry) generated...
 Investigate RPM/DEB package generation
 Check robots.txt
 Check for images inside news page meta tags (thumbnailUrl, open graph)
-io domain (news.io) - gandi.net registara (promo code IO4LESS)
+[DONE] io domain (news.io) - gandi.net registara (promo code IO4LESS)
+Add unique index for image_copy (image_id, width) to prevent duplicaed
+Utilize pHash usage before creating image_copy? - check other (for the same story) for pHash, if its the same (or close) and image size is less then already stored -> ignore it?

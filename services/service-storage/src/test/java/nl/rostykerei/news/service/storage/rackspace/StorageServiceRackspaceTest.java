@@ -1,20 +1,24 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2014 Rosty Kerei.
+ * All rights reserved.
+ */
 package nl.rostykerei.news.service.storage.rackspace;
-
-import nl.rostykerei.news.service.storage.StorageService;
-import nl.rostykerei.news.service.storage.file.StorageServiceFile;
-import org.junit.Test;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Date;
+import nl.rostykerei.news.service.storage.StorageService;
+import org.junit.Test;
 
 public class StorageServiceRackspaceTest {
 
     @Test
     public void testPutFile() throws Exception {
 
-        StorageService storageService = new StorageServiceRackspace();
+        StorageService storageService = new StorageServiceRackspace("robonews.files", "c8de7e43df9349a2a2619aaec54b7c74", "test");
 
         File tempFile = File.createTempFile("temp-file-", ".txt");
         tempFile.deleteOnExit();

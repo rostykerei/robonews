@@ -1,3 +1,9 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2014 Rosty Kerei.
+ * All rights reserved.
+ */
 package nl.rostykerei.news.service.syndication;
 
 import org.junit.Test;
@@ -9,13 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.net.URL;
 import java.net.URLConnection;
 
-/**
- * Created with IntelliJ IDEA.
- * User: rosty
- * Date: 1/4/14
- * Time: 10:27 PM
- * To change this template use File | Settings | File Templates.
- */
 @ContextConfiguration({ "classpath:serviceSyndicationContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class SyndicationServiceTest {

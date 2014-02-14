@@ -1,29 +1,40 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2014 Rosty Kerei.
+ * All rights reserved.
+ */
 package nl.rostykerei.news.service.storage.rackspace;
-
-import nl.rostykerei.news.service.storage.StorageService;
-import org.jclouds.ContextBuilder;
-import org.jclouds.blobstore.BlobStore;
-import org.jclouds.blobstore.BlobStoreContext;
-import org.jclouds.blobstore.domain.Blob;
-import org.jclouds.blobstore.options.PutOptions;
-import org.jclouds.openstack.swift.CommonSwiftAsyncClient;
-import org.jclouds.openstack.swift.CommonSwiftClient;
-import org.jclouds.openstack.swift.domain.SwiftObject;
-import org.jclouds.rest.RestContext;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
+import nl.rostykerei.news.service.storage.StorageService;
+import org.jclouds.ContextBuilder;
+import org.jclouds.blobstore.BlobStore;
+import org.jclouds.blobstore.BlobStoreContext;
+import org.jclouds.blobstore.domain.Blob;
 
 public class StorageServiceRackspace implements StorageService {
+
+    private String apiUsername;
+
+    private String apiKey;
+
+    private String container;
+
+    public StorageServiceRackspace(String apiUsername, String apiKey, String container) {
+        this.apiUsername = apiUsername;
+        this.apiKey = apiKey;
+        this.container = container;
+    }
 
     @Override
     public void putFile(File source, String filename, String directory, String contentType, Date deleteAfterDate) throws IOException {
         ContextBuilder contextBuilder = ContextBuilder.
                 newBuilder("cloudfiles-us").
-                credentials("robonews.files", "c8de7e43df9349a2a2619aaec54b7c74");
+                credentials(this.apiUsername, this.apiKey);
 
         BlobStore blobStore = contextBuilder.buildView(BlobStoreContext.class).getBlobStore();
 
@@ -34,6 +45,6 @@ public class StorageServiceRackspace implements StorageService {
             .contentType(contentType)
             .build();
 
-        blobStore.putBlob("img", blob);
+        blobStore.putBlob(this.container, blob);
     }
 }

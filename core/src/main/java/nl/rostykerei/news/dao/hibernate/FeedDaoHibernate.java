@@ -1,3 +1,9 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2014 Rosty Kerei.
+ * All rights reserved.
+ */
 package nl.rostykerei.news.dao.hibernate;
 
 import java.util.Date;
@@ -7,11 +13,6 @@ import nl.rostykerei.news.domain.Feed;
 import org.hibernate.LockMode;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created with IntelliJ IDEA on 7/25/13 at 6:19 PM
- *
- * @author Rosty Kerei
- */
 public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implements FeedDao {
 
     public FeedDaoHibernate() {

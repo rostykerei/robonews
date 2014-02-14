@@ -1,3 +1,9 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2014 Rosty Kerei.
+ * All rights reserved.
+ */
 package nl.rostykerei.news.worker.crawler.util;
 
 import java.util.Date;
@@ -6,11 +12,6 @@ import nl.rostykerei.news.service.syndication.impl.SyndicationEntryImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Created with IntelliJ IDEA on 8/8/13 at 3:46 PM
- *
- * @author Rosty Kerei
- */
 public class SanitizerTest {
 
     @Test(expected = SanitizerException.class)

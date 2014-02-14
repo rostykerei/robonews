@@ -1,3 +1,9 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2014 Rosty Kerei.
+ * All rights reserved.
+ */
 package nl.rostykerei.news.manager.dto;
 
 import java.util.Date;
@@ -6,11 +12,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import nl.rostykerei.news.domain.Feed;
 
-/**
- * Created with IntelliJ IDEA on 7/31/13 at 3:57 PM
- *
- * @author Rosty Kerei
- */
 public class FeedDto {
 
     private int id;

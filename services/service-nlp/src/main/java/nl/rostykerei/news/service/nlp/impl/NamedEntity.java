@@ -1,10 +1,11 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2014 Rosty Kerei.
+ * All rights reserved.
+ */
 package nl.rostykerei.news.service.nlp.impl;
 
-/**
- * Created with IntelliJ IDEA on 8/20/13 at 10:28 AM
- *
- * @author Rosty Kerei
- */
 public class NamedEntity {
 
     private Type type;

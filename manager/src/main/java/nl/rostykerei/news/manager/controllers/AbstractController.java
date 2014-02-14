@@ -1,13 +1,14 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2014 Rosty Kerei.
+ * All rights reserved.
+ */
 package nl.rostykerei.news.manager.controllers;
 
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-/**
- * Created with IntelliJ IDEA on 7/25/13 at 11:21 AM
- *
- * @author Rosty Kerei
- */
 public class AbstractController {
 
     protected final static String INFO_MESSAGE = "infoMessage";
