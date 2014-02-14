@@ -21,16 +21,16 @@
         <rabbit:listener ref="imageQueueListener" method="listen" queue-names="imageQueue"/>
     </rabbit:listener-container>
 
-    <bean id="imageQueueListener" class="nl.rostykerei.news.worker.image.crawler.ImageQueueListener"/>
+    <bean id="imageQueueListener" class="io.robonews.worker.image.crawler.ImageQueueListener"/>
 
-    <bean id="imageStorage" class="nl.rostykerei.news.service.storage.rackspace.StorageServiceRackspace">
+    <bean id="imageStorage" class="io.robonews.service.storage.rackspace.StorageServiceRackspace">
         <constructor-arg name="apiUsername" value="${rackspace.username}"/>
         <constructor-arg name="apiKey" value="${rackspace.key}"/>
         <constructor-arg name="container" value="${rackspace.container.images}"/>
     </bean>
 
     <context:annotation-config/>
-    <context:component-scan base-package="nl.rostykerei.news.worker.image.crawler"/>
+    <context:component-scan base-package="io.robonews.worker.image.crawler"/>
     <context:property-placeholder  location="file:${config.file}"/>
 
 </beans>

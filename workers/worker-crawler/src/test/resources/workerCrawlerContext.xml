@@ -20,7 +20,7 @@
         <jdbc:script location="classpath:sql/db-data-2.sql"/>
     </jdbc:initialize-database>
 
-    <bean class="nl.rostykerei.news.worker.crawler.util.Starter">
+    <bean class="io.robonews.worker.crawler.util.Starter">
         <constructor-arg ref="crawler"/>
     </bean>
 

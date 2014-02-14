@@ -11,31 +11,31 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="channelDao" class="nl.rostykerei.news.dao.hibernate.ChannelDaoHibernate">
+    <bean id="channelDao" class="io.robonews.dao.hibernate.ChannelDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="feedDao" class="nl.rostykerei.news.dao.hibernate.FeedDaoHibernate">
+    <bean id="feedDao" class="io.robonews.dao.hibernate.FeedDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="categoryDao" class="nl.rostykerei.news.dao.hibernate.CategoryDaoHibernate">
+    <bean id="categoryDao" class="io.robonews.dao.hibernate.CategoryDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="storyDao" class="nl.rostykerei.news.dao.hibernate.StoryDaoHibernate">
+    <bean id="storyDao" class="io.robonews.dao.hibernate.StoryDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="tagDao" class="nl.rostykerei.news.dao.hibernate.TagDaoHibernate">
+    <bean id="tagDao" class="io.robonews.dao.hibernate.TagDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="imageDao" class="nl.rostykerei.news.dao.hibernate.ImageDaoHibernate">
+    <bean id="imageDao" class="io.robonews.dao.hibernate.ImageDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="imageCopyDao" class="nl.rostykerei.news.dao.hibernate.ImageCopyDaoHibernate">
+    <bean id="imageCopyDao" class="io.robonews.dao.hibernate.ImageCopyDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 </beans>

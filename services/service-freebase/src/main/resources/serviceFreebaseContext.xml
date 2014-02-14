@@ -13,7 +13,7 @@
 
     <import resource="serviceHttpContext.xml"/>
 
-    <bean id="freebaseService" class="nl.rostykerei.news.service.freebase.google.FreebaseServiceGoogle">
+    <bean id="freebaseService" class="io.robonews.service.freebase.google.FreebaseServiceGoogle">
         <constructor-arg ref="httpService"/>
         <property name="apiKey" value="${freebase.apiKey}"/>
     </bean>

@@ -22,11 +22,11 @@
         <rabbit:listener ref="tagQueueListener" method="listen" queue-names="tagQueue"/>
     </rabbit:listener-container>
 
-    <bean id="tagQueueListener" class="nl.rostykerei.news.worker.tagger.TagQueueListener" />
+    <bean id="tagQueueListener" class="io.robonews.worker.tagger.TagQueueListener" />
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="nl.rostykerei.news.worker.tagger"/>
+    <context:component-scan base-package="io.robonews.worker.tagger"/>
 
     <context:property-placeholder  location="file:${config.file}"/>
 

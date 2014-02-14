@@ -12,8 +12,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>nl.rostykerei.news</groupId>
-    <artifactId>news</artifactId>
+    <groupId>io.robonews</groupId>
+    <artifactId>root-pom</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <name>Robonews.io</name>
@@ -48,6 +48,7 @@
                     <aggregate>true</aggregate>
                     <includes>
                         <include>**/*.java</include>
+                        <include>**/*.jsp</include>
                         <include>**/*.xml</include>
                         <include>**/*.xsd</include>
                         <include>**/*.properties</include>

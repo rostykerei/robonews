@@ -12,18 +12,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>workers</artifactId>
-        <groupId>nl.rostykerei.news</groupId>
+        <groupId>io.robonews</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Worker Tagger</name>
+    <name>Robonews.io - Workers - Tagger</name>
 
     <artifactId>worker-tagger</artifactId>
 
     <properties>
-        <launcher.class>nl.rostykerei.news.worker.tagger.Launcher</launcher.class>
+        <launcher.class>io.robonews.worker.tagger.Launcher</launcher.class>
     </properties>
 
     <build>
@@ -41,25 +41,25 @@
 
     <dependencies>
         <dependency>
-            <groupId>nl.rostykerei.news</groupId>
+            <groupId>io.robonews</groupId>
             <artifactId>core</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>nl.rostykerei.news</groupId>
+            <groupId>io.robonews</groupId>
             <artifactId>messaging</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>nl.rostykerei.news</groupId>
+            <groupId>io.robonews</groupId>
             <artifactId>service-nlp</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>nl.rostykerei.news</groupId>
+            <groupId>io.robonews</groupId>
             <artifactId>service-freebase</artifactId>
             <version>${project.version}</version>
         </dependency>

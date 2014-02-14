@@ -13,15 +13,15 @@
 
 <hibernate-configuration>
     <session-factory>
-        <mapping class="nl.rostykerei.news.domain.Channel" />
-        <mapping class="nl.rostykerei.news.domain.Category" />
-        <mapping class="nl.rostykerei.news.domain.Feed" />
-        <mapping class="nl.rostykerei.news.domain.Story"/>
-        <mapping class="nl.rostykerei.news.domain.Tag"/>
-        <mapping class="nl.rostykerei.news.domain.TagAlternative"/>
-        <mapping class="nl.rostykerei.news.domain.StoryTag"/>
-        <mapping class="nl.rostykerei.news.domain.Image"/>
-        <mapping class="nl.rostykerei.news.domain.StoryImage"/>
-        <mapping class="nl.rostykerei.news.domain.ImageCopy"/>
+        <mapping class="io.robonews.domain.Channel" />
+        <mapping class="io.robonews.domain.Category" />
+        <mapping class="io.robonews.domain.Feed" />
+        <mapping class="io.robonews.domain.Story"/>
+        <mapping class="io.robonews.domain.Tag"/>
+        <mapping class="io.robonews.domain.TagAlternative"/>
+        <mapping class="io.robonews.domain.StoryTag"/>
+        <mapping class="io.robonews.domain.Image"/>
+        <mapping class="io.robonews.domain.StoryImage"/>
+        <mapping class="io.robonews.domain.ImageCopy"/>
     </session-factory>
 </hibernate-configuration>

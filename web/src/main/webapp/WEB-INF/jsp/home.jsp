@@ -1,9 +1,10 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: rosty
-  Date: 7/21/13
-  Time: 9:07 PM
-  To change this template use File | Settings | File Templates.
+
+    Robonews.io
+
+    Copyright (c) 2013-2014 Rosty Kerei.
+    All rights reserved.
+
 --%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>

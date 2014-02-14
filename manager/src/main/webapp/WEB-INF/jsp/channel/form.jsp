@@ -1,3 +1,11 @@
+<%--
+
+    Robonews.io
+
+    Copyright (c) 2013-2014 Rosty Kerei.
+    All rights reserved.
+
+--%>
 <%@include file="/WEB-INF/jsp/includes/errorbox.jsp"%>
 
 <form:form method="POST" commandName="channel" cssClass="form-horizontal">

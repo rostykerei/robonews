@@ -12,13 +12,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>services</artifactId>
-        <groupId>nl.rostykerei.news</groupId>
+        <groupId>io.robonews</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <name>Robonews.io - Services - Image Tools</name>
+
     <artifactId>service-image-tools</artifactId>
-    <name>Service Image Tools</name>
 
     <dependencies>
         <dependency>

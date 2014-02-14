@@ -11,18 +11,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>nl.rostykerei.news</groupId>
+        <groupId>io.robonews</groupId>
         <artifactId>workers</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Worker Crawler</name>
+    <name>Robonews.io - Workers - Crawler</name>
 
     <artifactId>worker-crawler</artifactId>
 
     <properties>
-        <launcher.class>nl.rostykerei.news.worker.crawler.Launcher</launcher.class>
+        <launcher.class>io.robonews.worker.crawler.Launcher</launcher.class>
     </properties>
 
     <build>
@@ -40,25 +40,25 @@
 
     <dependencies>
         <dependency>
-            <groupId>nl.rostykerei.news</groupId>
+            <groupId>io.robonews</groupId>
             <artifactId>core</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>nl.rostykerei.news</groupId>
+            <groupId>io.robonews</groupId>
             <artifactId>service-http</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>nl.rostykerei.news</groupId>
+            <groupId>io.robonews</groupId>
             <artifactId>service-syndication</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>nl.rostykerei.news</groupId>
+            <groupId>io.robonews</groupId>
             <artifactId>messaging</artifactId>
             <version>${project.version}</version>
         </dependency>

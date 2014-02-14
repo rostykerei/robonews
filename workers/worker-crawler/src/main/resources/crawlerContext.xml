@@ -18,11 +18,11 @@
     <import resource="classpath:serviceSyndicationContext.xml"/>
     <import resource="classpath:messagingContext.xml"/>
 
-    <bean id="crawlerDao" class="nl.rostykerei.news.worker.crawler.dao.impl.CrawlerDaoImpl"/>
+    <bean id="crawlerDao" class="io.robonews.worker.crawler.dao.impl.CrawlerDaoImpl"/>
 
-    <bean id="crawler" class="nl.rostykerei.news.worker.crawler.controller.impl.CrawlerControllerImpl"/>
+    <bean id="crawler" class="io.robonews.worker.crawler.controller.impl.CrawlerControllerImpl"/>
 
-    <context:component-scan base-package="nl.rostykerei.news.worker.crawler"/>
+    <context:component-scan base-package="io.robonews.worker.crawler"/>
 
     <context:property-placeholder  location="file:${config.file}"/>
 

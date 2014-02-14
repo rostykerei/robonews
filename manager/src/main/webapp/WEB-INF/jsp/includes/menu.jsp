@@ -1,3 +1,11 @@
+<%--
+
+    Robonews.io
+
+    Copyright (c) 2013-2014 Rosty Kerei.
+    All rights reserved.
+
+--%>
 <c:set var="pageName" value="${requestScope['javax.servlet.forward.servlet_path']}"/>
 
 <div class="span2">

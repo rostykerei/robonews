@@ -17,7 +17,7 @@
         </constructor-arg>
     </bean>
 
-    <bean id="httpService" class="nl.rostykerei.news.service.http.apache.HttpServiceApache">
+    <bean id="httpService" class="io.robonews.service.http.apache.HttpServiceApache">
         <constructor-arg ref="httpClient"/>
 
         <property name="userAgent" value="${http.userAgent}"/>

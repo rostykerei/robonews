@@ -1,3 +1,11 @@
+<%--
+
+    Robonews.io
+
+    Copyright (c) 2013-2014 Rosty Kerei.
+    All rights reserved.
+
+--%>
 <c:if test="${errorMessage != null}">
 <div class="alert alert-error">
 <c:out value="${errorMessage}"/>

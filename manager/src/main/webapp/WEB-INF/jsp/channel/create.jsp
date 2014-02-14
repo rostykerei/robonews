@@ -1,3 +1,11 @@
+<%--
+
+    Robonews.io
+
+    Copyright (c) 2013-2014 Rosty Kerei.
+    All rights reserved.
+
+--%>
 <%@include file="/WEB-INF/jsp/includes/header.jsp"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
