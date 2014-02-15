@@ -8,15 +8,15 @@ package io.robonews.service.syndication.rome;
 
 import com.sun.syndication.feed.synd.SyndEnclosure;
 import com.sun.syndication.feed.synd.SyndEntry;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import io.robonews.service.syndication.SyndicationEntry;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.jdom.Attribute;
 import org.jdom.Element;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class SyndicationEntryRome implements SyndicationEntry {
 

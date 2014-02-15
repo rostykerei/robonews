@@ -7,11 +7,12 @@
 package io.robonews.service.storage.rackspace;
 
 import io.robonews.service.storage.StorageService;
+import org.junit.Test;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Date;
-import org.junit.Test;
 
 public class StorageServiceRackspaceTest {
 

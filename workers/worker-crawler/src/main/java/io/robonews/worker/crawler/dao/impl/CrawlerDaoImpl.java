@@ -11,9 +11,9 @@ import io.robonews.domain.Category;
 import io.robonews.domain.Feed;
 import io.robonews.domain.Story;
 import io.robonews.service.syndication.SyndicationEntry;
-import io.robonews.worker.crawler.util.SanitizerException;
 import io.robonews.worker.crawler.dao.CrawlerDao;
 import io.robonews.worker.crawler.util.Sanitizer;
+import io.robonews.worker.crawler.util.SanitizerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 

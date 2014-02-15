@@ -17,7 +17,7 @@
     <jdbc:initialize-database data-source="dataSource">
         <jdbc:script location="classpath:sql/db-schema.sql"/>
         <jdbc:script location="classpath:sql/db-masterdata.sql"/>
-        <jdbc:script location="classpath:sql/db-data-2.sql"/>
+        <jdbc:script location="classpath:sql/db-data.sql"/>
     </jdbc:initialize-database>
 
     <bean class="io.robonews.worker.crawler.util.Starter">

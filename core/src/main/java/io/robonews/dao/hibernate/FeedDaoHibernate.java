@@ -8,10 +8,11 @@ package io.robonews.dao.hibernate;
 
 import io.robonews.dao.FeedDao;
 import io.robonews.domain.Feed;
-import java.util.Date;
-import java.util.List;
 import org.hibernate.LockMode;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
 
 public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implements FeedDao {
 

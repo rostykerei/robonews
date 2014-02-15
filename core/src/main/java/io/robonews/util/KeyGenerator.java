@@ -7,6 +7,7 @@
 package io.robonews.util;
 
 import org.apache.commons.codec.binary.Base64;
+
 import java.security.SecureRandom;
 
 public class KeyGenerator {

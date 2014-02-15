@@ -12,30 +12,38 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
 
     <rabbit:connection-factory
-            id="connectionFactory"
-            host="${rabbit.host}"
-            port="${rabbit.port}"
-            username="${rabbit.username}"
-            password="${rabbit.password}"
+        id="connectionFactory"
+        host="${rabbit.host}"
+        port="${rabbit.port}"
+        username="${rabbit.username}"
+        password="${rabbit.password}"
     />
 
-    <bean  id="tagMessagingTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
+    <bean id="tagMessagingTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="exchange" value="tagExchange"/>
         <property name="messageConverter" ref="jsonMessageConverter"/>
     </bean>
 
-    <bean  id="imageMessagingTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
+    <bean id="imageMessagingTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="exchange" value="imageExchange"/>
         <property name="messageConverter" ref="jsonMessageConverter"/>
     </bean>
 
+    <bean id="pageMessagingTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="exchange" value="pageExchange"/>
+        <property name="messageConverter" ref="jsonMessageConverter"/>
+    </bean>
+
     <rabbit:admin connection-factory="connectionFactory" />
 
-    <rabbit:queue name="tagQueue" durable="true"/>
+    <rabbit:queue name="tagQueue"  durable="true"/>
 
     <rabbit:queue name="imageQueue" durable="true"/>
+
+    <rabbit:queue name="pageQueue" durable="true"/>
 
     <rabbit:fanout-exchange name="tagExchange" durable="true">
         <rabbit:bindings>
@@ -46,6 +54,12 @@
     <rabbit:fanout-exchange name="imageExchange" durable="true">
         <rabbit:bindings>
             <rabbit:binding queue="imageQueue"/>
+        </rabbit:bindings>
+    </rabbit:fanout-exchange>
+    
+    <rabbit:fanout-exchange name="pageExchange" durable="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="pageQueue"/>
         </rabbit:bindings>
     </rabbit:fanout-exchange>
 

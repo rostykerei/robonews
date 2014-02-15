@@ -7,6 +7,7 @@
 package io.robonews.dao;
 
 import io.robonews.domain.Category;
+
 import java.util.List;
 
 public interface CategoryDao {

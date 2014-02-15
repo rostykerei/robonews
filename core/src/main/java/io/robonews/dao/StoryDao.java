@@ -6,8 +6,8 @@
  */
 package io.robonews.dao;
 
-import io.robonews.domain.Story;
 import io.robonews.domain.Channel;
+import io.robonews.domain.Story;
 import io.robonews.domain.StoryImage;
 import io.robonews.domain.StoryTag;
 

@@ -6,9 +6,9 @@
  */
 package io.robonews.dao.hibernate;
 
+import io.robonews.dao.TagDao;
 import io.robonews.domain.Tag;
 import io.robonews.domain.TagAlternative;
-import io.robonews.dao.TagDao;
 import org.springframework.transaction.annotation.Transactional;
 
 public class TagDaoHibernate extends AbstractDaoHibernate<Tag, Integer> implements TagDao {

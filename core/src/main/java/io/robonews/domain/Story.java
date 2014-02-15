@@ -6,14 +6,14 @@
  */
 package io.robonews.domain;
 
+import io.robonews.util.KeyGenerator;
+import org.apache.commons.codec.digest.DigestUtils;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
-import io.robonews.util.KeyGenerator;
-import org.apache.commons.codec.digest.DigestUtils;
 
 @Entity
 @Table(name = "story",

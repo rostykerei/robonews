@@ -30,6 +30,7 @@
         <module>service-freebase</module>
         <module>service-image-tools</module>
         <module>service-storage</module>
+        <module>service-text-tools</module>
     </modules>
 
     <dependencies>

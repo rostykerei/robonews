@@ -7,10 +7,11 @@
 package io.robonews.worker.crawler.util;
 
 import io.robonews.service.syndication.SyndicationEntry;
-import java.util.Date;
 import io.robonews.service.syndication.impl.SyndicationEntryImpl;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.util.Date;
 
 public class SanitizerTest {
 

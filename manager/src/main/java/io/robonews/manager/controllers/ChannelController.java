@@ -9,7 +9,6 @@ package io.robonews.manager.controllers;
 import io.robonews.dao.ChannelDao;
 import io.robonews.domain.Channel;
 import io.robonews.manager.dto.ChannelDto;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -21,6 +20,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 public class ChannelController extends AbstractController {

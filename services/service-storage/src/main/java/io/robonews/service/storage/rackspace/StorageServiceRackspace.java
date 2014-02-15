@@ -7,14 +7,15 @@
 package io.robonews.service.storage.rackspace;
 
 import io.robonews.service.storage.StorageService;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Date;
 import org.jclouds.ContextBuilder;
 import org.jclouds.blobstore.BlobStore;
 import org.jclouds.blobstore.BlobStoreContext;
 import org.jclouds.blobstore.domain.Blob;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Date;
 
 public class StorageServiceRackspace implements StorageService {
 

@@ -11,12 +11,13 @@ import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.ParsingFeedException;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
-import io.robonews.service.syndication.SyndicationService;
-import java.io.IOException;
-import java.io.InputStream;
 import io.robonews.service.syndication.SyndicationFeed;
+import io.robonews.service.syndication.SyndicationService;
 import io.robonews.service.syndication.SyndicationServiceException;
 import io.robonews.service.syndication.SyndicationServiceParsingException;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class SyndicationServiceRome implements SyndicationService {
 

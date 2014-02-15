@@ -7,6 +7,7 @@
 package io.robonews.service.syndication.impl;
 
 import io.robonews.service.syndication.SyndicationEntry;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;

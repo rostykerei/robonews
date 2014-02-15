@@ -10,13 +10,14 @@ import edu.stanford.nlp.ie.AbstractSequenceClassifier;
 import edu.stanford.nlp.ie.crf.CRFClassifier;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.util.Triple;
+import io.robonews.service.nlp.NamedEntityRecognizerService;
 import io.robonews.service.nlp.impl.NamedEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import io.robonews.service.nlp.NamedEntityRecognizerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class NamedEntityRecognizerServiceStanford implements NamedEntityRecognizerService {
 

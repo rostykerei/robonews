@@ -9,10 +9,9 @@ package io.robonews.worker.crawler.dao;
 import io.robonews.dao.StoryDao;
 import io.robonews.domain.Category;
 import io.robonews.domain.Channel;
+import io.robonews.domain.Feed;
 import io.robonews.domain.Story;
 import io.robonews.service.syndication.SyndicationEntry;
-import java.util.Date;
-import io.robonews.domain.Feed;
 import io.robonews.service.syndication.impl.SyndicationEntryImpl;
 import io.robonews.worker.crawler.dao.impl.CrawlerDaoImpl;
 import org.junit.Assert;
@@ -22,8 +21,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.*;
+import java.util.Date;
+
 import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CrawlerDaoTest {

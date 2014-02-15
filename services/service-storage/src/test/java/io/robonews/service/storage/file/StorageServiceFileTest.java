@@ -7,13 +7,13 @@
 package io.robonews.service.storage.file;
 
 import io.robonews.service.storage.StorageService;
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Date;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 public class StorageServiceFileTest {
 

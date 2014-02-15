@@ -7,17 +7,14 @@
 package io.robonews.worker.crawler.controller;
 
 import io.robonews.dao.FeedDao;
-import io.robonews.messaging.domain.TagMessage;
-import io.robonews.service.syndication.SyndicationService;
-import io.robonews.service.syndication.SyndicationServiceParsingException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
 import io.robonews.domain.Feed;
+import io.robonews.messaging.domain.TagMessage;
 import io.robonews.service.http.HttpRequest;
 import io.robonews.service.http.HttpResponse;
 import io.robonews.service.http.HttpService;
 import io.robonews.service.syndication.SyndicationEntry;
+import io.robonews.service.syndication.SyndicationService;
+import io.robonews.service.syndication.SyndicationServiceParsingException;
 import io.robonews.worker.crawler.controller.impl.CrawlerControllerImpl;
 import io.robonews.worker.crawler.dao.CrawlerDao;
 import org.junit.Assert;
@@ -27,6 +24,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
 
 import static org.mockito.Mockito.*;
 

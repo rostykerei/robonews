@@ -10,11 +10,12 @@ import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import io.robonews.service.syndication.SyndicationEntry;
 import io.robonews.service.syndication.SyndicationFeed;
+import org.springframework.util.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import org.springframework.util.StringUtils;
 
 public class SyndicationFeedRome implements SyndicationFeed {
 

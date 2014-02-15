@@ -7,13 +7,8 @@
 package io.robonews.domain;
 
 
+import javax.persistence.*;
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "story_tag", uniqueConstraints = @UniqueConstraint(columnNames = {"storyId", "tagId"}))

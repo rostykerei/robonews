@@ -6,11 +6,12 @@
  */
 package io.robonews.manager.dto;
 
-import java.util.Date;
+import io.robonews.domain.Feed;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
-import io.robonews.domain.Feed;
+import java.util.Date;
 
 public class FeedDto {
 

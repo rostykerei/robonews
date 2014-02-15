@@ -7,9 +7,6 @@
 package io.robonews.service.http.apache;
 
 import io.robonews.service.http.HttpResponse;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
 import org.apache.http.ContentTooLongException;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -18,6 +15,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.cookie.DateParseException;
 import org.apache.http.impl.cookie.DateUtils;
 import org.springframework.util.StringUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Date;
 
 public class HttpResponseApache implements HttpResponse {
 

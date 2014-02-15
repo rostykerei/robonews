@@ -6,9 +6,9 @@
  */
 package io.robonews.dao.hibernate;
 
-import io.robonews.domain.Story;
 import io.robonews.dao.StoryDao;
 import io.robonews.domain.Channel;
+import io.robonews.domain.Story;
 import io.robonews.domain.StoryImage;
 import io.robonews.domain.StoryTag;
 import org.apache.commons.codec.digest.DigestUtils;

@@ -6,13 +6,14 @@
  */
 package io.robonews.dao.hibernate;
 
-import java.io.Serializable;
 import io.robonews.dao.AbstractDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.Serializable;
 
 @Repository
 abstract class AbstractDaoHibernate <T, PK extends Serializable>

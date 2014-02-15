@@ -6,7 +6,7 @@
  */
 package io.robonews.messaging.domain;
 
-public class ImageMessage {
+public class ImageMessage extends AbstractMessage {
 
     private long storyId;
 

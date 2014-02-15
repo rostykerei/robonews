@@ -6,13 +6,9 @@
  */
 package io.robonews.service.http.apache;
 
+import io.robonews.service.http.HttpRequest;
 import io.robonews.service.http.HttpResponse;
 import io.robonews.service.http.HttpService;
-import java.io.IOException;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
-import io.robonews.service.http.HttpRequest;
 import org.apache.http.HttpException;
 import org.apache.http.HttpHeaders;
 import org.apache.http.HttpRequestInterceptor;
@@ -22,6 +18,11 @@ import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.cookie.DateUtils;
 import org.apache.http.protocol.HttpContext;
 import org.springframework.util.StringUtils;
+
+import java.io.IOException;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HttpServiceApache implements HttpService {
 

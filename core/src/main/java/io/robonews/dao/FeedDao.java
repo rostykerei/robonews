@@ -6,8 +6,9 @@
  */
 package io.robonews.dao;
 
-import java.util.List;
 import io.robonews.domain.Feed;
+
+import java.util.List;
 
 public interface FeedDao extends AbstractDao<Feed, Integer> {
 

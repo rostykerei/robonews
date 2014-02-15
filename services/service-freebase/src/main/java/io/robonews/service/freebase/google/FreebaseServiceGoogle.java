@@ -9,17 +9,8 @@ package io.robonews.service.freebase.google;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.annotations.SerializedName;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.List;
 import io.robonews.service.freebase.FreebaseService;
-import io.robonews.service.freebase.exception.AmbiguousResultException;
-import io.robonews.service.freebase.exception.FreebaseServiceException;
-import io.robonews.service.freebase.exception.NotFoundException;
-import io.robonews.service.freebase.exception.ParserException;
-import io.robonews.service.freebase.exception.ServiceUnavailableException;
+import io.robonews.service.freebase.exception.*;
 import io.robonews.service.freebase.impl.FreebaseSearchResult;
 import io.robonews.service.http.HttpRequest;
 import io.robonews.service.http.HttpResponse;
@@ -28,6 +19,12 @@ import io.robonews.service.http.impl.HttpRequestImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.List;
 
 public class FreebaseServiceGoogle implements FreebaseService {
 

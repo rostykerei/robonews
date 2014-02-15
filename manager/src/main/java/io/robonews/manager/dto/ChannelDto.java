@@ -6,9 +6,10 @@
  */
 package io.robonews.manager.dto;
 
+import io.robonews.domain.Channel;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import io.robonews.domain.Channel;
 
 public class ChannelDto {
 

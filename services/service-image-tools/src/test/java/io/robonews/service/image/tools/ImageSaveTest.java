@@ -6,11 +6,12 @@
  */
 package io.robonews.service.image.tools;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
 import org.junit.Assert;
 import org.junit.Test;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 
 public class ImageSaveTest {

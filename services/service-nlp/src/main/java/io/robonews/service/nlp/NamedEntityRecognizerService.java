@@ -7,6 +7,7 @@
 package io.robonews.service.nlp;
 
 import io.robonews.service.nlp.impl.NamedEntity;
+
 import java.util.Set;
 
 public interface NamedEntityRecognizerService {

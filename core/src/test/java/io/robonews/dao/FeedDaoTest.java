@@ -7,8 +7,6 @@
 package io.robonews.dao;
 
 import io.robonews.domain.Category;
-import java.util.Date;
-import java.util.List;
 import io.robonews.domain.Channel;
 import io.robonews.domain.Feed;
 import org.junit.Assert;
@@ -21,6 +19,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
 
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:testContext.xml" })

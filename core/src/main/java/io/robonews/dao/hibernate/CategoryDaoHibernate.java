@@ -6,14 +6,15 @@
  */
 package io.robonews.dao.hibernate;
 
-import io.robonews.domain.Category;
-import java.util.List;
 import io.robonews.dao.CategoryDao;
+import io.robonews.domain.Category;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 public class CategoryDaoHibernate implements CategoryDao {

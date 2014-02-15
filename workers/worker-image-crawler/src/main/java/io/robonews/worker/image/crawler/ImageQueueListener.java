@@ -6,25 +6,12 @@
  */
 package io.robonews.worker.image.crawler;
 
-import io.robonews.dao.StoryDao;
-import io.robonews.domain.ImageCopy;
-import io.robonews.domain.Story;
-import io.robonews.service.storage.StorageService;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
 import io.robonews.dao.ImageCopyDao;
 import io.robonews.dao.ImageDao;
+import io.robonews.dao.StoryDao;
 import io.robonews.domain.Image;
+import io.robonews.domain.ImageCopy;
+import io.robonews.domain.Story;
 import io.robonews.domain.StoryImage;
 import io.robonews.messaging.domain.ImageMessage;
 import io.robonews.service.http.HttpRequest;
@@ -34,12 +21,26 @@ import io.robonews.service.http.impl.HttpRequestImpl;
 import io.robonews.service.image.tools.ImageHash;
 import io.robonews.service.image.tools.ImageSave;
 import io.robonews.service.image.tools.ImageScale;
+import io.robonews.service.storage.StorageService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
 
 public class ImageQueueListener {
 
@@ -153,32 +154,35 @@ public class ImageQueueListener {
         HttpRequest httpRequest = new HttpRequestImpl(url);
         httpRequest.setAccept("image/jpeg,image/png,image/gif,image/*");
 
-        HttpResponse httpResponse = httpService.execute(httpRequest);
-
-        if (httpResponse == null) {
-            throw new IOException("HTTP service returned null response");
-        }
-
-        if (httpResponse.getHttpStatus() != 200) {
-            throw new IOException("HTTP code [" + httpResponse.getHttpStatus() + "] returned");
-        }
-
-        File tempFile = File.createTempFile("image-crawler-", ".img");
-        tempFile.deleteOnExit();
+        HttpResponse httpResponse = null;
 
         try {
-            IOUtils.copy(httpResponse.getStream(), new FileOutputStream(tempFile));
+            httpResponse = httpService.execute(httpRequest);
 
-            if (httpResponse != null) {
-                httpResponse.releaseConnection();
+            if (httpResponse.getHttpStatus() != 200) {
+                throw new IOException("HTTP code [" + httpResponse.getHttpStatus() + "] returned");
+            }
+
+            File tempFile = File.createTempFile("image-crawler-", ".img");
+            tempFile.deleteOnExit();
+
+            try {
+                IOUtils.copy(httpResponse.getStream(), new FileOutputStream(tempFile));
+            }
+            catch (Exception e) {
+                tempFile.delete();
+                throw new IOException(e);
+            }
+
+            return tempFile;
+        }
+        finally {
+            synchronized (this) {
+                if (httpResponse != null) {
+                    httpResponse.releaseConnection();
+                }
             }
         }
-        catch (Exception e) {
-            tempFile.delete();
-            throw new IOException(e);
-        }
-
-        return tempFile;
     }
 
     private void resizeAndUpload(Image image, BufferedImage bufferedImage, int newWidth) {
@@ -222,7 +226,7 @@ public class ImageQueueListener {
                 resizedImageFile,
                 imageCopy.getUid() + fileExtension,
                 imageCopy.getDirectory(),
-                    "", //TODO
+                getContentType(fileType),
                 imageCopy.getDeleteAfterDate()
             );
 
@@ -252,7 +256,18 @@ public class ImageQueueListener {
         return cal.getTime();
     }
 
-
+    private String getContentType(Image.Type imageType) {
+        switch (imageType) {
+            case JPEG:
+                return "image/jpeg";
+            case PNG:
+                return "image/png";
+            case GIF:
+                return "image/gif";
+            default:
+                return "";
+        }
+    }
 
     private Image.Type determinateImageType(File imageFile) throws IOException {
         ImageInputStream iis = ImageIO.createImageInputStream(imageFile);

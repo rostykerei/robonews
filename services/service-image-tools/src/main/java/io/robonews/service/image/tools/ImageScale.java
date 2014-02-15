@@ -6,8 +6,9 @@
  */
 package io.robonews.service.image.tools;
 
-import java.awt.image.BufferedImage;
 import org.imgscalr.Scalr;
+
+import java.awt.image.BufferedImage;
 
 public class ImageScale {
 

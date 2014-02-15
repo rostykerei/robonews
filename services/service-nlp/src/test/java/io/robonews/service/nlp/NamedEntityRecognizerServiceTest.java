@@ -7,14 +7,15 @@
 package io.robonews.service.nlp;
 
 import io.robonews.service.nlp.impl.NamedEntity;
-import java.util.HashSet;
-import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @ContextConfiguration({ "classpath:serviceNlpContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)

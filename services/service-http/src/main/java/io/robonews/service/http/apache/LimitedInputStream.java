@@ -6,10 +6,11 @@
  */
 package io.robonews.service.http.apache;
 
+import org.apache.http.ContentTooLongException;
+
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import org.apache.http.ContentTooLongException;
 
 public class LimitedInputStream extends FilterInputStream {
 

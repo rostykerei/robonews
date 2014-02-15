@@ -6,7 +6,7 @@
  */
 package io.robonews.service.image.tools;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;

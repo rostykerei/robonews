@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Robonews.io
+
+    Copyright (c) 2013-2014 Rosty Kerei.
+    All rights reserved.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <import resource="classpath:coreContext.xml"/>
+    <import resource="classpath:messagingContext.xml"/>
+    <import resource="classpath:serviceHttpContext.xml"/>
+
+    <rabbit:listener-container connection-factory="connectionFactory" concurrency="${workerPageCrawler.threads}" message-converter="jsonMessageConverter">
+        <rabbit:listener ref="pageQueueListener" method="listen" queue-names="pageQueue"/>
+    </rabbit:listener-container>
+
+    <bean id="pageQueueListener" class="io.robonews.worker.page.crawler.PageQueueListener"/>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="io.robonews.worker.page.crawler"/>
+    <context:property-placeholder  location="file:${config.file}"/>
+
+</beans>

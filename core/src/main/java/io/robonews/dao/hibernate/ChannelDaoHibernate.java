@@ -6,10 +6,11 @@
  */
 package io.robonews.dao.hibernate;
 
-import java.util.List;
 import io.robonews.dao.ChannelDao;
 import io.robonews.domain.Channel;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 public class ChannelDaoHibernate extends AbstractDaoHibernate<Channel, Integer> implements ChannelDao {
 

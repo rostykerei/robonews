@@ -6,8 +6,9 @@
  */
 package io.robonews.service.http.impl;
 
-import java.util.Date;
 import io.robonews.service.http.HttpRequest;
+
+import java.util.Date;
 
 public class HttpRequestImpl implements HttpRequest {
 
