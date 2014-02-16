@@ -6,10 +6,9 @@
  */
 package io.robonews.worker.crawler.util;
 
-import com.google.common.base.CharMatcher;
 import io.robonews.service.syndication.SyndicationEntry;
-import org.apache.commons.validator.routines.UrlValidator;
-import org.jsoup.Jsoup;
+import io.robonews.service.text.tools.TextSanitizer;
+import io.robonews.service.text.tools.UrlValidator;
 
 public class Sanitizer {
 
@@ -20,7 +19,7 @@ public class Sanitizer {
         }
 
         if (syndEntry.getAuthor() != null) {
-            syndEntry.setAuthor( sanitizeText(syndEntry.getAuthor(), 255));
+            syndEntry.setAuthor( TextSanitizer.sanitizeText(syndEntry.getAuthor(), 255) );
         }
 
         if (syndEntry.getGuid() != null) {
@@ -39,9 +38,8 @@ public class Sanitizer {
                 throw new SanitizerException("Link is too long");
             }
 
-            UrlValidator urlValidator = new UrlValidator(new String[] {"http", "https"});
 
-            if (!urlValidator.isValid(link)) {
+            if (!UrlValidator.isValid(link)) {
                 throw new SanitizerException("Link is not valid");
             }
 
@@ -51,7 +49,7 @@ public class Sanitizer {
         }
 
         if (syndEntry.getTitle() != null) {
-            String title = sanitizeText(syndEntry.getTitle(), 255);
+            String title = TextSanitizer.sanitizeText(syndEntry.getTitle(), 255);
 
             if (title.length() > 4) {
                 syndEntry.setTitle(title);
@@ -69,44 +67,9 @@ public class Sanitizer {
         }
 
         if (syndEntry.getDescription() != null) {
-            syndEntry.setDescription( sanitizeText(syndEntry.getDescription(), 1024));
+            syndEntry.setDescription( TextSanitizer.sanitizeText(syndEntry.getDescription(), 1024) );
         }
 
         return syndEntry;
-    }
-
-    static String sanitizeText(String text, int maxLength) {
-        text = Jsoup.parse(text).text();
-        text = normalizeWhitespaces(text);
-        text = truncate(text, maxLength);
-
-        return text;
-    }
-
-    static String normalizeWhitespaces(String text) {
-        return CharMatcher.WHITESPACE.collapseFrom(text, ' ').trim();
-    }
-
-    static String truncate(String text, int maxLength) {
-        final String BREAK_CHARACTERS = " .!,;:?-";
-
-        if(text.length() > maxLength)
-        {
-            text = text.substring(0, maxLength);
-
-            int breakPoint = CharMatcher.anyOf(BREAK_CHARACTERS).lastIndexIn(text) + 1;
-
-            if (breakPoint == 0) {
-                text = text.substring(0, maxLength - 1);
-            }
-            else {
-                text = text.substring(0, breakPoint);
-                text = text.substring(0, CharMatcher.noneOf(BREAK_CHARACTERS).lastIndexIn(text) + 1);
-            }
-
-            text += "\u2026";
-        }
-
-        return text;
     }
 }

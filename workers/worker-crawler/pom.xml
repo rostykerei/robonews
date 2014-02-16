@@ -59,26 +59,14 @@
 
         <dependency>
             <groupId>io.robonews</groupId>
-            <artifactId>messaging</artifactId>
+            <artifactId>service-text-tools</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.7.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>14.0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-            <version>1.4.0</version>
+            <groupId>io.robonews</groupId>
+            <artifactId>messaging</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>

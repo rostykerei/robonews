@@ -39,7 +39,7 @@ public class CrawlerDaoTest {
     public void testCreateValidStory() throws Exception {
         SyndicationEntry syndEntry = new SyndicationEntryImpl();
         syndEntry.setTitle("story-title");
-        syndEntry.setLink("http://www.robonews.nl/index.html");
+        syndEntry.setLink("http://www.robonews.io/index.html");
         syndEntry.setGuid("test-unique-guid");
         syndEntry.setPubDate(new Date());
         syndEntry.setDescription("story-description");
@@ -75,10 +75,10 @@ public class CrawlerDaoTest {
     }
 
     @Test
-    public void testCreateExistentPriolStory() {
+    public void testCreateExistentPrioStory() {
         SyndicationEntry syndEntry = new SyndicationEntryImpl();
         syndEntry.setTitle("story-title");
-        syndEntry.setLink("http://www.robonews.nl/index.html");
+        syndEntry.setLink("http://www.robonews.io/index.html");
         syndEntry.setGuid("test-unique-guid");
         syndEntry.setPubDate(new Date());
         syndEntry.setDescription("story-description");
@@ -116,7 +116,7 @@ public class CrawlerDaoTest {
     public void testCreateExistentSamePrioLevelStory() {
         SyndicationEntry syndEntry = new SyndicationEntryImpl();
         syndEntry.setTitle("story-title");
-        syndEntry.setLink("http://www.robonews.nl/index.html");
+        syndEntry.setLink("http://www.robonews.io/index.html");
         syndEntry.setGuid("test-unique-guid");
         syndEntry.setPubDate(new Date());
         syndEntry.setDescription("story-description");

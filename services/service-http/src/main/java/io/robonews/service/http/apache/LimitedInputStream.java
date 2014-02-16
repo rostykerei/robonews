@@ -6,6 +6,7 @@
  */
 package io.robonews.service.http.apache;
 
+import io.robonews.service.http.HttpResponse;
 import org.apache.http.ContentTooLongException;
 
 import java.io.FilterInputStream;
@@ -23,16 +24,26 @@ public class LimitedInputStream extends FilterInputStream {
     /** the number of bytes already returned */
     private long pos = 0;
 
-    public LimitedInputStream(InputStream in, long size) {
+    private HttpResponse httpResponse;
+
+    public LimitedInputStream(InputStream in, long size, HttpResponse httpResponse) {
         super(in);
         this.max = size;
         this.in = in;
+        this.httpResponse = httpResponse;
     }
 
     @Override
     public int read() throws IOException {
         if (pos >= max) {
             in.close();
+            synchronized (this) {
+                if (httpResponse != null) {
+                    httpResponse.abort();
+                    httpResponse.releaseConnection();
+                }
+            }
+
             throw new ContentTooLongException("Content too long (more than " + max + " bytes). Stream closed.");
         }
 
@@ -45,6 +56,14 @@ public class LimitedInputStream extends FilterInputStream {
     public int read(byte[] b, int off, int len) throws IOException {
         if (pos>=max) {
             in.close();
+
+            synchronized (this) {
+                if (httpResponse != null) {
+                    httpResponse.abort();
+                    httpResponse.releaseConnection();
+                }
+            }
+
             throw new ContentTooLongException("Content too long (more than " + max + " bytes). Stream closed.");
         }
 

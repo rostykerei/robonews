@@ -11,18 +11,37 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="httpClient" class="org.apache.http.impl.client.DefaultHttpClient">
-        <constructor-arg>
-            <bean class="org.apache.http.impl.conn.PoolingClientConnectionManager"/>
-        </constructor-arg>
+    <bean id="apacheRequestConfigBuilder" class="org.apache.http.client.config.RequestConfig" factory-method="custom">
+        <property name="socketTimeout" value="${http.timeout}" />
+        <property name="connectTimeout" value="${http.timeout}" />
+        <property name="circularRedirectsAllowed" value="false"/>
+        <property name="expectContinueEnabled" value="false"/>
+        <property name="maxRedirects" value="2"/>
+        <property name="authenticationEnabled" value="false"/>
+        <property name="relativeRedirectsAllowed" value="true"/>
+        <property name="connectionRequestTimeout" value="${http.timeout}" />
+        <property name="redirectsEnabled" value="true"/>
     </bean>
+
+    <bean id="apacheRequestConfig" factory-bean="apacheRequestConfigBuilder" factory-method="build" />
+
+    <bean id="apacheHttpConnectionManager" class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
+        <property name="maxTotal" value="${http.maxConnections}"/>
+        <property name="defaultMaxPerRoute" value="${http.maxConnections}"/>
+    </bean>
+
+    <bean id="apacheHttpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder" factory-method="create">
+        <property name="defaultRequestConfig" ref="apacheRequestConfig"/>
+        <property name="userAgent" value="${http.userAgent}"/>
+        <property name="maxConnTotal" value="${http.maxConnections}"/>
+        <property name="maxConnPerRoute" value="${http.maxConnections}"/>
+        <property name="connectionManager" ref="apacheHttpConnectionManager"/>
+    </bean>
+
+    <bean id="apacheHttpClient" factory-bean="apacheHttpClientBuilder" factory-method="build" />
 
     <bean id="httpService" class="io.robonews.service.http.apache.HttpServiceApache">
-        <constructor-arg ref="httpClient"/>
-
-        <property name="userAgent" value="${http.userAgent}"/>
-        <property name="timeout" value="${http.timeout}"/>
+        <constructor-arg name="httpClient" ref="apacheHttpClient"/>
         <property name="maxContentLength" value="${http.maxContentLength}"/>
     </bean>
-
 </beans>

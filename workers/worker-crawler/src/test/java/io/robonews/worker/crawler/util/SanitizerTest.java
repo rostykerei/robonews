@@ -59,7 +59,7 @@ public class SanitizerTest {
     @Test(expected = SanitizerException.class)
     public void testSanitizeLinkInvalid() throws SanitizerException {
         SyndicationEntry syndEntry = getFilledSyndEntry();
-        syndEntry.setLink("ftp://www.robonews.nl/");
+        syndEntry.setLink("ftp://www.robonews.io/");
         Sanitizer.sanitize(syndEntry);
     }
 
@@ -97,7 +97,6 @@ public class SanitizerTest {
         SyndicationEntry syndEntry = getFilledSyndEntry();
         syndEntry.setDescription(LONG_STRING + LONG_STRING + LONG_STRING + LONG_STRING + LONG_STRING + LONG_STRING);
 
-
         Assert.assertEquals(1024, Sanitizer.sanitize(syndEntry).getDescription().length());
     }
 
@@ -106,7 +105,7 @@ public class SanitizerTest {
         SyndicationEntry syndEntry = getFilledSyndEntry();
         syndEntry.setAuthor(" <p>Author   \n  name</p>   ");
         syndEntry.setGuid(" <value/>   should stay  be unmodifiable ");
-        syndEntry.setLink("http://www.robonews.nl/somepost.html");
+        syndEntry.setLink("http://www.robonews.io/somepost.html");
         syndEntry.setTitle(" <div>Title</p   ");
 
         Date pubDate = new Date();
@@ -116,36 +115,9 @@ public class SanitizerTest {
 
         Assert.assertEquals("Author name", sanitized.getAuthor());
         Assert.assertEquals(" <value/>   should stay  be unmodifiable ", sanitized.getGuid());
-        Assert.assertEquals("http://www.robonews.nl/somepost.html", sanitized.getLink());
+        Assert.assertEquals("http://www.robonews.io/somepost.html", sanitized.getLink());
         Assert.assertEquals("Title", sanitized.getTitle());
         Assert.assertEquals(pubDate, sanitized.getPubDate());
-    }
-
-    @Test
-    public void testSanitizeText() {
-        Assert.assertEquals("Test", Sanitizer.sanitizeText("Test", 255));
-        Assert.assertEquals("Test", Sanitizer.sanitizeText("<h1>Test", 255));
-        Assert.assertEquals("Test", Sanitizer.sanitizeText("<bad>Test", 255));
-        Assert.assertEquals("Test", Sanitizer.sanitizeText("<b class=\"x\">Test</b>    ", 255));
-        Assert.assertEquals("Test", Sanitizer.sanitizeText("<h1>Test</h1>", 255));
-
-    }
-
-    @Test
-    public void testNormalizeWhitespaces() {
-        Assert.assertEquals("Test", Sanitizer.normalizeWhitespaces("  Test"));
-        Assert.assertEquals("Test", Sanitizer.normalizeWhitespaces("Test   "));
-        Assert.assertEquals("Te st", Sanitizer.normalizeWhitespaces("Te   st"));
-        Assert.assertEquals("T e s t", Sanitizer.normalizeWhitespaces("  T \u200a e \t  s\n     t   "));
-    }
-
-    @Test
-    public void testTruncate() {
-        Assert.assertEquals("abc xyz…", Sanitizer.truncate("abc xyz qwe 123 ope", 10));
-        Assert.assertEquals("abc xyz…", Sanitizer.truncate("abc xyz, qwe 123 ope", 10));
-        Assert.assertEquals("abc xyz…", Sanitizer.truncate("abc xyz! Qwe 123 ope", 10));
-        Assert.assertEquals("abc xyz q…", Sanitizer.truncate("abc xyz q? safdsf", 10));
-        Assert.assertEquals("123456789…", Sanitizer.truncate("12345678901234567", 10));
     }
 
     private SyndicationEntry getFilledSyndEntry() {
@@ -154,7 +126,7 @@ public class SanitizerTest {
         syndEntry.setDescription("Test description");
         syndEntry.setAuthor("Test author");
         syndEntry.setTitle("Test title");
-        syndEntry.setLink("http://www.robonews.nl/");
+        syndEntry.setLink("http://www.robonews.io/");
         syndEntry.setGuid("unique-guid");
         syndEntry.setPubDate(new Date());
 

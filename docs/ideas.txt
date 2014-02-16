@@ -17,4 +17,5 @@ Check for images inside news page meta tags (thumbnailUrl, open graph)
 [DONE] io domain (news.io) - gandi.net registara (promo code IO4LESS)
 Add unique index for image_copy (image_id, width) to prevent duplicaed
 Utilize pHash usage before creating image_copy? - check other (for the same story) for pHash, if its the same (or close) and image size is less then already stored -> ignore it?
-FIX org.apache.http.conn.ConnectionPoolTimeoutException: Timeout waiting for connection from pool
+[DONE] FIX org.apache.http.conn.ConnectionPoolTimeoutException: Timeout waiting for connection from pool
+Add heartbeat service to each worker(JMX?)

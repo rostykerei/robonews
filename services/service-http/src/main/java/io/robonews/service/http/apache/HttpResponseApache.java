@@ -12,8 +12,8 @@ import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.cookie.DateParseException;
-import org.apache.http.impl.cookie.DateUtils;
+import org.apache.http.client.utils.DateUtils;
+import org.apache.http.util.EntityUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
@@ -37,6 +37,11 @@ public class HttpResponseApache implements HttpResponse {
             long contentLength = Long.parseLong(contentLengthHeader.getValue());
 
             if (contentLength > 0 && contentLength > maxContentLength) {
+                synchronized (this) {
+                    abort();
+                    releaseConnection();
+                }
+
                 throw new ContentTooLongException("Content is too long: " + contentLength +
                         " bytes expected, but only " + maxContentLength + " allowed");
             }
@@ -49,12 +54,17 @@ public class HttpResponseApache implements HttpResponse {
 
         long contentLength = entity.getContentLength();
         if (contentLength > 0 && contentLength > maxContentLength) {
+            synchronized (this) {
+                abort();
+                releaseConnection();
+            }
+
             throw new ContentTooLongException("Content is too long: " + contentLength +
                     " bytes expected, but only " + maxContentLength + " allowed");
         }
 
         if (entity != null) {
-            return new LimitedInputStream(entity.getContent(), maxContentLength);
+            return new LimitedInputStream(entity.getContent(), maxContentLength, this);
         }
 
         return null;
@@ -82,7 +92,7 @@ public class HttpResponseApache implements HttpResponse {
         if (header != null) {
             try {
                 return DateUtils.parseDate(header.getValue());
-            } catch (DateParseException e) {
+            } catch (Exception e) {
                 return null;
             }
         }

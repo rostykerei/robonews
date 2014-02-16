@@ -9,50 +9,24 @@ package io.robonews.service.http.apache;
 import io.robonews.service.http.HttpRequest;
 import io.robonews.service.http.HttpResponse;
 import io.robonews.service.http.HttpService;
-import org.apache.http.HttpException;
 import org.apache.http.HttpHeaders;
-import org.apache.http.HttpRequestInterceptor;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.protocol.ResponseContentEncoding;
-import org.apache.http.impl.client.AbstractHttpClient;
-import org.apache.http.impl.cookie.DateUtils;
-import org.apache.http.protocol.HttpContext;
+import org.apache.http.client.utils.DateUtils;
+import org.apache.http.conn.HttpClientConnectionManager;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class HttpServiceApache implements HttpService {
 
-    private AbstractHttpClient httpClient;
-
-    private String userAgent = "RssBot";
-
-    private int timeout = 5 * 1000;
+    private HttpClient httpClient;
 
     private long maxContentLength = 256 * 1024;
 
-    public HttpServiceApache(AbstractHttpClient httpClient) {
+    public HttpServiceApache(HttpClient httpClient) {
         this.httpClient = httpClient;
-
-        httpClient.getParams().setParameter("http.socket.timeout", getTimeout());
-        httpClient.getParams().setParameter("http.connection.timeout", getTimeout());
-        httpClient.getParams().setParameter("http.connection-manager.timeout", new Long(getTimeout()));
-        httpClient.getParams().setParameter("http.protocol.head-body-timeout", getTimeout());
-
-        this.httpClient.addRequestInterceptor(new HttpRequestInterceptor() {
-            @Override
-            public void process(org.apache.http.HttpRequest request, HttpContext context) throws HttpException, IOException {
-                request.setHeader(HttpHeaders.USER_AGENT, getUserAgent());
-                request.setHeader(HttpHeaders.ACCEPT_ENCODING, "gzip,deflate");
-                request.setHeader(HttpHeaders.CACHE_CONTROL, "public");
-                request.setHeader(HttpHeaders.CONNECTION, "close");
-            }
-        });
-
-        this.httpClient.addResponseInterceptor(new ResponseContentEncoding());
     }
 
     @Override
@@ -78,38 +52,7 @@ public class HttpServiceApache implements HttpService {
 
         final org.apache.http.HttpResponse httpResponse = httpClient.execute(httpGet);
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            public void run() {
-                synchronized (this) {
-                    if(httpGet != null) {
-                        httpGet.abort();
-                    }
-                }
-            }
-        }, getTimeout());
-
         return new HttpResponseApache(httpResponse, httpGet, getMaxContentLength());
-    }
-
-    @Override
-    public void setUserAgent(String userAgent) {
-        this.userAgent = userAgent;
-    }
-
-    @Override
-    public String getUserAgent() {
-        return userAgent;
-    }
-
-    @Override
-    public void setTimeout(int milliseconds) {
-        this.timeout = milliseconds;
-    }
-
-    @Override
-    public int getTimeout() {
-        return timeout;
     }
 
     @Override

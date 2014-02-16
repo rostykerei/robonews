@@ -15,6 +15,8 @@ import io.robonews.service.http.impl.HttpRequestImpl;
 import io.robonews.service.text.tools.InputStreamReader;
 import io.robonews.service.text.tools.MetaPropertyFetcher;
 import org.apache.http.ContentTooLongException;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.conn.ConnectTimeoutException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -22,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 
 public class PageQueueListener {
 
@@ -40,6 +43,18 @@ public class PageQueueListener {
         }
         catch (ContentTooLongException e) {
             logger.info("Page content too long [" +  message.getPageUrl() + "], skipping...");
+        }
+        catch (ConnectTimeoutException e) {
+            logger.info("Page does not respond [" +  message.getPageUrl() + "], skipping...");
+        }
+        catch (SocketTimeoutException e) {
+            logger.info("Page does not respond [" +  message.getPageUrl() + "], skipping...");
+        }
+        catch (ClientProtocolException e) {
+            logger.info("Page responds with HTTP error (too many redirects?) [" +  message.getPageUrl() + "], skipping...");
+        }
+        catch (IOException e) {
+            logger.info("Page responds IOException (" + e.getMessage() + ") [" +  message.getPageUrl() + "], skipping...");
         }
         catch (Exception e) {
             logger.info("Failed to process PageMessage", e);

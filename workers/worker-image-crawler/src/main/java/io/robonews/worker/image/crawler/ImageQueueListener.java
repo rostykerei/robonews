@@ -69,6 +69,9 @@ public class ImageQueueListener {
         try {
             processMessage(message);
         }
+        catch (java.io.IOException e) {
+            logger.info("Failed to process image: " + message.getImageUrl() + " error: " + e.getMessage());
+        }
         catch (Exception e) {
             logger.info("Failed to process image", e);
         }
@@ -288,8 +291,13 @@ public class ImageQueueListener {
             else if ("GIF".equalsIgnoreCase(name)) {
                 return Image.Type.GIF;
             }
+            else {
+                throw new IOException("Unknown format [" + name + "]");
+            }
+        }
+        else {
+            throw new IOException("Not image file");
         }
 
-        throw new IOException("Unknown format");
     }
 }

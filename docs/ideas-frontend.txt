@@ -1,1 +1,2 @@
 Links underlining using css3 border transition eg http://roem.ru/
+[JS] Use timezone to determinate country! (use then locale to differ between US and CA)
