@@ -88,7 +88,13 @@ public class ImageQueueListener {
         Image existentImage = imageDao.getByUrl(message.getImageUrl());
 
         if (existentImage != null) {
-            storyDao.saveStoryImage(new StoryImage(story, existentImage));
+            try {
+                storyDao.saveStoryImage(new StoryImage(story, existentImage));
+            }
+            catch (DataIntegrityViolationException e) {
+                // do nothing, already linked...
+            }
+
             return;
         }
 
@@ -129,7 +135,13 @@ public class ImageQueueListener {
                 }
             }
 
-            storyDao.saveStoryImage(new StoryImage(story, image));
+            try {
+                storyDao.saveStoryImage(new StoryImage(story, image));
+            }
+            catch (DataIntegrityViolationException e) {
+                // Do nothing, already linked...
+            }
+
 
             if (image.getRatio() < 0.4167 || image.getRatio() > 2.4) {
                 // Very un-proportional image

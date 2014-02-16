@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
+import java.util.Set;
 
 public class PageQueueListener {
 
@@ -89,9 +90,9 @@ public class PageQueueListener {
             }
         }
 
-        String imageUrl = MetaPropertyFetcher.fetchOpenGraphImage(content);
+        Set<String> imageUrls = MetaPropertyFetcher.fetchMetaImages(content);
 
-        if (imageUrl != null) {
+        for (String imageUrl : imageUrls) {
             ImageMessage imageMessage = new ImageMessage();
             imageMessage.setStoryId(message.getStoryId());
             imageMessage.setImageUrl(imageUrl);
@@ -99,5 +100,6 @@ public class PageQueueListener {
 
             imageMessaging.convertAndSend(imageMessage);
         }
+
     }
 }

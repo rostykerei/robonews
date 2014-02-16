@@ -27,7 +27,7 @@ package { 'mc':
 }
 
 #Java
-
+#TODO change to 7
 exec { 'download_jdk':
     command => '/usr/bin/wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64-rpm.bin" -O /opt/jdk.bin',
     creates => '/opt/jdk.bin',

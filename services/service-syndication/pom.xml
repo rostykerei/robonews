@@ -28,13 +28,12 @@
             <version>1.0</version>
         </dependency>
 
-        <!-- url validator -->
         <dependency>
-            <groupId>commons-validator</groupId>
-            <artifactId>commons-validator</artifactId>
-            <version>1.4.0</version>
+            <groupId>io.robonews</groupId>
+            <artifactId>service-text-tools</artifactId>
+            <version>${project.version}</version>
         </dependency>
-    </dependencies>
+     </dependencies>
 
 
 </project>

@@ -9,7 +9,7 @@ package io.robonews.service.syndication.rome;
 import com.sun.syndication.feed.synd.SyndEnclosure;
 import com.sun.syndication.feed.synd.SyndEntry;
 import io.robonews.service.syndication.SyndicationEntry;
-import org.apache.commons.validator.routines.UrlValidator;
+import io.robonews.service.text.tools.UrlValidator;
 import org.jdom.Attribute;
 import org.jdom.Element;
 
@@ -24,8 +24,6 @@ public class SyndicationEntryRome implements SyndicationEntry {
 
     private Set<String> mediaKeywords = new HashSet<String>();
     private Set<String> mediaImages = new HashSet<String>();
-
-    private static UrlValidator urlValidator = new UrlValidator(new String[] {"http"});
 
     public SyndicationEntryRome(SyndEntry syndEntry) {
         this.syndEntry = syndEntry;
@@ -136,7 +134,7 @@ public class SyndicationEntryRome implements SyndicationEntry {
             String imageType = enclosure.getType();
             String imageUrl = enclosure.getUrl();
 
-            if (isImageMime(imageType) && imageUrl != null && imageUrl.length() < 256 && urlValidator.isValid(imageUrl)) {
+            if (isImageMime(imageType) && imageUrl != null && imageUrl.length() < 256 && UrlValidator.isValid(imageUrl)) {
                 mediaImages.add(imageUrl);
             }
         }
@@ -195,11 +193,27 @@ public class SyndicationEntryRome implements SyndicationEntry {
                 if ("keywords".equalsIgnoreCase(element.getName())) {
                     processMediaKeywords(element.getValue());
                 }
-
-                if ("content".equalsIgnoreCase(element.getName())) {
+                else if ("content".equalsIgnoreCase(element.getName())) {
                     processMediaContent(element);
                 }
+                else if ("thumbnail".equalsIgnoreCase(element.getName())) {
+                    processMediaThumbnail(element);
+                }
             }
+        }
+    }
+
+    private void processMediaThumbnail(Element element) {
+        if (element == null) {
+            return;
+        }
+
+        Attribute urlAttribute = element.getAttribute("url");
+
+        if (urlAttribute != null &&
+                urlAttribute.getValue().length() < 256 &&
+                UrlValidator.isValid(urlAttribute.getValue())) {
+            mediaImages.add(urlAttribute.getValue());
         }
     }
 
@@ -215,7 +229,7 @@ public class SyndicationEntryRome implements SyndicationEntry {
                 urlAttribute != null &&
                 isImageMime(typeAttribute.getValue()) &&
                 urlAttribute.getValue().length() < 256 &&
-                urlValidator.isValid(urlAttribute.getValue())) {
+                UrlValidator.isValid(urlAttribute.getValue())) {
             mediaImages.add(urlAttribute.getValue());
         }
     }
