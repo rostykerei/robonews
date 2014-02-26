@@ -91,7 +91,7 @@
                                 <filemode>755</filemode>
                                 <sources>
                                     <source>
-                                        <location>../src/main/scripts/bin/worker-ctrl.sh</location>
+                                        <location>../src/main/scripts/worker-ctrl.sh</location>
                                         <destination>${project.artifactId}.sh</destination>
                                         <filter>true</filter>
                                     </source>
@@ -139,7 +139,7 @@
                                 <groupname>root</groupname>
                                 <sources>
                                     <source>
-                                        <location>../src/main/scripts/rc.d/init.sh</location>
+                                        <location>../src/main/scripts/init.sh</location>
                                         <destination>robonews-${project.artifactId}</destination>
                                         <filter>true</filter>
                                     </source>
