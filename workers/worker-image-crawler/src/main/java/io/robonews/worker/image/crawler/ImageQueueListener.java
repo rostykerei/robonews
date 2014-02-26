@@ -85,6 +85,16 @@ public class ImageQueueListener {
             return;
         }
 
+        if (message.getImageUrl() == null || message.getImageUrl().isEmpty()) {
+            logger.info("Image URL is empty");
+            return;
+        }
+
+        if (message.getImageUrl().length() > 255) {
+            logger.info("Image URL is too long");
+            return;
+        }
+
         Image existentImage = imageDao.getByUrl(message.getImageUrl());
 
         if (existentImage != null) {

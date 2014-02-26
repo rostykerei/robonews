@@ -62,22 +62,125 @@
                 </plugin>
 
                 <plugin>
-                    <artifactId>maven-assembly-plugin</artifactId>
-                    <version>2.4</version>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>rpm-maven-plugin</artifactId>
+                    <version>2.1-alpha-3</version>
                     <executions>
                         <execution>
-                            <id>make-assembly</id>
-                            <phase>package</phase>
+                            <id>attach-rpm</id>
                             <goals>
-                                <goal>single</goal>
+                                <goal>attached-rpm</goal>
                             </goals>
-                            <configuration>
-                                <descriptors>
-                                    <descriptor>../src/main/assembly/assembly.xml</descriptor>
-                                </descriptors>
-                            </configuration>
                         </execution>
                     </executions>
+                    <configuration>
+                        <name>robonews-${project.artifactId}</name>
+                        <copyright>Copyright (c) 2013-2014 Rosty Kerei</copyright>
+                        <group>Applications/System</group>
+                        <packager>Robonews.io</packager>
+                        <prefix>/usr/local/robonews</prefix>
+                        <needarch>false</needarch>
+                        <defaultGroupname>robonews</defaultGroupname>
+                        <defaultUsername>robonews</defaultUsername>
+                        <requires>
+                            <require>jdk</require>
+                        </requires>
+                        <mappings>
+                            <mapping>
+                                <directory>/usr/local/robonews/${project.artifactId}/bin</directory>
+                                <filemode>755</filemode>
+                                <sources>
+                                    <source>
+                                        <location>../src/main/scripts/bin/worker-ctrl.sh</location>
+                                        <destination>${project.artifactId}.sh</destination>
+                                        <filter>true</filter>
+                                    </source>
+                                </sources>
+                            </mapping>
+                            <mapping>
+                                <directory>/etc/robonews/${project.artifactId}</directory>
+                                <filemode>655</filemode>
+                                <sources>
+                                    <source>
+                                        <location>src/test/resources</location>
+                                        <includes>
+                                            <include>*.properties</include>
+                                        </includes>
+                                        <filter>false</filter>
+                                    </source>
+                                </sources>
+                            </mapping>
+                            <mapping>
+                                <directory>/usr/local/robonews/${project.artifactId}/lib</directory>
+                                <filemode>655</filemode>
+                                <sources>
+                                    <source>
+                                        <location>${project.build.directory}/${project.artifactId}-${project.version}.jar</location>
+                                    </source>
+                                </sources>
+                            </mapping>
+                            <mapping>
+                                <directory>/usr/local/robonews/${project.artifactId}/lib</directory>
+                                <filemode>655</filemode>
+                                <dependency/>
+                            </mapping>
+                            <mapping>
+                                <directory>/var/log/robonews</directory>
+                                <filemode>655</filemode>
+                            </mapping>
+                            <mapping>
+                                <directory>/var/run/robonews</directory>
+                                <filemode>655</filemode>
+                            </mapping>
+                            <mapping>
+                                <directory>/etc/rc.d/init.d</directory>
+                                <filemode>755</filemode>
+                                <username>root</username>
+                                <groupname>root</groupname>
+                                <sources>
+                                    <source>
+                                        <location>../src/main/scripts/rc.d/init.sh</location>
+                                        <destination>robonews-${project.artifactId}</destination>
+                                        <filter>true</filter>
+                                    </source>
+                                </sources>
+                            </mapping>
+                        </mappings>
+                        <preinstallScriptlet>
+                            <script>
+                                echo "Installing robonews-${project.artifactId}..."
+                                groupadd -f -r robonews 2> /dev/null || :
+                                useradd -r -m -c "Robonews.io user" -g robonews robonews 2> /dev/null || :
+                            </script>
+                        </preinstallScriptlet>
+                        <postinstallScriptlet>
+                            <script>
+                                chown -R robonews:robonews /etc/robonews/${project.artifactId}
+                                chown -R robonews:robonews /usr/local/robonews/${project.artifactId}
+                                chown robonews:robonews /var/run/robonews/${project.artifactId}.* 2> /dev/null || :
+                                chown robonews:robonews /var/log/robonews/${project.artifactId}.* 2> /dev/null || :
+                                chkconfig --add robonews-${project.artifactId}
+                            </script>
+                        </postinstallScriptlet>
+                        <preremoveScriptlet>
+                            <script>
+                                if [ "$1" = 0 ] ; then
+                                    echo "Removing robonews-${project.artifactId}..."
+                                    service robonews-${project.artifactId} stop
+                                    chkconfig --del robonews-${project.artifactId}
+                                fi
+                                exit 0
+                            </script>
+                        </preremoveScriptlet>
+                        <postremoveScriptlet>
+                            <script>
+                                if [ "$1" -ge 1 ]; then
+                                    service robonews-${project.artifactId} condrestart
+                                fi
+                                exit 0
+                            </script>
+                        </postremoveScriptlet>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

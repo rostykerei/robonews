@@ -26,27 +26,24 @@ package { 'mc':
   ensure => 'installed'
 }
 
-#Java
-#TODO change to 7
-exec { 'download_jdk':
-    command => '/usr/bin/wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com" "http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64-rpm.bin" -O /opt/jdk.bin',
-    creates => '/opt/jdk.bin',
-    require => Package['wget']
-}
+# Java
 
-file { '/opt/jdk.bin':
-    ensure  => 'present',
-    mode    => '0755',
-    require => Exec['download_jdk']
+class {'s3cmd':
+  aws_access_key => 'AKIAIFUYOEB5F5OXIWOA',
+  aws_secret_key => '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',
+  gpg_passphrase => 'none',
+  owner => 'root',
 }
-
-exec { 'jdk-install':
-    command => '/opt/jdk.bin',
-    cwd => '/tmp',
-    require => File['/opt/jdk.bin']
+->
+s3cmd::commands::get { '/opt/jdk.rpm':
+  s3_object => 's3://download.corp.robonews.io/java/jdk-7u51-linux-x64.rpm',
+  cwd => '/opt',
+  owner => 'root'
 }
-
-exec { 'delete-temp-rpms':
-    command => '/bin/rm -f /tmp/sun-*.rpm /tmp/jdk-*.rpm',
-    require => Exec['jdk-install']
+->
+package { 'jdk':
+  provider => rpm,
+  ensure => installed,
+  source => '/opt/jdk.rpm'
 }
+# ensure JAVA_HOME is set (/etc/profile.d/java.sh)?

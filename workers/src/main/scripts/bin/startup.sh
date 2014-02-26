@@ -25,4 +25,4 @@ if [ ! -x "$PRGDIR"/"$EXECUTABLE" ]; then
     exit 1
 fi
 
-exec "$PRGDIR"/"$EXECUTABLE" stop
+exec /bin/sh "$PRGDIR"/"$EXECUTABLE" start

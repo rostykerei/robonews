@@ -18,6 +18,20 @@
 
     <name>Robonews.io</name>
 
+    <developers>
+        <developer>
+            <id>rosty</id>
+            <name>Rosty Kerei</name>
+            <email>rosty.kerei@gmail.com</email>
+            <organization>Robonews.io</organization>
+            <organizationUrl>http://www.robonews.io/</organizationUrl>
+            <timezone>+1</timezone>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <modules>
         <module>core</module>
         <module>web</module>
@@ -37,7 +51,22 @@
     </properties>
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.kuali.maven.wagons</groupId>
+                <artifactId>maven-s3-wagon</artifactId>
+                <version>1.2.1</version>
+            </extension>
+        </extensions>
+
         <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+            </plugin>
+
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
@@ -102,4 +131,20 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <site>
+            <id>s3.dist.corp.robonews.io</id>
+            <url>s3://dist.corp.robonews.io/site</url>
+        </site>
+        <repository>
+            <id>s3.dist.corp.robonews.io</id>
+            <url>s3://dist.corp.robonews.io/release</url>
+        </repository>
+        <snapshotRepository>
+            <id>s3.dist.corp.robonews.io</id>
+            <url>s3://dist.corp.robonews.io/snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>

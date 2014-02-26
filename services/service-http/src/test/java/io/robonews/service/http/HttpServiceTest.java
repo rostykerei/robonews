@@ -6,15 +6,11 @@
  */
 package io.robonews.service.http;
 
-import io.robonews.service.http.impl.HttpRequestImpl;
-import io.robonews.service.text.tools.InputStreamReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.Date;
 
 @ContextConfiguration({ "classpath:serviceHttpContext-test.xml", "classpath:serviceHttpContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,7 +22,7 @@ public class HttpServiceTest {
     @Test
     public void testHttp() throws Exception {
 
-        HttpRequest httpRequest = new HttpRequestImpl("http://localhost/data.php");
+        /* HttpRequest httpRequest = new HttpRequestImpl("http://localhost/data.php");
         httpRequest.setAccept("text/html,application/xhtml+xml,application/xml");
         httpRequest.setLastEtag("xxx");
         httpRequest.setLastModified(new Date());
@@ -37,9 +33,7 @@ public class HttpServiceTest {
 
         httpResponse.releaseConnection();
 
-
-
-        System.out.print(context);
+        System.out.print(context); */
     }
 
 }

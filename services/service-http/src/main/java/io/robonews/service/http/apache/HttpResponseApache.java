@@ -87,6 +87,10 @@ public class HttpResponseApache implements HttpResponse {
 
     @Override
     public Date getLastModified() {
+        if (!response.containsHeader(HttpHeaders.LAST_MODIFIED)) {
+            return null;
+        }
+
         Header header = response.getFirstHeader(HttpHeaders.LAST_MODIFIED);
 
         if (header != null) {
@@ -102,10 +106,33 @@ public class HttpResponseApache implements HttpResponse {
 
     @Override
     public String getEtag() {
+        if (!response.containsHeader(HttpHeaders.ETAG)) {
+            return null;
+        }
+
         Header header = response.getFirstHeader(HttpHeaders.ETAG);
 
         if (header != null) {
             return header.getValue();
+        }
+
+        return null;
+    }
+
+    @Override
+    public Date getExpires() {
+        if (!response.containsHeader(HttpHeaders.EXPIRES)) {
+            return null;
+        }
+
+        Header header = response.getFirstHeader(HttpHeaders.EXPIRES);
+
+        if (header != null) {
+            try {
+                return DateUtils.parseDate(header.getValue());
+            } catch (Exception e) {
+                return null;
+            }
         }
 
         return null;

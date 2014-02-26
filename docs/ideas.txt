@@ -8,7 +8,7 @@
 Normalize exceptions in image-crawler
 Duplicate image crc32 - map to story?
 [DONE] Make single unique index over image.channel+image.crc32+image.size
-News image validation (url len, etc...)
+[DONE] News image validation (url len, etc...)
 Redo SQL ID types (bigint(20) -- is way tooo overkill)
 Make sure story.uid in not always (unneccessarry) generated...
 Investigate RPM/DEB package generation
@@ -23,3 +23,5 @@ Cover service-storage-rackspace with unit tests
 Before image resize - check if already exists
 Resume stalled feed [inProgess for long time]
 Crawler - planned time should now be > then Http cache-expire date
+Puppet - Use s3cmd to get stuff
+Puppet - update to java7

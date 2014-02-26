@@ -23,4 +23,6 @@ public interface HttpResponse {
     Date getLastModified();
 
     String getEtag();
+
+    Date getExpires();
 }
