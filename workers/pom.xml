@@ -88,7 +88,7 @@
                         <mappings>
                             <mapping>
                                 <directory>/usr/local/robonews/${project.artifactId}/bin</directory>
-                                <filemode>755</filemode>
+                                <filemode>0775</filemode>
                                 <sources>
                                     <source>
                                         <location>../src/main/scripts/worker-ctrl.sh</location>
@@ -99,7 +99,8 @@
                             </mapping>
                             <mapping>
                                 <directory>/etc/robonews/${project.artifactId}</directory>
-                                <filemode>655</filemode>
+                                <filemode>0660</filemode>
+                                <configuration>noreplace</configuration>
                                 <sources>
                                     <source>
                                         <location>src/test/resources</location>
@@ -112,7 +113,7 @@
                             </mapping>
                             <mapping>
                                 <directory>/usr/local/robonews/${project.artifactId}/lib</directory>
-                                <filemode>655</filemode>
+                                <filemode>0664</filemode>
                                 <sources>
                                     <source>
                                         <location>${project.build.directory}/${project.artifactId}-${project.version}.jar</location>
@@ -121,20 +122,20 @@
                             </mapping>
                             <mapping>
                                 <directory>/usr/local/robonews/${project.artifactId}/lib</directory>
-                                <filemode>655</filemode>
+                                <filemode>0664</filemode>
                                 <dependency/>
                             </mapping>
                             <mapping>
                                 <directory>/var/log/robonews</directory>
-                                <filemode>655</filemode>
+                                <filemode>0660</filemode>
                             </mapping>
                             <mapping>
                                 <directory>/var/run/robonews</directory>
-                                <filemode>655</filemode>
+                                <filemode>0664</filemode>
                             </mapping>
                             <mapping>
                                 <directory>/etc/rc.d/init.d</directory>
-                                <filemode>755</filemode>
+                                <filemode>0755</filemode>
                                 <username>root</username>
                                 <groupname>root</groupname>
                                 <sources>
@@ -155,10 +156,8 @@
                         </preinstallScriptlet>
                         <postinstallScriptlet>
                             <script>
-                                chown -R robonews:robonews /etc/robonews/${project.artifactId}
-                                chown -R robonews:robonews /usr/local/robonews/${project.artifactId}
-                                chown robonews:robonews /var/run/robonews/${project.artifactId}.* 2> /dev/null || :
-                                chown robonews:robonews /var/log/robonews/${project.artifactId}.* 2> /dev/null || :
+                                chmod 0755 /var/run/robonews/ /usr/local/robonews/${project.artifactId}/
+                                chmod 0750 /etc/robonews/${project.artifactId}/ /var/log/robonews/
                                 chkconfig --add robonews-${project.artifactId}
                             </script>
                         </postinstallScriptlet>
@@ -166,7 +165,7 @@
                             <script>
                                 if [ "$1" = 0 ] ; then
                                     echo "Removing robonews-${project.artifactId}..."
-                                    service robonews-${project.artifactId} stop
+                                    service robonews-${project.artifactId} condstop
                                     chkconfig --del robonews-${project.artifactId}
                                 fi
                                 exit 0

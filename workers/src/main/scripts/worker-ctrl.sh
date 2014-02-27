@@ -1,8 +1,10 @@
 #!/bin/sh
+#
 # Robonews.io
 #
 # Copyright (c) 2013-2014 Rosty Kerei.
 # All rights reserved.
+#
 
 LAUNCHER_CLASS="${launcher.class}"
 
@@ -88,9 +90,10 @@ start() {
 
     WORKER_EXEC='java '$JAVA_OPTS'-Dlog4j.configuration=file:'$LOG4J_CONFIG' -classpath '\""$CLASSPATH"\"' -Dconfig.file='$CONFIG_FILE' '"$LAUNCHER_CLASS"
 
-    echo "$WORKER_EXEC" >> "$LOG_FILE"
+    echo ">>>>> SYSTEM >>>>> $(date) >>>>> Process start....." >> "$LOG_FILE"
+    echo ">>>>> SYSTEM >>>>> $(date) >>>>> $WORKER_EXEC" >> "$LOG_FILE"
 
-    eval "$WORKER_EXEC" >> "$LOG_FILE" 2>&1 &
+    eval "$WORKER_EXEC" >> "$LOG_FILE" 2>&1 "&"
 
     echo $! > "$PID_FILE"
 
@@ -106,8 +109,10 @@ stop() {
         PID=`cat "$PID_FILE"`
 
         if [ "$1" = "force" ]; then
+            echo ">>>>> SYSTEM >>>>> $(date) >>>>> Process stop (enforced)....." >> "$LOG_FILE"
             kill -9 $PID >/dev/null 2>&1
         else
+            echo ">>>>> SYSTEM >>>>> $(date) >>>>> Process stop....." >> "$LOG_FILE"
             kill -1 $PID >/dev/null 2>&1
         fi
 
@@ -125,15 +130,21 @@ stop() {
                 rm -f "$PID_FILE" > /dev/null 2>&1
                 KILL_SLEEP_INTERVAL=0
                 echo "Process $WORKER_NAME stopped"
+                echo ">>>>> SYSTEM >>>>> $(date) >>>>> Process stopped successfully....." >> "$LOG_FILE"
                 return 0
             fi
         done
 
         if [ $KILL_SLEEP_INTERVAL -ne 0 ]; then
             echo "Process $WORKER_NAME has not been killed completely yet." >&2
+            exit 1
         fi
     else
-        echo "Unable to read PID file. Process $WORKER_NAME already stopped?" >&2
+        if [ "$1" = "try" ]; then
+            return 0
+        else
+            echo "Unable to read PID file. Process $WORKER_NAME already stopped?" >&2
+        fi
     fi
 
     exit 1
@@ -151,11 +162,7 @@ status() {
 }
 
 restart() {
-    update_worker_pid
-    if [ "$WORKER_PID" -ne 0 ] ; then
-        stop
-    fi
-
+    stop "try"
     start
 }
 
@@ -185,6 +192,9 @@ case "$1" in
     force-stop)
         stop "force"
         ;;
+    condstop)
+        stop "try"
+        ;;
     restart)
         restart
         ;;
@@ -198,7 +208,7 @@ case "$1" in
         version
         ;;
     *)
-        echo "Usage: $WORKER_NAME.sh {start|stop|force-stop|restart|condrestart|status|version}"
+        echo "Usage: $WORKER_NAME.sh {start|stop|force-stop|condstop|restart|condrestart|status|version}"
         exit 1
         ;;
 esac
