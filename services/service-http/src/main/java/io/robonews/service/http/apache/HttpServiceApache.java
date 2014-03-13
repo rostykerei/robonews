@@ -9,15 +9,13 @@ package io.robonews.service.http.apache;
 import io.robonews.service.http.HttpRequest;
 import io.robonews.service.http.HttpResponse;
 import io.robonews.service.http.HttpService;
+import java.io.IOException;
+import java.util.Date;
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.DateUtils;
-import org.apache.http.conn.HttpClientConnectionManager;
 import org.springframework.util.StringUtils;
-
-import java.io.IOException;
-import java.util.Date;
 
 public class HttpServiceApache implements HttpService {
 
@@ -49,6 +47,8 @@ public class HttpServiceApache implements HttpService {
             String ifModifiedSinceString = DateUtils.formatDate(lastModified, "EEE, d MMM yyyy HH:mm:ss 'GMT'");
             httpGet.setHeader(HttpHeaders.IF_MODIFIED_SINCE, ifModifiedSinceString );
         }
+
+        httpGet.setHeader(HttpHeaders.CONNECTION, "close");
 
         final org.apache.http.HttpResponse httpResponse = httpClient.execute(httpGet);
 

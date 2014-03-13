@@ -39,7 +39,6 @@ public class HttpResponseApache implements HttpResponse {
             if (contentLength > 0 && contentLength > maxContentLength) {
                 synchronized (this) {
                     abort();
-                    releaseConnection();
                 }
 
                 throw new ContentTooLongException("Content is too long: " + contentLength +
@@ -56,7 +55,6 @@ public class HttpResponseApache implements HttpResponse {
         if (contentLength > 0 && contentLength > maxContentLength) {
             synchronized (this) {
                 abort();
-                releaseConnection();
             }
 
             throw new ContentTooLongException("Content is too long: " + contentLength +
@@ -78,10 +76,19 @@ public class HttpResponseApache implements HttpResponse {
     @Override
     public void abort() {
         httpGet.abort();
+        releaseConnection();
     }
 
     @Override
     public void releaseConnection() {
+
+        // Trying to consume response
+        try {
+            EntityUtils.consume(response.getEntity());
+        } catch (Exception e) {
+
+        }
+
         httpGet.releaseConnection();
     }
 

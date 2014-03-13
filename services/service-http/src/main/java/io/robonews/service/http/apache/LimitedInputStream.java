@@ -40,7 +40,6 @@ public class LimitedInputStream extends FilterInputStream {
             synchronized (this) {
                 if (httpResponse != null) {
                     httpResponse.abort();
-                    httpResponse.releaseConnection();
                 }
             }
 
@@ -60,7 +59,6 @@ public class LimitedInputStream extends FilterInputStream {
             synchronized (this) {
                 if (httpResponse != null) {
                     httpResponse.abort();
-                    httpResponse.releaseConnection();
                 }
             }
 
@@ -85,4 +83,5 @@ public class LimitedInputStream extends FilterInputStream {
         pos += skippedBytes;
         return skippedBytes;
     }
+
 }

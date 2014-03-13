@@ -24,7 +24,7 @@
     <bean id="imageQueueListener" class="io.robonews.worker.image.crawler.ImageQueueListener"/>
 
     <bean id="imageStorage" class="io.robonews.service.storage.file.StorageServiceFile">
-        <constructor-arg name="rootDir" value="/home/rosty/test/img"/>
+        <constructor-arg name="rootDir" value="/home/robonews/img"/>
     </bean>
     <!--<bean id="imageStorage" class="io.robonews.service.storage.rackspace.StorageServiceRackspace">
         <constructor-arg name="apiUsername" value="${rackspace.username}"/>

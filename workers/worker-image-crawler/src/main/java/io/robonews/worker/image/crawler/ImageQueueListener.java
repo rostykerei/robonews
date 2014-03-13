@@ -202,10 +202,8 @@ public class ImageQueueListener {
             return tempFile;
         }
         finally {
-            synchronized (this) {
-                if (httpResponse != null) {
-                    httpResponse.releaseConnection();
-                }
+            if (httpResponse != null) {
+                httpResponse.releaseConnection();
             }
         }
     }

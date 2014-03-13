@@ -22,4 +22,6 @@ public interface FeedDao extends AbstractDao<Feed, Integer> {
     Feed pollFeedToProcess();
 
     void releaseFeedInProcess(Feed feed);
+
+    int resetIdleFeeds(long busyMilliseconds);
 }

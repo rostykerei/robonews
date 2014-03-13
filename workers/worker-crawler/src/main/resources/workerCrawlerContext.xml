@@ -14,7 +14,7 @@
     <import resource="crawlerContext.xml"/>
 
     <task:scheduled-tasks scheduler="crawlScheduler">
-        <task:scheduled ref="crawler" method="execute" fixed-delay="${workerCrawler.startInterval}"/>
+        <task:scheduled ref="crawler" method="execute" fixed-rate="${workerCrawler.startInterval}"/>
     </task:scheduled-tasks>
 
     <task:scheduler id="crawlScheduler"/>
@@ -25,5 +25,19 @@
                    queue-capacity="${workerCrawler.threadQueueCapacity}"/>
 
     <task:annotation-driven scheduler="crawlScheduler" executor="crawlExecutor"/>
+
+
+    <!-- Reset idle feeds each 5 minute-->
+    <bean id="resetIdleFeedsJob" class="io.robonews.worker.crawler.job.ResetIdleFeeds">
+        <constructor-arg name="rate" value="${workerCrawler.resetIdleFeedsRate}"/>
+    </bean>
+
+    <task:scheduler id="resetIdleFeedsScheduler"/>
+    <task:scheduled-tasks scheduler="resetIdleFeedsScheduler">
+        <task:scheduled
+                ref="resetIdleFeedsJob"
+                method="run"
+                fixed-delay="${workerCrawler.resetIdleFeedsRate}"/>
+    </task:scheduled-tasks>
 
 </beans>

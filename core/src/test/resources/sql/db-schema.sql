@@ -224,7 +224,7 @@ CREATE TABLE `story_image` (
   KEY `story_image_idx_1` (`storyId`),
   KEY `story_image_idx_2` (`imageId`),
   CONSTRAINT `story_image_fk_1` FOREIGN KEY (`storyId`) REFERENCES `story` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `story_image_fk_2` FOREIGN KEY (`imageId`) REFERENCES `image` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `story_image_fk_2` FOREIGN KEY (`imageId`) REFERENCES `image` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

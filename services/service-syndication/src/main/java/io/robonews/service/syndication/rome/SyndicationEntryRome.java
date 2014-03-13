@@ -54,7 +54,7 @@ public class SyndicationEntryRome implements SyndicationEntry {
 
     @Override
     public String getDescription() {
-        return syndEntry.getDescription().getValue();
+        return syndEntry.getDescription() != null ? syndEntry.getDescription().getValue() : null;
     }
 
     @Override

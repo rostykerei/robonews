@@ -78,17 +78,21 @@ public class CrawlerControllerImpl implements CrawlerController {
         SyndicationFeed syndicationFeed = null;
         int newStories = 0;
         Date checkTime = new Date();
+        Date httpExpires = null;
 
         try {
             httpResponse = crawl(feed.getUrl(), feed.getHttpLastEtag(), feed.getHttpLastModified());
 
             if (httpResponse != null) {
+                httpExpires = httpResponse.getExpires();
+
                 if (httpResponse.getHttpStatus() == 200) {
                     feed.setHttpLastEtag(httpResponse.getEtag());
                     feed.setHttpLastModified(httpResponse.getLastModified());
 
                     syndicationFeed = syndicationService.loadFeed(httpResponse.getStream());
 
+                    // Very important to release HTTP connection !
                     httpResponse.releaseConnection();
                     httpResponse = null;
 
@@ -128,7 +132,7 @@ public class CrawlerControllerImpl implements CrawlerController {
                                 }
                             }
                             catch (DataIntegrityViolationException e){
-                                logger.info("Duplicate story: " + syndEntry.getGuid());
+                                // do nothing
                                 continue;
                             }
                             catch (RuntimeException e) {
@@ -147,8 +151,8 @@ public class CrawlerControllerImpl implements CrawlerController {
                     newStories = 0;
                 }
                 else {
+                    // TODO - notify 404 eg
                     logger.info("Failed to crawl feed [" + feed + "], http status: " + httpResponse.getHttpStatus());
-                    httpResponse = null;
                 }
             }
             else {
@@ -162,14 +166,14 @@ public class CrawlerControllerImpl implements CrawlerController {
             logger.info("Failed to crawl feed [" + feed + "]", e);
         }
         finally {
-            synchronized (this) {
-                if (httpResponse != null) {
-                    httpResponse.releaseConnection();
-                }
+
+            // Very important to release HTTP connection !
+            if (httpResponse != null) {
+                httpResponse.releaseConnection();
             }
 
             feed.setVelocity(calculateVelocity(feed, checkTime, newStories));
-            feed.setPlannedCheck(calculateNextCheck(feed, checkTime));
+            feed.setPlannedCheck( calculateNextCheck(feed, checkTime, httpExpires) );
             feed.setLastCheck(checkTime);
             feed.setInProcessSince(null);
             feedDao.update(feed);
@@ -206,11 +210,29 @@ public class CrawlerControllerImpl implements CrawlerController {
         return newVelocity;
     }
 
-    private Date calculateNextCheck(Feed feed, Date checkTime) {
+    private Date calculateNextCheck(Feed feed, Date checkTime, Date httpExpires) {
         double velocity = feed.getVelocity();
 
         if (velocity > 0) {
-            return new Date( (long) (checkTime.getTime() + (3600000L / velocity)) );
+
+            long nextByVelocity = (long) (checkTime.getTime() + (3600000L / velocity));
+
+            if (httpExpires != null) {
+
+                long nextByHttp = httpExpires.getTime();
+
+                if (nextByVelocity <= nextByHttp || (new Date().getTime() >= nextByHttp)) {
+                    return new Date( nextByVelocity );
+                }
+                else {
+                    long nextByMaxVelocity = (long) (checkTime.getTime() + (3600000L / feed.getMaxVelocityThreshold()));
+
+                    return new Date( Math.max(nextByHttp, nextByMaxVelocity) );
+                }
+            }
+            else {
+                return new Date( nextByVelocity );
+            }
         }
         else {
             // Should never happens, but prevents division by 0

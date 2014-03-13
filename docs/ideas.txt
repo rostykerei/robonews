@@ -11,7 +11,7 @@ Duplicate image crc32 - map to story?
 [DONE] News image validation (url len, etc...)
 Redo SQL ID types (bigint(20) -- is way tooo overkill)
 Make sure story.uid in not always (unneccessarry) generated...
-Investigate RPM/DEB package generation
+[DONE] Investigate RPM/DEB package generation
 Check robots.txt
 [DONE] Check for images inside news page meta tags (thumbnailUrl, open graph)
 [DONE] io domain (news.io) - gandi.net registara (promo code IO4LESS)
@@ -25,3 +25,5 @@ Resume stalled feed [inProgess for long time]
 Crawler - planned time should now be > then Http cache-expire date
 Puppet - Use s3cmd to get stuff
 Puppet - update to java7
+Make private YUM repository
+Add logrotate

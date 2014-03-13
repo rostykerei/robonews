@@ -23,25 +23,41 @@
         <property name="redirectsEnabled" value="true"/>
     </bean>
 
-    <bean id="apacheRequestConfig" factory-bean="apacheRequestConfigBuilder" factory-method="build" />
-
     <bean id="apacheHttpConnectionManager" class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
+        <constructor-arg name="timeToLive" value="${http.timeout}"/>
+        <constructor-arg name="tunit" value="MILLISECONDS"/>
+
         <property name="maxTotal" value="${http.maxConnections}"/>
         <property name="defaultMaxPerRoute" value="${http.maxConnections}"/>
     </bean>
 
     <bean id="apacheHttpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder" factory-method="create">
-        <property name="defaultRequestConfig" ref="apacheRequestConfig"/>
+
+        <property name="defaultRequestConfig">
+            <bean factory-bean="apacheRequestConfigBuilder" factory-method="build" />
+        </property>
+
+        <property name="connectionReuseStrategy">
+            <bean class="org.apache.http.impl.NoConnectionReuseStrategy"/>
+        </property>
+
         <property name="userAgent" value="${http.userAgent}"/>
         <property name="maxConnTotal" value="${http.maxConnections}"/>
         <property name="maxConnPerRoute" value="${http.maxConnections}"/>
+
         <property name="connectionManager" ref="apacheHttpConnectionManager"/>
+
     </bean>
 
-    <bean id="apacheHttpClient" factory-bean="apacheHttpClientBuilder" factory-method="build" />
-
     <bean id="httpService" class="io.robonews.service.http.apache.HttpServiceApache">
-        <constructor-arg name="httpClient" ref="apacheHttpClient"/>
+        <constructor-arg name="httpClient">
+            <bean factory-bean="apacheHttpClientBuilder"  factory-method="build" />
+        </constructor-arg>
+
         <property name="maxContentLength" value="${http.maxContentLength}"/>
+    </bean>
+
+    <bean id="idleConnectionMonitorThread" class="io.robonews.service.http.apache.IdleConnectionMonitorThread" init-method="start">
+        <constructor-arg ref="apacheHttpConnectionManager"/>
     </bean>
 </beans>

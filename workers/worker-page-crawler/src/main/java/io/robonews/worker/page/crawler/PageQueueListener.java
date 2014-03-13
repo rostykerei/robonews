@@ -83,10 +83,8 @@ public class PageQueueListener {
             }
         }
         finally {
-            synchronized (this) {
-                if (httpResponse != null) {
-                    httpResponse.releaseConnection();
-                }
+            if (httpResponse != null) {
+                httpResponse.releaseConnection();
             }
         }
 

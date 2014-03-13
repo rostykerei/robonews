@@ -2,3 +2,9 @@ select tag.name, story_tag.tagId, count(story_tag.storyId) as c from story_tag
 left join tag on tag.id = story_tag.tagId
 group by tagId order by c desc
 
+
+select
+ (select count(*) from feed where inProcessSince is null and plannedCheck <= now())  as planned,
+ (select count(*) from feed where lastCheck >= DATE_SUB(NOW(), INTERVAL 10 SECOND)) as lastProcessed,
+ (select count(*) from feed WHERE inProcessSince is not null) as inProgress
+

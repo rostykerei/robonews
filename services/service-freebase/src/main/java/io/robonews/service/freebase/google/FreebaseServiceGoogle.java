@@ -132,10 +132,8 @@ public class FreebaseServiceGoogle implements FreebaseService {
             throw new ParserException();
         }
         finally {
-            synchronized (this) {
-                if (httpResponse != null) {
-                    httpResponse.releaseConnection();
-                }
+            if (httpResponse != null) {
+                httpResponse.releaseConnection();
             }
         }
     }

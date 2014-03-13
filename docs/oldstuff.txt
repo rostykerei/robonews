@@ -1,0 +1,34 @@
+try {
+                            Field cpoolField = PoolingHttpClientConnectionManager.class.getDeclaredField("pool");
+                            cpoolField.setAccessible(true);
+
+                            Object cpool = cpoolField.get(connectionManager);
+
+
+                            Field leasedField = AbstractConnPool.class.getDeclaredField("leased");
+                            leasedField.setAccessible(true);
+
+                            Set<PoolEntry> leased = (Set<PoolEntry>) leasedField.get(cpool);
+
+                            System.out.println("***** HTTP Client Stats: " + connectionManager.getTotalStats().toString());
+
+                            try {
+                                for (PoolEntry p : leased)  {
+                                    System.out.println(p.toString() + " exp: " + new Date(p.getExpiry()).toString() + " EXP: " + Boolean.toString(p.isExpired(System.currentTimeMillis())) );
+                                }
+
+                                System.out.println("********************");
+                            }
+                            catch (Exception e) {
+
+                            }
+
+
+
+
+
+                        } catch (NoSuchFieldException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        }

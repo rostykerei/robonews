@@ -25,27 +25,27 @@ public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implem
     @Transactional(readOnly = true)
     public List<Feed> getAll() {
         return getSession().
-                createQuery("from Feed f" +
-                        " left join fetch f.category" +
-                        " left join fetch f.channel" +
-                        " order by f.name").
-                list();
+            createQuery("from Feed f" +
+                    " left join fetch f.category" +
+                    " left join fetch f.channel" +
+                    " order by f.name").
+            list();
     }
 
     @Override
     @Transactional
     public Feed pollFeedToProcess() {
         Feed feed = (Feed) getSession().
-                createQuery("from Feed f" +
-                        " left join fetch f.category" +
-                        " left join fetch f.channel" +
-                        " where f.inProcessSince is null" +
-                        " and f.plannedCheck <= :now" +
-                        " order by f.plannedCheck asc").
-                setTimestamp("now", new Date()).
-                setMaxResults(1).
-                setLockMode("f", LockMode.UPGRADE_NOWAIT).
-                uniqueResult();
+            createQuery("from Feed f" +
+                    " left join fetch f.category" +
+                    " left join fetch f.channel" +
+                    " where f.inProcessSince is null" +
+                    " and f.plannedCheck <= :now" +
+                    " order by f.plannedCheck asc").
+            setTimestamp("now", new Date()).
+            setMaxResults(1).
+            setLockMode("f", LockMode.UPGRADE_NOWAIT).
+            uniqueResult();
 
         if (feed == null) {
             return null;
@@ -62,5 +62,15 @@ public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implem
         feed.setInProcessSince(null);
         feed.setLastCheck(new Date());
         update(feed);
+    }
+
+    @Override
+    @Transactional
+    public int resetIdleFeeds(long busyMilliseconds) {
+        return getSession().
+            createQuery("update Feed set inProcessSince = null " +
+                "where inProcessSince <= :dt")
+            .setDate("dt", new Date( System.currentTimeMillis() - busyMilliseconds ))
+            .executeUpdate();
     }
 }
