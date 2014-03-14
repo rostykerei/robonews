@@ -27,5 +27,3 @@ Puppet - Use s3cmd to get stuff
 Puppet - update to java7
 Make private YUM repository
 Add logrotate
-
-test
