@@ -39,6 +39,7 @@
         <module>messaging</module>
         <module>workers</module>
         <module>services</module>
+        <module>sandbox</module>
     </modules>
 
     <packaging>pom</packaging>

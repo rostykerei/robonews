@@ -8,3 +8,51 @@ select
  (select count(*) from feed where lastCheck >= DATE_SUB(NOW(), INTERVAL 10 SECOND)) as lastProcessed,
  (select count(*) from feed WHERE inProcessSince is not null) as inProgress
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+http://stackoverflow.com/questions/7364969/how-to-filter-sql-results-in-a-has-many-through-relation
+
+
+
+select * from story where createdDate <= '2014-03-14 15:00:00.0' order by id desc
+
+select tag.name, story_tag.tagId, count(story_tag.storyId) as c from story_tag
+left join tag on tag.id = story_tag.tagId
+left join story on story.id = story_tag.storyId
+where story.createdDate > '2014-03-13 15:00:00.0' and story.createdDate <= '2014-03-14 15:00:00.0'
+group by tagId order by c desc
+
+select story.title, story.createdDate from story
+left join story_tag on story_tag.storyId = story.id
+where story_tag.tagId = 3 &&
+story.createdDate > '2014-03-13 15:00:00.0' and story.createdDate <= '2014-03-14 15:00:00.0'
+order by story.id desc
+
+select tag.name, story_tag.tagId, count(story_tag.storyId) as c from story_tag
+left join tag on tag.id = story_tag.tagId
+left join story on story.id = story_tag.storyId
+where story.createdDate > '2014-03-13 15:00:00.0' and story.createdDate <= '2014-03-14 15:00:00.0' and story.id in
+(
+	select story.id from story
+	left join story_tag on story_tag.storyId = story.id
+	where story_tag.tagId = 3 &&
+	story.createdDate > '2014-03-13 15:00:00.0' and story.createdDate <= '2014-03-14 15:00:00.0'
+)
+group by tagId order by c desc
+
+
+select story.title, story.description, story_tag.tagId from story
+left join story_tag on story_tag.storyId = story.id
+where story_tag.tagId in (3, 34) order by story.id desc

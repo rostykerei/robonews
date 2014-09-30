@@ -62,7 +62,7 @@ public class PageQueueListenerTest {
 
         HttpResponse httpResponse = mock(HttpResponse.class);
 
-        when(httpResponse.getHttpStatus()).thenReturn(200);
+        when(httpResponse.getHttpStatus()).thenReturn(HttpResponse.STATUS_OK);
         when(httpResponse.getStream()).thenReturn(IOUtils.toInputStream(VALID_HTML, "UTF-8"));
 
         when(
@@ -102,7 +102,7 @@ public class PageQueueListenerTest {
 
         HttpResponse httpResponse = mock(HttpResponse.class);
 
-        when(httpResponse.getHttpStatus()).thenReturn(404);
+        when(httpResponse.getHttpStatus()).thenReturn(HttpResponse.STATUS_NOT_FOUND);
         when(httpResponse.getStream()).thenReturn(IOUtils.toInputStream("", "UTF-8"));
 
         when(httpService.execute(any(HttpRequest.class))).thenReturn(httpResponse);
@@ -125,7 +125,7 @@ public class PageQueueListenerTest {
 
         HttpResponse httpResponse = mock(HttpResponse.class);
 
-        when(httpResponse.getHttpStatus()).thenReturn(200);
+        when(httpResponse.getHttpStatus()).thenReturn(HttpResponse.STATUS_OK);
         when(httpResponse.getStream()).thenReturn(IOUtils.toInputStream("", "UTF-8"));
 
         when(httpService.execute(any(HttpRequest.class))).thenReturn(httpResponse);

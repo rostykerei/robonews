@@ -1,0 +1,8 @@
+---
+:backends:
+  - yaml
+:hierarchy:
+  - nodes/%{::fqdn}
+  - global
+:yaml:
+  :datadir: hiera/

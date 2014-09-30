@@ -16,7 +16,7 @@ public class KeyGenerator {
     private final static SecureRandom numberGenerator = new SecureRandom();
 
     /**
-     * Generated 8-byte long randon chars String
+     * Generates 8-byte long random chars String
      *
      * @return
      */

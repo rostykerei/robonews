@@ -98,7 +98,7 @@ public class CrawlerControllerTest {
         feed.setId(10);
 
         HttpResponse httpResponse = mock(HttpResponse.class);
-        when(httpResponse.getHttpStatus()).thenReturn(200);
+        when(httpResponse.getHttpStatus()).thenReturn(HttpResponse.STATUS_OK);
 
         when(feedDao.pollFeedToProcess()).thenReturn(feed);
         when(httpService.execute(any(HttpRequest.class))).thenReturn(httpResponse);
@@ -119,7 +119,7 @@ public class CrawlerControllerTest {
         feed.setId(10);
 
         HttpResponse httpResponse = mock(HttpResponse.class);
-        when(httpResponse.getHttpStatus()).thenReturn(200);
+        when(httpResponse.getHttpStatus()).thenReturn(HttpResponse.STATUS_OK);
 
         when(feedDao.pollFeedToProcess()).thenReturn(feed);
         when(httpService.execute(any(HttpRequest.class))).thenReturn(httpResponse);
@@ -138,7 +138,7 @@ public class CrawlerControllerTest {
         feed.setId(10);
 
         HttpResponse httpResponse = mock(HttpResponse.class);
-        when(httpResponse.getHttpStatus()).thenReturn(304);
+        when(httpResponse.getHttpStatus()).thenReturn(HttpResponse.STATUS_NOT_MODIFIED);
 
         when(feedDao.pollFeedToProcess()).thenReturn(feed);
         when(httpService.execute(any(HttpRequest.class))).thenReturn(httpResponse);
@@ -155,7 +155,7 @@ public class CrawlerControllerTest {
         feed.setId(10);
 
         HttpResponse httpResponse = mock(HttpResponse.class);
-        when(httpResponse.getHttpStatus()).thenReturn(500);
+        when(httpResponse.getHttpStatus()).thenReturn(HttpResponse.STATUS_INTERNAL_SERVER_ERROR);
 
         when(feedDao.pollFeedToProcess()).thenReturn(feed);
         when(httpService.execute(any(HttpRequest.class))).thenReturn(httpResponse);

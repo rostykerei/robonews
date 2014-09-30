@@ -1,0 +1,15 @@
+---
+
+  classes:
+    - rabbitmq
+    - mysql::server
+
+  mysql::server::root_password: root
+
+  resources:
+    - type: mysql::db
+      values:
+        robonews:
+          user: robonews
+          password: superpass
+          grant: [SELECT, INSERT, UPDATE, DELETE]

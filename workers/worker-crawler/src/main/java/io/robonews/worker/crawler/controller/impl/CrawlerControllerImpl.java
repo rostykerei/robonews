@@ -86,7 +86,7 @@ public class CrawlerControllerImpl implements CrawlerController {
             if (httpResponse != null) {
                 httpExpires = httpResponse.getExpires();
 
-                if (httpResponse.getHttpStatus() == 200) {
+                if (httpResponse.getHttpStatus() == HttpResponse.STATUS_OK) {
                     feed.setHttpLastEtag(httpResponse.getEtag());
                     feed.setHttpLastModified(httpResponse.getLastModified());
 
@@ -146,7 +146,7 @@ public class CrawlerControllerImpl implements CrawlerController {
                         logger.info("Failed to parse feed [" + feed + "], Syndication service returned null");
                     }
                 }
-                else if (httpResponse.getHttpStatus() == 304) {
+                else if (httpResponse.getHttpStatus() == HttpResponse.STATUS_NOT_MODIFIED) {
                     // Feed is not modified
                     newStories = 0;
                 }
@@ -198,20 +198,18 @@ public class CrawlerControllerImpl implements CrawlerController {
         // TODO if lastcheck is null
         long lastCheck = feed.getLastCheck() != null ? feed.getLastCheck().getTime() : new Date().getTime() - 3600000L;
 
-        double newVelocity = (feed.getVelocity() + newStories) / ( ((checkTime.getTime() - lastCheck) / 3600000D) + 1);
-
-        if (newVelocity < feed.getMinVelocityThreshold()) {
-            newVelocity = feed.getMinVelocityThreshold();
-        }
-        else if (newVelocity > feed.getMaxVelocityThreshold()) {
-            newVelocity = feed.getMaxVelocityThreshold();
-        }
-
-        return newVelocity;
+        return (feed.getVelocity() + newStories) / ( ((checkTime.getTime() - lastCheck) / 3600000D) + 1);
     }
 
     private Date calculateNextCheck(Feed feed, Date checkTime, Date httpExpires) {
         double velocity = feed.getVelocity();
+
+        if (velocity < feed.getMinVelocityThreshold()) {
+            velocity = feed.getMinVelocityThreshold();
+        }
+        else if (velocity > feed.getMaxVelocityThreshold()) {
+            velocity = feed.getMaxVelocityThreshold();
+        }
 
         if (velocity > 0) {
 
@@ -236,7 +234,7 @@ public class CrawlerControllerImpl implements CrawlerController {
         }
         else {
             // Should never happens, but prevents division by 0
-            return new Date(checkTime.getTime() + 3600000L * 24L);
+            return new Date(checkTime.getTime() + 3600000L);
         }
     }
 

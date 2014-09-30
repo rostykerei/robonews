@@ -90,7 +90,7 @@ public class FreebaseServiceGoogle implements FreebaseService {
 
             httpResponse = httpService.execute(httpRequest);
 
-            if (httpResponse.getHttpStatus() == 200) {
+            if (httpResponse.getHttpStatus() == HttpResponse.STATUS_OK) {
                 FreebaseData data = new Gson().fromJson( new InputStreamReader(httpResponse.getStream()), FreebaseData.class);
 
                 if (data != null && data.getResult() != null && data.getResult().size() > 0) {

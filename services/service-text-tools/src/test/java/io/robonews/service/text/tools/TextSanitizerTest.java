@@ -18,12 +18,13 @@ public class TextSanitizerTest {
         Assert.assertEquals("Test", TextSanitizer.sanitizeText("<bad>Test", 255));
         Assert.assertEquals("Test", TextSanitizer.sanitizeText("<b class=\"x\">Test</b>    ", 255));
         Assert.assertEquals("Test", TextSanitizer.sanitizeText("<h1>Test</h1>", 255));
-
     }
 
     @Test
     public void testNormalizeWhitespaces() {
         Assert.assertEquals("Test", TextSanitizer.normalizeWhitespaces("  Test"));
+        Assert.assertEquals("Test", TextSanitizer.normalizeWhitespaces("\n  Test\n\n   \n"));
+        Assert.assertEquals("Test", TextSanitizer.normalizeWhitespaces("\t\n\n\t  Test"));
         Assert.assertEquals("Test", TextSanitizer.normalizeWhitespaces("Test   "));
         Assert.assertEquals("Te st", TextSanitizer.normalizeWhitespaces("Te   st"));
         Assert.assertEquals("T e s t", TextSanitizer.normalizeWhitespaces("  T \u200a e \t  s\n     t   "));

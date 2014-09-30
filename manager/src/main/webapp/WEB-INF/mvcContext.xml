@@ -20,7 +20,6 @@
 
     <context:component-scan base-package="io.robonews.manager"/>
 
-
     <mvc:annotation-driven>
         <mvc:argument-resolvers>
             <bean class="io.robonews.manager.datatable.TableParamArgumentResolver" />

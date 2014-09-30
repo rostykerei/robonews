@@ -24,7 +24,6 @@ public class CategoryDto {
         setPriority(category.isPriority());
     }
 
-
     private int id;
 
     @Size(min = 1, max = 255, message = "Name cannot be empty")

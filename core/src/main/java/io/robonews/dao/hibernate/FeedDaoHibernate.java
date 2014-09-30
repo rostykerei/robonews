@@ -70,7 +70,7 @@ public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implem
         return getSession().
             createQuery("update Feed set inProcessSince = null " +
                 "where inProcessSince <= :dt")
-            .setDate("dt", new Date( System.currentTimeMillis() - busyMilliseconds ))
+            .setTimestamp("dt", new Date( System.currentTimeMillis() - busyMilliseconds ))
             .executeUpdate();
     }
 }

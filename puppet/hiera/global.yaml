@@ -1,0 +1,47 @@
+---
+
+  # Common classes
+
+  classes:
+    - packages
+    - timezone
+    - ntp
+    - s3cmd
+    - robonews::rpm
+
+  # Common packages
+
+  packages:
+    - wget
+    - vim-minimal
+    - mc
+
+  # Custom RPMs
+
+  robonews::rpm:
+    jdk:
+      rpm: jdk-7u67-linux-x64.rpm
+
+  # Amazon S3
+
+  s3cmd::aws_access_key: AKIAIFUYOEB5F5OXIWOA
+  s3cmd::aws_secret_key: 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
+  s3cmd::gpg_passphrase: none
+  s3cmd::owner: root
+
+  # Setting timezone
+
+  timezone::timezone: UTC
+
+  # NTP
+
+  ntp::package_ensure: latest
+  ntp::enable: true
+  ntp::servers:
+    - 0.pool.ntp.org
+    - 1.pool.ntp.org
+    - 2.pool.ntp.org
+    - 0.europe.pool.ntp.org
+    - 0.nl.pool.ntp.org
+    - 0.us.pool.ntp.org
+    - time.nist.gov

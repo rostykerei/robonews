@@ -72,7 +72,7 @@ public class PageQueueListener {
         try {
             httpResponse = httpService.execute(httpRequest);
 
-            if (httpResponse.getHttpStatus() != 200) {
+            if (httpResponse.getHttpStatus() != HttpResponse.STATUS_OK) {
                 return;
             }
 

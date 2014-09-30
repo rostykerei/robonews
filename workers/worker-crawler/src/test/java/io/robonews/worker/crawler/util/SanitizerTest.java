@@ -17,6 +17,8 @@ public class SanitizerTest {
 
     @Test(expected = SanitizerException.class)
     public void testSanitizeNull() throws SanitizerException{
+        System.out.println(new Date( System.currentTimeMillis() - 60000 ));
+
         Sanitizer.sanitize(null);
     }
 
