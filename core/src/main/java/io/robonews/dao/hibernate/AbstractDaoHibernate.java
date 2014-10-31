@@ -7,13 +7,14 @@
 package io.robonews.dao.hibernate;
 
 import io.robonews.dao.AbstractDao;
+import java.io.Serializable;
+import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.io.Serializable;
 
 @Repository
 abstract class AbstractDaoHibernate <T, PK extends Serializable>
@@ -41,6 +42,37 @@ abstract class AbstractDaoHibernate <T, PK extends Serializable>
         return (T) getSession().get(type, id);
     }
 
+    private Criteria getTableCriteria(String search, String[] searchFields) {
+        Criteria criteria = getSession().createCriteria(type);
+
+        if (search != null && searchFields != null && !search.isEmpty() && searchFields.length > 0) {
+            Disjunction searchDisjunction = Restrictions.disjunction();
+
+            for (String field : searchFields) {
+                searchDisjunction.add(Restrictions.like(field, search, MatchMode.ANYWHERE));
+            }
+
+            criteria.add(searchDisjunction);
+        }
+
+        return criteria;
+    }
+
+    @Transactional
+    public long getTableCount(String search, String[] searchFields) {
+        return (Long) getTableCriteria(search, searchFields).setProjection(Projections.rowCount()).uniqueResult();
+    }
+
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    public List<T> getTable(int start, int length, String sortField, boolean isSortAscending, String search, String[] searchFields) {
+        return getTableCriteria(search, searchFields)
+            .addOrder(isSortAscending ? Order.asc(sortField) : Order.desc(sortField))
+            .setFirstResult(start)
+            .setMaxResults(length)
+            .list();
+    }
+
     @Transactional
     @SuppressWarnings("unchecked")
     public PK create(T o) {
@@ -63,8 +95,8 @@ abstract class AbstractDaoHibernate <T, PK extends Serializable>
     }
 
     @Transactional
-    public int getCountAll() {
-        return (Integer) getSession().createCriteria(type).setProjection(Projections.rowCount()).uniqueResult();
+    public long getCountAll() {
+        return (Long) getSession().createCriteria(type).setProjection(Projections.rowCount()).uniqueResult();
     }
 
 }

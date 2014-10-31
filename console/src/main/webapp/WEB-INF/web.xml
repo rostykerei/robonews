@@ -13,6 +13,31 @@
 			http://java.sun.com/xml/ns/j2ee
 			http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
+    <distributable/>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/consoleContext.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>console</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/mvcContext.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>console</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
     <jsp-config>
         <jsp-property-group>
@@ -20,7 +45,6 @@
             <page-encoding>UTF-8</page-encoding>
         </jsp-property-group>
     </jsp-config>
-
 
     <!-- Static stuff -->
 

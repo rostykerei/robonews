@@ -12,5 +12,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <import resource="classpath:coreContext.xml"/>
-    <import resource="classpath:serviceContext.xml"/>
+    <import resource="classpath:serviceHttpContext.xml"/>
+    <import resource="classpath:serviceSyndicationContext.xml"/>
 </beans>

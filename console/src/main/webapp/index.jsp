@@ -1,3 +1,11 @@
+<%--
+
+    Robonews.io
+
+    Copyright (c) 2013-2014 Rosty Kerei.
+    All rights reserved.
+
+--%>
 <!DOCTYPE html>
 <html ng-app="inspinia">
 
@@ -8,8 +16,6 @@
 
     <!-- Page title set in pageTitle directive -->
     <title page-title></title>
-
-
 
     <!-- Bootstrap and Fonts -->
     <link href="css/bootstrap.min.css" rel="stylesheet">

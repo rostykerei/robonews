@@ -8,44 +8,33 @@
 /**
  * MainCtrl - controller
  */
-function MainCtrl() {
+function MainCtrl($scope) {
 
     this.userName = 'Rosty Kerei';
     this.helloText = 'Welcome in SeedProject';
     this.descriptionText = 'It is an application skeleton for a typical AngularJS web app. You can use it to quickly bootstrap your angular webapp projects and dev environment for these projects.';
     this.currentYear = new Date().getFullYear();
-
-
-    this.persons = [
-        {
-            id: '1',
-            firstName: 'Monica',
-            lastName: 'Smith'
-        },
-        {
-            id: '2',
-            firstName: 'Sandra',
-            lastName: 'Jackson'
-        },
-        {
-            id: '3',
-            firstName: 'John',
-            lastName: 'Underwood'
-        },
-        {
-            id: '4',
-            firstName: 'Chris',
-            lastName: 'Johnatan'
-        },
-        {
-            id: '5',
-            firstName: 'Kim',
-            lastName: 'Rosowski'
-        }
-    ];
 };
 
+function ChannelsDatatable($scope, $timeout, DTOptionsBuilder, DTColumnBuilder) {
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('ajax', {
+            dataSrc: 'data',
+            url: 'rest/channel/list'
+        })
+        .withOption('serverSide', true)
+        .withOption('processing', true)
+        .withPaginationType('full_numbers');
+
+    $scope.dtColumns = [
+        DTColumnBuilder.newColumn('url').withTitle('URL'),
+        DTColumnBuilder.newColumn('name').withTitle('Name'),
+        DTColumnBuilder.newColumn('id').withTitle('ID').notVisible()
+    ];
+}
 
 angular
     .module('inspinia')
     .controller('MainCtrl ', MainCtrl)
+    .controller('ChannelsDatatable ', ChannelsDatatable)
+
