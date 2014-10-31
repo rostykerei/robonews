@@ -33,7 +33,7 @@ public class ChannelDaoTest {
     private ChannelDao channelDao;
 
     @Test
-    public void testCRUD() throws Exception{
+    public void testCRUD() throws Exception {
         Channel channel = new Channel();
         channel.setName("test-1");
         channel.setUrl("test-url-1");

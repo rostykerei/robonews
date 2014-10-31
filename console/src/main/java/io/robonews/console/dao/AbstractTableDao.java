@@ -13,24 +13,24 @@ import java.io.Serializable;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
-public abstract class AbstractTableDao<T, E> {
+public abstract class AbstractTableDao<IN, OUT> {
 
-    protected abstract AbstractDao<T, ? extends Serializable> getDao();
+    protected abstract AbstractDao<IN, ? extends Serializable> getDao();
 
     protected abstract String[] getSearchFields();
 
-    protected abstract E mapFromOriginal(T obj);
+    protected abstract OUT mapFromOriginal(IN obj);
 
     @Transactional(readOnly = true)
-    public Datatable<E> getDatatable(DatatableCriteria criteria) {
+    public Datatable<OUT> getDatatable(DatatableCriteria criteria) {
 
-        Datatable<E> datatable = new Datatable<>();
+        Datatable<OUT> datatable = new Datatable<>();
 
         datatable.setDraw(criteria.getDraw());
         datatable.setRecordsTotal(getDao().getCountAll());
         datatable.setRecordsFiltered(getDao().getTableCount(criteria.getSearch(), getSearchFields()));
 
-        List<T> list = getDao().getTable(
+        List<IN> list = getDao().getTable(
             criteria.getStart(),
             criteria.getLength(),
             criteria.getSortField(),
@@ -39,7 +39,7 @@ public abstract class AbstractTableDao<T, E> {
             getSearchFields()
         );
 
-        for (T channel : list) {
+        for (IN channel : list) {
             datatable.getData().add(mapFromOriginal(channel));
         }
 
