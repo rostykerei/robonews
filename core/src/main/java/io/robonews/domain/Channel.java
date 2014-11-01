@@ -6,8 +6,6 @@
  */
 package io.robonews.domain;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
@@ -28,8 +26,8 @@ public class Channel {
     private String canonicalName;
 
     @NotNull
-    @Column(name = "name", unique = true, nullable = false, length = 255)
-    private String name;
+    @Column(name = "title", unique = true, nullable = false, length = 255)
+    private String title;
 
     @NotNull
     @Column(name = "url", unique = false, nullable = false, length = 255)
@@ -48,6 +46,9 @@ public class Channel {
     @Column(name = "googlePlusId", unique = false, nullable = true, length = 255)
     private String googlePlusId;
 
+    @Column(name = "alexaRank")
+    private int alexaRank;
+
     @Column(name = "description", unique = false, nullable = true, length = 255)
     private String description;
 
@@ -55,7 +56,6 @@ public class Channel {
     @Column(name = "version")
     private long version;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Feed.class, mappedBy = "channel")
     private Collection<Feed> feeds;
 
@@ -75,12 +75,12 @@ public class Channel {
         this.canonicalName = canonicalName;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getUrl() {
@@ -121,6 +121,14 @@ public class Channel {
 
     public void setGooglePlusId(String googlePlusId) {
         this.googlePlusId = googlePlusId;
+    }
+
+    public int getAlexaRank() {
+        return alexaRank;
+    }
+
+    public void setAlexaRank(int alexaRank) {
+        this.alexaRank = alexaRank;
     }
 
     public String getDescription() {

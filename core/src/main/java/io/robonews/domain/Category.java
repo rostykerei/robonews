@@ -6,8 +6,6 @@
  */
 package io.robonews.domain;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -39,7 +37,6 @@ public class Category {
     @Column(name = "rightIndex", updatable = false)
     private int rightIndex;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private Collection<Feed> feeds;
 

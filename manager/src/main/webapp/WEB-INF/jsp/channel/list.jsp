@@ -28,7 +28,7 @@
     </tr>
     <c:forEach items="${channels}" var="channel">
         <tr>
-            <td>${channel.name}</td>
+            <td>${channel.title}</td>
             <td><a href="${channel.url}" target="_blank">${channel.url}</a></td>
             <td class="action">
                 <a href="<c:url value="/channel/${channel.id}/edit"/>" class="btn btn-mini btn-warning"><i class="icon-edit icon-white"></i> Edit</a>

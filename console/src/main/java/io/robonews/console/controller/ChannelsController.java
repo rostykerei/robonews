@@ -26,7 +26,7 @@ public class ChannelsController {
 
     @RequestMapping(value = "/channel/list", method = RequestMethod.GET)
     public @ResponseBody Datatable<ChannelDatatableItem> getChannelsDatatable(
-            @DatatableParams(sortFields = {"id", "name", "url"}) DatatableCriteria criteria) {
+            @DatatableParams(sortFields = {"canonicalName", "title", "url"}) DatatableCriteria criteria) {
 
         return channelConsoleDao.getDatatable(criteria);
     }

@@ -47,7 +47,7 @@ public class ImageDaoTest {
     @Test
     public void testGetByUrl() throws Exception {
         Channel channel = new Channel();
-        channel.setName("test-channel-1");
+        channel.setTitle("test-channel-1");
         channel.setUrl("test-url-1");
         channel.setCanonicalName("test-1.com");
         channel.setScale(Channel.Scale.GLOBAL);

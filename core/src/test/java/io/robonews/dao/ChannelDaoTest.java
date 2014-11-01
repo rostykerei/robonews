@@ -35,7 +35,7 @@ public class ChannelDaoTest {
     @Test
     public void testCRUD() throws Exception {
         Channel channel = new Channel();
-        channel.setName("test-1");
+        channel.setTitle("test-1");
         channel.setUrl("test-url-1");
         channel.setCanonicalName("test-1.com");
         channel.setScale(Channel.Scale.GLOBAL);
@@ -43,13 +43,13 @@ public class ChannelDaoTest {
         int id = channelDao.create(channel);
 
         Channel channel2 = channelDao.getById(id);
-        Assert.assertEquals("test-1", channel2.getName());
+        Assert.assertEquals("test-1", channel2.getTitle());
 
-        channel2.setName("test-1-updated");
+        channel2.setTitle("test-1-updated");
         channelDao.update(channel2);
 
         Channel channel3 = channelDao.getById(id);
-        Assert.assertEquals("test-1-updated", channel3.getName());
+        Assert.assertEquals("test-1-updated", channel3.getTitle());
 
         channelDao.delete(channel3);
 
@@ -63,7 +63,7 @@ public class ChannelDaoTest {
         Assert.assertEquals(0, list.size());
 
         Channel channel = new Channel();
-        channel.setName("test-1");
+        channel.setTitle("test-1");
         channel.setUrl("test-url-1");
         channel.setCanonicalName("test-1.com");
         channel.setScale(Channel.Scale.GLOBAL);
@@ -74,7 +74,7 @@ public class ChannelDaoTest {
         Assert.assertEquals(1, list.size());
 
         Channel channel2 = new Channel();
-        channel2.setName("test-2");
+        channel2.setTitle("test-2");
         channel2.setUrl("test-url-2");
         channel2.setCanonicalName("test-2.com");
         channel2.setScale(Channel.Scale.GLOBAL);
@@ -93,7 +93,7 @@ public class ChannelDaoTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void testUniqueness() {
         Channel channel = new Channel();
-        channel.setName("test-unique");
+        channel.setTitle("test-unique");
         channel.setUrl("test-url-1");
         channel.setCanonicalName("test-1.com");
         channel.setScale(Channel.Scale.GLOBAL);
@@ -101,7 +101,7 @@ public class ChannelDaoTest {
         channelDao.create(channel);
 
         Channel channel2 = new Channel();
-        channel2.setName("test-unique");
+        channel2.setTitle("test-unique");
         channel2.setUrl("test-url-1");
         channel2.setCanonicalName("test-1.com");
         channel2.setScale(Channel.Scale.GLOBAL);

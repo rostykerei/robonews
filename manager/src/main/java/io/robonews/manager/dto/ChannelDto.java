@@ -35,7 +35,7 @@ public class ChannelDto {
 
     public ChannelDto(Channel channel) {
         setId(channel.getId());
-        setName(channel.getName());
+        setName(channel.getTitle());
         setUrl(channel.getUrl());
         setDescription(channel.getDescription());
         setVersion(channel.getVersion());
@@ -44,7 +44,7 @@ public class ChannelDto {
     public Channel toChannel() {
         Channel channel = new Channel();
         channel.setId(getId());
-        channel.setName(getName());
+        channel.setTitle(getName());
         channel.setUrl(getUrl());
         channel.setDescription(getDescription());
         channel.setVersion(getVersion());

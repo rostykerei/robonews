@@ -23,7 +23,7 @@ public class ChannelDaoHibernate extends AbstractDaoHibernate<Channel, Integer> 
     @Transactional(readOnly = true)
     public List<Channel> getAll() {
         return getSession().
-                createQuery("from Channel order by name asc").
+                createQuery("from Channel order by id asc").
                 list();
     }
 

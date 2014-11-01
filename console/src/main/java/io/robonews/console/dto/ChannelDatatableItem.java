@@ -12,7 +12,9 @@ public class ChannelDatatableItem {
 
     private int id;
 
-    private String name;
+    private String canonicalName;
+
+    private String title;
 
     private String url;
 
@@ -21,7 +23,7 @@ public class ChannelDatatableItem {
 
         item.setUrl(channel.getUrl());
         item.setId(channel.getId());
-        item.setName(channel.getName());
+        item.setTitle(channel.getTitle());
 
         return item;
     }
@@ -34,12 +36,20 @@ public class ChannelDatatableItem {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCanonicalName() {
+        return canonicalName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCanonicalName(String canonicalName) {
+        this.canonicalName = canonicalName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getUrl() {

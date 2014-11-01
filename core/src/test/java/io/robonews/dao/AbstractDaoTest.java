@@ -36,7 +36,7 @@ public class AbstractDaoTest {
 
         for (int i = 0; i < 15; i++) {
             Channel channel = new Channel();
-            channel.setName("abstract-test-" + i);
+            channel.setTitle("abstract-test-" + i);
             channel.setCanonicalName("abstract-test-" + i + ".com");
             channel.setUrl("abstract-test-" + i + "-url");
             channel.setScale(Channel.Scale.GLOBAL);
@@ -49,36 +49,36 @@ public class AbstractDaoTest {
         Assert.assertEquals(15, channelDao.getTableCount("", new String[0]));
         Assert.assertEquals(15, channelDao.getTableCount(null, null));
 
-        Assert.assertEquals(1, channelDao.getTableCount("abstract-test-12", new String[] {"name"}));
-        Assert.assertEquals(1, channelDao.getTableCount("12", new String[] {"name"}));
-        Assert.assertEquals(1, channelDao.getTableCount("abstract-test-12-url", new String[] {"name", "url"}));
+        Assert.assertEquals(1, channelDao.getTableCount("abstract-test-12", new String[] {"title"}));
+        Assert.assertEquals(1, channelDao.getTableCount("12", new String[] {"title"}));
+        Assert.assertEquals(1, channelDao.getTableCount("abstract-test-12-url", new String[] {"title", "url"}));
 
-        Assert.assertEquals(6, channelDao.getTableCount("test-1", new String[] {"name"}));
-        Assert.assertEquals(2, channelDao.getTableCount("2-url", new String[] {"name", "url"}));
+        Assert.assertEquals(6, channelDao.getTableCount("test-1", new String[] {"title"}));
+        Assert.assertEquals(2, channelDao.getTableCount("2-url", new String[] {"title", "url"}));
     }
 
     @Test
     public void testTable() throws Exception {
-        List<Channel> searchResult1 = channelDao.getTable(0, 5, "name", true, null, null);
+        List<Channel> searchResult1 = channelDao.getTable(0, 5, "title", true, null, null);
 
         Assert.assertEquals(5, searchResult1.size());
-        Assert.assertEquals("abstract-test-0", searchResult1.get(0).getName());
-        Assert.assertEquals("abstract-test-12", searchResult1.get(4).getName()); // 0, 1, 10, 11, 12
+        Assert.assertEquals("abstract-test-0", searchResult1.get(0).getTitle());
+        Assert.assertEquals("abstract-test-12", searchResult1.get(4).getTitle()); // 0, 1, 10, 11, 12
 
         List<Channel> searchResult2 = channelDao.getTable(5, 5, "url", false, null, null);
 
         Assert.assertEquals(5, searchResult2.size());
-        Assert.assertEquals("abstract-test-4", searchResult2.get(0).getName());
-        Assert.assertEquals("abstract-test-13", searchResult2.get(4).getName()); // 4, 3, 2, 14, 13
+        Assert.assertEquals("abstract-test-4", searchResult2.get(0).getTitle());
+        Assert.assertEquals("abstract-test-13", searchResult2.get(4).getTitle()); // 4, 3, 2, 14, 13
 
-        List<Channel> searchResult3 = channelDao.getTable(0, 500, "name", true, "test-1", new String[] {"name"});
+        List<Channel> searchResult3 = channelDao.getTable(0, 500, "title", true, "test-1", new String[] {"title"});
         Assert.assertEquals(6, searchResult3.size());
-        Assert.assertEquals("abstract-test-1", searchResult3.get(0).getName());
-        Assert.assertEquals("abstract-test-14", searchResult3.get(5).getName()); // 1, 10, 11, 12, 13, 14
+        Assert.assertEquals("abstract-test-1", searchResult3.get(0).getTitle());
+        Assert.assertEquals("abstract-test-14", searchResult3.get(5).getTitle()); // 1, 10, 11, 12, 13, 14
 
 
-        List<Channel> searchResult4 = channelDao.getTable(1, 500, "url", false, "2-url", new String[] {"name", "url"});
+        List<Channel> searchResult4 = channelDao.getTable(1, 500, "url", false, "2-url", new String[] {"title", "url"});
         Assert.assertEquals(1, searchResult4.size());
-        Assert.assertEquals("abstract-test-12", searchResult4.get(0).getName());
+        Assert.assertEquals("abstract-test-12", searchResult4.get(0).getTitle());
     }
 }

@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ChannelConsoleDao extends AbstractTableDao<Channel, ChannelDatatableItem> {
 
-    private static final String[] SEARCH_FIELDS = new String[] { "name", "url" };
+    private static final String[] SEARCH_FIELDS = new String[] { "canonicalName", "title", "url" };
 
     @Autowired
     private ChannelDao channelDao;
