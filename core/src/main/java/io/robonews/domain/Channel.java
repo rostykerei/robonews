@@ -9,10 +9,13 @@ package io.robonews.domain;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
-@Table(name = "channel", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@Table(name = "channel", uniqueConstraints = @UniqueConstraint(columnNames = "canonicalName"))
 public class Channel {
 
     @Id
@@ -20,11 +23,30 @@ public class Channel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull
+    @Column(name = "canonicalName", unique = true, nullable = false, length = 255)
+    private String canonicalName;
+
+    @NotNull
     @Column(name = "name", unique = true, nullable = false, length = 255)
     private String name;
 
+    @NotNull
     @Column(name = "url", unique = false, nullable = false, length = 255)
     private String url;
+
+    @NotNull
+    @Column(name = "scale", unique = false, nullable = false)
+    private int scale;
+
+    @Column(name = "facebookId", unique = false, nullable = true, length = 255)
+    private String facebookId;
+
+    @Column(name = "twitterId", unique = false, nullable = true, length = 255)
+    private String twitterId;
+
+    @Column(name = "googlePlusId", unique = false, nullable = true, length = 255)
+    private String googlePlusId;
 
     @Column(name = "description", unique = false, nullable = true, length = 255)
     private String description;
@@ -45,6 +67,14 @@ public class Channel {
         this.id = id;
     }
 
+    public String getCanonicalName() {
+        return canonicalName;
+    }
+
+    public void setCanonicalName(String canonicalName) {
+        this.canonicalName = canonicalName;
+    }
+
     public String getName() {
         return name;
     }
@@ -59,6 +89,38 @@ public class Channel {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Scale getScale() {
+        return Scale.getScale(scale);
+    }
+
+    public void setScale(Scale scale) {
+        this.scale = scale.getId();
+    }
+
+    public String getFacebookId() {
+        return facebookId;
+    }
+
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
+    }
+
+    public String getTwitterId() {
+        return twitterId;
+    }
+
+    public void setTwitterId(String twitterId) {
+        this.twitterId = twitterId;
+    }
+
+    public String getGooglePlusId() {
+        return googlePlusId;
+    }
+
+    public void setGooglePlusId(String googlePlusId) {
+        this.googlePlusId = googlePlusId;
     }
 
     public String getDescription() {
@@ -83,5 +145,33 @@ public class Channel {
 
     public void setFeeds(Collection<Feed> feeds) {
         this.feeds = feeds;
+    }
+
+    public static enum Scale {
+        GLOBAL(1),
+        REGIONAL(2),
+        LOCAL(3);
+
+        private int id;
+
+        private static final Map<Integer, Scale> lookup = new HashMap<Integer, Scale>();
+
+        static {
+            for (Scale item : Scale.values()) {
+                lookup.put(item.getId(), item);
+            }
+        }
+
+        private Scale(int id) {
+            this.id = id;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public static Scale getScale(int id) {
+            return lookup.get(id);
+        }
     }
 }

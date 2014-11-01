@@ -37,6 +37,8 @@ public class ChannelDaoTest {
         Channel channel = new Channel();
         channel.setName("test-1");
         channel.setUrl("test-url-1");
+        channel.setCanonicalName("test-1.com");
+        channel.setScale(Channel.Scale.GLOBAL);
 
         int id = channelDao.create(channel);
 
@@ -63,6 +65,8 @@ public class ChannelDaoTest {
         Channel channel = new Channel();
         channel.setName("test-1");
         channel.setUrl("test-url-1");
+        channel.setCanonicalName("test-1.com");
+        channel.setScale(Channel.Scale.GLOBAL);
 
         channelDao.create(channel);
 
@@ -72,6 +76,8 @@ public class ChannelDaoTest {
         Channel channel2 = new Channel();
         channel2.setName("test-2");
         channel2.setUrl("test-url-2");
+        channel2.setCanonicalName("test-2.com");
+        channel2.setScale(Channel.Scale.GLOBAL);
 
         channelDao.create(channel2);
 
@@ -89,12 +95,16 @@ public class ChannelDaoTest {
         Channel channel = new Channel();
         channel.setName("test-unique");
         channel.setUrl("test-url-1");
+        channel.setCanonicalName("test-1.com");
+        channel.setScale(Channel.Scale.GLOBAL);
 
         channelDao.create(channel);
 
         Channel channel2 = new Channel();
         channel2.setName("test-unique");
         channel2.setUrl("test-url-1");
+        channel2.setCanonicalName("test-1.com");
+        channel2.setScale(Channel.Scale.GLOBAL);
 
         channelDao.create(channel2);
     }

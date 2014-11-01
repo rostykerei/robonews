@@ -42,12 +42,18 @@ DROP TABLE IF EXISTS `channel`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `channel` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `canonicalName` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
+  `scale` int(2) unsigned NOT NULL,
+  `facebookId` varchar(255) DEFAULT NULL,
+  `twitterId` varchar(255) DEFAULT NULL,
+  `googlePlusId` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `channel_idx_1` (`name`)
+  UNIQUE KEY `channel_idx_1` (`canonicalName`),
+  KEY `channel_idx_2` (`scale`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

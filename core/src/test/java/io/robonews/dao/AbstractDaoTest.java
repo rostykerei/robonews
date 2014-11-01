@@ -37,7 +37,9 @@ public class AbstractDaoTest {
         for (int i = 0; i < 15; i++) {
             Channel channel = new Channel();
             channel.setName("abstract-test-" + i);
+            channel.setCanonicalName("abstract-test-" + i + ".com");
             channel.setUrl("abstract-test-" + i + "-url");
+            channel.setScale(Channel.Scale.GLOBAL);
             channelDao.create(channel);
         }
     }

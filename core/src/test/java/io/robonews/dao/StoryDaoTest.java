@@ -48,6 +48,8 @@ public class StoryDaoTest {
         Channel channel = new Channel();
         channel.setName("test-channel-1");
         channel.setUrl("test-url-1");
+        channel.setCanonicalName("test-1.com");
+        channel.setScale(Channel.Scale.GLOBAL);
 
         channelDao.create(channel);
 
@@ -102,6 +104,8 @@ public class StoryDaoTest {
         Channel channel = new Channel();
         channel.setName("test-channel-1");
         channel.setUrl("test-url-1");
+        channel.setCanonicalName("test-1.com");
+        channel.setScale(Channel.Scale.GLOBAL);
 
         channelDao.create(channel);
 
@@ -161,6 +165,8 @@ public class StoryDaoTest {
         Channel channel = new Channel();
         channel.setName("test-channel-1");
         channel.setUrl("test-url-1");
+        channel.setCanonicalName("test-1.com");
+        channel.setScale(Channel.Scale.GLOBAL);
 
         channelDao.create(channel);
 
