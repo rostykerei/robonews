@@ -33,3 +33,12 @@ $(function() {
         }
     })
 })
+
+function redir(location) {
+    $scope = $('html').scope;
+    alert(location);
+    alert($scope);
+
+
+    $scope.$state.go(location);
+}

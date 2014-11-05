@@ -4,7 +4,7 @@
  * Copyright (c) 2013-2014 Rosty Kerei.
  * All rights reserved.
  */
-package io.robonews.console.dto;
+package io.robonews.console.dto.channel;
 
 import io.robonews.domain.Channel;
 
@@ -18,12 +18,19 @@ public class ChannelDatatableItem {
 
     private String url;
 
+    private int scale;
+
+    private boolean active;
+
     public static ChannelDatatableItem fromChannel(Channel channel) {
         ChannelDatatableItem item = new ChannelDatatableItem();
 
         item.setUrl(channel.getUrl());
         item.setId(channel.getId());
         item.setTitle(channel.getTitle());
+        item.setCanonicalName(channel.getCanonicalName());
+        item.setScale(channel.getScale().getId());
+        item.setActive(channel.isActive());
 
         return item;
     }
@@ -58,5 +65,21 @@ public class ChannelDatatableItem {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getScale() {
+        return scale;
+    }
+
+    public void setScale(int scale) {
+        this.scale = scale;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

@@ -7,7 +7,7 @@
 
 --%>
 <!DOCTYPE html>
-<html ng-app="inspinia">
+<html ng-app="robonews-console">
 
 <head>
 
@@ -123,6 +123,7 @@
 <!-- Angular scripts-->
 <script src="js/angular/angular.min.js"></script>
 <script src="js/ui-router/angular-ui-router.min.js"></script>
+<script src="js/angular/angular-resource.min.js"></script>
 <script src="js/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
 <script src="js/plugins/dataTables/angular-datatables.min.js"></script>
 
@@ -132,7 +133,9 @@
 <script src="js/app.js"></script>
 <script src="js/config.js"></script>
 <script src="js/directives.js"></script>
+<script src="js/services.js"></script>
 <script src="js/controllers.js"></script>
+
 
 </body>
 </html>

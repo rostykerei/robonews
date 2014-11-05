@@ -136,7 +136,7 @@ function minimalizaSidebar($timeout) {
  * Pass all functions into module
  */
 angular
-    .module('inspinia')
+    .module('robonews-console')
     .directive('pageTitle', pageTitle)
     .directive('sideNavigation', sideNavigation)
     .directive('iboxTools', iboxTools)

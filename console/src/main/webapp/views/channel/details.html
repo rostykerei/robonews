@@ -1,0 +1,49 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-8">
+        <h2>Channel details: {{channel.title}}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="home">Home</a>
+            </li>
+            <li>
+                <a ui-sref="channel.list">Channels</a>
+            </li>
+            <li class="active">
+                <strong>{{$state.current.data.subpageTitle}}</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-md-4">
+        <div class="title-action">
+            <a ui-sref="channel.new.cn()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Create new channel</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ibox float-e-margins ui-tab">
+
+                <div class="ibox-title">
+                    <h5>{{channel.title}}</h5>
+                </div>
+
+
+                {{$stateProvider}}
+
+                <div class="ibox-content">
+                    <ul class="nav nav-tabs m-b-md">
+                        <li ui-sref-active="active" ng-repeat="tab in tabs">
+                            <a ui-sref="channel.details.{{tab.action}}({{channel.id}})"><i class="fa {{tab.icon}}"></i> {{tab.label}}</a>
+                        </li>
+                    </ul>
+
+                    <div ui-view class="animated fadeInRight"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

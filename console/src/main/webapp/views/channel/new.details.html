@@ -1,0 +1,53 @@
+<form class="form-horizontal">
+    <div class="form-group"><label class="col-md-2 control-label" for="form-canonical-name">CN</label>
+        <div class="col-md-10"><input type="text" id="form-canonical-name" placeholder="Canonical name" class="form-control" ng-model="channel.canonicalName"></div>
+    </div>
+
+    <div class="form-group"><label class="col-md-2 control-label" for="form-title">Title</label>
+        <div class="col-md-10"><input type="text" id="form-title" placeholder="Title" class="form-control" ng-model="channel.title"></div>
+    </div>
+
+    <div class="form-group"><label class="col-md-2 control-label" for="form-url">URL</label>
+        <div class="col-md-10"><input type="url" id="form-url" placeholder="URL" class="form-control" ng-model="channel.url"></div>
+    </div>
+
+    <div class="form-group"><label class="col-md-2 control-label">Scale</label>
+        <div class="col-md-10">
+            <div class="radio"><label> <input icheck type="radio" name="radioTest"> Option one </label></div>
+            <div class="radio"><label> <input icheck type="radio" name="radioTest"> Option two checked </label></div>
+        </div>
+    </div>
+
+    <div class="form-group"><label class="col-md-2 control-label" for="form-description">Description</label>
+        <div class="col-md-10"><input type="text" id="form-description" placeholder="Description" class="form-control" ng-model="channel.description"></div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="form-group"><label class="col-md-2 control-label" for="form-facebook-id">Facebook ID</label>
+        <div class="col-md-10"><input type="text" id="form-facebook-id" placeholder="Facebook ID" class="form-control" ng-model="channel.facebookId"></div>
+    </div>
+
+
+    <div class="form-group"><label class="col-md-2 control-label" for="form-twitter-id">Twiiter ID</label>
+        <div class="col-md-10"><input type="text" id="form-twitter-id" placeholder="Twitter ID" class="form-control" ng-model="channel.twitterId"></div>
+    </div>
+
+    <div class="form-group"><label class="col-md-2 control-label" for="form-google-plus-id">Google Plus ID</label>
+        <div class="col-md-10"><input type="text" id="form-google-plus-id" placeholder="Google Plus ID" class="form-control" ng-model="channel.googlePlusId"></div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="form-group"><label class="col-md-2 control-label" for="form-alexa-rank">Alexa Rank</label>
+        <div class="col-md-10"><input type="number" id="form-alexa-rank" class="form-control" ng-model="channel.alexaRank"></div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a ui-sref="channel.new.cn" class="btn btn-white">Back</a>
+            <button class="btn btn-white">Reset</button>
+        </div>
+    </div>
+</form>

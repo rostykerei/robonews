@@ -52,6 +52,9 @@ public class Channel {
     @Column(name = "description", unique = false, nullable = true, length = 255)
     private String description;
 
+    @Column(name = "active", nullable = false)
+    private boolean active;
+
     @Version
     @Column(name = "version")
     private long version;
@@ -139,6 +142,14 @@ public class Channel {
         this.description = description;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public long getVersion() {
         return version;
     }
@@ -156,9 +167,9 @@ public class Channel {
     }
 
     public static enum Scale {
-        GLOBAL(1),
+        GLOBAL(3),
         REGIONAL(2),
-        LOCAL(3);
+        LOCAL(1);
 
         private int id;
 

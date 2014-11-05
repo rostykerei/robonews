@@ -6,7 +6,8 @@
  */
 package io.robonews.console.dao;
 
-import io.robonews.console.dto.ChannelDatatableItem;
+import io.robonews.console.dto.channel.ChannelDatatableItem;
+import io.robonews.console.dto.channel.ChannelForm;
 import io.robonews.dao.AbstractDao;
 import io.robonews.dao.ChannelDao;
 import io.robonews.domain.Channel;
@@ -35,5 +36,11 @@ public class ChannelConsoleDao extends AbstractTableDao<Channel, ChannelDatatabl
     @Override
     protected ChannelDatatableItem mapFromOriginal(Channel obj) {
         return ChannelDatatableItem.fromChannel(obj);
+    }
+
+    public ChannelForm getChannelForm(int id) {
+        Channel channel = channelDao.getById(id);
+
+        return ChannelForm.fromChannel(channel);
     }
 }

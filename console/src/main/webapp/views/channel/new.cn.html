@@ -1,0 +1,18 @@
+<div class="alert alert-danger" ng-show="message">
+    {{message}}
+</div>
+
+<form class="form-horizontal" ng-submit="prefillDetailsForm()">
+    <div class="form-group"><label class="col-md-2 control-label" for="form-canonical-name">Canonical name</label>
+        <div class="col-md-10">
+            <input type="text" required id="form-canonical-name" placeholder="Canonical name" class="form-control" ng-model="cnForm.canonicalName">
+            <span class="help-block m-b-none">Enter shortest possible canonical name, eg. <i>cnn.com</i>, or <i>reuters.com</i></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-primary" type="submit">Next</button>
+        </div>
+    </div>
+</form>

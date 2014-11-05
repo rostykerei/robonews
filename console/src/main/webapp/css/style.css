@@ -1925,12 +1925,13 @@ body.body-small .footer.fixed {
   -moz-border-top-colors: none;
   background: none;
   border-color: #dddddd #dddddd rgba(0, 0, 0, 0);
-  border-bottom: #f3f3f4;
+  border-bottom: #ffffff;
   border-image: none;
   border-style: solid;
   border-width: 1px;
   color: #555555;
   cursor: default;
+  outline: none;
 }
 .nav.nav-tabs li {
   background: none;

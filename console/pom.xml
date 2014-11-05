@@ -33,7 +33,7 @@
                     <port>9091</port>
                     <useTestClasspath>true</useTestClasspath>
                     <systemProperties>
-                        <spring.profiles.active>test</spring.profiles.active>
+                        <spring.profiles.active>development</spring.profiles.active>
                     </systemProperties>
                 </configuration>
             </plugin>
@@ -71,6 +71,12 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
         </dependency>
     </dependencies>
 

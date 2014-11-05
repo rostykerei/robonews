@@ -1,0 +1,40 @@
+<div class="modal-body">
+    <div class="row">
+        <div class="col-sm-12"><h3 class="m-t-none m-b">HTTP Error occurred</h3></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4"><b>Request URL:</b></div>
+        <div class="col-sm-8"><code>{{rejection.config.url}}</code></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4"><b>Request Method:</b></div>
+        <div class="col-sm-8"><code>{{rejection.config.method}}</code></div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-sm-4"><b>Response Code:</b></div>
+        <div class="col-sm-8"><code>{{rejection.status}} {{rejection.statusText}}</code></div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <pre style="height: 300px;">{{rejection.data}}</pre>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-sm-12 text-right">
+            <button class="btn btn-sm btn-primary" ng-click="retry()"><i class="fa fa-refresh"></i> Retry</button>
+            <button class="btn btn-sm btn-danger" ng-click="cancel()"><i class="fa fa-times"></i> Cancel</button>
+        </div>
+    </div>
+
+</div>

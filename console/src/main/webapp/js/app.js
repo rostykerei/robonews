@@ -1,12 +1,13 @@
-/**
- * INSPINIA - Responsive Admin Theme
- * Copyright 2014 Webapplayers.com
- *
- */
 (function () {
-    angular.module('inspinia', [
+    var app = angular.module('robonews-console', [
         'ui.router',
         'ui.bootstrap',
-        'datatables'
-    ])
+        'datatables',
+        'ngResource'
+    ]);
+
+    app.config(function($httpProvider) {
+        $httpProvider.interceptors.push('RetryInterceptor');
+    });
+
 })();

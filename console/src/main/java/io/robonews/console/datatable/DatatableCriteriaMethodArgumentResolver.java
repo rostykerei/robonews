@@ -8,6 +8,9 @@ package io.robonews.console.datatable;
 
 import io.robonews.console.controller.error.BadRequestException;
 import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -15,6 +18,8 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 public class DatatableCriteriaMethodArgumentResolver implements HandlerMethodArgumentResolver {
+
+    private Logger logger = LoggerFactory.getLogger(DatatableCriteriaMethodArgumentResolver.class);
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
@@ -44,15 +49,18 @@ public class DatatableCriteriaMethodArgumentResolver implements HandlerMethodArg
         DatatableParams parameterAnnotation = parameter.getParameterAnnotation(DatatableParams.class);
 
         if (length < 0 || length > parameterAnnotation.maxLength()) {
-            throw new BadRequestException("Datatable length arg is not correct");
+            logger.warn("Datatable length arg " + length + " is not correct");
+            throw new BadRequestException("Datatable length arg " + length + " is not correct");
         }
 
         if (start < 0) {
-            throw new BadRequestException("Datatable start arg is not correct");
+            logger.warn("Datatable start arg [" + start + "] is not correct");
+            throw new BadRequestException("Datatable start arg [" + start + "] is not correct");
         }
 
         if (!isValidSortField(sortField, parameterAnnotation.sortFields())) {
-            throw new BadRequestException("Datatable sort field is not correct");
+            logger.warn("Datatable sort field [" + sortField + "] is not correct");
+            throw new BadRequestException("Datatable sort field [" + sortField + "] is not correct");
         }
 
         criteria.setDraw(draw);
