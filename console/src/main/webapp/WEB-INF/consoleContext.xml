@@ -16,6 +16,7 @@
     <context:property-placeholder location="classpath:console.properties"/>
 
     <import resource="classpath:coreContext.xml"/>
+    <import resource="classpath:serviceAlexaContext.xml"/>
 
     <beans profile="development">
         <jdbc:initialize-database data-source="dataSource">

@@ -11,40 +11,36 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
+        <artifactId>services</artifactId>
         <groupId>io.robonews</groupId>
-        <artifactId>root-pom</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>services</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>service-alexa</artifactId>
 
-    <name>Robonews.io - Services</name>
 
-    <modules>
-        <module>service-http</module>
-        <module>service-syndication</module>
-        <module>service-nlp</module>
-        <module>service-freebase</module>
-        <module>service-image-tools</module>
-        <module>service-storage</module>
-        <module>service-text-tools</module>
-        <module>service-alexa</module>
-    </modules>
+    <name>Robonews.io - Services - Alexa</name>
 
     <dependencies>
+
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
+            <groupId>io.robonews</groupId>
+            <artifactId>service-http</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

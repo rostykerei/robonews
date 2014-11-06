@@ -16,6 +16,7 @@ import io.robonews.service.http.HttpRequest;
 import io.robonews.service.http.HttpResponse;
 import io.robonews.service.http.HttpService;
 import io.robonews.service.http.impl.HttpRequestImpl;
+import io.robonews.service.http.impl.HttpServiceUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -68,23 +69,24 @@ public class FreebaseServiceGoogle implements FreebaseService {
 
     private FreebaseSearchResult searchFreebase(String query, String filter, FreebaseSearchResult.Type defaultType) throws FreebaseServiceException {
 
-        StringBuilder url = new StringBuilder("https://www.googleapis.com/freebase/v1/search").
-                                    append("?query=").
-                                    append(urlEncode(query));
-
-        if (!StringUtils.isEmpty(filter)) {
-            url.append("&filter=").append(filter);
-        }
-
-        if (!StringUtils.isEmpty(getApiKey())) {
-            url.append("&key=").append(getApiKey());
-        }
-
-        url.append("&lang=en").append("&limit=1").append("&output=(type)");
-
         HttpResponse httpResponse = null;
 
         try {
+
+            StringBuilder url = new StringBuilder("https://www.googleapis.com/freebase/v1/search").
+                                        append("?query=").
+                                        append(HttpServiceUtils.urlEncode(query));
+
+            if (!StringUtils.isEmpty(filter)) {
+                url.append("&filter=").append(filter);
+            }
+
+            if (!StringUtils.isEmpty(getApiKey())) {
+                url.append("&key=").append(getApiKey());
+            }
+
+            url.append("&lang=en").append("&limit=1").append("&output=(type)");
+
             HttpRequest httpRequest = new HttpRequestImpl(url.toString());
             httpRequest.setAccept("application/json");
 
@@ -135,16 +137,6 @@ public class FreebaseServiceGoogle implements FreebaseService {
             if (httpResponse != null) {
                 httpResponse.releaseConnection();
             }
-        }
-    }
-
-    private String urlEncode(String input) throws FreebaseServiceException {
-        try {
-            return URLEncoder.encode(input, "UTF-8");
-        }
-        catch (UnsupportedEncodingException e) {
-            logger.error("Could not encode URL param " + input + ":", e);
-            throw new FreebaseServiceException();
         }
     }
 
