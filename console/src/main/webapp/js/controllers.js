@@ -77,12 +77,18 @@ app.controller('ChannelCreateController', function ($scope, $http, ChannelServic
         })
         .success(function(data) {
             if (!data.error) {
+                $scope.showPrefillError = false;
                 ChannelService.channelForm = data.data;
                 $scope.channel = ChannelService.channelForm;
                 $state.go('channel.new.details');
 
             } else {
-                $scope.message = "eeeeeeeeee";
+                $scope.showPrefillError = true;
+                $scope.err = {
+                    exceptionName: data.exceptionName,
+                    exceptionMessage: data.exceptionMessage,
+                    stackTrace: data.stackTrace
+                }
             }
         });
 

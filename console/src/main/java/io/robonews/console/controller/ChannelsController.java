@@ -7,14 +7,13 @@
 package io.robonews.console.controller;
 
 import io.robonews.console.controller.error.BadRequestException;
-import io.robonews.console.controller.error.InternalServerErrorException;
 import io.robonews.console.dao.ChannelConsoleDao;
 import io.robonews.console.datatable.Datatable;
 import io.robonews.console.datatable.DatatableCriteria;
 import io.robonews.console.datatable.DatatableParams;
+import io.robonews.console.dto.DataResponse;
 import io.robonews.console.dto.channel.ChannelDatatableItem;
 import io.robonews.console.dto.channel.ChannelForm;
-import io.robonews.console.dto.DataResponse;
 import io.robonews.service.alexa.AlexaService;
 import io.robonews.service.alexa.exception.AlexaServiceException;
 import io.robonews.service.alexa.impl.AlexaServiceResult;
@@ -70,7 +69,9 @@ public class ChannelsController {
         }
         catch (AlexaServiceException e) {
             // TODO log it
-            throw new InternalServerErrorException(e);
+            response.setException(e);
+            response.setError(true);
+            return response;
         }
 
         ChannelForm form = new ChannelForm();

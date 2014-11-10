@@ -1,5 +1,12 @@
-<div class="alert alert-danger" ng-show="message">
-    {{message}}
+<div class="alert alert-danger" ng-show="showPrefillError">
+    An error happened while gathering channel information: <code ng-show="err.exceptionName" class="m-l-md">{{err.exceptionName}} : {{err.exceptionMessage}}</code>
+
+    <br/><br/>
+
+    <a class="btn btn-sm btn-danger" ng-show="err.stackTrace" ng-click="showStacktrace = !showStacktrace" ><i class="fa fa-info-circle"></i> Show stack trace</a>
+    <a ui-sref="channel.new.details()" class="btn btn-sm btn-primary"><i class="fa fa-play"></i> Continue without form pre-fill</a>
+
+    <pre ng-show="showStacktrace">{{err.stackTrace}}</pre>
 </div>
 
 <form class="form-horizontal" ng-submit="prefillDetailsForm()">
