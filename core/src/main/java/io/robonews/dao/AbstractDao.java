@@ -13,10 +13,6 @@ public interface AbstractDao <T, PK extends Serializable> {
 
     T getById(PK id);
 
-    long getTableCount(String search, String[] searchFields);
-
-    List<T> getTable(int start, int length, String sortField, boolean isSortAscending, String search, String[] searchFields);
-
     PK create(T newInstance);
 
     void createOrUpdate(T transientObject);

@@ -7,6 +7,7 @@
 package io.robonews.service.storage.rackspace;
 
 import io.robonews.service.storage.StorageService;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedWriter;
@@ -17,6 +18,7 @@ import java.util.Date;
 public class StorageServiceRackspaceTest {
 
     @Test
+    @Ignore
     public void testPutFile() throws Exception {
 
         StorageService storageService = new StorageServiceRackspace("robonews.files", "c8de7e43df9349a2a2619aaec54b7c74", "test");

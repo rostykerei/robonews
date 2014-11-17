@@ -43,7 +43,7 @@ public class AlexaServiceImpl implements AlexaService {
             String apiUrl = ALEXA_API_BASE_URL + HttpServiceUtils.urlEncode(url);
             HttpRequest httpRequest = new HttpRequestImpl(apiUrl);
 
-            httpRequest.setAccept("application/json");
+            httpRequest.setAccept("application/xml");
 
             httpResponse = httpService.execute(httpRequest);
 

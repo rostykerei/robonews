@@ -46,7 +46,8 @@ app.controller('ChannelsDatatable', function ($scope, $timeout, DTOptionsBuilder
     $scope.dtColumns = [
         DTColumnBuilder.newColumn('title').withTitle('Title'),
         DTColumnBuilder.newColumn('canonicalName').withTitle('Canonical name'),
-        DTColumnBuilder.newColumn('url').withTitle('URL')
+        DTColumnBuilder.newColumn('url').withTitle('URL'),
+        DTColumnBuilder.newColumn('feedsCount').withTitle('Feeds count')
     ];
 });
 

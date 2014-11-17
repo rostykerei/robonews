@@ -18,6 +18,12 @@
     <import resource="classpath:coreContext.xml"/>
     <import resource="classpath:serviceAlexaContext.xml"/>
 
+
+    <bean id="channelConsoleDao" class="io.robonews.console.dao.hibernate.ChannelConsoleDaoHibernate">
+        <constructor-arg name="channelDao" ref="channelDao"/>
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
     <beans profile="development">
         <jdbc:initialize-database data-source="dataSource">
             <jdbc:script location="classpath:sql/db-schema.sql"/>

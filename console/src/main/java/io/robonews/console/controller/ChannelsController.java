@@ -33,11 +33,7 @@ public class ChannelsController {
 
     @RequestMapping(value = "/channel/list", method = RequestMethod.GET)
     public @ResponseBody Datatable<ChannelDatatableItem> getChannelsDatatable(
-            @DatatableParams(sortFields = {"canonicalName", "title", "url"}) DatatableCriteria criteria) {
-
-        if (criteria.getSortField().equals("url")) {
-            throw new BadRequestException("test exc");
-        }
+            @DatatableParams(sortFields = {"canonicalName", "title", "url", "feedsCount"}) DatatableCriteria criteria) {
 
         return channelConsoleDao.getDatatable(criteria);
     }

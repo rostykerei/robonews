@@ -22,6 +22,8 @@ public class ChannelDatatableItem {
 
     private boolean active;
 
+    private long feedsCount;
+
     public static ChannelDatatableItem fromChannel(Channel channel) {
         ChannelDatatableItem item = new ChannelDatatableItem();
 
@@ -81,5 +83,13 @@ public class ChannelDatatableItem {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public long getFeedsCount() {
+        return feedsCount;
+    }
+
+    public void setFeedsCount(long feedsCount) {
+        this.feedsCount = feedsCount;
     }
 }

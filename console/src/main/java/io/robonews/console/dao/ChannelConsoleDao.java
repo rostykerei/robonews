@@ -6,41 +6,15 @@
  */
 package io.robonews.console.dao;
 
+import io.robonews.console.datatable.Datatable;
+import io.robonews.console.datatable.DatatableCriteria;
 import io.robonews.console.dto.channel.ChannelDatatableItem;
 import io.robonews.console.dto.channel.ChannelForm;
-import io.robonews.dao.AbstractDao;
-import io.robonews.dao.ChannelDao;
-import io.robonews.domain.Channel;
-import java.io.Serializable;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
-public class ChannelConsoleDao extends AbstractTableDao<Channel, ChannelDatatableItem> {
+public interface ChannelConsoleDao {
 
-    private static final String[] SEARCH_FIELDS = new String[] { "canonicalName", "title", "url" };
+    public ChannelForm getChannelForm(int id);
 
-    @Autowired
-    private ChannelDao channelDao;
+    public Datatable<ChannelDatatableItem> getDatatable(DatatableCriteria criteria);
 
-    @Override
-    protected AbstractDao<Channel, ? extends Serializable> getDao() {
-        return channelDao;
-    }
-
-    @Override
-    protected String[] getSearchFields() {
-        return SEARCH_FIELDS;
-    }
-
-    @Override
-    protected ChannelDatatableItem mapFromOriginal(Channel obj) {
-        return ChannelDatatableItem.fromChannel(obj);
-    }
-
-    public ChannelForm getChannelForm(int id) {
-        Channel channel = channelDao.getById(id);
-
-        return ChannelForm.fromChannel(channel);
-    }
 }

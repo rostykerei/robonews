@@ -13,8 +13,9 @@
 
     <div class="form-group"><label class="col-md-2 control-label">Scale</label>
         <div class="col-md-10">
-            <div class="radio"><label> <input icheck type="radio" name="radioTest"> Option one </label></div>
-            <div class="radio"><label> <input icheck type="radio" name="radioTest"> Option two checked </label></div>
+            <div class="radio"><label> <input icheck type="radio" name="radioTest"> Global</label>
+            <label class="m-l"> <input icheck type="radio" name="radioTest"> Regional</label>
+            <label class="m-l"> <input icheck type="radio" name="radioTest"> Local</label></div>
         </div>
     </div>
 
@@ -25,16 +26,34 @@
     <div class="hr-line-dashed"></div>
 
     <div class="form-group"><label class="col-md-2 control-label" for="form-facebook-id">Facebook ID</label>
-        <div class="col-md-10"><input type="text" id="form-facebook-id" placeholder="Facebook ID" class="form-control" ng-model="channel.facebookId"></div>
+        <!--<div class="col-md-10"><input type="text" id="form-facebook-id" placeholder="Facebook ID" class="form-control" ng-model="channel.facebookId"></div>-->
+       <div class="col-md-10">
+           <div class="input-group">
+               <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+               <input type="text" id="form-facebook-id" ng-model="channel.facebookId" placeholder="Facebook ID" class="form-control">
+           </div>
+       </div>
     </div>
 
 
     <div class="form-group"><label class="col-md-2 control-label" for="form-twitter-id">Twiiter ID</label>
-        <div class="col-md-10"><input type="text" id="form-twitter-id" placeholder="Twitter ID" class="form-control" ng-model="channel.twitterId"></div>
+        <!--<div class="col-md-10"><input type="text" id="form-twitter-id" placeholder="Twitter ID" class="form-control" ng-model="channel.twitterId"></div>-->
+        <div class="col-md-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+                <input type="text" id="form-twitter-id" ng-model="channel.twitterId" placeholder="Twitter ID" class="form-control">
+            </div>
+        </div>
     </div>
 
     <div class="form-group"><label class="col-md-2 control-label" for="form-google-plus-id">Google Plus ID</label>
-        <div class="col-md-10"><input type="text" id="form-google-plus-id" placeholder="Google Plus ID" class="form-control" ng-model="channel.googlePlusId"></div>
+        <!--<div class="col-md-10"><input type="text" id="form-google-plus-id" placeholder="Google Plus ID" class="form-control" ng-model="channel.googlePlusId"></div>-->
+        <div class="col-md-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
+                <input type="text" id="form-google-plus-id" ng-model="channel.googlePlusId" placeholder="Google Plus ID" class="form-control">
+            </div>
+        </div>
     </div>
 
     <div class="hr-line-dashed"></div>
