@@ -32,6 +32,7 @@
         <module>service-storage</module>
         <module>service-text-tools</module>
         <module>service-alexa</module>
+        <module>service-facebook</module>
     </modules>
 
     <dependencies>

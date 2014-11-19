@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Robonews.io
+
+    Copyright (c) 2013-2014 Rosty Kerei.
+    All rights reserved.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="facebookService" class="io.robonews.service.facebook.impl.FacebookServiceImpl">
+              <constructor-arg name="accessToken" value="${facebook.accessToken}"/>
+       </bean>
+</beans>

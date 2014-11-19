@@ -6,7 +6,7 @@
  */
 package io.robonews.console.controller;
 
-import io.robonews.console.controller.error.BadRequestException;
+import io.robonews.console.controller.error.NotFoundException;
 import io.robonews.console.dao.ChannelConsoleDao;
 import io.robonews.console.datatable.Datatable;
 import io.robonews.console.datatable.DatatableCriteria;
@@ -17,6 +17,9 @@ import io.robonews.console.dto.channel.ChannelForm;
 import io.robonews.service.alexa.AlexaService;
 import io.robonews.service.alexa.exception.AlexaServiceException;
 import io.robonews.service.alexa.impl.AlexaServiceResult;
+import io.robonews.service.facebook.FacebookService;
+import io.robonews.service.facebook.model.Page;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +34,9 @@ public class ChannelsController {
     @Autowired
     private AlexaService alexaService;
 
+    @Autowired
+    private FacebookService facebookService;
+
     @RequestMapping(value = "/channel/list", method = RequestMethod.GET)
     public @ResponseBody Datatable<ChannelDatatableItem> getChannelsDatatable(
             @DatatableParams(sortFields = {"canonicalName", "title", "url", "feedsCount"}) DatatableCriteria criteria) {
@@ -40,12 +46,13 @@ public class ChannelsController {
 
     @RequestMapping(value = "/channel/{channelId}", method = RequestMethod.GET)
     public @ResponseBody ChannelForm getChannel(@PathVariable int channelId) {
+        ChannelForm form = channelConsoleDao.getChannelForm(channelId);
 
-        if (channelId == 2) {
-            throw new BadRequestException("test exc");
+        if (form == null) {
+            throw new NotFoundException();
         }
 
-        return channelConsoleDao.getChannelForm(channelId);
+        return form;
     }
 
     @RequestMapping(value = "/channel/new/prefill", method = RequestMethod.POST)
@@ -80,6 +87,11 @@ public class ChannelsController {
         response.setData(form);
 
         return response;
+    }
+
+    @RequestMapping(value = "/channel/fb-typeahead", method = RequestMethod.GET)
+    public @ResponseBody List<Page> fbTypeahead(@RequestParam("query") String query) {
+        return facebookService.searchPage(query, 5);
     }
 
 }

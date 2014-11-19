@@ -8,7 +8,12 @@
     </div>
 
     <div class="form-group"><label class="col-md-2 control-label" for="form-url">URL</label>
-        <div class="col-md-10"><input type="url" id="form-url" placeholder="URL" class="form-control" ng-model="channel.url"></div>
+        <div class="col-md-10">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                <input type="url" id="form-url" ng-model="channel.url" placeholder="URL" class="form-control">
+            </div>
+        </div>
     </div>
 
     <div class="form-group"><label class="col-md-2 control-label">Scale</label>
@@ -26,18 +31,15 @@
     <div class="hr-line-dashed"></div>
 
     <div class="form-group"><label class="col-md-2 control-label" for="form-facebook-id">Facebook ID</label>
-        <!--<div class="col-md-10"><input type="text" id="form-facebook-id" placeholder="Facebook ID" class="form-control" ng-model="channel.facebookId"></div>-->
        <div class="col-md-10">
            <div class="input-group">
                <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
-               <input type="text" id="form-facebook-id" ng-model="channel.facebookId" placeholder="Facebook ID" class="form-control">
+               <input type="text" id="form-facebook-id" typeahead="fbpage as fbpage.username for fbpage in fbTypeAhead($viewValue)" typeahead-template-url="fbTypeAheadTemplate.html" ng-model="channel.facebookId" placeholder="Facebook ID" class="form-control">
            </div>
        </div>
     </div>
 
-
     <div class="form-group"><label class="col-md-2 control-label" for="form-twitter-id">Twiiter ID</label>
-        <!--<div class="col-md-10"><input type="text" id="form-twitter-id" placeholder="Twitter ID" class="form-control" ng-model="channel.twitterId"></div>-->
         <div class="col-md-10">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
@@ -47,7 +49,6 @@
     </div>
 
     <div class="form-group"><label class="col-md-2 control-label" for="form-google-plus-id">Google Plus ID</label>
-        <!--<div class="col-md-10"><input type="text" id="form-google-plus-id" placeholder="Google Plus ID" class="form-control" ng-model="channel.googlePlusId"></div>-->
         <div class="col-md-10">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
@@ -70,3 +71,12 @@
         </div>
     </div>
 </form>
+
+<script type="text/ng-template" id="fbTypeAheadTemplate.html">
+    <a>
+        <img class="pull-left m-r-sm" ng-src="{{match.model.pictureUrl}}" height="50">
+
+        <span>{{match.model.name}}</span> <span>{{match.model.website}}</span> (<span bind-html-unsafe="match.model.username | typeaheadHighlight:query"></span>)<br/>
+        <span>{{match.model.category}}</span> <span>{{match.model.likes | number}} likes</span>
+    </a>
+</script>

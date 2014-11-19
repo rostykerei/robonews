@@ -20,11 +20,21 @@ import org.hibernate.sql.JoinType;
 import org.hibernate.transform.Transformers;
 import org.springframework.transaction.annotation.Transactional;
 
-
+/**
+ * Hibernate implementation of ChannelConsoleDao
+ *
+ * @author Rosty Kerei
+ */
 public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate implements ChannelConsoleDao {
 
     private ChannelDao channelDao;
 
+    /**
+     * Constructor
+     *
+     * @param sessionFactory Hibernate session factory
+     * @param channelDao Default Channel DAO
+     */
     public ChannelConsoleDaoHibernate(SessionFactory sessionFactory, ChannelDao channelDao) {
         super(sessionFactory);
         this.channelDao = channelDao;
@@ -34,6 +44,11 @@ public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate impl
     @Transactional(readOnly = true)
     public ChannelForm getChannelForm(int id) {
         Channel channel = channelDao.getById(id);
+
+        if (channel == null) {
+            return null;
+        }
+
         return ChannelForm.fromChannel(channel);
     }
 
@@ -47,9 +62,8 @@ public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate impl
         long recordsTotal = channelDao.getCountAll();
         datatable.setRecordsTotal(recordsTotal);
 
-        Criteria c = getSession().createCriteria(Channel.class, "channel");
-
-        c.createAlias("channel.feeds", "feed", JoinType.LEFT_OUTER_JOIN)
+        Criteria c = getSession().createCriteria(Channel.class, "channel")
+        .createAlias("channel.feeds", "feed", JoinType.LEFT_OUTER_JOIN)
         .setProjection(
             Projections.projectionList()
             .add(Projections.property("channel.canonicalName").as("canonicalName"))
@@ -64,11 +78,11 @@ public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate impl
         .setFirstResult(criteria.getStart())
         .setMaxResults(criteria.getLength());
 
-        if (DatatableCriteria.SortDirection.ASC.equals(criteria.getSortDirection())) {
-            c.addOrder(Order.asc(criteria.getSortField()));
+        if (DatatableCriteria.SortDirection.DESC.equals(criteria.getSortDirection())) {
+            c.addOrder(Order.desc(criteria.getSortField()));
         }
         else {
-            c.addOrder(Order.desc(criteria.getSortField()));
+            c.addOrder(Order.asc(criteria.getSortField()));
         }
 
         String search = criteria.getSearch();

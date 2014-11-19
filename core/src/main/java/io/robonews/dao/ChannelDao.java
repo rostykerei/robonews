@@ -12,6 +12,11 @@ import java.util.List;
 
 public interface ChannelDao extends AbstractDao<Channel, Integer> {
 
+    /**
+     * Returns list of all channels
+     *
+     * @return list of all channels
+     */
     List<Channel> getAll();
 
 }

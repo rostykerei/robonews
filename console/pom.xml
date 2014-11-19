@@ -55,6 +55,12 @@
         </dependency>
 
         <dependency>
+            <groupId>io.robonews</groupId>
+            <artifactId>service-facebook</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>

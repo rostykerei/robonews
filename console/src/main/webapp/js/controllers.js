@@ -92,7 +92,17 @@ app.controller('ChannelCreateController', function ($scope, $http, ChannelServic
                 }
             }
         });
+    };
 
+    $scope.fbTypeAhead = function(val) {
+
+        return $http.get('rest/channel/fb-typeahead', {
+            params: {
+                query: val
+            }
+        }).then(function(response){
+            return response.data;
+        });
     };
 
 });

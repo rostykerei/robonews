@@ -15,14 +15,20 @@
 
     <context:property-placeholder location="classpath:console.properties"/>
 
+    <!-- Imports -->
+
     <import resource="classpath:coreContext.xml"/>
     <import resource="classpath:serviceAlexaContext.xml"/>
+    <import resource="classpath:serviceFacebook.xml"/>
 
+    <!-- Console DAOs -->
 
     <bean id="channelConsoleDao" class="io.robonews.console.dao.hibernate.ChannelConsoleDaoHibernate">
         <constructor-arg name="channelDao" ref="channelDao"/>
         <constructor-arg name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <!-- Development stuff -->
 
     <beans profile="development">
         <jdbc:initialize-database data-source="dataSource">
