@@ -4,7 +4,7 @@
     <br/><br/>
 
     <a class="btn btn-sm btn-danger" ng-show="err.stackTrace" ng-click="showStacktrace = !showStacktrace" ><i class="fa fa-info-circle"></i> Show stack trace</a>
-    <a ui-sref="channel.new.details()" class="btn btn-sm btn-primary"><i class="fa fa-play"></i> Continue without form pre-fill</a>
+    <a ui-sref="channel.new.details()" class="btn btn-sm btn-primary"><i class="fa fa-play"></i> Skip auto pre-fill</a>
 
     <pre ng-show="showStacktrace">{{err.stackTrace}}</pre>
 </div>
@@ -20,6 +20,7 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <button class="btn btn-primary" type="submit" ng-disabled="cnFormHtml.$invalid">Next</button>
+            <a class="btn btn-white" ui-sref="channel.new.details()">Skip auto pre-fill</a>
         </div>
     </div>
 </form>

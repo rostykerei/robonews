@@ -1,3 +1,13 @@
+<div class="alert alert-danger" ng-show="showError">
+    An error happened while saving channel: <code ng-show="err.exceptionName" class="m-l-md">{{err.exceptionName}} : {{err.exceptionMessage}}</code>
+
+    <br/><br/>
+
+    <a class="btn btn-sm btn-danger" ng-show="err.stackTrace" ng-click="showStacktrace = !showStacktrace" ><i class="fa fa-info-circle"></i> Show stack trace</a>
+
+    <pre ng-show="showStacktrace">{{err.stackTrace}}</pre>
+</div>
+
 <form id="channel-form" class="form-horizontal" ng-submit="saveForm()">
     <div class="form-group" id="f-canonicalName"><label class="col-md-2 control-label" for="form-canonical-name">CN</label>
         <div class="col-md-10">
@@ -26,9 +36,9 @@
     <div class="form-group" id="f-scale"><label class="col-md-2 control-label">Scale</label>
         <div class="col-md-10">
             <div class="radio">
-                <label><input type="radio" name="scale" ng-value="0" ng-model="channel.scale"> Global</label>
-                <label class="m-l"> <input type="radio" name="scale" ng-value="1" ng-model="channel.scale"> Regional</label>
-                <label class="m-l"> <input type="radio" name="scale" ng-value="2" ng-model="channel.scale"> Local</label>
+                <label><input type="radio" name="scale" ng-value="3" ng-model="channel.scale"> Global</label>
+                <label class="m-l"> <input type="radio" name="scale" ng-value="2" ng-model="channel.scale"> Regional</label>
+                <label class="m-l"> <input type="radio" name="scale" ng-value="1" ng-model="channel.scale"> Local</label>
             </div>
             <span class="help-block m-b-none"></span>
         </div>

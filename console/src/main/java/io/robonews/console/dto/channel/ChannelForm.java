@@ -62,8 +62,26 @@ public class ChannelForm {
         form.setGooglePlusId(channel.getGooglePlusId());
         form.setAlexaRank(channel.getAlexaRank());
         form.setDescription(channel.getDescription());
+        form.setActive(channel.isActive());
 
         return form;
+    }
+
+    public Channel toChannel() {
+        Channel channel = new Channel();
+        channel.setId(getId());
+        channel.setCanonicalName(getCanonicalName());
+        channel.setTitle(getTitle());
+        channel.setUrl(getUrl());
+        channel.setScale(Channel.Scale.getScale(getScale()));
+        channel.setFacebookId(getFacebookId());
+        channel.setTwitterId(getTwitterId());
+        channel.setGooglePlusId(getGooglePlusId());
+        channel.setAlexaRank(getAlexaRank());
+        channel.setDescription(getDescription());
+        channel.setActive(isActive());
+
+        return channel;
     }
 
     public int getId() {

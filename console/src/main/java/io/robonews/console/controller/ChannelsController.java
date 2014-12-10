@@ -12,24 +12,22 @@ import io.robonews.console.dao.ChannelConsoleDao;
 import io.robonews.console.datatable.Datatable;
 import io.robonews.console.datatable.DatatableCriteria;
 import io.robonews.console.datatable.DatatableParams;
-import io.robonews.console.dto.response.DataResponse;
 import io.robonews.console.dto.channel.ChannelDatatableItem;
 import io.robonews.console.dto.channel.ChannelForm;
+import io.robonews.console.dto.response.DataResponse;
+import io.robonews.domain.Channel;
 import io.robonews.service.alexa.AlexaService;
-import io.robonews.service.alexa.exception.AlexaServiceException;
 import io.robonews.service.alexa.impl.AlexaServiceResult;
 import io.robonews.service.facebook.FacebookService;
 import io.robonews.service.facebook.model.FacebookProfile;
-import java.util.List;
-
 import io.robonews.service.twitter.TwitterService;
 import io.robonews.service.twitter.model.TwitterProfile;
+import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("rest")
@@ -80,7 +78,7 @@ public class ChannelsController {
         try {
             alexaServiceResult = alexaService.query(canonicalName);
         }
-        catch (AlexaServiceException e) {
+        catch (Exception e) {
             // TODO log it
             response.setException(e);
             response.setError(true);
@@ -94,7 +92,6 @@ public class ChannelsController {
         form.setDescription(alexaServiceResult.getDescription());
         form.setAlexaRank(alexaServiceResult.getRank());
         form.setActive(true);
-        form.setScale(2);
 
         response.setData(form);
 
@@ -109,7 +106,16 @@ public class ChannelsController {
         }
 
         DataResponse<Integer> result = new DataResponse<>();
-        result.setData(3432);
+
+        try {
+            Channel channel = channelConsoleDao.createChannel(form);
+            result.setData(channel.getId());
+        }
+        catch (Exception e) {
+            result.setException(e);
+            result.setError(true);
+        }
+
         return result;
     }
 

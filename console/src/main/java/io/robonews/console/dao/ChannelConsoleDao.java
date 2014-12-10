@@ -10,6 +10,7 @@ import io.robonews.console.datatable.Datatable;
 import io.robonews.console.datatable.DatatableCriteria;
 import io.robonews.console.dto.channel.ChannelDatatableItem;
 import io.robonews.console.dto.channel.ChannelForm;
+import io.robonews.domain.Channel;
 
 /**
  * Console-related {@link io.robonews.domain.Channel} data-access-object
@@ -34,5 +35,7 @@ public interface ChannelConsoleDao {
      * @return Datatable
      */
     public Datatable<ChannelDatatableItem> getDatatable(DatatableCriteria criteria);
+
+    public Channel createChannel(ChannelForm channelForm);
 
 }

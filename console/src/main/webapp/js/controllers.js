@@ -68,6 +68,8 @@ app.controller('ChannelCreateController', function ($scope, $http, $state) {
     };
 
     $scope.prefillDetailsForm = function() {
+        $scope.showPrefillError = false;
+
         $http({
             method : 'POST',
             url : 'rest/channel/new/prefill',
@@ -76,7 +78,6 @@ app.controller('ChannelCreateController', function ($scope, $http, $state) {
         })
         .success(function(data) {
             if (!data.error) {
-                $scope.showPrefillError = false;
                 $scope.channel = data.data;
                 $state.go('channel.new.details');
 
@@ -92,6 +93,8 @@ app.controller('ChannelCreateController', function ($scope, $http, $state) {
     };
 
     $scope.saveForm = function () {
+        $scope.showError = false;
+
         $('#channel-form .help-block').empty();
         $('#channel-form .form-group').removeClass('has-error');
 
@@ -102,9 +105,18 @@ app.controller('ChannelCreateController', function ($scope, $http, $state) {
         })
         .success(function(data) {
             if (!data.error) {
-                alert('ok!');
+                $state.go('channel.details.icon', { 'id': data.data });
             }
             else {
+                if (data.exceptionName) {
+                    $scope.showError = true;
+                    $scope.err = {
+                        exceptionName: data.exceptionName,
+                        exceptionMessage: data.exceptionMessage,
+                        stackTrace: data.stackTrace
+                    }
+                }
+
                 for (var key in data.errors) {
                     if (data.errors.hasOwnProperty(key)) {
                         $('#f-' + key).addClass('has-error');

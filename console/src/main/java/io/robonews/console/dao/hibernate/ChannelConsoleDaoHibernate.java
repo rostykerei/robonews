@@ -110,4 +110,14 @@ public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate impl
         return datatable;
     }
 
+    @Override
+    @Transactional
+    public Channel createChannel(ChannelForm channelForm) {
+        return channelDao.getById(
+            channelDao.create(
+                channelForm.toChannel()
+            )
+        );
+    }
+
 }
