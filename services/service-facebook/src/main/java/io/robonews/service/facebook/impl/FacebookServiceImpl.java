@@ -11,7 +11,7 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import io.robonews.service.facebook.FacebookService;
-import io.robonews.service.facebook.model.Page;
+import io.robonews.service.facebook.model.FacebookProfile;
 
 import java.util.List;
 
@@ -29,18 +29,18 @@ public class FacebookServiceImpl implements FacebookService {
     }
 
     @Override
-    public List<Page> searchPage(String query) {
-        return searchPage(query, 10);
+    public List<FacebookProfile> searchProfiles(String query) {
+        return searchProfiles(query, 10);
     }
 
     @Override
-    public List<Page> searchPage(String query, int limit) {
+    public List<FacebookProfile> searchProfiles(String query, int limit) {
 
         obtainAccessToken();
 
-        Connection<Page> search =
+        Connection<FacebookProfile> search =
             fbClient.fetchConnection("search",
-                Page.class,
+                FacebookProfile.class,
                 Parameter.with("q", query),
                 Parameter.with("type", "page"),
                 Parameter.with("fields", "username,name,picture{url},category,website,likes,is_verified"),

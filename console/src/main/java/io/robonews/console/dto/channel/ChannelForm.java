@@ -6,29 +6,48 @@
  */
 package io.robonews.console.dto.channel;
 
+import io.robonews.console.dto.validator.Domain;
+import io.robonews.console.dto.validator.Url;
 import io.robonews.domain.Channel;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 public class ChannelForm {
 
     private int id;
 
+    @Domain
+    @Size(max = 255)
     private String canonicalName;
 
+    @Size(min = 1, max = 255)
     private String title;
 
+    @Url
+    @Size(max = 255)
     private String url;
 
+    @Min(1)
+    @Max(3)
     private int scale;
 
+    @Size(max = 255)
     private String facebookId;
 
+    @Size(max = 255)
     private String twitterId;
 
+    @Size(max = 255)
     private String googlePlusId;
 
-    private int alexaRank;
+    @Min(1)
+    private Integer alexaRank;
 
+    @Size(max = 255)
     private String description;
+
+    private boolean active;
 
     public static ChannelForm fromChannel(Channel channel) {
         ChannelForm form = new ChannelForm();
@@ -111,11 +130,11 @@ public class ChannelForm {
         this.googlePlusId = googlePlusId;
     }
 
-    public int getAlexaRank() {
+    public Integer getAlexaRank() {
         return alexaRank;
     }
 
-    public void setAlexaRank(int alexaRank) {
+    public void setAlexaRank(Integer alexaRank) {
         this.alexaRank = alexaRank;
     }
 
@@ -125,5 +144,13 @@ public class ChannelForm {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

@@ -40,9 +40,6 @@
     <!-- Data Tables -->
     <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
 
-    <!-- iCheck -->
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
-
     <!-- Chosen Plugin -->
     <link href="css/plugins/chosen/chosen.css" rel="stylesheet">
 

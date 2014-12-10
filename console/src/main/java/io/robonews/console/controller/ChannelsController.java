@@ -6,23 +6,30 @@
  */
 package io.robonews.console.controller;
 
+import io.robonews.console.controller.error.FormBindException;
 import io.robonews.console.controller.error.NotFoundException;
 import io.robonews.console.dao.ChannelConsoleDao;
 import io.robonews.console.datatable.Datatable;
 import io.robonews.console.datatable.DatatableCriteria;
 import io.robonews.console.datatable.DatatableParams;
-import io.robonews.console.dto.DataResponse;
+import io.robonews.console.dto.response.DataResponse;
 import io.robonews.console.dto.channel.ChannelDatatableItem;
 import io.robonews.console.dto.channel.ChannelForm;
 import io.robonews.service.alexa.AlexaService;
 import io.robonews.service.alexa.exception.AlexaServiceException;
 import io.robonews.service.alexa.impl.AlexaServiceResult;
 import io.robonews.service.facebook.FacebookService;
-import io.robonews.service.facebook.model.Page;
+import io.robonews.service.facebook.model.FacebookProfile;
 import java.util.List;
+
+import io.robonews.service.twitter.TwitterService;
+import io.robonews.service.twitter.model.TwitterProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("rest")
@@ -36,6 +43,9 @@ public class ChannelsController {
 
     @Autowired
     private FacebookService facebookService;
+
+    @Autowired
+    private TwitterService twitterService;
 
     @RequestMapping(value = "/channel/list", method = RequestMethod.GET)
     public @ResponseBody Datatable<ChannelDatatableItem> getChannelsDatatable(
@@ -83,15 +93,34 @@ public class ChannelsController {
         form.setUrl("http://www." + alexaServiceResult.getSiteBase() + "/");
         form.setDescription(alexaServiceResult.getDescription());
         form.setAlexaRank(alexaServiceResult.getRank());
+        form.setActive(true);
+        form.setScale(2);
 
         response.setData(form);
 
         return response;
     }
 
+    @RequestMapping(value = "/channel/new/save", method = RequestMethod.POST)
+    public @ResponseBody DataResponse<Integer> createChannel(@Valid @RequestBody ChannelForm form,  BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            throw new FormBindException(bindingResult);
+        }
+
+        DataResponse<Integer> result = new DataResponse<>();
+        result.setData(3432);
+        return result;
+    }
+
     @RequestMapping(value = "/channel/fb-typeahead", method = RequestMethod.GET)
-    public @ResponseBody List<Page> fbTypeahead(@RequestParam("query") String query) {
-        return facebookService.searchPage(query, 5);
+    public @ResponseBody List<FacebookProfile> fbTypeahead(@RequestParam("query") String query) {
+        return facebookService.searchProfiles(query, 5);
+    }
+
+    @RequestMapping(value = "/channel/twitter-typeahead", method = RequestMethod.GET)
+    public @ResponseBody List<TwitterProfile> twitterTypeahead(@RequestParam("query") String query) {
+        return twitterService.searchProfiles(query, 5);
     }
 
 }

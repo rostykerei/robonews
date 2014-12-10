@@ -16,6 +16,8 @@ import io.robonews.service.http.impl.HttpServiceUtils;
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import io.robonews.service.text.tools.TextSanitizer;
 import org.springframework.util.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -97,7 +99,16 @@ public class AlexaServiceImpl implements AlexaService {
                 if (siteNodeList.getLength() > 0) {
                     Element siteElementAttribute = (Element) siteNodeList.item(0);
                     title = siteElementAttribute.getAttribute("TITLE");
+
+                    if (title != null) {
+                        title = TextSanitizer.sanitizeText(title, 255);
+                    }
+
                     description = siteElementAttribute.getAttribute("DESC");
+
+                    if (description != null) {
+                        description = TextSanitizer.sanitizeText(description, 255);
+                    }
                 }
 
                 return new AlexaServiceResult(rank, urlAttr, title, description);

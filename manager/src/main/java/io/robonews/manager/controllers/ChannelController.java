@@ -52,7 +52,7 @@ public class ChannelController extends AbstractController {
         }
 
         model.addAttribute("channel", new ChannelDto(channel));
-
+        // TODO sdelat
         return "channel/edit";
     }
 

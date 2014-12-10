@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Robonews.io
+
+    Copyright (c) 2013-2014 Rosty Kerei.
+    All rights reserved.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+       <context:property-placeholder  location="test.properties"/>
+
+       <bean id="twitterService" class="io.robonews.service.twitter.impl.TwitterServiceImpl">
+              <constructor-arg>
+                     <bean class="org.springframework.social.twitter.api.impl.TwitterTemplate">
+                            <constructor-arg name="consumerKey" value="${twitter.consumerKey}"/>
+                            <constructor-arg name="consumerSecret" value="${twitter.consumerSecret}"/>
+                            <constructor-arg name="accessToken" value="${twitter.accessToken}"/>
+                            <constructor-arg name="accessTokenSecret" value="${twitter.accessTokenSecret}"/>
+                     </bean>
+              </constructor-arg>
+       </bean>
+
+</beans>

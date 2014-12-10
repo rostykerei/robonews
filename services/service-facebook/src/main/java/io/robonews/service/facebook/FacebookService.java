@@ -6,14 +6,32 @@
  */
 package io.robonews.service.facebook;
 
-import io.robonews.service.facebook.model.Page;
+import io.robonews.service.facebook.model.FacebookProfile;
 
 import java.util.List;
 
+/**
+ * Facebook service interface
+ *
+ * @author Rosty Kerei
+ */
 public interface FacebookService {
 
-    List<Page> searchPage(String query);
+    /**
+     * Searches for user profiles. Return's up to 10 results.
+     *
+     * @param query search query
+     * @return list of profiles
+     */
+    List<FacebookProfile> searchProfiles(String query);
 
-    List<Page> searchPage(String query, int limit);
+    /**
+     * Searches for user profiles.
+     *
+     * @param query search query
+     * @param limit max number of results to return
+     * @return list of profiles
+     */
+    List<FacebookProfile> searchProfiles(String query, int limit);
 
 }

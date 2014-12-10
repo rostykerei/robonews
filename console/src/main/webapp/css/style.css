@@ -3609,6 +3609,12 @@ body.skin-3 {
 
 
 /* rosty */
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: inherit;
+}
+
 .form-control::-moz-placeholder {
   color: #CCC;
   opacity: 1;
@@ -3619,3 +3625,10 @@ body.skin-3 {
 .form-control::-webkit-input-placeholder {
   color: #CCC;
 }
+
+.help-block ul {
+  padding: 0px 0px 0px 20px;
+  margin-bottom: 0px;
+}
+
+

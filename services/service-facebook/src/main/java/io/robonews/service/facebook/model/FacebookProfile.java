@@ -7,11 +7,14 @@
 package io.robonews.service.facebook.model;
 
 import com.restfb.Facebook;
+import com.restfb.JsonMapper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Page {
+public class FacebookProfile {
+
+    private static final Pattern PICTURE_URL_REGEX_PATTERN = Pattern.compile("\"url\"\\s*:\\s*\"(http.+)\"");
 
     @Facebook("username")
     private String username;
@@ -34,6 +37,15 @@ public class Page {
     @Facebook("is_verified")
     private boolean verified;
 
+    @JsonMapper.JsonMappingCompleted
+    private void allDone(JsonMapper jsonMapper) {
+        Matcher m = PICTURE_URL_REGEX_PATTERN.matcher(pictureUrl);
+
+        if(m.find(1)) {
+            pictureUrl = m.group(1);
+        }
+    }
+
     public String getUsername() {
         return username;
     }
@@ -51,14 +63,6 @@ public class Page {
     }
 
     public String getPictureUrl() {
-        // TODO optimize and test it
-        Pattern p = Pattern.compile("\"url\"\\s*:\\s*\"(.+)\"");
-        Matcher m = p.matcher(pictureUrl);
-
-        if(m.find(1)) {
-            return m.group(1);
-        }
-
         return pictureUrl;
     }
 

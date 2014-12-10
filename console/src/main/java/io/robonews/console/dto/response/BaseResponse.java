@@ -4,37 +4,19 @@
  * Copyright (c) 2013-2014 Rosty Kerei.
  * All rights reserved.
  */
-package io.robonews.console.dto;
+package io.robonews.console.dto.response;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-public class DataResponse<T> {
-
-    private T data;
+public class BaseResponse {
 
     private boolean error = false;
 
     private Exception exception;
-
-    public boolean isError() {
-        return error;
-    }
-
-    public void setError(boolean error) {
-        this.error = error;
-    }
-
-    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T response) {
-        this.data = response;
-    }
 
     @JsonIgnore
     public Exception getException() {
@@ -73,5 +55,13 @@ public class DataResponse<T> {
 
     public void setException(Exception exception) {
         this.exception = exception;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
     }
 }

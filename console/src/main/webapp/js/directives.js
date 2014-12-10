@@ -141,4 +141,4 @@ angular
     .directive('sideNavigation', sideNavigation)
     .directive('iboxTools', iboxTools)
     .directive('iboxToolsDatatable', iboxToolsDatatable)
-    .directive('minimalizaSidebar', minimalizaSidebar)
+    .directive('minimalizaSidebar', minimalizaSidebar);

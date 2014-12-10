@@ -2,8 +2,6 @@ var app = angular.module('robonews-console');
 
 app.controller('MainCtrl', function MainCtrl($scope) {
     this.userName = 'Rosty Kerei';
-    this.helloText = 'Welcome in SeedProject';
-    this.descriptionText = 'It is an application skeleton for a typical AngularJS web app. You can use it to quickly bootstrap your angular webapp projects and dev environment for these projects.';
     this.currentYear = new Date().getFullYear();
 });
 
@@ -62,14 +60,14 @@ app.controller('ChannelDetails', function ($scope, channel) {
     $scope.channel = channel;
 });
 
-app.controller('ChannelCreateController', function ($scope, $http, ChannelService, $state) {
+app.controller('ChannelCreateController', function ($scope, $http, $state) {
 
     $scope.cnForm = {};
-    ChannelService.channelForm = {};
+    $scope.channel = {
+        active: true
+    };
 
     $scope.prefillDetailsForm = function() {
-        ChannelService.channelForm = {};
-
         $http({
             method : 'POST',
             url : 'rest/channel/new/prefill',
@@ -79,8 +77,7 @@ app.controller('ChannelCreateController', function ($scope, $http, ChannelServic
         .success(function(data) {
             if (!data.error) {
                 $scope.showPrefillError = false;
-                ChannelService.channelForm = data.data;
-                $scope.channel = ChannelService.channelForm;
+                $scope.channel = data.data;
                 $state.go('channel.new.details');
 
             } else {
@@ -94,8 +91,36 @@ app.controller('ChannelCreateController', function ($scope, $http, ChannelServic
         });
     };
 
-    $scope.fbTypeAhead = function(val) {
+    $scope.saveForm = function () {
+        $('#channel-form .help-block').empty();
+        $('#channel-form .form-group').removeClass('has-error');
 
+        $http({
+            method : 'POST',
+            url : 'rest/channel/new/save',
+            data : $scope.channel
+        })
+        .success(function(data) {
+            if (!data.error) {
+                alert('ok!');
+            }
+            else {
+                for (var key in data.errors) {
+                    if (data.errors.hasOwnProperty(key)) {
+                        $('#f-' + key).addClass('has-error');
+                        var msg = "<ul>";
+                        for (var m in data.errors[key]) {
+                            msg += "<li>" + data.errors[key][m] + "</li>";
+                        }
+                        msg += "</ul>";
+                        $('#f-' + key + ' .help-block').html( msg );
+                    }
+                }
+            }
+        });
+    };
+
+    $scope.fbTypeAhead = function(val) {
         return $http.get('rest/channel/fb-typeahead', {
             params: {
                 query: val
@@ -105,6 +130,15 @@ app.controller('ChannelCreateController', function ($scope, $http, ChannelServic
         });
     };
 
+    $scope.twitterTypeAhead = function(val) {
+        return $http.get('rest/channel/twitter-typeahead', {
+            params: {
+                query: val
+            }
+        }).then(function(response){
+            return response.data;
+        });
+    };
 });
 
 

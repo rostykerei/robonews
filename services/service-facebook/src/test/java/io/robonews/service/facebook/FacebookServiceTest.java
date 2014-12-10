@@ -7,7 +7,7 @@
 package io.robonews.service.facebook;
 
 import io.robonews.service.facebook.impl.FacebookServiceImpl;
-import io.robonews.service.facebook.model.Page;
+import io.robonews.service.facebook.model.FacebookProfile;
 import java.util.List;
 import org.junit.Test;
 
@@ -17,7 +17,7 @@ public class FacebookServiceTest {
     public void fbTest() {
         FacebookService service = new FacebookServiceImpl("755872917839699|e0b73d5bfab1f106079ff8691d8fc431");
 
-        List<Page> results = service.searchPage("cnn");
+        List<FacebookProfile> results = service.searchProfiles("cnn");
 
         System.out.println("Test");
     }
@@ -29,4 +29,5 @@ public class FacebookServiceTest {
 
 
     }
+
 }

@@ -33,6 +33,7 @@
         <module>service-text-tools</module>
         <module>service-alexa</module>
         <module>service-facebook</module>
+        <module>service-twitter</module>
     </modules>
 
     <dependencies>
