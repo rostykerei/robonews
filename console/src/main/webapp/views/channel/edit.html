@@ -1,52 +1,136 @@
-<form class="form-horizontal">
-    <div class="form-group"><label class="col-md-2 control-label" for="form-canonical-name">CN</label>
-        <div class="col-md-10"><input type="text" id="form-canonical-name" placeholder="Canonical name" class="form-control" ng-model="channel.canonicalName"></div>
+<div ng-controller="ChannelEditController">
+
+    <div class="alert alert-danger" ng-show="showError">
+        An error happened while saving channel:
+        <code ng-show="err.exceptionName" class="m-l-md" style="white-space: normal">{{err.exceptionName}} : {{err.exceptionMessage}}</code>
+        <br/><br/>
+        <a class="btn btn-sm btn-danger" ng-show="err.stackTrace" ng-click="showStacktrace = !showStacktrace" ><i class="fa fa-info-circle"></i> Show stack trace</a>
+        <pre ng-show="showStacktrace">{{err.stackTrace}}</pre>
     </div>
 
-    <div class="form-group"><label class="col-md-2 control-label" for="form-title">Title</label>
-        <div class="col-md-10"><input type="text" id="form-title" placeholder="Title" class="form-control" ng-model="channel.title"></div>
-    </div>
+    <form id="channel-form" class="form-horizontal" ng-submit="saveForm()">
 
-    <div class="form-group"><label class="col-md-2 control-label" for="form-url">URL</label>
-        <div class="col-md-10"><input type="url" id="form-url" placeholder="URL" class="form-control" ng-model="channel.url"></div>
-    </div>
+        <input type="hidden" ng-model="channel.id">
 
-    <div class="form-group"><label class="col-md-2 control-label">Scale</label>
-        <div class="col-md-10">
-            <div class="radio"><label> <input icheck type="radio" name="radioTest"> Option one </label></div>
-            <div class="radio"><label> <input icheck type="radio" name="radioTest"> Option two checked </label></div>
+        <div class="form-group" id="f-canonicalName"><label class="col-md-2 control-label" for="form-canonical-name">CN</label>
+            <div class="col-md-10">
+                <input type="text" id="form-canonical-name" placeholder="Canonical name" class="form-control" ng-model="channel.canonicalName" required >
+                <span class="help-block m-b-none"></span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group"><label class="col-md-2 control-label" for="form-description">Description</label>
-        <div class="col-md-10"><input type="text" id="form-description" placeholder="Description" class="form-control" ng-model="channel.description"></div>
-    </div>
-
-    <div class="hr-line-dashed"></div>
-
-    <div class="form-group"><label class="col-md-2 control-label" for="form-facebook-id">Facebook ID</label>
-        <div class="col-md-10"><input type="text" id="form-facebook-id" placeholder="Facebook ID" class="form-control" ng-model="channel.facebookId"></div>
-    </div>
-
-
-    <div class="form-group"><label class="col-md-2 control-label" for="form-twitter-id">Twiiter ID</label>
-        <div class="col-md-10"><input type="text" id="form-twitter-id" placeholder="Twitter ID" class="form-control" ng-model="channel.twitterId"></div>
-    </div>
-
-    <div class="form-group"><label class="col-md-2 control-label" for="form-google-plus-id">Google Plus ID</label>
-        <div class="col-md-10"><input type="text" id="form-google-plus-id" placeholder="Google Plus ID" class="form-control" ng-model="channel.googlePlusId"></div>
-    </div>
-
-    <div class="hr-line-dashed"></div>
-
-    <div class="form-group"><label class="col-md-2 control-label" for="form-alexa-rank">Alexa Rank</label>
-        <div class="col-md-10"><input type="number" id="form-alexa-rank" class="form-control" ng-model="channel.alexaRank"></div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button class="btn btn-primary" type="submit">Save</button>
-            <button class="btn btn-white">Reset</button>
+        <div class="form-group" id="f-title"><label class="col-md-2 control-label" for="form-title">Title</label>
+            <div class="col-md-10">
+                <input type="text" id="form-title" placeholder="Title" class="form-control" ng-model="channel.title" required>
+                <span class="help-block m-b-none"></span>
+            </div>
         </div>
-    </div>
-</form>
+
+        <div class="form-group" id="f-url"><label class="col-md-2 control-label" for="form-url">URL</label>
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><a ng-class="channel.url ? 'text-success' : 'disabled'" ng-href="{{channel.url}}" target="_blank"><i class="fa fa-globe"></i></a></span>
+                    <input type="url" id="form-url" ng-model="channel.url" placeholder="URL" class="form-control" required>
+                </div>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-scale"><label class="col-md-2 control-label">Scale</label>
+            <div class="col-md-10">
+                <div class="radio">
+                    <label><input type="radio" name="scale" ng-value="3" ng-model="channel.scale"> Global</label>
+                    <label class="m-l"> <input type="radio" name="scale" ng-value="2" ng-model="channel.scale"> Regional</label>
+                    <label class="m-l"> <input type="radio" name="scale" ng-value="1" ng-model="channel.scale"> Local</label>
+                </div>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-description"><label class="col-md-2 control-label" for="form-description">Description</label>
+            <div class="col-md-10">
+                <textarea id="form-description" placeholder="Description" class="form-control" maxlength="255" ng-model="channel.description"></textarea>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="hr-line-dashed"></div>
+
+        <div class="form-group" id="f-status"><label class="col-md-2 control-label">Status</label>
+            <div class="col-md-10">
+                <div class="radio">
+                    <label> <input type="radio" name="status" ng-model="channel.active" ng-value="true"> Active</label>
+                    <label class="m-l"> <input type="radio" name="status" ng-model="channel.active" ng-value="false"> Inactive</label>
+                </div>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="hr-line-dashed"></div>
+
+        <div class="form-group" id="f-facebookId"><label class="col-md-2 control-label" for="form-facebook-id">Facebook ID</label>
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><a ng-class="channel.facebookId ? 'text-success' : 'disabled'" ng-href="http://www.facebook.com/{{channel.facebookId}}" target="_blank"><i class="fa fa-facebook"></i></a></span>
+                    <input type="text" autocomplete="off" id="form-facebook-id" typeahead="fbpage.username for fbpage in fbTypeAhead($viewValue)" typeahead-template-url="fbTypeAheadTemplate.html" ng-model="channel.facebookId" placeholder="Facebook ID" class="form-control">
+                </div>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-twitterId"><label class="col-md-2 control-label" for="form-twitter-id">Twiiter ID</label>
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><a ng-class="channel.twitterId ? 'text-success' : 'disabled'" ng-href="http://www.twitter.com/{{channel.twitterId}}" target="_blank"><i class="fa fa-twitter"></i></a></span>
+                    <input type="text" autocomplete="off" id="form-twitter-id" typeahead="twitter.screenName for twitter in twitterTypeAhead($viewValue)" typeahead-template-url="twitterTypeAheadTemplate.html" ng-model="channel.twitterId" placeholder="Twitter ID" class="form-control">
+                </div>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-googlePlusId"><label class="col-md-2 control-label" for="form-google-plus-id">Google Plus ID</label>
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><a ng-class="channel.googlePlusId ? 'text-success' : 'disabled'" ng-href="http://plus.google.com/+{{channel.googlePlusId}}" target="_blank"><i class="fa fa-google-plus"></i></a></span>
+                    <input type="text" autocomplete="off" id="form-google-plus-id" ng-model="channel.googlePlusId" placeholder="Google Plus ID" class="form-control">
+                </div>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="hr-line-dashed"></div>
+
+        <div class="form-group" id="f-alexaRank"><label class="col-md-2 control-label" for="form-alexa-rank">Alexa Rank</label>
+            <div class="col-md-10"><input type="number" id="form-alexa-rank" class="form-control" ng-model="channel.alexaRank">
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-primary" type="submit">Save</button>
+                <button back class="btn btn-white">Back</button>
+                <button class="btn btn-white" type="button" ng-click="reset()">Reset</button>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/ng-template" id="fbTypeAheadTemplate.html">
+        <a>
+            <img class="pull-left m-r-sm" ng-src="{{match.model.pictureUrl}}" height="48">
+            <i class="fa fa-check-circle text-navy" ng-show="match.model.verified"></i>
+            {{match.model.name}} (<span bind-html-unsafe="match.model.username | typeaheadHighlight:query"></span>) {{match.model.website}}<br/>
+            {{match.model.likes | number}} likes | {{match.model.category}}
+        </a>
+    </script>
+
+    <script type="text/ng-template" id="twitterTypeAheadTemplate.html">
+        <a>
+            <img class="pull-left m-r-sm" ng-src="{{match.model.profileImageUrl}}" height="48">
+            <i class="fa fa-check-circle text-navy" ng-show="match.model.verified"></i>
+            {{match.model.name}} (<span bind-html-unsafe="match.model.screenName | typeaheadHighlight:query"></span>) {{match.model.url}}<br/>
+            {{match.model.followersCount | number}} followers {{match.model.location ? '| ' + match.model.location : ''}}
+        </a>
+    </script>
+
+</div>

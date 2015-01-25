@@ -98,7 +98,7 @@ public class ChannelsController {
         return response;
     }
 
-    @RequestMapping(value = "/channel/new/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/channel/save", method = RequestMethod.POST)
     public @ResponseBody DataResponse<Integer> createChannel(@Valid @RequestBody ChannelForm form,  BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -108,7 +108,7 @@ public class ChannelsController {
         DataResponse<Integer> result = new DataResponse<>();
 
         try {
-            Channel channel = channelConsoleDao.createChannel(form);
+            Channel channel = channelConsoleDao.saveChannel(form);
             result.setData(channel.getId());
         }
         catch (Exception e) {

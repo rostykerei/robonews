@@ -60,12 +60,10 @@ app.controller('ChannelDetails', function ($scope, channel) {
     $scope.channel = channel;
 });
 
-app.controller('ChannelCreateController', function ($scope, $http, $state) {
-
+app.controller('ChannelCreatePrefillController', function ($scope, $http, $state, ChannelService) {
     $scope.cnForm = {};
-    $scope.channel = {
-        active: true
-    };
+
+    ChannelService.form = {};
 
     $scope.prefillDetailsForm = function() {
         $scope.showPrefillError = false;
@@ -78,7 +76,10 @@ app.controller('ChannelCreateController', function ($scope, $http, $state) {
         })
         .success(function(data) {
             if (!data.error) {
-                $scope.channel = data.data;
+                ChannelService.form = data.data;
+                ChannelService.form.id = 0;
+                ChannelService.form.active = true;
+
                 $state.go('channel.new.details');
 
             } else {
@@ -91,45 +92,63 @@ app.controller('ChannelCreateController', function ($scope, $http, $state) {
             }
         });
     };
+});
+
+app.controller('ChannelEditController', function ($scope, $http, $state, ChannelService) {
+
+    if (!$scope.channel) {
+        $scope.channel = ChannelService.form;
+    }
+
+    $scope.backup = angular.copy($scope.channel);
+
+    $scope.showError = false;
+    $('#channel-form .help-block').empty();
+    $('#channel-form .form-group').removeClass('has-error');
 
     $scope.saveForm = function () {
-        $scope.showError = false;
-
-        $('#channel-form .help-block').empty();
-        $('#channel-form .form-group').removeClass('has-error');
-
         $http({
             method : 'POST',
-            url : 'rest/channel/new/save',
+            url : 'rest/channel/save',
             data : $scope.channel
         })
-        .success(function(data) {
-            if (!data.error) {
-                $state.go('channel.details.icon', { 'id': data.data });
-            }
-            else {
-                if (data.exceptionName) {
-                    $scope.showError = true;
-                    $scope.err = {
-                        exceptionName: data.exceptionName,
-                        exceptionMessage: data.exceptionMessage,
-                        stackTrace: data.stackTrace
+            .success(function(data) {
+                if (!data.error) {
+                    if ($scope.channel.id > 0) {
+                        $state.go('channel.list');
+                    }
+                    else {
+                        ChannelService.form = {};
+                        $state.go('channel.details.icon', { 'id': data.data });
                     }
                 }
-
-                for (var key in data.errors) {
-                    if (data.errors.hasOwnProperty(key)) {
-                        $('#f-' + key).addClass('has-error');
-                        var msg = "<ul>";
-                        for (var m in data.errors[key]) {
-                            msg += "<li>" + data.errors[key][m] + "</li>";
+                else {
+                    if (data.exceptionName) {
+                        $scope.showError = true;
+                        $scope.err = {
+                            exceptionName: data.exceptionName,
+                            exceptionMessage: data.exceptionMessage,
+                            stackTrace: data.stackTrace
                         }
-                        msg += "</ul>";
-                        $('#f-' + key + ' .help-block').html( msg );
+                    }
+
+                    for (var key in data.errors) {
+                        if (data.errors.hasOwnProperty(key)) {
+                            $('#f-' + key).addClass('has-error');
+                            var msg = "<ul>";
+                            for (var m in data.errors[key]) {
+                                msg += "<li>" + data.errors[key][m] + "</li>";
+                            }
+                            msg += "</ul>";
+                            $('#f-' + key + ' .help-block').html( msg );
+                        }
                     }
                 }
-            }
-        });
+            });
+    };
+
+    $scope.reset = function() {
+        $scope.channel = angular.copy($scope.backup);
     };
 
     $scope.fbTypeAhead = function(val) {
@@ -152,7 +171,6 @@ app.controller('ChannelCreateController', function ($scope, $http, $state) {
         });
     };
 });
-
 
 app.controller('RetryController', function($scope, $modalInstance, rejection) {
 

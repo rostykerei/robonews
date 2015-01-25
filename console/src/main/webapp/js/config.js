@@ -38,7 +38,7 @@ function config($stateProvider, $urlRouterProvider) {
         })
         .state('channel.new.details', {
             url: "/details",
-            templateUrl: "views/channel/new.details.html"
+            templateUrl: "views/channel/edit.html"
         })
         .state('channel.details', {
             abstract: true,

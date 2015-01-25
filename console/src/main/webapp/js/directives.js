@@ -131,6 +131,8 @@ function minimalizaSidebar($timeout) {
     };
 };
 
+
+
 /**
  *
  * Pass all functions into module
@@ -141,4 +143,14 @@ angular
     .directive('sideNavigation', sideNavigation)
     .directive('iboxTools', iboxTools)
     .directive('iboxToolsDatatable', iboxToolsDatatable)
-    .directive('minimalizaSidebar', minimalizaSidebar);
+    .directive('minimalizaSidebar', minimalizaSidebar)
+    .directive('back', ['$window', function($window) {
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attrs) {
+                elem.bind('click', function () {
+                    $window.history.back();
+                });
+            }
+        };
+    }]);

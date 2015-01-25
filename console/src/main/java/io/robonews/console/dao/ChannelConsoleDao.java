@@ -36,6 +36,6 @@ public interface ChannelConsoleDao {
      */
     public Datatable<ChannelDatatableItem> getDatatable(DatatableCriteria criteria);
 
-    public Channel createChannel(ChannelForm channelForm);
+    public Channel saveChannel(ChannelForm channelForm);
 
 }

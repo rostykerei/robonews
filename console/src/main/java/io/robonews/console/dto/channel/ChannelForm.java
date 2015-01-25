@@ -68,7 +68,10 @@ public class ChannelForm {
     }
 
     public Channel toChannel() {
-        Channel channel = new Channel();
+        return updateChannel(new Channel());
+    }
+
+    public Channel updateChannel(Channel channel) {
         channel.setId(getId());
         channel.setCanonicalName(getCanonicalName());
         channel.setTitle(getTitle());

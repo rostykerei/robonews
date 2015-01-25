@@ -6,7 +6,9 @@
  */
 package io.robonews.console.dao.hibernate;
 
+import io.robonews.console.controller.error.NotFoundException;
 import io.robonews.console.dao.ChannelConsoleDao;
+import io.robonews.console.dao.DaoException;
 import io.robonews.console.datatable.Datatable;
 import io.robonews.console.datatable.DatatableCriteria;
 import io.robonews.console.dto.channel.ChannelDatatableItem;
@@ -112,12 +114,23 @@ public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate impl
 
     @Override
     @Transactional
-    public Channel createChannel(ChannelForm channelForm) {
-        return channelDao.getById(
-            channelDao.create(
-                channelForm.toChannel()
-            )
-        );
+    public Channel saveChannel(ChannelForm channelForm) {
+        int id = channelForm.getId();
+
+        if (id > 0) {
+            Channel channel = channelDao.getById(id);
+
+            if (channel == null) {
+                throw new DaoException("Channel id:" + id +  " does not exist");
+            }
+
+            channelDao.update(channelForm.updateChannel(channel));
+        }
+        else {
+            id = channelDao.create(channelForm.toChannel());
+        }
+
+        return channelDao.getById(id);
     }
 
 }

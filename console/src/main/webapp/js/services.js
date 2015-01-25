@@ -3,10 +3,8 @@ var app = angular.module('robonews-console');
 app.service("ChannelService", function( $http, $resource ) {
         return({
             resource: $resource('rest/channel/:id'),
-            createForm: $createForm
+            form: {}
         });
-
-        var $createForm = {};
     }
 );
 
