@@ -1,7 +1,7 @@
 /**
  * Robonews.io
  *
- * Copyright (c) 2013-2014 Rosty Kerei.
+ * Copyright (c) 2013-2015 Rosty Kerei.
  * All rights reserved.
  */
 package io.robonews.service.nlp.stanford;
@@ -51,4 +51,6 @@ public class NamedEntityRecognizerServiceStanford implements NamedEntityRecogniz
 
         return result;
     }
+
+
 }

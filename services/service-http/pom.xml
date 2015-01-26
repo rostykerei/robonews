@@ -3,7 +3,7 @@
 
     Robonews.io
 
-    Copyright (c) 2013-2014 Rosty Kerei.
+    Copyright (c) 2013-2015 Rosty Kerei.
     All rights reserved.
 
 -->
@@ -23,6 +23,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.3.2</version>
@@ -32,6 +37,18 @@
             <groupId>io.robonews</groupId>
             <artifactId>service-text-tools</artifactId>
             <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

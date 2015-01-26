@@ -1,7 +1,7 @@
 /**
  * Robonews.io
  *
- * Copyright (c) 2013-2014 Rosty Kerei.
+ * Copyright (c) 2013-2015 Rosty Kerei.
  * All rights reserved.
  */
 package io.robonews.service.nlp.impl;
@@ -10,6 +10,7 @@ public class NamedEntity {
 
     private Type type;
     private String name;
+    private float termFrequency;
 
     public NamedEntity(Type type, String name) {
         this.type = type;
@@ -30,6 +31,14 @@ public class NamedEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public float getTermFrequency() {
+        return termFrequency;
+    }
+
+    public void setTermFrequency(float termFrequency) {
+        this.termFrequency = termFrequency;
     }
 
     @Override
