@@ -13,8 +13,13 @@ public class NamedEntity {
     private float termFrequency;
 
     public NamedEntity(Type type, String name) {
+        this(type, name, 0f);
+    }
+
+    public NamedEntity(Type type, String name, float termFrequency) {
         this.type = type;
         this.name = name;
+        this.termFrequency = termFrequency;
     }
 
     public Type getType() {

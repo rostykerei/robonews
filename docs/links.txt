@@ -1,1 +1,12 @@
 http://bthurley.wordpress.com/2012/07/18/spring-mvc-with-restful-datatables/
+http://alias-i.com/lingpipe/demos/tutorial/ne/read-me.html
+https://github.com/algoriffic/lsa4solr
+
+
+http://vestride.github.io/Shuffle/animated/
+http://tympanus.net/codrops/2013/07/02/loading-effects-for-grid-items-with-css-animations/
+http://tympanus.net/codrops/2013/07/02/loading-effects-for-grid-items-with-css-animations/
+http://tympanus.net/Tutorials/CaptionHoverEffects/index3.html
+
+stroll.js
+shuffle.js

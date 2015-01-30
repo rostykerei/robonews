@@ -27,11 +27,14 @@ public class NamedEntityRecognizerServiceTest {
     @Test
     public void testGetNamedEntities() throws Exception {
         Set<NamedEntity> expected = new HashSet<NamedEntity>();
-        expected.add(new NamedEntity(NamedEntity.Type.PERSON, "Joe"));
-        expected.add(new NamedEntity(NamedEntity.Type.PERSON, "John"));
-        expected.add(new NamedEntity(NamedEntity.Type.PERSON, "David Smith"));
-        expected.add(new NamedEntity(NamedEntity.Type.LOCATION, "San Francisco"));
-        expected.add(new NamedEntity(NamedEntity.Type.LOCATION, "US"));
+
+        // Note, tf is not a part of NamedEntity hashCode function
+
+        expected.add(new NamedEntity(NamedEntity.Type.PERSON, "Joe", 0f));
+        expected.add(new NamedEntity(NamedEntity.Type.PERSON, "John", 0f));
+        expected.add(new NamedEntity(NamedEntity.Type.PERSON, "David Smith", 0f));
+        expected.add(new NamedEntity(NamedEntity.Type.LOCATION, "San Francisco", 0f));
+        expected.add(new NamedEntity(NamedEntity.Type.LOCATION, "US", 0f));
 
         Assert.assertEquals(expected, namedEntityRecognizerService.getNamedEntities("Joe, John and David Smith were walking in San Francisco, US with John"));
 
@@ -39,8 +42,12 @@ public class NamedEntityRecognizerServiceTest {
 
     @Test
     public void test2() {
-        Set<NamedEntity> n = namedEntityRecognizerService.getNamedEntities("Youth Football Leagues Hope for Boost From NFL Settlement.");
+        //Set<NamedEntity> n = namedEntityRecognizerService.getNamedEntities("Youth Football Leagues Hope for Boost From NFL Settlement.");
+        //Youth/UPPER Football/LOWER Leagues/LOWER Hope/INIT_UPPER for/LOWER Boost/LOWER From/UPPER NFL/O Settlement/LOWER./O
+        Set<NamedEntity> n = namedEntityRecognizerService.getNamedEntities("Youth Football Leagues Hope for Boost From NFL Settlement");
 
         System.out.print(n);
     }
+
+
 }
