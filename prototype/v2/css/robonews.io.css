@@ -1,0 +1,184 @@
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url('../fonts/roboto-regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Roboto Medium'), local('Roboto-Medium'), url('../fonts/roboto-medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto Bold'), local('Roboto-Bold'), url('../fonts/roboto-bold.ttf') format('truetype');
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    overflow: -moz-scrollbars-vertical;
+    overflow-y:scroll;
+}
+
+body {
+    margin: 0;
+}
+
+html, body {
+    background-color: #e5e5e5;
+}
+
+/* TOP TOOLBAR */
+#top-toolbar {
+    background-color: #3f51b5 !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+    margin-bottom: 8px;
+}
+
+#top-toolbar > div {
+    width: 100%;
+    max-width: 1270px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#top-toolbar .logo {
+    float: left;
+    height: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+    line-height: 48px;
+    color: #ffffff;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+#top-toolbar .md-tabs {
+    overflow: hidden;
+    width: auto;
+}
+
+#top-toolbar .md-header-items-container {
+    font-weight: 400;
+}
+
+md-tab:focus {
+    background-color: inherit !important; /* fixes back-button bug */
+}
+
+#top-toolbar .active {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+/*******************************************/
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    max-width: 1300px;
+}
+
+.card {
+    width: 100%;
+    float: left;
+
+    /*animation: fadeIn 1s both ease-in-out;
+    -webkit-animation: fadeIn 1s both ease-in;*/
+}
+
+@media (min-width: 800px) {
+    .card {
+        width: 50%;
+    }
+}
+/************/
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+.pace .pace-progress {
+  background:  #2196f3;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 3px;
+}
+/****************/
+
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 25%, 0);
+        transform: translate3d(0, 25%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 25%, 0);
+        transform: translate3d(0, 25%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+
+.showPage {
+    animation: fadeIn 0.35s both ease-in-out;
+    -webkit-animation: fadeIn 0.35s both ease-in;
+}
+
+.showCard {
+    animation: fadeInUp 0.25s both ease-in-out;
+    -webkit-animation: fadeInUp 0.25s both ease-in;
+}
+
+.hidden{
+    opacity: 0;
+}
+
+.visible{
+    opacity: 1;
+}

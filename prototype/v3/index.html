@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link type="text/css" rel="stylesheet" href="css/robonews.io.css"/>
+    <link type="text/css" rel="stylesheet" href="css/waves.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>test project</title>
+</head>
+<base href="/"/>
+<body>
+
+<div id="nav-bar">
+    <div>
+        <a class="internal" href="/" style="float: left;"><h1>R<sub>io</sub></h1></a>
+        <a class="arrow left">&#171;</a>
+        <a class="arrow right" >&#187;</a>
+        <ul id="nav">
+            <div id="indicator"></div>
+            <li><a href="/">Top</a></li>
+            <li><a href="/us">U.S.</a></li>
+            <li><a href="/world">World</a></li>
+            <li><a href="/money">Money</a></li>
+            <li><a href="/tech">Tech</a></li>
+            <li><a href="/entertainment">Entertainment</a></li>
+            <li><a href="/health">Health</a></li>
+        </ul>
+    </div>
+</div>
+
+<div id="test" style="border: dotted 2px pink;"></div>
+
+<a class="internal" href="/us?xxx">xxx</a>
+<a class="internal" href="/top?yyy">yyy</a>
+<a href="#t0p?yyy">wrong</a>
+
+<div class="waves-effect"  style="height: 50px; width: 200px; background-color: lightcoral; border: solid 1px red;">
+    xxx
+</div>
+
+<button onclick="$.app.showLoader();"> ON</button>
+<button onclick="$.app.hideLoader();">OFF</button>
+
+
+
+
+<div id="log"></div>
+<div id="container">
+    <div class="card">
+        <div  style="background-color: lightgoldenrodyellow; height: 200px;">
+            1
+        </div>
+    </div>
+
+    <div class="card">
+        <div style="background-color: lightgoldenrodyellow; height: 200px;">
+        1
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript"  src="js/velocity.min.js"></script>
+<script type="text/javascript" src="js/robonews.io.js"></script>
+<script type="text/javascript" src="js/waves.min.js"></script>
+<script type="text/javascript">
+    Waves.displayEffect();
+</script>
+</body>
+</html>

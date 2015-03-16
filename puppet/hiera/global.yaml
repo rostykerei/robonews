@@ -20,7 +20,7 @@
 
   robonews::rpm:
     jdk:
-      rpm: jdk-7u67-linux-x64.rpm
+      rpm: jdk-7u75-linux-x64.rpm
 
   # Amazon S3
 

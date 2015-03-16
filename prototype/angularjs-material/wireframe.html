@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="StarterApp">
+<head>
+    <title>Responsive design test</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.7.1/angular-material.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+
+<!-- Angular Material Dependencies -->
+<script src="//cdn.jsdelivr.net/hammerjs/2.0.4/hammer.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/angular_material/0.7.1/angular-material.min.js"></script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/velocity/1.2.1/velocity.min.js"></script>
+
+<script>
+    ////
+    var isMobile = ( /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase()) );
+    ////////////////////////////
+    (function ($) {
+
+        function Deck(element) {
+            this.element = element;
+            this.init();
+        }
+
+        Deck.prototype.init = function () {
+            var $deck = $(this.element),
+                $mats = $deck.find('ul');
+
+            $.fn.showMat = isMobile ? $.fn.show : function() {
+                $(this).velocity("slideDown", {
+                    duration: 100,
+                    easing: 'swing'
+                });
+            };
+
+            $.fn.hideMat = isMobile ? $.fn.hide : function() {
+                $(this).velocity("slideUp", {
+                    duration: 100,
+                    easing: 'swing'
+                });
+            };
+
+            $deck.find('.content').on('click', function(e) {
+                e.preventDefault();
+
+                var $card = $(this).parent().parent(),
+                    $card_opened = $card.is('.opened');
+
+                $mats.filter(':visible').hideMat();
+
+                $deck.find('.opened').removeClass('opened');
+
+                if (!$card_opened) {
+                    $card.find('ul').showMat();
+                    $card.addClass('opened');
+                }
+            });
+        };
+
+        $.fn.deck = function () {
+            return this.each(function () {
+                if (!$.data(this, 'plugin_deck')) {
+                    $.data(this, 'plugin_deck', new Deck(this));
+                }
+            });
+        }
+    })(jQuery);
+
+
+
+    ////////////////////////////////
+
+    $(document).ready(function() {
+        var windowHeight = $(window).height(),
+            scrollable = $((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html'),
+            initScreenBottom = scrollable.scrollTop() + windowHeight,
+            cards = $("md-card");
+
+        var showCards = function(){
+            var bottom = scrollable.scrollTop() + windowHeight - 50;
+
+            cards.each(function(){
+                var card = $(this);
+                if (card.hasClass('visible')){
+                    return;
+                }
+
+                if (card.offset().top < bottom){
+                    if (card.parents().hasClass('left')) {
+                        card.addClass('visible animated fadeInLeft');
+                    }
+                    else {
+                        card.addClass('visible animated fadeInRight');
+                    }
+                }
+            });
+        };
+
+        // TODO ? probably a better way...
+        if (!isMobile) {
+            cards.each(function() {
+                $(this).addClass(($(this).offset().top <= initScreenBottom) ? 'visible' : 'hidden');
+            });
+
+            $(window).scroll(showCards);
+            showCards();
+
+            $(window).resize(function(e){
+                windowHeight = e.currentTarget.innerHeight;
+            });
+        }
+
+        $('.deck').deck();
+    });
+</script>
+
+<script src="app.js"></script>
+
+
+<div style="background-color: #3f51b5 !important; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important; margin-bottom: 8px;">
+
+    <div style="width: 100%; max-width: 1270px; margin-left: auto; margin-right: auto;">
+        <div style="float: left; height: 100%; padding-left: 8px; padding-right: 8px; line-height: 48px; color: #ffffff;">
+            <b style="font-weight: 500;">ROBONEWS.IO</b>
+        </div>
+        <md-tabs md-selected="0" style="overflow: hidden; width: auto;" >
+            <md-tab>TOP</md-tab>
+            <md-tab>U.S.</md-tab>
+            <md-tab>WORLD</md-tab>
+            <md-tab>MONEY</md-tab>
+            <md-tab>TECH</md-tab>
+            <md-tab>ENTERTAINMENT</md-tab>
+            <md-tab>HEALTH</md-tab>
+            <md-tab>SPORTS</md-tab>
+        </md-tabs>
+    </div>
+</div>
+
+<div class="container">
+
+
+    <div layout>
+        <md-card flex style="background: repeating-linear-gradient(-45deg, #f44336, #e53935 5px, #d32f2f 5px, #c62828 5px) !important; color: #ffffff;">
+            <md-card-content>
+                <i class="fa fa-bullseye"></i> <b style="font-weight: 700">BREAKING:</b> More than 200 migrants are missing after their boats sank in the Mediterranean Sea, survivors told the U.N. refugee agency.
+            </md-card-content>
+        </md-card>
+    </div>
+<!--
+    <div layout>
+        <div flex layout="column" class="left">
+            <md-card class="hero">
+                <img src="img/5.jpg">
+
+                <div class="caption">
+                    <h1>Merkel rules out Greek debt relief</h1>
+                    <span>Although most of Saturday will be sunny and uneventful, things will pick up by tonight. Starting Saturday night, snow and ice are expected through Monday morning.</span>
+                </div>
+                <div class="button">
+                    <md-button class="md-fab" aria-label="CNN" style="width: 46px; height: 46px;">
+                        <md-icon icon="img/cnn.jpg" style="position: absolute; top: 0px; left: 0px; width: 46px; height: 46px;"></md-icon>
+                    </md-button>
+                </div>
+            </md-card>
+
+            <md-card>
+                <div style="line-height: 2.5em; padding-left: 0.75em;">
+                    <a href="#" class="link" style="float: right; color: #999; margin-right: 0.75em; font-size: 0.75em;">The Australian</a>
+                    <a href="#" class="title" style="font-weight: 500; ">Calgary road conditions remain treacherous</a>
+                </div>
+                <md-divider></md-divider>
+
+                <div style="line-height: 2.5em; padding-left: 0.75em;">
+                    <a href="#" class="link" style="float: right; color: #999; margin-right: 0.75em; font-size: 0.75em;">Herald Sun</a>
+                    <a href="#" class="title" style="font-weight: 500; ">HSBC vows to fight £1.5bn US lawsuit over the sale of sub-prime</a>
+                </div>
+                <md-divider></md-divider>
+
+                <div style="line-height: 2.5em; padding-left: 0.75em;">
+                    <a href="#" class="link" style="float: right; color: #999; margin-right: 0.75em; font-size: 0.75em;">The Guardian</a>
+                    <a href="#" class="title" style="font-weight: 500; ">Social Democrats get task to form Austrian government</a>
+                </div>
+                <md-divider></md-divider>
+
+                <div style="line-height: 2.5em; padding-left: 0.75em;">
+                    <a href="#" class="link" style="float: right; color: #999; margin-right: 0.75em; font-size: 0.75em;">Businessweek</a>
+                    <a href="#" class="title" style="font-weight: 500; ">SEC judge suspends 'Big Four' China units over audits</a>
+                </div>
+                <md-divider></md-divider>
+
+                <div style="line-height: 2.5em; padding-left: 0.75em; overflow: hidden; height: 2.5em;">
+                    <a href="#" class="link" style="float: right; color: #999; margin-right: 0.75em; font-size: 0.75em;">CNN</a>
+                    <a href="#" class="title" style="font-weight: 500; ">Argentine Pope Francis to meet his first Falklands War veteran since becoming Pontiff</a>
+                </div>
+
+            </md-card>
+
+            <md-card>
+                <div style="padding: 0.6em; height: 100%; position: relative; ">
+                    <span style="font-size: 0.75em; color: #999;"><a href="#">New York Times</a> &mdash; 36 mins ago</span>
+                    <h1 style="font-size: 1.5em; margin: 0.5em 0;">Oil Prices Up 3% on News of Economic Growth in Europe, but Supplies Rise</h1>
+                    <div style="float: right; position: absolute; top: 1em; right: 1em;">
+                        <md-button class="md-fab" aria-label="CNN" style="width: 46px; height: 46px;">
+                            <md-icon icon="img/nytimes.jpg" style="position: absolute; top: 0px; left: 0px; width: 46px; height: 46px;"></md-icon>
+                        </md-button>
+                    </div>
+                </div>
+            </md-card>
+            <md-card class="deck">
+                <div class="card">
+                    <div class="top">
+                        <div class="pic" style="background-image: url('img/6.jpg');">
+                            <md-button class="md-fab" aria-label="FOX News" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                                <md-icon icon="img/fox.jpg" style="position: absolute; top: 0px; left: 0px; width: 28px; height: 28px;"></md-icon>
+                            </md-button>
+                        </div>
+                        <div class="content">
+                            <div class="chevron"><md-button><i class="fa fa-angle-double-down"></i></md-button></div>
+                            <span class="channel"><a href="#">FOX News</a> &mdash; 52 min ago</span>
+                            <a href="#"><h2>Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men</h2></a>
+                            <p>Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under.</p>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li>
+                            <a href="#" class="link">Telegraph.co.uk</a>
+                            <a href="#" class="title">Benedict Cumberbatch calls on Duchess of Cambridge to help. Benedict Cumberbatch x x x x x x x x x x x x calls on Duchess of Cambridge to help.</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">The Guardian</a>
+                            <a href="#" class="title">Benedict Cumberbatch: broaden Turing's pardon to other gay men</a>
+
+                        </li>
+                        <li>
+                            <a href="#" class="link">Huffington Post UK</a>
+                            <a href="#" class="title">William And Kate Decline To Support Benedict Cumberbatch's </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <md-divider></md-divider>
+
+                <div class="card">
+                    <div class="top">
+                        <div class="pic" style="background-image: url('img/6.jpg');">
+                            <md-button class="md-fab" aria-label="FOX News" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                                <md-icon icon="img/fox.jpg" style="position: absolute; top: 0px; left: 0px; width: 28px; height: 28px;"></md-icon>
+                            </md-button>
+                        </div>
+                        <div class="content">
+                            <div class="chevron"><md-button><i class="fa fa-angle-double-down"></i></md-button></div>
+                            <span class="channel"><a href="#">FOX News</a> &mdash; 52 min ago</span>
+                            <a href="#"><h2>Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men</h2></a>
+                            <p>Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under.</p>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li>
+                            <a href="#" class="link">Telegraph.co.uk</a>
+                            <a href="#" class="title">Benedict Cumberbatch calls on Duchess of Cambridge to help. Benedict Cumberbatch x x x x x x x x x x x x calls on Duchess of Cambridge to help.</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">The Guardian</a>
+                            <a href="#" class="title">Benedict Cumberbatch: broaden Turing's pardon to other gay men</a>
+
+                        </li>
+                        <li>
+                            <a href="#" class="link">Huffington Post UK</a>
+                            <a href="#" class="title">William And Kate Decline To Support Benedict Cumberbatch's </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="top">
+                        <div class="pic" style="background-image: url('img/6.jpg');">
+                            <md-button class="md-fab" aria-label="FOX News" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                                <md-icon icon="img/fox.jpg" style="position: absolute; top: 0px; left: 0px; width: 28px; height: 28px;"></md-icon>
+                            </md-button>
+                        </div>
+                        <div class="content">
+                            <div class="chevron"><md-button><i class="fa fa-angle-double-down"></i></md-button></div>
+                            <span class="channel"><a href="#">FOX News</a> &mdash; 52 min ago</span>
+                            <a href="#"><h2>Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men</h2></a>
+                            <p>Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under.</p>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li>
+                            <a href="#" class="link">Telegraph.co.uk</a>
+                            <a href="#" class="title">Benedict Cumberbatch calls on Duchess of Cambridge to help. Benedict Cumberbatch x x x x x x x x x x x x calls on Duchess of Cambridge to help.</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">The Guardian</a>
+                            <a href="#" class="title">Benedict Cumberbatch: broaden Turing's pardon to other gay men</a>
+
+                        </li>
+                        <li>
+                            <a href="#" class="link">Huffington Post UK</a>
+                            <a href="#" class="title">William And Kate Decline To Support Benedict Cumberbatch's </a>
+                        </li>
+                    </ul>
+                </div>
+            </md-card>
+
+            <div layout>
+                <md-card flex>
+                    <div style="padding: 0.6em; height: 100%;  font-size: 1em; height: 12em; overflow: hidden;">
+                        <span style="font-size: 0.75em; color: #999;"><a href="#">Financial Times</a> &mdash; 2 hours ago</span>
+                        <h2 style=" font-size: 1.1em; line-height: 1.25em; margin: 0.5em 0;">Costa Concordia captain convicted in deadly shipwreck</h2>
+                        <p style="font-size: 0.85em; color: #999; margin: 0; line-height: 1.5em;">The captain of the Costa Concordia is guilty of manslaughter and other charges related to the ship's fatal wreck in January 2012 off the Italian coast.</p>
+                    </div>
+                    <div style="height: 12em; background-image: url('img/11.jpg'); background-size: cover; background-position: center;">
+                        <md-button class="md-fab" aria-label="Financial Times" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                            <md-icon icon="img/ft.jpg" style="position: absolute; top: 0px; left: 0px; width: 28px; height: 28px;"></md-icon>
+                        </md-button>
+                    </div>
+                </md-card>
+
+                <md-card flex>
+                    <div style="padding: 0.6em; height: 100%; font-size: 1em; height: 12em;">
+                        <span style="font-size: 0.75em; color: #999;"><a href="#">BBC</a> &mdash; 12 min ago</span>
+                        <h2 style=" font-size: 1.1em; line-height: 1.25em; margin: 0.5em 0;">Ukraine conflict: Crucial summit as fighting rages</h2>
+                        <p style="font-size: 0.85em; color: #999; margin: 0; line-height: 1.5em;">Urgent talks on ending the deadly conflict in east Ukraine are under way in the Belarusian capital Minsk, after a week of EU shuttle diplomacy.</p>
+                    </div>
+                    <div style="height: 12em; background-image: url('img/12.jpg'); background-size: cover; background-position: center;">
+                        <md-button class="md-fab" aria-label="BBC" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                            <md-icon icon="img/bbc.png" style="position: absolute; top: 0px; left: 0px; width: 28px; height: 28px;"></md-icon>
+                        </md-button>
+                    </div>
+                </md-card>
+            </div>
+        </div>
+
+        <div flex layout="column" hide show-gt-md class="right">
+            <md-card class="deck">
+                <div class="card">
+                    <div class="top">
+                        <div class="pic" style="background-image: url('img/6.jpg');">
+                            <md-button class="md-fab" aria-label="FOX News" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                                <md-icon icon="img/fox.jpg" style="position: absolute; top: 0px; left: 0px; width: 28px; height: 28px;"></md-icon>
+                            </md-button>
+                        </div>
+                        <div class="content">
+                            <div class="chevron"><md-button><i class="fa fa-angle-double-down"></i></md-button></div>
+                            <span class="channel"><a href="#">FOX News</a> &mdash; 52 min ago</span>
+                            <a href="#"><h2>Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men</h2></a>
+                            <p>Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under.</p>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li>
+                            <a href="#" class="link">Telegraph.co.uk</a>
+                            <a href="#" class="title">Benedict Cumberbatch calls on Duchess of Cambridge to help. Benedict Cumberbatch x x x x x x x x x x x x calls on Duchess of Cambridge to help.</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">The Guardian</a>
+                            <a href="#" class="title">Benedict Cumberbatch: broaden Turing's pardon to other gay men</a>
+
+                        </li>
+                        <li>
+                            <a href="#" class="link">Huffington Post UK</a>
+                            <a href="#" class="title">William And Kate Decline To Support Benedict Cumberbatch's </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <md-divider></md-divider>
+
+                <div class="card">
+                    <div class="top">
+                        <div class="pic" style="background-image: url('img/9.jpg');">
+                            <md-button class="md-fab" aria-label="FOX News" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                                <md-icon icon="img/nbc.png" style="position: absolute; top: 0px; left: 0px; width: 28px; height: 28px;"></md-icon>
+                            </md-button>
+                        </div>
+                        <div class="content">
+                            <div class="chevron"><i class="fa fa-angle-double-down"></i></div>
+                            <span class="channel">NBC News - 2 hours ago</span>
+                            <h2>Obama plans 19 percent tax on U.S. companies' foreign earnings</h2>
+                            <p>President Obama will propose a $478-billion public works program to repair and upgrade the nation's roads, bridges and highway systems in his $4-trillion budget due out Monday.</p>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li>
+                            <a href="#" class="link">Reuters</a>
+                            <a href="#" class="title">Obama budget sets up battle with GOP-controlled Congress</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">Financial Times</a>
+                            <a href="#" class="title">Barack Obama plans to tax overseas cash piles</a>
+
+                        </li>
+                        <li>
+                            <a href="#" class="link">Los Angeles Times</a>
+                            <a href="#" class="title">Obama budget to fund roads with corporate tax on foreign profits</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <md-divider></md-divider>
+
+                <div class="card">
+                    <div class="top">
+                        <div class="pic" style="background-image: url('img/10.jpg');">
+                            <md-button class="md-fab" aria-label="USA Today" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                                <md-icon icon="img/usa-today.png" style="position: absolute; top: -4px; left: -4px; width: 40px; height: 40px;"></md-icon>
+                            </md-button>
+                        </div>
+                        <div class="content">
+                            <div class="chevron"><i class="fa fa-angle-double-down"></i></div>
+                            <span class="channel">USA Today - 24 min ago</span>
+                            <h2>Aaron Rodgers wins 2014 AP NFL MVP Award</h2>
+                            <p>Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under ...</p>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li>
+                            <a href="#" class="link">Fox News</a>
+                            <a href="#" class="title">Rodgers wins MVP, Watt unanimous top AP defensive player</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">Scrape TV</a>
+                            <a href="#" class="title">Aaron Rodgers' Toughness Makes Him the No-Doubt-About-It MVP</a>
+
+                        </li>
+                        <li>
+                            <a href="#" class="link">Bleacher Report</a>
+                            <a href="#" class="title">Aaron Rodgers to enjoy his MVP trophy while sitting home alone Super Bowl. Aaron Rodgers to enjoy his MVP trophy while sitting home alone Super Bowl. Aaron Rodgers to enjoy his MVP trophy while sitting home alone Super Bowl</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </md-card>
+
+            <div layout>
+                <md-card flex>
+                    <div style="padding: 0.6em; height: 100%;  font-size: 1em; height: 12em; overflow: hidden;">
+                        <span style="font-size: 0.75em; color: #999;"><a href="#">Financial Times</a> &mdash; 2 hours ago</span>
+                        <h2 style=" font-size: 1.1em; line-height: 1.25em; margin: 0.5em 0;">Costa Concordia captain convicted in deadly shipwreck</h2>
+                        <p style="font-size: 0.85em; color: #999; margin: 0; line-height: 1.5em;">The captain of the Costa Concordia is guilty of manslaughter and other charges related to the ship's fatal wreck in January 2012 off the Italian coast.</p>
+                    </div>
+                    <div style="height: 12em; background-image: url('img/11.jpg'); background-size: cover; background-position: center;">
+                        <md-button class="md-fab" aria-label="Financial Times" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                            <md-icon icon="img/ft.jpg" style="position: absolute; top: 0px; left: 0px; width: 28px; height: 28px;"></md-icon>
+                        </md-button>
+                    </div>
+                </md-card>
+
+                <md-card flex>
+                    <div style="padding: 0.6em; height: 100%; font-size: 1em; height: 12em;">
+                        <span style="font-size: 0.75em; color: #999;"><a href="#">BBC</a> &mdash; 12 min ago</span>
+                        <h2 style=" font-size: 1.1em; line-height: 1.25em; margin: 0.5em 0;">Ukraine conflict: Crucial summit as fighting rages</h2>
+                        <p style="font-size: 0.85em; color: #999; margin: 0; line-height: 1.5em;">Urgent talks on ending the deadly conflict in east Ukraine are under way in the Belarusian capital Minsk, after a week of EU shuttle diplomacy.</p>
+                    </div>
+                    <div style="height: 12em; background-image: url('img/12.jpg'); background-size: cover; background-position: center;">
+                        <md-button class="md-fab" aria-label="BBC" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                            <md-icon icon="img/bbc.png" style="position: absolute; top: 0px; left: 0px; width: 28px; height: 28px;"></md-icon>
+                        </md-button>
+                    </div>
+                </md-card>
+            </div>
+
+            <md-card class="hero">
+                <img src="img/5.jpg">
+
+                <div class="caption">
+                    <h1>Merkel rules out Greek debt relief</h1>
+                    <span>Although most of Saturday will be sunny and uneventful, things will pick up by tonight. Starting Saturday night, snow and ice are expected through Monday morning.</span>
+                </div>
+                <div class="button">
+                    <md-button class="md-fab" aria-label="CNN" style="width: 46px; height: 46px;">
+                        <md-icon icon="img/cnn.jpg" style="position: absolute; top: 0px; left: 0px; width: 46px; height: 46px;"></md-icon>
+                    </md-button>
+                </div>
+            </md-card>
+
+            <md-card class="deck">
+                <div class="card">
+                    <div class="top">
+                        <div class="pic" style="background-image: url('img/6.jpg');">
+                            <md-button class="md-fab" aria-label="FOX News" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                                <md-icon icon="img/fox.jpg" style="position: absolute; top: 0px; left: 0px; width: 28px; height: 28px;"></md-icon>
+                            </md-button>
+                        </div>
+                        <div class="content">
+                            <div class="chevron"><md-button><i class="fa fa-angle-double-down"></i></md-button></div>
+                            <span class="channel"><a href="#">FOX News</a> &mdash; 52 min ago</span>
+                            <a href="#"><h2>Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men</h2></a>
+                            <p>Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under.</p>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li>
+                            <a href="#" class="link">Telegraph.co.uk</a>
+                            <a href="#" class="title">Benedict Cumberbatch calls on Duchess of Cambridge to help. Benedict Cumberbatch x x x x x x x x x x x x calls on Duchess of Cambridge to help.</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">The Guardian</a>
+                            <a href="#" class="title">Benedict Cumberbatch: broaden Turing's pardon to other gay men</a>
+
+                        </li>
+                        <li>
+                            <a href="#" class="link">Huffington Post UK</a>
+                            <a href="#" class="title">William And Kate Decline To Support Benedict Cumberbatch's </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <md-divider></md-divider>
+
+                <div class="card">
+                    <div class="top">
+                        <div class="pic" style="background-image: url('img/6.jpg');">
+                            <md-button class="md-fab" aria-label="FOX News" style="float: right; margin: 10px; width: 28px; height: 28px;">
+                                <md-icon icon="img/fox.jpg" style="position: absolute; top: 0px; left: 0px; width: 28px; height: 28px;"></md-icon>
+                            </md-button>
+                        </div>
+                        <div class="content">
+                            <div class="chevron"><md-button><i class="fa fa-angle-double-down"></i></md-button></div>
+                            <span class="channel"><a href="#">FOX News</a> &mdash; 52 min ago</span>
+                            <a href="#"><h2>Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men. Benedict Cumberbatch and Stephen Fry urges UK to pardon gay men</h2></a>
+                            <p>Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under. Oscar-nominated actor Benedict Cumberbatch has joined others in calling for the British government to pardon gay and bisexual men convicted in the past under.</p>
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li>
+                            <a href="#" class="link">Telegraph.co.uk</a>
+                            <a href="#" class="title">Benedict Cumberbatch calls on Duchess of Cambridge to help. Benedict Cumberbatch x x x x x x x x x x x x calls on Duchess of Cambridge to help.</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link">The Guardian</a>
+                            <a href="#" class="title">Benedict Cumberbatch: broaden Turing's pardon to other gay men</a>
+
+                        </li>
+                        <li>
+                            <a href="#" class="link">Huffington Post UK</a>
+                            <a href="#" class="title">William And Kate Decline To Support Benedict Cumberbatch's </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </md-card>
+        </div>
+    </div>-->
+</div>
+
+<md-toolbar>
+    <div class="md-toolbar-tools" >
+        Robonews.io by Rosty Kerei<br/>
+        Made in Netherlands<br/>
+        contact@robonews.io
+    </div>
+</md-toolbar>
+</body>
+</html>

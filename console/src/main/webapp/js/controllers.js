@@ -170,6 +170,16 @@ app.controller('ChannelEditController', function ($scope, $http, $state, Channel
             return response.data;
         });
     };
+
+    $scope.googlePlusTypeAhead = function(val) {
+        return $http.get('rest/channel/google-plus-typeahead', {
+            params: {
+                query: val
+            }
+        }).then(function(response){
+            return response.data;
+        });
+    };
 });
 
 app.controller('RetryController', function($scope, $modalInstance, rejection) {

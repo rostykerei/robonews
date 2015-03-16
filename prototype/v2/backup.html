@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="robonews.io">
+<head>
+    <title>Robonews.IO</title>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="application-name" content="Robonews.IO">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width, user-scalable=no" />
+
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.7.1/angular-material.min.css">
+    <link rel="stylesheet" href="css/robonews.io.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-aria.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.min.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.7.1/angular-material.min.js"></script>
+
+    <script src="js/pace.min.js"></script>
+
+    <script src="http://imagesloaded.desandro.com/imagesloaded.pkgd.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/masonry/3.2.2/masonry.pkgd.min.js"></script>
+
+    <script src="js/angular-masonry.min.js"></script>
+
+    <script src="js/robonews.io.js"></script>
+    <base href="/"/>
+</head>
+<body>
+
+<div id="top-toolbar" ng-controller="TopToolbarCtrl">
+    <div>
+        <div class="logo">Robonews.IO</div>
+        <md-tabs md-selected="selectedTab" class="md-tabs">
+            <md-tab ng-repeat="tab in tabs" ng-click="go(tab)" label="{{tab.title}}"/>
+        </md-tabs>
+    </div>
+</div>
+
+
+<!--<a href="/">top</a>
+<a href="/us">U.S.</a>
+<a href="/world">World</a>
+<a href="/tech?story=xyz">Details</a>-->
+
+
+<div class="container">
+    <div ng-view  masonry="{ transitionDuration: 0 }"></div>
+</div>
+
+
+<script type="text/ng-template" id="page.html">
+    <div class="masonry-brick card" ng-repeat="card in cards" >
+        <md-card style="height: {{card.height}}px; background-color: #ffffff !important;">
+            xxx
+        </md-card>
+    </div>
+</script>
+
+
+
+</body>
+</html>

@@ -60,6 +60,9 @@
     <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
     <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
 
+    <!-- Cropper -->
+    <link href="css/plugins/cropper/cropper.min.css" rel="stylesheet">
+
     <!-- Main Inspinia CSS files -->
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -113,6 +116,9 @@
 <!-- Data Tables -->
 <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+<!-- Cropper -->
+<script src="js/plugins/cropper/cropper.min.js"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>

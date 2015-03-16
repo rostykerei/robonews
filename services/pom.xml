@@ -32,8 +32,7 @@
         <module>service-storage</module>
         <module>service-text-tools</module>
         <module>service-alexa</module>
-        <module>service-facebook</module>
-        <module>service-twitter</module>
+        <module>service-social-media</module>
     </modules>
 
 </project>

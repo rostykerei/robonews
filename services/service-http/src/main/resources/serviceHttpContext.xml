@@ -51,7 +51,7 @@
 
     <bean id="httpService" class="io.robonews.service.http.apache.HttpServiceApache">
         <constructor-arg name="httpClient">
-            <bean factory-bean="apacheHttpClientBuilder"  factory-method="build" />
+            <bean factory-bean="apacheHttpClientBuilder" factory-method="build" />
         </constructor-arg>
 
         <property name="maxContentLength" value="${http.maxContentLength}"/>

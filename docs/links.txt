@@ -10,3 +10,9 @@ http://tympanus.net/Tutorials/CaptionHoverEffects/index3.html
 
 stroll.js
 shuffle.js
+
+https://material.angularjs.org/
+http://www.w3.org/TR/css3-flexbox/
+http://www.web2feel.com/freeby/scroll-effects/
+
+http://codepen.io/patrickwc/pen/jKlpr

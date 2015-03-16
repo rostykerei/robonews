@@ -20,8 +20,12 @@ import io.robonews.service.alexa.AlexaService;
 import io.robonews.service.alexa.impl.AlexaServiceResult;
 import io.robonews.service.facebook.FacebookService;
 import io.robonews.service.facebook.model.FacebookProfile;
+import io.robonews.service.google.plus.GooglePlusService;
+import io.robonews.service.google.plus.model.GooglePlusProfile;
 import io.robonews.service.twitter.TwitterService;
 import io.robonews.service.twitter.model.TwitterProfile;
+
+import java.io.IOException;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +48,9 @@ public class ChannelsController {
 
     @Autowired
     private TwitterService twitterService;
+
+    @Autowired
+    private GooglePlusService googlePlusService;
 
     @RequestMapping(value = "/channel/list", method = RequestMethod.GET)
     public @ResponseBody Datatable<ChannelDatatableItem> getChannelsDatatable(
@@ -129,4 +136,8 @@ public class ChannelsController {
         return twitterService.searchProfiles(query, 5);
     }
 
+    @RequestMapping(value = "/channel/google-plus-typeahead", method = RequestMethod.GET)
+    public @ResponseBody List<GooglePlusProfile> googlePlusTypeahead(@RequestParam("query") String query) {
+        return googlePlusService.searchProfiles(query, 5);
+    }
 }

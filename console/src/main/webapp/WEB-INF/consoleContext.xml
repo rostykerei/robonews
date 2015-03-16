@@ -21,6 +21,7 @@
     <import resource="classpath:serviceAlexaContext.xml"/>
     <import resource="classpath:serviceFacebook.xml"/>
     <import resource="classpath:serviceTwitter.xml"/>
+    <import resource="classpath:serviceGooglePlus.xml"/>
 
     <!-- Console DAOs -->
 

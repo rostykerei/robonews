@@ -91,9 +91,10 @@
         <div class="form-group" id="f-googlePlusId"><label class="col-md-2 control-label" for="form-google-plus-id">Google Plus ID</label>
             <div class="col-md-10">
                 <div class="input-group">
-                    <span class="input-group-addon"><a ng-class="channel.googlePlusId ? 'text-success' : 'disabled'" ng-href="http://plus.google.com/+{{channel.googlePlusId}}" target="_blank"><i class="fa fa-google-plus"></i></a></span>
-                    <input type="text" autocomplete="off" id="form-google-plus-id" ng-model="channel.googlePlusId" placeholder="Google Plus ID" class="form-control">
+                    <span class="input-group-addon"><a ng-class="channel.googlePlusId ? 'text-success' : 'disabled'" ng-href="http://plus.google.com/{{channel.googlePlusId}}" target="_blank"><i class="fa fa-google-plus"></i></a></span>
+                    <input type="text" autocomplete="off" id="form-google-plus-id" typeahead="googlePlus.plusName for googlePlus in googlePlusTypeAhead($viewValue)" typeahead-template-url="googlePlusTypeAheadTemplate.html" ng-model="channel.googlePlusId" placeholder="Google+ ID" class="form-control">
                 </div>
+
                 <span class="help-block m-b-none"></span>
             </div>
         </div>
@@ -130,6 +131,14 @@
             <i class="fa fa-check-circle text-navy" ng-show="match.model.verified"></i>
             {{match.model.name}} (<span bind-html-unsafe="match.model.screenName | typeaheadHighlight:query"></span>) {{match.model.url}}<br/>
             {{match.model.followersCount | number}} followers {{match.model.location ? '| ' + match.model.location : ''}}
+        </a>
+    </script>
+
+    <script type="text/ng-template" id="googlePlusTypeAheadTemplate.html">
+        <a>
+            <img class="pull-left m-r-sm" ng-src="{{match.model.imageUrl}}" height="48">
+            <span bind-html-unsafe="match.model.name | typeaheadHighlight:query"></span><br/>
+            {{match.model.url}}
         </a>
     </script>
 

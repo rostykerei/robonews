@@ -1,10 +1,16 @@
 ---
 
+  packages:
+    - erlang
+
   classes:
     - rabbitmq
     - mysql::server
 
   mysql::server::root_password: root
+
+  rabbitmq::version: 3.5.0-1
+#  rabbitmq::delete_guest_user: true
 
   resources:
     - type: mysql::db
@@ -13,3 +19,8 @@
           user: robonews
           password: superpass
           grant: [SELECT, INSERT, UPDATE, DELETE]
+#    - type: rabbitmq_user
+#      values:
+#        robonews:
+#          admin: true
+#          password: superpass
