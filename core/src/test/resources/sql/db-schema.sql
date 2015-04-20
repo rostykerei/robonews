@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.35, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.41, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: news-test
 -- ------------------------------------------------------
--- Server version	5.5.35-0ubuntu0.12.04.2
+-- Server version	5.5.41-0ubuntu0.12.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `category` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `isPriority` bit(1) NOT NULL DEFAULT b'0',
-  `level` int unsigned NOT NULL,
-  `leftIndex` int unsigned NOT NULL,
-  `rightIndex` int unsigned NOT NULL,
+  `level` int(10) unsigned NOT NULL,
+  `leftIndex` int(10) unsigned NOT NULL,
+  `rightIndex` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -41,22 +41,38 @@ DROP TABLE IF EXISTS `channel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `channel` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `canonicalName` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
-  `scale` int unsigned NOT NULL,
+  `scale` int(10) unsigned NOT NULL,
   `facebookId` varchar(255) DEFAULT NULL,
   `twitterId` varchar(255) DEFAULT NULL,
   `googlePlusId` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `alexaRank` int unsigned not null default '0',
+  `alexaRank` int(10) unsigned NOT NULL DEFAULT '0',
   `active` bit(1) NOT NULL DEFAULT b'1',
-  `version` bigint NOT NULL DEFAULT '0',
+  `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `channel_idx_1` (`canonicalName`),
   KEY `channel_idx_2` (`scale`),
   KEY `channel_idx_3` (`active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `channel_picture`
+--
+
+DROP TABLE IF EXISTS `channel_picture`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `channel_picture` (
+  `channelId` int(10) unsigned NOT NULL,
+  `picture` blob NOT NULL,
+  `version` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`channelId`) USING BTREE,
+  CONSTRAINT `channel_picture_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -68,9 +84,9 @@ DROP TABLE IF EXISTS `feed`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `feed` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `channelId` int unsigned NOT NULL,
-  `categoryId` int unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `channelId` int(10) unsigned NOT NULL,
+  `categoryId` int(10) unsigned NOT NULL,
   `url` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
@@ -87,7 +103,7 @@ CREATE TABLE `feed` (
   `maxVelocityThreshold` double NOT NULL DEFAULT '60',
   `httpLastEtag` varchar(255) DEFAULT NULL,
   `httpLastModified` timestamp NULL DEFAULT NULL,
-  `version` bigint NOT NULL DEFAULT '0',
+  `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `feed_idx_1` (`url`),
   KEY `feed_idx_2` (`channelId`),
@@ -106,16 +122,16 @@ DROP TABLE IF EXISTS `image`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `image` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `sourceChannelId` int unsigned NOT NULL,
-  `sourceStoryId` bigint unsigned NOT NULL,
-  `typeId` tinyint unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `sourceChannelId` int(10) unsigned NOT NULL,
+  `sourceStoryId` bigint(20) unsigned NOT NULL,
+  `typeId` tinyint(3) unsigned NOT NULL,
   `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `size` bigint NOT NULL,
-  `width` smallint NOT NULL,
-  `height` smallint NOT NULL,
+  `size` bigint(20) NOT NULL,
+  `width` smallint(6) NOT NULL,
+  `height` smallint(6) NOT NULL,
   `ratio` float NOT NULL,
-  `crcHash` bigint NOT NULL,
+  `crcHash` bigint(20) NOT NULL,
   `pHash` binary(8) NOT NULL,
   `createdDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -141,16 +157,16 @@ DROP TABLE IF EXISTS `image_copy`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `image_copy` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `uid` char(11) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  `imageId` int unsigned NOT NULL,
-  `typeId` tinyint unsigned NOT NULL,
+  `imageId` int(10) unsigned NOT NULL,
+  `typeId` tinyint(3) unsigned NOT NULL,
   `directory` char(6) NOT NULL,
-  `seed` tinyint unsigned NOT NULL,
-  `width` smallint NOT NULL,
-  `height` smallint NOT NULL,
+  `seed` tinyint(3) unsigned NOT NULL,
+  `width` smallint(6) NOT NULL,
+  `height` smallint(6) NOT NULL,
   `ratio` float NOT NULL,
-  `size` bigint NOT NULL,
+  `size` bigint(20) NOT NULL,
   `createdDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleteAfterDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
@@ -175,11 +191,11 @@ DROP TABLE IF EXISTS `image_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `image_type` (
-  `id` tinyint unsigned NOT NULL AUTO_INCREMENT,
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(8) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `type` (`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,11 +206,11 @@ DROP TABLE IF EXISTS `story`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `story` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `uid` char(11) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  `channelId` int unsigned NOT NULL,
-  `categoryId` int unsigned NOT NULL,
-  `originalFeedId` int unsigned NOT NULL,
+  `channelId` int(10) unsigned NOT NULL,
+  `categoryId` int(10) unsigned NOT NULL,
+  `originalFeedId` int(10) unsigned NOT NULL,
   `guidHash` binary(20) NOT NULL,
   `contentHash` binary(20) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -227,8 +243,8 @@ DROP TABLE IF EXISTS `story_image`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `story_image` (
-  `storyId` bigint unsigned NOT NULL,
-  `imageId` int unsigned NOT NULL,
+  `storyId` bigint(20) unsigned NOT NULL,
+  `imageId` int(10) unsigned NOT NULL,
   PRIMARY KEY (`storyId`,`imageId`),
   KEY `story_image_idx_1` (`storyId`),
   KEY `story_image_idx_2` (`imageId`),
@@ -245,8 +261,8 @@ DROP TABLE IF EXISTS `story_tag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `story_tag` (
-  `storyId` bigint unsigned NOT NULL,
-  `tagId` int unsigned NOT NULL,
+  `storyId` bigint(20) unsigned NOT NULL,
+  `tagId` int(10) unsigned NOT NULL,
   PRIMARY KEY (`storyId`,`tagId`),
   KEY `story_tag_idx_1` (`storyId`),
   KEY `story_tag_idx_2` (`tagId`),
@@ -263,8 +279,8 @@ DROP TABLE IF EXISTS `tag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tag` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `typeId` int unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `typeId` int(10) unsigned NOT NULL,
   `freebase_mid` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `isAmbiguous` bit(1) NOT NULL DEFAULT b'0',
   `name` varchar(255) NOT NULL,
@@ -284,9 +300,9 @@ DROP TABLE IF EXISTS `tag_alternative`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tag_alternative` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `tagId` int unsigned NOT NULL,
-  `typeId` int unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tagId` int(10) unsigned NOT NULL,
+  `typeId` int(10) unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `confidence` float DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -304,11 +320,11 @@ DROP TABLE IF EXISTS `tag_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tag_type` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(64) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `type` (`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -320,4 +336,4 @@ CREATE TABLE `tag_type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-02-09 19:10:58
+-- Dump completed on 2015-04-01 20:31:28

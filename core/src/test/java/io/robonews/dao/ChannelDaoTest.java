@@ -7,16 +7,19 @@
 package io.robonews.dao;
 
 import io.robonews.domain.Channel;
+import io.robonews.domain.ChannelPicture;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -107,5 +110,38 @@ public class ChannelDaoTest {
         channel2.setScale(Channel.Scale.GLOBAL);
 
         channelDao.create(channel2);
+    }
+
+    @Test
+    public void testWithPicture() {
+        Channel channel = new Channel();
+        channel.setTitle("test-1");
+        channel.setUrl("test-url-1");
+        channel.setCanonicalName("test-1.com");
+        channel.setScale(Channel.Scale.GLOBAL);
+
+        ChannelPicture channelPicture = new ChannelPicture();
+        channelPicture.setChannel(channel);
+        channelPicture.setPicture("TEST-PIC".getBytes());
+
+        channel.setPicture(channelPicture);
+
+        int id = channelDao.create(channel);
+
+        Channel channel2 = channelDao.getById(id);
+        Assert.assertEquals("test-1", channel2.getTitle());
+        Assert.assertEquals("TEST-PIC", new String(channel2.getPicture().getPicture()));
+
+        ChannelPicture channelPicture2 = new ChannelPicture();
+        channelPicture2.setChannel(channel2);
+        channelPicture2.setPicture("TEST-PIC-2".getBytes());
+
+        channel2.setPicture(channelPicture2);
+
+        channelDao.update(channel2);
+
+        Channel channel3 = channelDao.getByIdWithPicture(id);
+        Assert.assertEquals("test-1", channel3.getTitle());
+        Assert.assertEquals("TEST-PIC-2", new String(channel3.getPicture().getPicture()));
     }
 }

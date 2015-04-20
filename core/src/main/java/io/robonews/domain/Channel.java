@@ -59,6 +59,9 @@ public class Channel {
     @Column(name = "version")
     private long version;
 
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = ChannelPicture.class, mappedBy = "channel", cascade = CascadeType.ALL)
+    private ChannelPicture picture;
+
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Feed.class, mappedBy = "channel")
     private Collection<Feed> feeds;
 
@@ -158,12 +161,16 @@ public class Channel {
         this.version = version;
     }
 
+    public ChannelPicture getPicture() {
+        return picture;
+    }
+
     public Collection<Feed> getFeeds() {
         return feeds;
     }
 
-    public void setFeeds(Collection<Feed> feeds) {
-        this.feeds = feeds;
+    public void setPicture(ChannelPicture picture) {
+        this.picture = picture;
     }
 
     public static enum Scale {
