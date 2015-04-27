@@ -182,8 +182,29 @@ app.controller('ChannelEditController', function ($scope, $http, $state, Channel
     };
 });
 
-app.controller('ChannelIconController', function ($scope, $state, channelImageOptions) {
+app.controller('ChannelIconController', function ($scope, $state, $http, channelImageOptions) {
     $scope.imageOptions = channelImageOptions;
+
+    $scope.submit = function() {
+        var data = $('#crop').cropper('getDataURL');
+
+        if (data) {
+            var type = data.match(/^data:image\/(png|jpeg|jpg|gif);base64,/);
+
+            $http({
+                method : 'POST',
+                url : 'rest/channel/image-update/' + $scope.channel.id,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data : $.param({
+                    type : type[1],
+                    data : data.replace(/^data:image\/(png|jpeg|jpg|gif);base64,/, "")
+                })
+            })
+            .success(function() {
+                $state.go('channel.list');
+            });
+        }
+    };
 
     for(var i = 0; i < $scope.imageOptions.length; i++) {
         var tempImg = new Image();

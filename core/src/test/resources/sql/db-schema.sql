@@ -79,6 +79,24 @@ CREATE TABLE `channel_picture` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `country`
+--
+
+DROP TABLE IF EXISTS `country`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `country` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `isoCode2` char(2) NOT NULL,
+  `isoCode3` char(3) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `country_idx_1` (`isoCode2`),
+  UNIQUE KEY `country_idx_2` (`isoCode3`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `feed`
 --
 
@@ -197,6 +215,24 @@ CREATE TABLE `image_type` (
   `type` varchar(8) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `type` (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `state`
+--
+
+DROP TABLE IF EXISTS `state`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `state` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `countryId` int(10) unsigned NOT NULL,
+  `isoCode` varchar(8) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `state_idx_1` (`countryId`,`isoCode`),
+  CONSTRAINT `state_fk_1` FOREIGN KEY (`countryId`) REFERENCES `country` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

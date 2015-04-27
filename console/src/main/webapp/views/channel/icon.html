@@ -40,7 +40,7 @@
 
             <br style="clear: both"/>
 
-            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit" onclick="saveCrop()"><strong>Save</strong></button>
+            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit" ng-click="submit()"><strong>Save</strong></button>
 
             <script>
                 $('#crop').cropper({
@@ -49,12 +49,6 @@
                     preview: '.win-preview',
                     checkImageOrigin: false
                 });
-
-
-                function saveCrop() {
-                    var c = $('#crop').cropper('getDataURL');
-                    alert(c);
-                }
             </script>
 
         </div>

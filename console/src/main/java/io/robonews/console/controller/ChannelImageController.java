@@ -6,10 +6,13 @@
  */
 package io.robonews.console.controller;
 
+import io.robonews.console.controller.error.BadRequestException;
 import io.robonews.console.controller.error.NotFoundException;
 import io.robonews.console.dto.channel.ChannelImageOption;
 import io.robonews.dao.ChannelDao;
 import io.robonews.domain.Channel;
+import io.robonews.domain.ChannelPicture;
+import io.robonews.domain.Image;
 import io.robonews.service.facebook.FacebookService;
 import io.robonews.service.google.plus.GooglePlusService;
 import io.robonews.service.http.HttpRequest;
@@ -20,11 +23,10 @@ import io.robonews.service.twitter.TwitterService;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -62,6 +64,52 @@ public class ChannelImageController {
             .map(i -> getImageOption(channel, i))
             .filter(i -> i != null)
             .collect(Collectors.toList());
+    }
+
+    @RequestMapping(value = "/channel/image-update/{channelId}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void updateImage(@PathVariable int channelId,
+                            @RequestParam("type") String type, @RequestParam("data") String data) {
+
+        Channel channel = channelDao.getById(channelId);
+
+        if (channel == null) {
+            throw new NotFoundException();
+        }
+
+        if (StringUtils.isEmpty(type) || StringUtils.isEmpty(data)) {
+            throw new BadRequestException("Parameters type and data cannot be empty");
+        }
+
+        Image.Type imageType;
+
+        switch (type) {
+            case "jpg":
+            case "jpeg":
+                imageType = Image.Type.JPEG;
+                break;
+            case "png":
+                imageType = Image.Type.PNG;
+                break;
+            case "gif":
+                imageType = Image.Type.GIF;
+                break;
+            default:
+                throw new BadRequestException("Unknown image type");
+        }
+
+        byte[] imageBytes = Base64.decodeBase64(data);
+
+        ChannelPicture picture = channel.getPicture() == null ? new ChannelPicture() : channel.getPicture();
+
+        picture.setChannel(channel);
+        picture.setPicture(imageBytes);
+        picture.setType(imageType);
+
+        channel.setPicture(picture);
+
+        channelDao.update(channel);
+
     }
 
     private ChannelImageOption getImageOption(Channel channel, String socialMedia) {
