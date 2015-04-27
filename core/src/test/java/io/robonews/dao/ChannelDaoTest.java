@@ -8,6 +8,7 @@ package io.robonews.dao;
 
 import io.robonews.domain.Channel;
 import io.robonews.domain.ChannelPicture;
+import io.robonews.domain.Image;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +29,7 @@ import java.util.List;
 @ContextConfiguration({ "classpath:testContext.xml" })
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles({"create-db"})
+@ActiveProfiles({"create-db", "fill-masterdata"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class ChannelDaoTest {
 
@@ -122,6 +123,7 @@ public class ChannelDaoTest {
 
         ChannelPicture channelPicture = new ChannelPicture();
         channelPicture.setChannel(channel);
+        channelPicture.setType(Image.Type.PNG);
         channelPicture.setPicture("TEST-PIC".getBytes());
 
         channel.setPicture(channelPicture);
@@ -134,13 +136,14 @@ public class ChannelDaoTest {
 
         ChannelPicture channelPicture2 = new ChannelPicture();
         channelPicture2.setChannel(channel2);
+        channelPicture2.setType(Image.Type.PNG);
         channelPicture2.setPicture("TEST-PIC-2".getBytes());
 
         channel2.setPicture(channelPicture2);
 
         channelDao.update(channel2);
 
-        Channel channel3 = channelDao.getByIdWithPicture(id);
+        Channel channel3 = channelDao.getById(id);
         Assert.assertEquals("test-1", channel3.getTitle());
         Assert.assertEquals("TEST-PIC-2", new String(channel3.getPicture().getPicture()));
     }

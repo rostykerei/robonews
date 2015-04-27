@@ -15,6 +15,9 @@ import io.robonews.console.dto.channel.ChannelDatatableItem;
 import io.robonews.console.dto.channel.ChannelForm;
 import io.robonews.dao.ChannelDao;
 import io.robonews.domain.Channel;
+import io.robonews.domain.ChannelPicture;
+import io.robonews.domain.Image;
+import io.robonews.service.image.tools.ImageAvatarGenerator;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.*;
@@ -127,7 +130,17 @@ public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate impl
             channelDao.update(channelForm.updateChannel(channel));
         }
         else {
-            id = channelDao.create(channelForm.toChannel());
+            Channel channel = channelForm.toChannel();
+
+            ChannelPicture channelPicture = new ChannelPicture();
+            channelPicture.setChannel(channel);
+            channelPicture.setType(Image.Type.PNG);
+            channelPicture.setPicture(
+                    ImageAvatarGenerator.generateAvatar(channel.getTitle())
+            );
+            channel.setPicture(channelPicture);
+
+            id = channelDao.create(channel);
         }
 
         return channelDao.getById(id);

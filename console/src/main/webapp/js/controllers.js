@@ -182,6 +182,22 @@ app.controller('ChannelEditController', function ($scope, $http, $state, Channel
     };
 });
 
+app.controller('ChannelIconController', function ($scope, $state, channelImageOptions) {
+    $scope.imageOptions = channelImageOptions;
+
+    for(var i = 0; i < $scope.imageOptions.length; i++) {
+        var tempImg = new Image();
+        tempImg.src = "data:" + $scope.imageOptions[i].type + ";base64," + $scope.imageOptions[i].data;
+        $scope.imageOptions[i].width = tempImg.width;
+        $scope.imageOptions[i].height = tempImg.height;
+
+        /*tempImg.onload = function(){
+            $scope.imageOptions[i].width = tempImg.width;
+            $scope.imageOptions[i].height = tempImg.height;
+        };*/
+    }
+});
+
 app.controller('RetryController', function($scope, $modalInstance, rejection) {
 
     $scope.rejection = rejection;

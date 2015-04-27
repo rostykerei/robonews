@@ -33,10 +33,23 @@
     <!-- Development stuff -->
 
     <beans profile="development">
-        <jdbc:initialize-database data-source="dataSource">
-            <jdbc:script location="classpath:sql/db-schema.sql"/>
-            <jdbc:script location="classpath:sql/db-data.sql"/>
-        </jdbc:initialize-database>
+
+        <bean id="dataSourceInitializer" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+            <property name="dataSource" ref="dataSource"/>
+            <property name="databasePopulator">
+                <bean class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+                    <property name="scripts">
+                        <list>
+                            <value>classpath:sql/db-schema.sql</value>
+                            <value>classpath:sql/db-data.sql</value>
+                        </list>
+                    </property>
+                    <property name="blockCommentStartDelimiter" value="/***"/>
+                    <property name="blockCommentEndDelimiter" value="***/"/>
+                </bean>
+            </property>
+        </bean>
+
     </beans>
 
 </beans>

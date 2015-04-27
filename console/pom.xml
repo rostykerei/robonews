@@ -73,6 +73,12 @@
         </dependency>
 
         <dependency>
+            <groupId>io.robonews</groupId>
+            <artifactId>service-image-tools</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>

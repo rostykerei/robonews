@@ -15,6 +15,7 @@ import io.robonews.console.datatable.DatatableParams;
 import io.robonews.console.dto.channel.ChannelDatatableItem;
 import io.robonews.console.dto.channel.ChannelForm;
 import io.robonews.console.dto.response.DataResponse;
+import io.robonews.dao.ChannelDao;
 import io.robonews.domain.Channel;
 import io.robonews.service.alexa.AlexaService;
 import io.robonews.service.alexa.impl.AlexaServiceResult;
@@ -22,16 +23,17 @@ import io.robonews.service.facebook.FacebookService;
 import io.robonews.service.facebook.model.FacebookProfile;
 import io.robonews.service.google.plus.GooglePlusService;
 import io.robonews.service.google.plus.model.GooglePlusProfile;
+import io.robonews.service.http.HttpService;
 import io.robonews.service.twitter.TwitterService;
 import io.robonews.service.twitter.model.TwitterProfile;
-
-import java.io.IOException;
-import java.util.List;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("rest")
@@ -39,6 +41,9 @@ public class ChannelsController {
 
     @Autowired
     private ChannelConsoleDao channelConsoleDao;
+
+    @Autowired
+    private ChannelDao channelDao;
 
     @Autowired
     private AlexaService alexaService;
@@ -51,6 +56,9 @@ public class ChannelsController {
 
     @Autowired
     private GooglePlusService googlePlusService;
+
+    @Autowired
+    private HttpService httpService;
 
     @RequestMapping(value = "/channel/list", method = RequestMethod.GET)
     public @ResponseBody Datatable<ChannelDatatableItem> getChannelsDatatable(
@@ -74,11 +82,6 @@ public class ChannelsController {
     public @ResponseBody DataResponse<ChannelForm> createChannelInit(@RequestParam("canonicalName") String canonicalName) {
 
         DataResponse<ChannelForm> response = new DataResponse<>();
-
-        if ("x".equals(canonicalName)) {
-            response.setError(true);
-            return response;
-        }
 
         AlexaServiceResult alexaServiceResult;
 
@@ -140,4 +143,20 @@ public class ChannelsController {
     public @ResponseBody List<GooglePlusProfile> googlePlusTypeahead(@RequestParam("query") String query) {
         return googlePlusService.searchProfiles(query, 5);
     }
+
+    @RequestMapping("/channel/image/{channelId}")
+    @ResponseBody
+    public ResponseEntity<byte[]> getImage(@PathVariable int channelId) {
+
+        Channel channel = channelDao.getById(channelId);
+
+        if (channel == null || channel.getPicture() == null) {
+            throw new NotFoundException();
+        }
+
+        return ResponseEntity.ok()
+                .header("Content-type", "image/png")
+                .body(channel.getPicture().getPicture());
+    }
+
 }

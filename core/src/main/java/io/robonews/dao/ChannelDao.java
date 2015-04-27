@@ -12,10 +12,6 @@ import io.robonews.domain.ChannelPicture;
 import java.util.List;
 
 public interface ChannelDao extends AbstractDao<Channel, Integer> {
-
-    Channel getByIdWithPicture(Integer id);
-
-    void savePicture(ChannelPicture picture);
     /**
      * Returns list of all channels
      *
@@ -23,5 +19,4 @@ public interface ChannelDao extends AbstractDao<Channel, Integer> {
      */
     List<Channel> getAll();
 
-    void flush();
 }

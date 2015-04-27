@@ -69,10 +69,12 @@ DROP TABLE IF EXISTS `channel_picture`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `channel_picture` (
   `channelId` int(10) unsigned NOT NULL,
+  `typeId` tinyint(3) unsigned NOT NULL,
   `picture` blob NOT NULL,
   `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`channelId`) USING BTREE,
-  CONSTRAINT `channel_picture_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE ON DELETE CASCADE
+  CONSTRAINT `channel_picture_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `channel_picture_fk_2` FOREIGN KEY (`typeId`) REFERENCES `image_type` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

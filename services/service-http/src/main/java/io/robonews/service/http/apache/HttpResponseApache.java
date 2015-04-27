@@ -144,4 +144,21 @@ public class HttpResponseApache implements HttpResponse {
 
         return null;
     }
+
+    @Override
+    public String getContentType() {
+        if (!response.containsHeader(HttpHeaders.CONTENT_TYPE)) {
+            return null;
+        }
+
+        Header header = response.getFirstHeader(HttpHeaders.CONTENT_TYPE);
+
+        if (header != null) {
+            return header.getValue();
+        }
+
+        return null;
+    }
+
+
 }

@@ -30,4 +30,6 @@ public interface HttpResponse {
     String getEtag();
 
     Date getExpires();
+
+    String getContentType();
 }

@@ -1,51 +1,61 @@
-<div class="row">
-    <div class="col-sm-4 b-r"  style=" height: 300px;">
-        <h3 class="m-t-none m-b">Current icon</h3>
 
-        <img style="float: left; margin-bottom: 16px; height: 96px; width: 96px;" src="http://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED_normal.png"/>
-        <img style="float: left; margin-bottom: 16px; margin-left: 16px; height: 48px; width: 48px;" src="http://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED_normal.png"/>
-        <img style="float: left; margin-bottom: 16px; margin-left: 16px; border-radius: 25%; height: 48px; width: 48px;" src="http://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED_normal.png"/>
-        <img style="float: left; margin-bottom: 16px; margin-left: 16px; border-radius: 50%; height: 48px; width: 48px;" src="http://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED_normal.png"/>
-        <img style="float: left; margin-bottom: 16px; margin-left: 16px; height: 32px; width: 32px;" src="http://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED_normal.png"/>
-        <img style="float: left; margin-bottom: 16px; margin-left: 16px; border-radius: 50%; height: 32px; width: 32px;" src="http://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED_normal.png"/>
-    </div>
-    <div class="col-sm-8">
-        <h3 class="m-t-none m-b">Available icons</h3>
+    <div class="row">
+        <div class="col-sm-4 b-r"  style=" height: 300px;">
+            <h3 class="m-t-none m-b">Current icon</h3>
 
-        <div>
-            <img style="height: 48px;" onclick="$('#crop').cropper('replace', this.src);" src="http://lorempixel.com/70/50/?x"/>
-            <img style="height: 48px;" onclick="$('#crop').cropper('replace', this.src);" src="http://lorempixel.com/50/70/?y"/>
-            <img style="height: 48px;" onclick="$('#crop').cropper('replace', this.src);" src="http://lorempixel.com/50/50/?z"/>
-            <img style="height: 48px;" onclick="$('#crop').cropper('replace', 'http://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED_normal.png');" src="http://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED_normal.png"/>
-            <img style="height: 48px;" onclick="$('#crop').cropper('replace', this.src);" src="http://lorempixel.com/90/50/?v"/>
+            <img style="float: left; margin-bottom: 16px; height: 96px; width: 96px;" src="rest/channel/image/{{channel.id}}"/>
+            <img style="float: left; margin-bottom: 16px; margin-left: 16px; height: 48px; width: 48px;" src="rest/channel/image/{{channel.id}}"/>
+            <img style="float: left; margin-bottom: 16px; margin-left: 16px; border-radius: 25%; height: 48px; width: 48px;" src="rest/channel/image/{{channel.id}}"/>
+            <img style="float: left; margin-bottom: 16px; margin-left: 16px; border-radius: 50%; height: 48px; width: 48px;" src="rest/channel/image/{{channel.id}}"/>
+            <img style="float: left; margin-bottom: 16px; margin-left: 16px; height: 32px; width: 32px;" src="rest/channel/image/{{channel.id}}"/>
+            <img style="float: left; margin-bottom: 16px; margin-left: 16px; border-radius: 50%; height: 32px; width: 32px;" src="rest/channel/image/{{channel.id}}"/>
         </div>
+        <div class="col-sm-8">
+            <h3 class="m-t-none m-b">Available icons</h3>
 
-        <hr/>
+            <div style="border: solid 1px lightgrey; display: inline-block;  margin-right: 5px;" ng-repeat="imageOption in imageOptions">
+                <div style="float: left;">
+                    <img data-ng-src="data:{{ imageOption.type }};base64,{{ imageOption.data }}"  onclick="$('#crop').cropper('replace', this.src);" style="height: 48px;">
+                </div>
+                <div style="float: right; padding-left: 5px; padding-right: 5px; line-height: 15px;">
+                    <b>{{ imageOption.source }}</b><br/>
+                    <small style="">{{ imageOption.type }}<br/>
+                    {{ imageOption.width }}px x {{ imageOption.height }}px</small>
+                </div>
+           </div>
 
-        <div style="width: 50%; float: left;">
-            <img id="crop" >
+            <hr/>
+
+            <div style="width: 50%; float: left;">
+                <img id="crop" >
+            </div>
+
+                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px; height: 96px; width: 96px; overflow: hidden;"></div>
+                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px; height: 48px; width: 48px; overflow: hidden;"></div>
+                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px;  border-radius: 25%; height: 48px; width: 48px;  overflow: hidden;"></div>
+                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px; border-radius: 50%; height: 48px; width: 48px;  overflow: hidden;"></div>
+                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px;  height: 32px; width: 32px; overflow: hidden;"></div>
+                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px;  border-radius: 50%; height: 32px; width: 32px;  overflow: hidden;"></div>
+
+
+            <br style="clear: both"/>
+
+            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit" onclick="saveCrop()"><strong>Save</strong></button>
+
+            <script>
+                $('#crop').cropper({
+                    aspectRatio: 1,
+                    autoCropArea: 1,
+                    preview: '.win-preview',
+                    checkImageOrigin: false
+                });
+
+
+                function saveCrop() {
+                    var c = $('#crop').cropper('getDataURL');
+                    alert(c);
+                }
+            </script>
+
         </div>
-
-            <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px; height: 96px; width: 96px; overflow: hidden;"></div>
-            <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px; height: 48px; width: 48px; overflow: hidden;"></div>
-            <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px;  border-radius: 25%; height: 48px; width: 48px;  overflow: hidden;"></div>
-            <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px; border-radius: 50%; height: 48px; width: 48px;  overflow: hidden;"></div>
-            <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px;  height: 32px; width: 32px; overflow: hidden;"></div>
-            <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px;  border-radius: 50%; height: 32px; width: 32px;  overflow: hidden;"></div>
-
-
-        <br style="clear: both"/>
-
-        <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Log in</strong></button>
-
-        <script>
-            $('#crop').cropper({
-                aspectRatio: 1,
-                autoCropArea: 1,
-                preview: '.win-preview',
-                checkImageOrigin: false
-            });
-        </script>
-
     </div>
-</div>

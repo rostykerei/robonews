@@ -71,6 +71,10 @@ public class Image {
     @Column(name = "createdDate", unique = false, nullable = false)
     private Date createdDate;
 
+    public Image() {
+        this.createdDate = new Date();
+    }
+
     public long getId() {
         return id;
     }

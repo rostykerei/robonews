@@ -18,7 +18,7 @@ INSERT INTO `image_type` (`id`, `type`) VALUES (3,'GIF'),(1,'JPEG'),(2,'PNG');
 /*!40000 ALTER TABLE `image_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
-INSERT INTO channel (id,canonicalName,title,url,scale,facebookId,twitterId,googlePlusId,description,alexaRank,version) VALUES (1,'cnn.com','CNN','http://www.cnn.com/',3,null,null,null,null,0,0);
+/*INSERT INTO channel (id,canonicalName,title,url,scale,facebookId,twitterId,googlePlusId,description,alexaRank,version) VALUES (1,'cnn.com','CNN','http://www.cnn.com/',3,'cnn','CNN','+cnn',null,100,0);
 INSERT INTO channel (id,canonicalName,title,url,scale,facebookId,twitterId,googlePlusId,description,alexaRank,version) VALUES (2,'foxnews.com','FOX News','http://www.foxnews.com/',3,null,null,null,null,0,0);
 INSERT INTO channel (id,canonicalName,title,url,scale,facebookId,twitterId,googlePlusId,description,alexaRank,version) VALUES (3,'nbcnews.com','NBC News','http://www.nbcnews.com/',3,null,null,null,null,0,0);
+*/

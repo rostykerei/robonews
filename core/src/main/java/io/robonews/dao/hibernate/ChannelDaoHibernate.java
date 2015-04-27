@@ -19,27 +19,6 @@ public class ChannelDaoHibernate extends AbstractDaoHibernate<Channel, Integer> 
         super(Channel.class);
     }
 
-    public void flush() {
-        getSession().flush();
-        getSession().clear();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Channel getByIdWithPicture(Integer id) {
-        return (Channel) getSession().
-            createQuery("from Channel c " +
-                "left join fetch c.picture " +
-                "where c.id = :id").
-            setInteger("id", id).
-            uniqueResult();
-    }
-
-    @Override
-    @Transactional
-    public void savePicture(ChannelPicture picture) {
-        getSession().save(picture);
-    }
 
     @Transactional
     public void update(Channel o) {

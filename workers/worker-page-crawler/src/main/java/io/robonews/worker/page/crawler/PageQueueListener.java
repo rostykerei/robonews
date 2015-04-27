@@ -45,10 +45,7 @@ public class PageQueueListener {
         catch (ContentTooLongException e) {
             logger.info("Page content too long [" +  message.getPageUrl() + "], skipping...");
         }
-        catch (ConnectTimeoutException e) {
-            logger.info("Page does not respond [" +  message.getPageUrl() + "], skipping...");
-        }
-        catch (SocketTimeoutException e) {
+        catch (ConnectTimeoutException | SocketTimeoutException e) {
             logger.info("Page does not respond [" +  message.getPageUrl() + "], skipping...");
         }
         catch (ClientProtocolException e) {

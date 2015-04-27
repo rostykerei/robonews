@@ -65,7 +65,18 @@ function config($stateProvider, $urlRouterProvider) {
         .state('channel.details.icon', {
             url: "/icon",
             templateUrl: "views/channel/icon.html",
-            data: { pageTitle: 'Channel | Icon', subpageTitle: 'Icon' }
+            data: { pageTitle: 'Channel | Icon', subpageTitle: 'Icon' },
+            controller: 'ChannelIconController',
+            resolve: {
+                channelImageOptions: function($http, $stateParams, $q) {
+                    return $http
+                        .get('rest/channel/image-options/' + $stateParams.id)
+                        .then(
+                            function success(response) { return response.data; },
+                            function error(reason) { return false; }
+                        );
+                }
+            }
         })
         .state('channel.details.feeds', {
             url: "/feeds",
