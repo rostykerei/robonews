@@ -13,8 +13,9 @@
 
 <hibernate-configuration>
     <session-factory>
+        <mapping class="io.robonews.domain.Country" />
         <mapping class="io.robonews.domain.Channel" />
-        <mapping class="io.robonews.domain.ChannelPicture" />
+        <mapping class="io.robonews.domain.ChannelImage" />
         <mapping class="io.robonews.domain.Category" />
         <mapping class="io.robonews.domain.Feed" />
         <mapping class="io.robonews.domain.Story"/>

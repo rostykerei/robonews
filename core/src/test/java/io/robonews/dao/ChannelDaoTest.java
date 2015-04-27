@@ -7,7 +7,7 @@
 package io.robonews.dao;
 
 import io.robonews.domain.Channel;
-import io.robonews.domain.ChannelPicture;
+import io.robonews.domain.ChannelImage;
 import io.robonews.domain.Image;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,12 +15,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -36,6 +34,9 @@ public class ChannelDaoTest {
     @Autowired
     private ChannelDao channelDao;
 
+    @Autowired
+    private CountryDao countryDao;
+
     @Test
     public void testCRUD() throws Exception {
         Channel channel = new Channel();
@@ -43,6 +44,7 @@ public class ChannelDaoTest {
         channel.setUrl("test-url-1");
         channel.setCanonicalName("test-1.com");
         channel.setScale(Channel.Scale.GLOBAL);
+        channel.setCountry(countryDao.getByIsoCode2("US"));
 
         int id = channelDao.create(channel);
 
@@ -54,6 +56,7 @@ public class ChannelDaoTest {
 
         Channel channel3 = channelDao.getById(id);
         Assert.assertEquals("test-1-updated", channel3.getTitle());
+        Assert.assertEquals("US", channel3.getCountry().getIsoCode2());
 
         channelDao.delete(channel3);
 
@@ -121,30 +124,30 @@ public class ChannelDaoTest {
         channel.setCanonicalName("test-1.com");
         channel.setScale(Channel.Scale.GLOBAL);
 
-        ChannelPicture channelPicture = new ChannelPicture();
-        channelPicture.setChannel(channel);
-        channelPicture.setType(Image.Type.PNG);
-        channelPicture.setPicture("TEST-PIC".getBytes());
+        ChannelImage channelImage = new ChannelImage();
+        channelImage.setChannel(channel);
+        channelImage.setType(Image.Type.PNG);
+        channelImage.setData("TEST-PIC".getBytes());
 
-        channel.setPicture(channelPicture);
+        channel.setImage(channelImage);
 
         int id = channelDao.create(channel);
 
         Channel channel2 = channelDao.getById(id);
         Assert.assertEquals("test-1", channel2.getTitle());
-        Assert.assertEquals("TEST-PIC", new String(channel2.getPicture().getPicture()));
+        Assert.assertEquals("TEST-PIC", new String(channel2.getImage().getData()));
 
-        ChannelPicture channelPicture2 = new ChannelPicture();
-        channelPicture2.setChannel(channel2);
-        channelPicture2.setType(Image.Type.PNG);
-        channelPicture2.setPicture("TEST-PIC-2".getBytes());
+        ChannelImage channelImage2 = new ChannelImage();
+        channelImage2.setChannel(channel2);
+        channelImage2.setType(Image.Type.PNG);
+        channelImage2.setData("TEST-PIC-2".getBytes());
 
-        channel2.setPicture(channelPicture2);
+        channel2.setImage(channelImage2);
 
         channelDao.update(channel2);
 
         Channel channel3 = channelDao.getById(id);
         Assert.assertEquals("test-1", channel3.getTitle());
-        Assert.assertEquals("TEST-PIC-2", new String(channel3.getPicture().getPicture()));
+        Assert.assertEquals("TEST-PIC-2", new String(channel3.getImage().getData()));
     }
 }

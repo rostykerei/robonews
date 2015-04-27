@@ -6,7 +6,6 @@
  */
 package io.robonews.console.dao.hibernate;
 
-import io.robonews.console.controller.error.NotFoundException;
 import io.robonews.console.dao.ChannelConsoleDao;
 import io.robonews.console.dao.DaoException;
 import io.robonews.console.datatable.Datatable;
@@ -15,7 +14,7 @@ import io.robonews.console.dto.channel.ChannelDatatableItem;
 import io.robonews.console.dto.channel.ChannelForm;
 import io.robonews.dao.ChannelDao;
 import io.robonews.domain.Channel;
-import io.robonews.domain.ChannelPicture;
+import io.robonews.domain.ChannelImage;
 import io.robonews.domain.Image;
 import io.robonews.service.image.tools.ImageAvatarGenerator;
 import org.hibernate.Criteria;
@@ -132,13 +131,13 @@ public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate impl
         else {
             Channel channel = channelForm.toChannel();
 
-            ChannelPicture channelPicture = new ChannelPicture();
-            channelPicture.setChannel(channel);
-            channelPicture.setType(Image.Type.PNG);
-            channelPicture.setPicture(
+            ChannelImage channelImage = new ChannelImage();
+            channelImage.setChannel(channel);
+            channelImage.setType(Image.Type.PNG);
+            channelImage.setData(
                     ImageAvatarGenerator.generateAvatar(channel.getTitle())
             );
-            channel.setPicture(channelPicture);
+            channel.setImage(channelImage);
 
             id = channelDao.create(channel);
         }

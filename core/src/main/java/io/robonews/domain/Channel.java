@@ -21,6 +21,10 @@ public class Channel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ManyToOne
+    @JoinColumn(name = "countryId", referencedColumnName = "id", nullable = true)
+    private Country country;
+
     @NotNull
     @Column(name = "canonicalName", unique = true, nullable = false, length = 255)
     private String canonicalName;
@@ -59,8 +63,8 @@ public class Channel {
     @Column(name = "version")
     private long version;
 
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = ChannelPicture.class, mappedBy = "channel", cascade = CascadeType.ALL)
-    private ChannelPicture picture;
+    @OneToOne(fetch = FetchType.LAZY, targetEntity = ChannelImage.class, mappedBy = "channel", cascade = CascadeType.ALL)
+    private ChannelImage image;
 
     @OneToMany(fetch = FetchType.LAZY, targetEntity = Feed.class, mappedBy = "channel")
     private Collection<Feed> feeds;
@@ -71,6 +75,14 @@ public class Channel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public String getCanonicalName() {
@@ -161,16 +173,16 @@ public class Channel {
         this.version = version;
     }
 
-    public ChannelPicture getPicture() {
-        return picture;
+    public ChannelImage getImage() {
+        return image;
     }
 
     public Collection<Feed> getFeeds() {
         return feeds;
     }
 
-    public void setPicture(ChannelPicture picture) {
-        this.picture = picture;
+    public void setImage(ChannelImage picture) {
+        this.image = picture;
     }
 
     public static enum Scale {

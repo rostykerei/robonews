@@ -150,13 +150,13 @@ public class ChannelsController {
 
         Channel channel = channelDao.getById(channelId);
 
-        if (channel == null || channel.getPicture() == null) {
+        if (channel == null || channel.getImage() == null) {
             throw new NotFoundException();
         }
 
         return ResponseEntity.ok()
                 .header("Content-type", "image/png")
-                .body(channel.getPicture().getPicture());
+                .body(channel.getImage().getData());
     }
 
 }

@@ -11,6 +11,10 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <bean id="countryDao" class="io.robonews.dao.hibernate.CountryDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
     <bean id="channelDao" class="io.robonews.dao.hibernate.ChannelDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>

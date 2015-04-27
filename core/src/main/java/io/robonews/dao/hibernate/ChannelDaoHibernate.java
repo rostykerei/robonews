@@ -8,7 +8,6 @@ package io.robonews.dao.hibernate;
 
 import io.robonews.dao.ChannelDao;
 import io.robonews.domain.Channel;
-import io.robonews.domain.ChannelPicture;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -18,7 +17,6 @@ public class ChannelDaoHibernate extends AbstractDaoHibernate<Channel, Integer> 
     public ChannelDaoHibernate() {
         super(Channel.class);
     }
-
 
     @Transactional
     public void update(Channel o) {

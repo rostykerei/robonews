@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "channel_picture", uniqueConstraints = @UniqueConstraint(columnNames = "channelId"))
-public class ChannelPicture implements Serializable {
+@Table(name = "channel_image", uniqueConstraints = @UniqueConstraint(columnNames = "channelId"))
+public class ChannelImage implements Serializable {
 
     @Id
     @OneToOne
@@ -25,8 +25,8 @@ public class ChannelPicture implements Serializable {
 
     @Lob
     @NotNull
-    @Column( name = "picture" )
-    private byte[] picture;
+    @Column( name = "data" )
+    private byte[] data;
 
     @Version
     @Column(name = "version")
@@ -49,12 +49,12 @@ public class ChannelPicture implements Serializable {
         this.type = type.getId();
     }
 
-    public byte[] getPicture() {
-        return picture;
+    public byte[] getData() {
+        return data;
     }
 
-    public void setPicture(byte[] picture) {
-        this.picture = picture;
+    public void setData(byte[] picture) {
+        this.data = picture;
     }
 
     public long getVersion() {

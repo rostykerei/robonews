@@ -11,7 +11,7 @@ import io.robonews.console.controller.error.NotFoundException;
 import io.robonews.console.dto.channel.ChannelImageOption;
 import io.robonews.dao.ChannelDao;
 import io.robonews.domain.Channel;
-import io.robonews.domain.ChannelPicture;
+import io.robonews.domain.ChannelImage;
 import io.robonews.domain.Image;
 import io.robonews.service.facebook.FacebookService;
 import io.robonews.service.google.plus.GooglePlusService;
@@ -100,13 +100,13 @@ public class ChannelImageController {
 
         byte[] imageBytes = Base64.decodeBase64(data);
 
-        ChannelPicture picture = channel.getPicture() == null ? new ChannelPicture() : channel.getPicture();
+        ChannelImage image = channel.getImage() == null ? new ChannelImage() : channel.getImage();
 
-        picture.setChannel(channel);
-        picture.setPicture(imageBytes);
-        picture.setType(imageType);
+        image.setChannel(channel);
+        image.setData(imageBytes);
+        image.setType(imageType);
 
-        channel.setPicture(picture);
+        channel.setImage(image);
 
         channelDao.update(channel);
 

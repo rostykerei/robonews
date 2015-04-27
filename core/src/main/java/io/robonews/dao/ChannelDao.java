@@ -7,7 +7,6 @@
 package io.robonews.dao;
 
 import io.robonews.domain.Channel;
-import io.robonews.domain.ChannelPicture;
 
 import java.util.List;
 
