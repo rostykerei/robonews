@@ -45,6 +45,7 @@ public class ChannelDaoTest {
         channel.setCanonicalName("test-1.com");
         channel.setScale(Channel.Scale.GLOBAL);
         channel.setCountry(countryDao.getByIsoCode2("US"));
+        channel.setState(countryDao.getState("US", "CA"));
 
         int id = channelDao.create(channel);
 
@@ -57,6 +58,7 @@ public class ChannelDaoTest {
         Channel channel3 = channelDao.getById(id);
         Assert.assertEquals("test-1-updated", channel3.getTitle());
         Assert.assertEquals("US", channel3.getCountry().getIsoCode2());
+        Assert.assertEquals("California", channel3.getState().getName());
 
         channelDao.delete(channel3);
 

@@ -21,9 +21,13 @@ public class Channel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Country.class, fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "countryId", referencedColumnName = "id", nullable = true)
     private Country country;
+
+    @ManyToOne(targetEntity = State.class, fetch = FetchType.EAGER, optional = true)
+    @JoinColumn(name = "stateId", referencedColumnName = "id", nullable = true)
+    private State state;
 
     @NotNull
     @Column(name = "canonicalName", unique = true, nullable = false, length = 255)
@@ -83,6 +87,14 @@ public class Channel {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     public String getCanonicalName() {

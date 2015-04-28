@@ -2,6 +2,7 @@ package io.robonews.dao.hibernate;
 
 import io.robonews.dao.CountryDao;
 import io.robonews.domain.Country;
+import io.robonews.domain.State;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -35,6 +36,7 @@ public class CountryDaoHibernate extends AbstractDaoHibernate<Country, Integer> 
         throw new RuntimeException("Intentionally not implemented");
     }
 
+
     @Override
     @Transactional(readOnly = true)
     public Country getByIsoCode2(String isoCode2) {
@@ -58,9 +60,36 @@ public class CountryDaoHibernate extends AbstractDaoHibernate<Country, Integer> 
     @Override
     @Transactional(readOnly = true)
     @SuppressWarnings("unchecked")
-    public List<Country> getAll() {
+    public List<Country> getAllCountries() {
         return getSession().
-                createQuery("from Country order by name asc").
-                list();
+                createQuery("from Country order by name asc")
+                .list();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    public List<State> getAllStates(String countryIsoCode2) {
+        return getSession()
+                .createQuery("from State s " +
+                        "left join fetch s.country " +
+                        "where s.country.isoCode2 = :countryIsoCode2 " +
+                        "order by s.name asc")
+                .setString("countryIsoCode2", countryIsoCode2)
+                .list();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public State getState(String countryIsoCode2, String stateIsoCode) {
+        return (State) getSession()
+                .createQuery("from State s " +
+                        "left join fetch s.country " +
+                        "where s.country.isoCode2 = :countryIsoCode2 " +
+                        "and s.isoCode = :stateIsoCode")
+                .setString("countryIsoCode2", countryIsoCode2)
+                .setString("stateIsoCode", stateIsoCode)
+                .setMaxResults(1)
+                .uniqueResult();
     }
 }

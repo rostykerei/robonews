@@ -1,6 +1,8 @@
 package io.robonews.dao;
 
 import io.robonews.domain.Country;
+import io.robonews.domain.State;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import org.junit.Assert;
 
 import java.util.List;
 
@@ -32,6 +33,8 @@ public class CountryDaoTest {
         Assert.assertEquals(1, us.getId());
         Assert.assertEquals("US", us.getIsoCode2());
         Assert.assertEquals("USA", us.getIsoCode3());
+
+        Assert.assertTrue(us.getStates().size() == 51);
     }
 
     @Test
@@ -51,9 +54,30 @@ public class CountryDaoTest {
     }
 
     @Test
-    public void testGetAll() throws Exception {
-        List<Country> list = countryDao.getAll();
+    public void getAllCountries() throws Exception {
+        List<Country> list = countryDao.getAllCountries();
 
         Assert.assertTrue(list.size() > 200);
+    }
+
+    @Test
+    public void getAllStates() throws Exception {
+        List<State> states = countryDao.getAllStates("US");
+        Assert.assertEquals(51, states.size());
+
+        List<State> states2 = countryDao.getAllStates("TW");
+        Assert.assertEquals(0, states2.size());
+
+        List<State> states3 = countryDao.getAllStates("XXX");
+        Assert.assertEquals(0, states3.size());
+    }
+
+    @Test
+    public void getState() throws Exception {
+        State ca = countryDao.getState("US", "CA");
+        Assert.assertEquals("California", ca.getName());
+
+        Assert.assertNull(countryDao.getState("US", "XX"));
+        Assert.assertNull(countryDao.getState("XX", "YY"));
     }
 }

@@ -1,6 +1,7 @@
 package io.robonews.dao;
 
 import io.robonews.domain.Country;
+import io.robonews.domain.State;
 
 import java.util.List;
 
@@ -15,5 +16,9 @@ public interface CountryDao {
 
     Country getByIsoCode3(String isoCode3);
 
-    List<Country> getAll();
+    List<Country> getAllCountries();
+
+    List<State> getAllStates(String countryIsoCode2);
+
+    State getState(String countryIsoCode2, String stateIsoCode);
 }

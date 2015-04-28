@@ -2,6 +2,7 @@ package io.robonews.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 
 @Entity
 @Table(name = "country", uniqueConstraints = {
@@ -26,6 +27,9 @@ public class Country {
     @Column(name = "name", unique = false, nullable = false, length = 255)
     private String name;
 
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = State.class, mappedBy = "country")
+    private Collection<State> states;
+
     public int getId() {
         return id;
     }
@@ -40,5 +44,9 @@ public class Country {
 
     public String getName() {
         return name;
+    }
+
+    public Collection<State> getStates() {
+        return states;
     }
 }
