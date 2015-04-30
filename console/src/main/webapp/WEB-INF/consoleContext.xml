@@ -26,8 +26,9 @@
     <!-- Console DAOs -->
 
     <bean id="channelConsoleDao" class="io.robonews.console.dao.hibernate.ChannelConsoleDaoHibernate">
-        <constructor-arg name="channelDao" ref="channelDao"/>
         <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+        <constructor-arg name="channelDao" ref="channelDao"/>
+        <constructor-arg name="countryDao" ref="countryDao"/>
     </bean>
 
     <!-- Development stuff -->

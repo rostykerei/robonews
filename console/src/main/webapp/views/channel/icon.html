@@ -15,12 +15,13 @@
 
             <div style="border: solid 1px lightgrey; display: inline-block;  margin-right: 5px;" ng-repeat="imageOption in imageOptions">
                 <div style="float: left;">
-                    <img data-ng-src="data:{{ imageOption.type }};base64,{{ imageOption.data }}"  onclick="$('#crop').cropper('replace', this.src);" style="height: 48px;">
+                    <!--<img data-ng-src="data:{{ imageOption.type }};base64,{{ imageOption.data }}"  onclick="$('#crop').cropper('replace', this.src);" style="height: 48px;">-->
+                    <img data-ng-src="{{ imageOption.img.src }}"  onclick="$('#crop').cropper('replace', this.src);" style="height: 48px;">
                 </div>
                 <div style="float: right; padding-left: 5px; padding-right: 5px; line-height: 15px;">
                     <b>{{ imageOption.source }}</b><br/>
                     <small style="">{{ imageOption.type }}<br/>
-                    {{ imageOption.width }}px x {{ imageOption.height }}px</small>
+                    {{ imageOption.img.width }}px x {{ imageOption.img.height }}px</small>
                 </div>
            </div>
 

@@ -38,7 +38,18 @@ function config($stateProvider, $urlRouterProvider) {
         })
         .state('channel.new.details', {
             url: "/details",
-            templateUrl: "views/channel/edit.html"
+            controller: "ChannelEditController",
+            templateUrl: "views/channel/edit.html",
+            resolve: {
+                countries:  function($http) {
+                    return $http
+                        .get('rest/country/getAll')
+                        .then(
+                        function success(response) { return response.data; },
+                        function error() { return []; }
+                    );
+                }
+            }
         })
         .state('channel.details', {
             abstract: true,
@@ -50,7 +61,7 @@ function config($stateProvider, $urlRouterProvider) {
 
                     ChannelService.resource.get({id: $stateParams.id},
                         function(successData) { deferred.resolve(successData); },
-                        function(errorData) { deferred.reject();});
+                        function() { deferred.reject();});
 
                     return deferred.promise;
                 }
@@ -60,7 +71,18 @@ function config($stateProvider, $urlRouterProvider) {
         .state('channel.details.edit', {
             url: "/edit",
             templateUrl: "views/channel/edit.html",
-            data: { pageTitle: 'Channel | Edit', subpageTitle: 'Edit' }
+            controller: 'ChannelEditController',
+            data: { pageTitle: 'Channel | Edit', subpageTitle: 'Edit' },
+            resolve: {
+                countries:  function($http) {
+                    return $http
+                        .get('rest/country/getAll')
+                        .then(
+                        function success(response) { return response.data; },
+                        function error(reason) { return []; }
+                    );
+                }
+            }
         })
         .state('channel.details.icon', {
             url: "/icon",
@@ -68,12 +90,12 @@ function config($stateProvider, $urlRouterProvider) {
             data: { pageTitle: 'Channel | Icon', subpageTitle: 'Icon' },
             controller: 'ChannelIconController',
             resolve: {
-                channelImageOptions: function($http, $stateParams, $q) {
+                channelImageOptions: function($http, $stateParams) {
                     return $http
                         .get('rest/channel/image-options/' + $stateParams.id)
                         .then(
                             function success(response) { return response.data; },
-                            function error(reason) { return false; }
+                            function error() { return false; }
                         );
                 }
             }

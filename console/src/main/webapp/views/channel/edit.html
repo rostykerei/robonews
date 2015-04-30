@@ -1,4 +1,4 @@
-<div ng-controller="ChannelEditController">
+<!--<div ng-controller="ChannelEditController">-->
 
     <div class="alert alert-danger" ng-show="showError">
         An error happened while saving channel:
@@ -32,6 +32,26 @@
                     <span class="input-group-addon"><a ng-class="channel.url ? 'text-success' : 'disabled'" ng-href="{{channel.url}}" target="_blank"><i class="fa fa-globe"></i></a></span>
                     <input type="url" id="form-url" ng-model="channel.url" placeholder="URL" class="form-control" required>
                 </div>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-country"><label class="col-md-2 control-label" for="form-country">Country</label>
+            <div class="col-md-10">
+                <select id="form-country" class="form-control" ng-model="channel.country" ng-change="loadStates()">
+                    <option value=""></option>
+                    <option ng-repeat="c in countries" ng-selected="{{c.code == channel.country}}" value="{{c.code}}">[{{c.code}}] {{c.name}}</option>
+                </select>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-state"><label class="col-md-2 control-label" for="form-state">State</label>
+            <div class="col-md-10">
+                <select id="form-state" ng-model="channel.state"  class="form-control">
+                    <option value=""></option>
+                    <option ng-repeat="s in states" ng-selected="{{s.code == channel.state}}" value="{{s.code}}">[{{s.code}}] {{s.name}}</option>
+                </select>
                 <span class="help-block m-b-none"></span>
             </div>
         </div>
@@ -142,4 +162,5 @@
         </a>
     </script>
 
-</div>
+<!--
+</div>-->

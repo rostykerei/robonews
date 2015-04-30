@@ -111,7 +111,19 @@ public class AlexaServiceImpl implements AlexaService {
                     }
                 }
 
-                return new AlexaServiceResult(rank, urlAttr, title, description);
+                // Taking country code
+                String countryCode = null;
+
+                NodeList countryNodeList = element.getElementsByTagName("COUNTRY");
+                if (countryNodeList.getLength() == 1) {
+                    String countryCodeTmp = ((Element) countryNodeList.item(0)).getAttribute("CODE");
+
+                    if (countryCodeTmp != null && countryCodeTmp.length() == 2) {
+                        countryCode = countryCodeTmp.toUpperCase();
+                    }
+                }
+
+                return new AlexaServiceResult(rank, urlAttr, title, description, countryCode);
             }
             else {
                 throw new AlexaServiceException("Alexa returned HTTP error: " + httpResponse.getHttpStatus());

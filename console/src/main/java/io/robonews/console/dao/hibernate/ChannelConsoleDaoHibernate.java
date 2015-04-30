@@ -13,15 +13,15 @@ import io.robonews.console.datatable.DatatableCriteria;
 import io.robonews.console.dto.channel.ChannelDatatableItem;
 import io.robonews.console.dto.channel.ChannelForm;
 import io.robonews.dao.ChannelDao;
-import io.robonews.domain.Channel;
-import io.robonews.domain.ChannelImage;
-import io.robonews.domain.Image;
+import io.robonews.dao.CountryDao;
+import io.robonews.domain.*;
 import io.robonews.service.image.tools.ImageAvatarGenerator;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.*;
 import org.hibernate.sql.JoinType;
 import org.hibernate.transform.Transformers;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -31,17 +31,21 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate implements ChannelConsoleDao {
 
+    private CountryDao countryDao;
+
     private ChannelDao channelDao;
 
     /**
      * Constructor
      *
      * @param sessionFactory Hibernate session factory
-     * @param channelDao Default Channel DAO
      */
-    public ChannelConsoleDaoHibernate(SessionFactory sessionFactory, ChannelDao channelDao) {
+    public ChannelConsoleDaoHibernate(SessionFactory sessionFactory,
+                              ChannelDao channelDao,
+                              CountryDao countryDao) {
         super(sessionFactory);
         this.channelDao = channelDao;
+        this.countryDao = countryDao;
     }
 
     @Override
@@ -119,6 +123,12 @@ public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate impl
     public Channel saveChannel(ChannelForm channelForm) {
         int id = channelForm.getId();
 
+        Country country = channelForm.getCountry() != null ?
+                countryDao.getByIsoCode2(channelForm.getCountry()) : null;
+
+        State state = (country != null && channelForm.getState() != null) ?
+                countryDao.getState(country.getIsoCode2(), channelForm.getState()) : null;
+
         if (id > 0) {
             Channel channel = channelDao.getById(id);
 
@@ -126,10 +136,17 @@ public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate impl
                 throw new DaoException("Channel id:" + id +  " does not exist");
             }
 
-            channelDao.update(channelForm.updateChannel(channel));
+            channel = channelForm.updateChannel(channel);
+            channel.setCountry(country);
+            channel.setState(state);
+
+            channelDao.update(channel);
         }
         else {
             Channel channel = channelForm.toChannel();
+
+            channel.setCountry(country);
+            channel.setState(state);
 
             ChannelImage channelImage = new ChannelImage();
             channelImage.setChannel(channel);

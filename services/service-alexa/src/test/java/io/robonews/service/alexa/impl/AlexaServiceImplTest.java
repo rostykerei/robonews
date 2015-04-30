@@ -72,6 +72,7 @@ public class AlexaServiceImplTest extends TestCase {
         Assert.assertEquals("CNN Interactive", res.getTitle());
         Assert.assertEquals("News, weather, sports, and services including e-mail news alerts and downloadable audio/video reports.", res.getDescription());
         Assert.assertEquals(62, res.getRank());
+        Assert.assertEquals("US", res.getCountryCode());
     }
 
     @Test(expected = AlexaServiceException.class)

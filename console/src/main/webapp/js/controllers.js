@@ -94,7 +94,7 @@ app.controller('ChannelCreatePrefillController', function ($scope, $http, $state
     };
 });
 
-app.controller('ChannelEditController', function ($scope, $http, $state, ChannelService) {
+app.controller('ChannelEditController', function ($scope, $http, $state, ChannelService, countries) {
 
     if (!$scope.channel) {
         $scope.channel = ChannelService.form;
@@ -105,6 +105,27 @@ app.controller('ChannelEditController', function ($scope, $http, $state, Channel
     $scope.showError = false;
     $('#channel-form .help-block').empty();
     $('#channel-form .form-group').removeClass('has-error');
+
+    $scope.countries = countries;
+    $scope.states = [];
+
+    $scope.loadStates = function () {
+        if ($scope.channel.country) {
+            $http
+                .get('rest/country/getStates/' + $scope.channel.country)
+                .then(function(response){
+                    $scope.states = response.data;
+                });
+        }
+        else {
+            $scope.states = [];
+        }
+    };
+
+    if ($scope.channel.country) {
+        $scope.loadStates();
+    }
+
 
     $scope.saveForm = function () {
         $http({
@@ -209,13 +230,13 @@ app.controller('ChannelIconController', function ($scope, $state, $http, channel
     for(var i = 0; i < $scope.imageOptions.length; i++) {
         var tempImg = new Image();
         tempImg.src = "data:" + $scope.imageOptions[i].type + ";base64," + $scope.imageOptions[i].data;
-        $scope.imageOptions[i].width = tempImg.width;
-        $scope.imageOptions[i].height = tempImg.height;
+        $scope.imageOptions[i].img = tempImg;
 
-        /*tempImg.onload = function(){
+
+        /* tempImg.onload = function(){
             $scope.imageOptions[i].width = tempImg.width;
             $scope.imageOptions[i].height = tempImg.height;
-        };*/
+        }; */
     }
 });
 

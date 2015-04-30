@@ -16,11 +16,14 @@ public class AlexaServiceResult {
 
     private String description;
 
-    public AlexaServiceResult(int rank, String siteBase, String title, String description) {
+    private String countryCode;
+
+    public AlexaServiceResult(int rank, String siteBase, String title, String description, String countryCode) {
         this.rank = rank;
         this.siteBase = siteBase;
         this.title = title;
         this.description = description;
+        this.countryCode = countryCode;
     }
 
     public int getRank() {
@@ -37,6 +40,10 @@ public class AlexaServiceResult {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
     }
 
 }

@@ -28,6 +28,12 @@ public class ChannelForm {
     @Size(max = 255)
     private String url;
 
+    @Size(max = 2)
+    private String country;
+
+    @Size(max = 8)
+    private String state;
+
     @Min(1)
     @Max(3)
     private int scale;
@@ -63,6 +69,14 @@ public class ChannelForm {
         form.setAlexaRank(channel.getAlexaRank());
         form.setDescription(channel.getDescription());
         form.setActive(channel.isActive());
+
+        if (channel.getCountry() != null) {
+            form.setCountry(channel.getCountry().getIsoCode2());
+        }
+
+        if (channel.getState() != null) {
+            form.setState(channel.getState().getIsoCode());
+        }
 
         return form;
     }
@@ -117,6 +131,22 @@ public class ChannelForm {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public int getScale() {

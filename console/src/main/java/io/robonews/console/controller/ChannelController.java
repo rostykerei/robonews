@@ -16,6 +16,7 @@ import io.robonews.console.dto.channel.ChannelDatatableItem;
 import io.robonews.console.dto.channel.ChannelForm;
 import io.robonews.console.dto.response.DataResponse;
 import io.robonews.dao.ChannelDao;
+import io.robonews.dao.CountryDao;
 import io.robonews.domain.Channel;
 import io.robonews.service.alexa.AlexaService;
 import io.robonews.service.alexa.impl.AlexaServiceResult;
@@ -37,7 +38,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("rest")
-public class ChannelsController {
+public class ChannelController {
 
     @Autowired
     private ChannelConsoleDao channelConsoleDao;
@@ -56,9 +57,6 @@ public class ChannelsController {
 
     @Autowired
     private GooglePlusService googlePlusService;
-
-    @Autowired
-    private HttpService httpService;
 
     @RequestMapping(value = "/channel/list", method = RequestMethod.GET)
     public @ResponseBody Datatable<ChannelDatatableItem> getChannelsDatatable(
@@ -102,6 +100,7 @@ public class ChannelsController {
         form.setDescription(alexaServiceResult.getDescription());
         form.setAlexaRank(alexaServiceResult.getRank());
         form.setActive(true);
+        form.setCountry(alexaServiceResult.getCountryCode());
 
         response.setData(form);
 
