@@ -1,14 +1,14 @@
 
     <div class="row">
-        <div class="col-sm-4 b-r"  style=" height: 300px;">
+        <div class="col-sm-4 b-r">
             <h3 class="m-t-none m-b">Current icon</h3>
 
-            <img style="float: left; margin-bottom: 16px; height: 96px; width: 96px;" src="rest/channel/image/{{channel.id}}"/>
-            <img style="float: left; margin-bottom: 16px; margin-left: 16px; height: 48px; width: 48px;" src="rest/channel/image/{{channel.id}}"/>
-            <img style="float: left; margin-bottom: 16px; margin-left: 16px; border-radius: 25%; height: 48px; width: 48px;" src="rest/channel/image/{{channel.id}}"/>
-            <img style="float: left; margin-bottom: 16px; margin-left: 16px; border-radius: 50%; height: 48px; width: 48px;" src="rest/channel/image/{{channel.id}}"/>
-            <img style="float: left; margin-bottom: 16px; margin-left: 16px; height: 32px; width: 32px;" src="rest/channel/image/{{channel.id}}"/>
-            <img style="float: left; margin-bottom: 16px; margin-left: 16px; border-radius: 50%; height: 32px; width: 32px;" src="rest/channel/image/{{channel.id}}"/>
+            <img class="channelImg" style="margin-left: 0; height: 96px; width: 96px;" src="rest/channel/image/{{channel.id}}"/>
+            <img class="channelImg" style="height: 48px; width: 48px;" src="rest/channel/image/{{channel.id}}"/>
+            <img class="channelImg" style="border-radius: 25%; height: 48px; width: 48px;" src="rest/channel/image/{{channel.id}}"/>
+            <img class="channelImg" style="border-radius: 50%; height: 48px; width: 48px;" src="rest/channel/image/{{channel.id}}"/>
+            <img class="channelImg" style="height: 32px; width: 32px;" src="rest/channel/image/{{channel.id}}"/>
+            <img class="channelImg" style="border-radius: 50%; height: 32px; width: 32px;" src="rest/channel/image/{{channel.id}}"/>
         </div>
         <div class="col-sm-8">
             <h3 class="m-t-none m-b">Available icons</h3>
@@ -30,13 +30,13 @@
                 <img id="crop">
             </div>
 
-            <div id="previewWrapper" style="background: grey url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAKklEQVQ4y2N88eLFfwY8QEJCghGfPBMDhWDUgMFgACMhBYTSyWggDgsDAHytB9aSE/sFAAAAAElFTkSuQmCC');">
-                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px; height: 96px; width: 96px; overflow: hidden;"></div>
-                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px; height: 48px; width: 48px; overflow: hidden;"></div>
-                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px;  border-radius: 25%; height: 48px; width: 48px;  overflow: hidden;"></div>
-                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px; border-radius: 50%; height: 48px; width: 48px;  overflow: hidden;"></div>
-                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px;  height: 32px; width: 32px; overflow: hidden;"></div>
-                <div class="win-preview" style="float: right; margin-bottom: 16px; margin-left: 16px;  border-radius: 50%; height: 32px; width: 32px;  overflow: hidden;"></div>
+            <div id="previewWrapper" style="display: none;">
+                <div class="win-preview channelImg" style="height: 96px; width: 96px;"></div>
+                <div class="win-preview channelImg" style="height: 48px; width: 48px;"></div>
+                <div class="win-preview channelImg" style="border-radius: 25%; height: 48px; width: 48px;"></div>
+                <div class="win-preview channelImg" style="border-radius: 50%; height: 48px; width: 48px;"></div>
+                <div class="win-preview channelImg" style="height: 32px; width: 32px;"></div>
+                <div class="win-preview channelImg" style="border-radius: 50%; height: 32px; width: 32px;"></div>
             </div>
 
             <br style="clear: both"/>
@@ -50,10 +50,23 @@
                     preview: '.win-preview',
                     checkImageOrigin: false,
                     built: function () {
-                        $('#previewWrapper').height($('#cropWrapper').height())
+                        $('#previewWrapper').show();
                     }
                 });
             </script>
 
         </div>
     </div>
+    <style>
+        .channelImg {
+            float: left;
+            margin-bottom: 16px;
+            margin-left: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        }
+
+        .win-preview {
+            float: right;
+        }
+    </style>
