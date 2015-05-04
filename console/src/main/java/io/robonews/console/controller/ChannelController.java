@@ -16,7 +16,6 @@ import io.robonews.console.dto.channel.ChannelDatatableItem;
 import io.robonews.console.dto.channel.ChannelForm;
 import io.robonews.console.dto.response.DataResponse;
 import io.robonews.dao.ChannelDao;
-import io.robonews.dao.CountryDao;
 import io.robonews.domain.Channel;
 import io.robonews.service.alexa.AlexaService;
 import io.robonews.service.alexa.impl.AlexaServiceResult;
@@ -24,7 +23,6 @@ import io.robonews.service.facebook.FacebookService;
 import io.robonews.service.facebook.model.FacebookProfile;
 import io.robonews.service.google.plus.GooglePlusService;
 import io.robonews.service.google.plus.model.GooglePlusProfile;
-import io.robonews.service.http.HttpService;
 import io.robonews.service.twitter.TwitterService;
 import io.robonews.service.twitter.model.TwitterProfile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,8 +141,8 @@ public class ChannelController {
         return googlePlusService.searchProfiles(query, 5);
     }
 
-    @RequestMapping("/channel/image/{channelId}")
     @ResponseBody
+    @RequestMapping("/channel/image/{channelId}")
     public ResponseEntity<byte[]> getImage(@PathVariable int channelId) {
 
         Channel channel = channelDao.getById(channelId);
@@ -155,6 +153,7 @@ public class ChannelController {
 
         return ResponseEntity.ok()
                 .header("Content-type", "image/png")
+                .header("Cache-Control", "no-cache")
                 .body(channel.getImage().getData());
     }
 

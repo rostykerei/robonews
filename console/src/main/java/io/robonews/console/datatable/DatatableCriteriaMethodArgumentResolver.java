@@ -7,8 +7,6 @@
 package io.robonews.console.datatable;
 
 import io.robonews.console.controller.error.BadRequestException;
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -16,6 +14,8 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class DatatableCriteriaMethodArgumentResolver implements HandlerMethodArgumentResolver {
 

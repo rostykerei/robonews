@@ -54,7 +54,8 @@ public class MetaPropertyFetcher {
             String value = entry.getValue();
 
             if ( "og:image".equals(key) || "thumbnail_url".equals(key) ||
-                    "rnews:thumbnailurl".equals(key) || "twitter:image".equals(key) ) {
+                    "rnews:thumbnailurl".equals(key) ||
+                    "twitter:image".equals(key) || "twitter:image:src".equals(key)  ) {
 
                 if (!result.contains(value) && UrlValidator.isValid(value)) {
                     result.add(value);

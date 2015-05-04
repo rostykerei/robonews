@@ -9,6 +9,7 @@ package io.robonews.console.dto.channel;
 import io.robonews.console.dto.validator.Domain;
 import io.robonews.console.dto.validator.Url;
 import io.robonews.domain.Channel;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
