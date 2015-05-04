@@ -1,3 +1,9 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2015 Rosty Kerei.
+ * All rights reserved.
+ */
 package io.robonews.console.controller;
 
 import io.robonews.dao.CountryDao;
