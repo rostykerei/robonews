@@ -1,5 +1,3 @@
-<!--<div ng-controller="ChannelEditController">-->
-
     <div class="alert alert-danger" ng-show="showError">
         An error happened while saving channel:
         <code ng-show="err.exceptionName" class="m-l-md" style="white-space: normal">{{err.exceptionName}} : {{err.exceptionMessage}}</code>
@@ -12,7 +10,13 @@
 
         <input type="hidden" ng-model="channel.id">
 
-        <div class="form-group" id="f-canonicalName"><label class="col-md-2 control-label" for="form-canonical-name">CN</label>
+        <div class="form-group" id="f-canonicalName">
+            <div ng-show="{{ channel.id > 0 }}" style="padding-left: 30px; height: 48px; width: 48px; position: absolute; float: left;">
+                <img style="height: 48px; width: 48px; border-radius: 50%;" src="rest/channel/image/{{channel.id}}"/>
+            </div>
+
+            <label class="col-md-2 control-label" for="form-canonical-name">CN</label>
+
             <div class="col-md-10">
                 <input type="text" id="form-canonical-name" placeholder="Canonical name" class="form-control" ng-model="channel.canonicalName" required >
                 <span class="help-block m-b-none"></span>
@@ -161,6 +165,3 @@
             {{match.model.url}}
         </a>
     </script>
-
-<!--
-</div>-->

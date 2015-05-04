@@ -228,6 +228,101 @@ app.controller('ChannelIconController', function ($scope, $state, $http, channel
     };
 });
 
+app.controller('CategoryGeoController', function ($scope, $state) {
+    $scope.geo_categories = [{
+        id: 1,
+        name: "World",
+        children: [
+            {
+                id: 2,
+                name: "America",
+                children: [
+                    {
+                        id: 3,
+                        name: "USA",
+                        children: []
+                    },
+                    {
+                        id: 4,
+                        name: "Canada",
+                        children: []
+                    }
+                ]
+            },
+            {
+                id: 5,
+                name: "Europe",
+                children: [
+                    {
+                        id: 6,
+                        name: "EU",
+                        children: [
+                            {
+                                id: 7,
+                                name: "UK",
+                                children: []
+                            },
+                            {
+                                id: 8,
+                                name: "Germany",
+                                children: []
+                            }
+                        ]
+                    },
+                    {
+                        id: 9,
+                        name: "Switzerland",
+                        children: []
+                    }
+                ]
+            }
+        ]}];
+
+});
+
+app.controller('CategoryGeoNewController', function ($scope, $state, $http, parents) {
+
+    $scope.parents = parents;
+    $scope.form = {
+        parentId: 1,
+        name: ""
+    };
+
+    $scope.addSpaces= function(geoCategory){
+        var result = "";
+        for(var i=0; i < geoCategory.level; i++){
+            result += String.fromCharCode(160) +
+                String.fromCharCode(160) + String.fromCharCode(160) + String.fromCharCode(160);
+        }
+        return result;
+    };
+
+    $scope.submit = function() {
+        $scope.showErrors = false;
+
+        $http({
+            method : 'POST',
+            url : 'rest/geo_category/save',
+            data : $.param($scope.form),
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+            .success(function(data) {
+                if (!data.error) {
+                    $state.go('categories.geo.list');
+
+                } else {
+                    $scope.showErrors = true;
+                    $scope.err = {
+                        exceptionName: data.exceptionName,
+                        exceptionMessage: data.exceptionMessage,
+                        stackTrace: data.stackTrace
+                    }
+                }
+            });
+    };
+
+});
+
 app.controller('RetryController', function($scope, $modalInstance, rejection) {
 
     $scope.rejection = rejection;

@@ -105,6 +105,41 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl: "views/channel/feeds.html",
             data: { pageTitle: 'Channel | Feeds', subpageTitle: 'Feeds' }
         })
+        .state('categories', {
+            abstract: true,
+            url: "/categories",
+            templateUrl: "views/common/content.html"
+        })
+        .state('categories.geo', {
+            abstract: true,
+            url: "/geo",
+            templateUrl: "views/common/content.html"
+        })
+        .state('categories.geo.list', {
+            url: "/list",
+            controller: "CategoryGeoController",
+            templateUrl: "views/categories/geo/list.html",
+            data: { pageTitle: 'Categories | Geo' }
+        })
+        .state('categories.geo.new', {
+            url: "/new",
+            templateUrl: "views/categories/geo/new.html",
+            controller: "CategoryGeoNewController",
+            data: { pageTitle: 'Categories | Geo | New' },
+            resolve: {
+                parents: function($http) {
+                    return $http
+                        .get('rest/geo_category/list')
+                        .then(function success(response) { return response.data; });
+                }
+            }
+
+        })
+        .state('categories.news', {
+            url: "/news",
+            templateUrl: "views/categories/news.html",
+            data: { pageTitle: 'News categories' }
+        })
         .state('minor', {
             url: "/minor",
             templateUrl: "views/minor.html",

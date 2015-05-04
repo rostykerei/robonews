@@ -1,0 +1,49 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-md-8">
+        <h2>Geographic categories</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="home">Home</a>
+            </li>
+            <li>
+                Categories
+            </li>
+            <li class="active">
+                <strong>Geo</strong>
+            </li>
+        </ol>
+    </div>
+
+    <div class="col-md-4">
+        <div class="title-action">
+            <a ui-sref="categories.geo.new()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Create new geo category</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>List of geographic categories</h5>
+
+                    <div ibox-tools-datatable></div>
+                </div>
+                <div class="ibox-content">
+                    <ul>
+                        <li ng-repeat="data in geo_categories" ng-include="'tree_item_renderer.html'"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template"  id="tree_item_renderer.html">
+    {{data.name}}
+    <button ng-click="delete(data)" ng-show="data.children.length == 0">Delete</button>
+    <ul>
+        <li ng-repeat="data in data.children" ng-include="'tree_item_renderer.html'"></li>
+    </ul>
+</script>
