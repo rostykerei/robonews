@@ -20,7 +20,7 @@ public class FeedDto {
     @Min(value = 1, message = "Channel cannot be empty")
     private int channelId;
 
-    @Min(value = 1, message = "Category cannot be empty")
+    @Min(value = 1, message = "NewsCategory cannot be empty")
     private int categoryId;
 
     @Size(min = 1, max = 255, message = "URL is required and has to be less than 255 characters long")
@@ -76,7 +76,7 @@ public class FeedDto {
     public FeedDto(Feed feed) {
         setId(feed.getId());
         setChannelId(feed.getChannel().getId());
-        setCategoryId(feed.getCategory().getId());
+        setCategoryId(feed.getNewsCategory().getId());
         setUrl(feed.getUrl());
         setName(feed.getName());
         setLink(feed.getLink());

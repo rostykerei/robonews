@@ -16,13 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `category`
+-- Table structure for table `geo_category`
 --
 
-DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `geo_category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `category` (
+CREATE TABLE `geo_category` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `level` int(10) unsigned NOT NULL,
+  `leftIndex` int(10) unsigned NOT NULL,
+  `rightIndex` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `news_category`
+--
+
+DROP TABLE IF EXISTS `news_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `news_category` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `isPriority` bit(1) NOT NULL DEFAULT b'0',
@@ -112,7 +129,8 @@ DROP TABLE IF EXISTS `feed`;
 CREATE TABLE `feed` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `channelId` int(10) unsigned NOT NULL,
-  `categoryId` int(10) unsigned NOT NULL,
+  `geoCategoryId` int(10) unsigned NOT NULL,
+  `newsCategoryId` int(10) unsigned NOT NULL,
   `url` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
@@ -133,10 +151,11 @@ CREATE TABLE `feed` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `feed_idx_1` (`url`),
   KEY `feed_idx_2` (`channelId`),
-  KEY `feed_idx_3` (`categoryId`),
+  KEY `feed_idx_3` (`newsCategoryId`),
   KEY `feed_idx_4` (`inProcessSince`,`plannedCheck`),
   CONSTRAINT `feed_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `feed_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `feed_fk_2` FOREIGN KEY (`geoCategoryId`) REFERENCES `geo_category` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `feed_fk_3` FOREIGN KEY (`newsCategoryId`) REFERENCES `news_category` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -253,7 +272,8 @@ CREATE TABLE `story` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `uid` char(11) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `channelId` int(10) unsigned NOT NULL,
-  `categoryId` int(10) unsigned NOT NULL,
+  `geoCategoryId` int(10) unsigned NOT NULL,
+  `newsCategoryId` int(10) unsigned NOT NULL,
   `originalFeedId` int(10) unsigned NOT NULL,
   `guidHash` binary(20) NOT NULL,
   `contentHash` binary(20) NOT NULL,
@@ -270,12 +290,13 @@ CREATE TABLE `story` (
   UNIQUE KEY `story_idx_1` (`channelId`,`guidHash`),
   UNIQUE KEY `story_idx_2` (`channelId`,`contentHash`),
   KEY `story_idx_3` (`channelId`,`publicationDate`),
-  KEY `story_idx_4` (`categoryId`,`publicationDate`),
+  KEY `story_idx_4` (`newsCategoryId`,`publicationDate`),
   KEY `story_idx_5` (`originalFeedId`,`publicationDate`),
   KEY `story_idx_6` (`publicationDate`),
   CONSTRAINT `story_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `story_fk_2` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON UPDATE CASCADE,
-  CONSTRAINT `story_fk_3` FOREIGN KEY (`originalFeedId`) REFERENCES `feed` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `story_fk_2` FOREIGN KEY (`geoCategoryId`) REFERENCES `geo_category` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `story_fk_3` FOREIGN KEY (`newsCategoryId`) REFERENCES `news_category` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `story_fk_4` FOREIGN KEY (`originalFeedId`) REFERENCES `feed` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

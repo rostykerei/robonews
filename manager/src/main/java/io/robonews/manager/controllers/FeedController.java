@@ -7,12 +7,12 @@
 package io.robonews.manager.controllers;
 
 
-import io.robonews.dao.CategoryDao;
 import io.robonews.dao.ChannelDao;
 import io.robonews.dao.FeedDao;
-import io.robonews.domain.Category;
+import io.robonews.dao.NewsCategoryDao;
 import io.robonews.domain.Channel;
 import io.robonews.domain.Feed;
+import io.robonews.domain.NewsCategory;
 import io.robonews.manager.datatable.PagingCriteria;
 import io.robonews.manager.datatable.TableParam;
 import io.robonews.manager.dto.CategoryDto;
@@ -55,7 +55,7 @@ public class FeedController extends AbstractController {
     private ChannelDao channelDao;
 
     @Autowired
-    private CategoryDao categoryDao;
+    private NewsCategoryDao newsCategoryDao;
 
     @Autowired
     private HttpService httpService;
@@ -75,14 +75,14 @@ public class FeedController extends AbstractController {
     @ModelAttribute("categories")
     public List<CategoryDto> parentCategoriesList(){
         List<CategoryDto> categories = new ArrayList<CategoryDto>();
-        for (Category category : categoryDao.getAll()) {
+        for (NewsCategory newsCategory : newsCategoryDao.getAll()) {
             CategoryDto parent = new CategoryDto();
-            parent.setId(category.getId());
+            parent.setId(newsCategory.getId());
             parent.setName(
                     new String(
-                            new char[category.getLevel()]).
+                            new char[newsCategory.getLevel()]).
                             replace("\0", "- ") +
-                            category.getName()
+                            newsCategory.getName()
             );
 
             categories.add(parent);
@@ -210,7 +210,7 @@ public class FeedController extends AbstractController {
         try {
             Feed feed = feedDto.toFeed();
             feed.setChannel(channelDao.getById(feedDto.getChannelId()));
-            feed.setCategory(categoryDao.getById(feedDto.getCategoryId()));
+            feed.setNewsCategory(newsCategoryDao.getById(feedDto.getCategoryId()));
 
             feedDao.createOrUpdate(feed);
         }

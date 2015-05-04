@@ -6,8 +6,8 @@
  */
 package io.robonews.manager.controllers;
 
-import io.robonews.dao.CategoryDao;
-import io.robonews.domain.Category;
+import io.robonews.dao.NewsCategoryDao;
+import io.robonews.domain.NewsCategory;
 import io.robonews.manager.dto.CategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ import java.util.List;
 public class CategoryController extends AbstractController {
 
     @Autowired
-    private CategoryDao categoryDao;
+    private NewsCategoryDao newsCategoryDao;
 
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
@@ -37,14 +37,14 @@ public class CategoryController extends AbstractController {
     @ModelAttribute("parentCategories")
     public List<CategoryDto> parentCategoriesList(){
         List<CategoryDto> parents = new ArrayList<CategoryDto>();
-        for (Category category : categoryDao.getAll()) {
+        for (NewsCategory newsCategory : newsCategoryDao.getAll()) {
             CategoryDto parent = new CategoryDto();
-            parent.setId(category.getId());
+            parent.setId(newsCategory.getId());
             parent.setName(
                 new String(
-                        new char[category.getLevel()]).
+                        new char[newsCategory.getLevel()]).
                         replace("\0", "- ") +
-                        category.getName()
+                        newsCategory.getName()
             );
 
             parents.add(parent);
@@ -55,7 +55,7 @@ public class CategoryController extends AbstractController {
 
     @RequestMapping(value = {"/category/list"}, method = RequestMethod.GET)
     public String showList(Model model) {
-        model.addAttribute("categories", categoryDao.getAll());
+        model.addAttribute("categories", newsCategoryDao.getAll());
 
         return "category/list";
     }
@@ -69,14 +69,14 @@ public class CategoryController extends AbstractController {
 
     @RequestMapping(value = {"/category/{categoryId}/edit"}, method = RequestMethod.GET)
     public String showEditForm(@PathVariable int categoryId, Model model, RedirectAttributes attributes) {
-        Category category = categoryDao.getById(categoryId);
+        NewsCategory newsCategory = newsCategoryDao.getById(categoryId);
 
-        if (category == null) {
-            addRedirectErrorMessage(attributes, "Selected category does not exists");
+        if (newsCategory == null) {
+            addRedirectErrorMessage(attributes, "Selected newsCategory does not exists");
             return "redirect:/category/list";
         }
 
-        model.addAttribute("category", new CategoryDto(category));
+        model.addAttribute("category", new CategoryDto(newsCategory));
 
         return "category/edit";
     }
@@ -85,42 +85,42 @@ public class CategoryController extends AbstractController {
     public String saveAction(@Valid @ModelAttribute("category") CategoryDto categoryDto, BindingResult result,
                              SessionStatus status, RedirectAttributes attributes, Model model) {
         if (result.hasErrors()) {
-            addModelErrorMessage(model, "Failed to add category");
+            addModelErrorMessage(model, "Failed to add newsCategory");
             return "category/create";
         }
         else {
             try {
-                categoryDao.create(categoryDto.toCategory(), categoryDto.getParentCategoryId());
+                newsCategoryDao.create(categoryDto.toCategory(), categoryDto.getParentCategoryId());
             }
             catch (Exception e) {
-                addModelErrorMessage(model, e, "Could not add category");
+                addModelErrorMessage(model, e, "Could not add newsCategory");
                 return "category/create";
             }
 
             status.setComplete();
-            addRedirectInfoMessage(attributes, "New category has been successfully saved");
+            addRedirectInfoMessage(attributes, "New newsCategory has been successfully saved");
             return "redirect:/category/list";
         }
     }
 
     @RequestMapping(value = {"/category/{categoryId}/delete"})
     public String deleteAction(@PathVariable int categoryId, RedirectAttributes attributes) {
-        Category category = categoryDao.getById(categoryId);
+        NewsCategory newsCategory = newsCategoryDao.getById(categoryId);
 
-        if (category == null) {
-            addRedirectErrorMessage(attributes, "Selected category does not exists");
+        if (newsCategory == null) {
+            addRedirectErrorMessage(attributes, "Selected newsCategory does not exists");
             return "redirect:/category/list";
         }
 
         try {
-            categoryDao.delete(category);
+            newsCategoryDao.delete(newsCategory);
         }
         catch (Exception e) {
-            addRedirectErrorMessage(attributes, e, "Cannot delete selected category");
+            addRedirectErrorMessage(attributes, e, "Cannot delete selected newsCategory");
             return "redirect:/category/list";
         }
 
-        addRedirectInfoMessage(attributes, "Category has been successfully deleted");
+        addRedirectInfoMessage(attributes, "NewsCategory has been successfully deleted");
         return "redirect:/category/list";
     }
 }

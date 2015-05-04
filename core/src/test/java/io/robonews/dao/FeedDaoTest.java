@@ -6,9 +6,10 @@
  */
 package io.robonews.dao;
 
-import io.robonews.domain.Category;
 import io.robonews.domain.Channel;
 import io.robonews.domain.Feed;
+import io.robonews.domain.GeoCategory;
+import io.robonews.domain.NewsCategory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +39,10 @@ public class FeedDaoTest {
     private ChannelDao channelDao;
 
     @Autowired
-    private CategoryDao categoryDao;
+    private NewsCategoryDao newsCategoryDao;
+
+    @Autowired
+    private GeoCategoryDao geoCategoryDao;
 
     @Test
     public void testGetAll() throws Exception {
@@ -53,11 +57,13 @@ public class FeedDaoTest {
 
         channelDao.create(channel);
 
-        Category rootCategory = categoryDao.createRoot("test-category-1");
+        GeoCategory rootGeoCategory = geoCategoryDao.createRoot("world");
+        NewsCategory rootNewsCategory = newsCategoryDao.createRoot("test-category-1");
 
         Feed feed = new Feed();
         feed.setChannel(channel);
-        feed.setCategory(rootCategory);
+        feed.setGeoCategory(rootGeoCategory);
+        feed.setNewsCategory(rootNewsCategory);
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
@@ -69,7 +75,8 @@ public class FeedDaoTest {
 
         Feed feed2 = new Feed();
         feed2.setChannel(channel);
-        feed2.setCategory(rootCategory);
+        feed2.setGeoCategory(rootGeoCategory);
+        feed2.setNewsCategory(rootNewsCategory);
         feed2.setUrl("test-url-2");
         feed2.setName("test-feed-2");
         feed2.setLink("test-link-2");
@@ -98,18 +105,21 @@ public class FeedDaoTest {
 
         channelDao.create(channel);
 
-        Category rootCategory = categoryDao.createRoot("test-category-1");
+        NewsCategory rootNewsCategory = newsCategoryDao.createRoot("test-category-1");
+        GeoCategory rootGeoCategory = geoCategoryDao.createRoot("world");
 
         Feed feed = new Feed();
         feed.setChannel(channel);
-        feed.setCategory(rootCategory);
+        feed.setGeoCategory(rootGeoCategory);
+        feed.setNewsCategory(rootNewsCategory);
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
 
         int feedId = feedDao.create(feed);
         Feed feed2 = feedDao.getById(feedId);
-        Assert.assertEquals(rootCategory.getId(), feed2.getCategory().getId());
+        Assert.assertEquals(rootGeoCategory.getId(), feed2.getGeoCategory().getId());
+        Assert.assertEquals(rootNewsCategory.getId(), feed2.getNewsCategory().getId());
         Assert.assertEquals(channel.getId(), feed2.getChannel().getId());
     }
 
@@ -128,11 +138,13 @@ public class FeedDaoTest {
 
         channelDao.create(channel);
 
-        Category rootCategory = categoryDao.createRoot("test-category-1");
+        GeoCategory rootGeoCategory = geoCategoryDao.createRoot("world");
+        NewsCategory rootNewsCategory = newsCategoryDao.createRoot("test-category-1");
 
         Feed feed1 = new Feed();
         feed1.setChannel(channel);
-        feed1.setCategory(rootCategory);
+        feed1.setGeoCategory(rootGeoCategory);
+        feed1.setNewsCategory(rootNewsCategory);
         feed1.setUrl("test-url-1");
         feed1.setName("test-feed-1");
         feed1.setLink("test-link-1");
@@ -142,7 +154,8 @@ public class FeedDaoTest {
 
         Feed feed2 = new Feed();
         feed2.setChannel(channel);
-        feed2.setCategory(rootCategory);
+        feed2.setGeoCategory(rootGeoCategory);
+        feed2.setNewsCategory(rootNewsCategory);
         feed2.setUrl("test-url-2");
         feed2.setName("test-feed-2");
         feed2.setLink("test-link-2");

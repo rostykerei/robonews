@@ -6,7 +6,7 @@
  */
 package io.robonews.dao;
 
-import io.robonews.domain.Category;
+import io.robonews.domain.NewsCategory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,14 +27,14 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles({"create-db"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-public class CategoryDaoTest {
+public class NewsCategoryDaoTest {
 
-    private Category progCat;
-    private Category javaCat;
-    private Category netCat;
+    private NewsCategory progCat;
+    private NewsCategory javaCat;
+    private NewsCategory netCat;
 
     @Autowired
-    private CategoryDao categoryDao;
+    private NewsCategoryDao newsCategoryDao;
 
     /**
      * Helper method that creates a basic tree that looks as follows:
@@ -45,38 +45,38 @@ public class CategoryDaoTest {
      *
      */
     private void createBasicTree() {
-        this.progCat = categoryDao.createRoot("Programming");
+        this.progCat = newsCategoryDao.createRoot("Programming");
 
-        this.javaCat = new Category();
+        this.javaCat = new NewsCategory();
         this.javaCat.setName("Java");
 
-        this.netCat = new Category();
+        this.netCat = new NewsCategory();
         this.netCat.setName(".NET");
 
-        categoryDao.create(this.javaCat, this.progCat);
-        categoryDao.create(this.netCat, this.progCat.getId());
+        newsCategoryDao.create(this.javaCat, this.progCat);
+        newsCategoryDao.create(this.netCat, this.progCat.getId());
     }
 
     @Test
     public void testCreateRoot() throws Exception {
-        Category rootCategory = categoryDao.createRoot("root");
+        NewsCategory rootNewsCategory = newsCategoryDao.createRoot("root");
 
-        Category category = categoryDao.getById(rootCategory.getId());
+        NewsCategory newsCategory = newsCategoryDao.getById(rootNewsCategory.getId());
 
-        Assert.assertEquals(0, category.getLevel());
-        Assert.assertEquals(1, category.getLeftIndex());
-        Assert.assertEquals(2, category.getRightIndex());
+        Assert.assertEquals(0, newsCategory.getLevel());
+        Assert.assertEquals(1, newsCategory.getLeftIndex());
+        Assert.assertEquals(2, newsCategory.getRightIndex());
     }
 
     @Test
     public void testFetchTree() {
         createBasicTree();
 
-        List<Category> tree = categoryDao.getAll();
+        List<NewsCategory> tree = newsCategoryDao.getAll();
         assert tree.size() == 3;
-        Iterator<Category> iter = tree.iterator();
+        Iterator<NewsCategory> iter = tree.iterator();
         for (int i = 0; i < 3; i++) {
-            Category node = iter.next();
+            NewsCategory node = iter.next();
             if (i == 0) {
                 assert 1 == node.getLeftIndex();
                 assert 6 == node.getRightIndex();
@@ -97,89 +97,89 @@ public class CategoryDaoTest {
     public void testBasicTreeNavigation() {
         this.createBasicTree();
 
-        Category progCat2 = categoryDao.getById(progCat.getId());
+        NewsCategory progCat2 = newsCategoryDao.getById(progCat.getId());
 
         assert 1 == progCat2.getLeftIndex();
         assert 6 == progCat2.getRightIndex();
         assert 0 == progCat2.getLevel();
-        assert null == categoryDao.getParent(progCat2);
+        assert null == newsCategoryDao.getParent(progCat2);
 
-        List<Category> children = categoryDao.getChildren(progCat2);
+        List<NewsCategory> children = newsCategoryDao.getChildren(progCat2);
 
         assert 2 == children.size();
-        Iterator<Category> childIter = children.iterator();
-        Category child1 = childIter.next();
-        Category child2 = childIter.next();
+        Iterator<NewsCategory> childIter = children.iterator();
+        NewsCategory child1 = childIter.next();
+        NewsCategory child2 = childIter.next();
         assert 2 == child1.getLeftIndex();
         assert 3 == child1.getRightIndex();
-        assert false == categoryDao.hasChildren(child1);
-        assert false == categoryDao.hasChildren(child2);
-        assert 0 == categoryDao.getChildren(child1).size();
-        assert 0 == categoryDao.getChildren(child2).size();
+        assert !newsCategoryDao.hasChildren(child1);
+        assert !newsCategoryDao.hasChildren(child2);
+        assert 0 == newsCategoryDao.getChildren(child1).size();
+        assert 0 == newsCategoryDao.getChildren(child2).size();
 
-        assert progCat2 == categoryDao.getParent(child1);
-        assert progCat2 == categoryDao.getParent(child2);
+        assert progCat2 == newsCategoryDao.getParent(child1);
+        assert progCat2 == newsCategoryDao.getParent(child2);
 
-        assert false == categoryDao.hasParent(progCat2);
-        assert true == categoryDao.hasParent(child1);
-        assert true == categoryDao.hasParent(child2);
+        assert !newsCategoryDao.hasParent(progCat2);
+        assert newsCategoryDao.hasParent(child1);
+        assert newsCategoryDao.hasParent(child2);
     }
 
     @Test
     public void testAddingNodesToTree() {
         this.createBasicTree();
 
-        Category root = categoryDao.getById(progCat.getId());
+        NewsCategory root = newsCategoryDao.getById(progCat.getId());
 
         // Assert basic tree state, a Programming category with 2 child categories.
         assert 1 == root.getLeftIndex();
         assert 6 == root.getRightIndex();
-        assert 2 == categoryDao.getChildren(root).size();
+        assert 2 == newsCategoryDao.getChildren(root).size();
 
-        assert 3 == categoryDao.getAll().size();
+        assert 3 == newsCategoryDao.getAll().size();
 
-        Category phpCat = new Category();
+        NewsCategory phpCat = new NewsCategory();
         phpCat.setName("PHP");
-        categoryDao.create(phpCat, root);
+        newsCategoryDao.create(phpCat, root);
 
         assert 6 == phpCat.getLeftIndex();
         assert 7 == phpCat.getRightIndex();
         assert 8 == root.getRightIndex();
-        assert 3 == categoryDao.getChildren(root).size();
+        assert 3 == newsCategoryDao.getChildren(root).size();
 
         // Add Java EE category under Java
-        Category jeeCat = new Category();
+        NewsCategory jeeCat = new NewsCategory();
         jeeCat.setName("Java EE");
-        Category javaNode = categoryDao.getById(javaCat.getId());
-        categoryDao.create(jeeCat, javaNode);
+        NewsCategory javaNode = newsCategoryDao.getById(javaCat.getId());
+        newsCategoryDao.create(jeeCat, javaNode);
 
-        assert 3 == categoryDao.getChildren(root).size();
+        assert 3 == newsCategoryDao.getChildren(root).size();
         assert 3 == jeeCat.getLeftIndex();
         assert 4 == jeeCat.getRightIndex();
         assert 2 == jeeCat.getLevel();
         assert 2 == javaNode.getLeftIndex();
         assert 5 == javaNode.getRightIndex();
 
-        Assert.assertEquals(10, categoryDao.getById(progCat.getId()).getRightIndex());
+        Assert.assertEquals(10, newsCategoryDao.getById(progCat.getId()).getRightIndex());
 
-        assert 5 == categoryDao.getAll().size();
+        assert 5 == newsCategoryDao.getAll().size();
     }
 
     @Test
     public void testDeleteNode() {
         this.createBasicTree();
 
-        Category root = categoryDao.getById(progCat.getId());
-        assert 2 == categoryDao.getChildren(root).size();
+        NewsCategory root = newsCategoryDao.getById(progCat.getId());
+        assert 2 == newsCategoryDao.getChildren(root).size();
         assert 1 == root.getLeftIndex();
         assert 6 == root.getRightIndex();
 
-        Category netCat2 = categoryDao.getById(netCat.getId());
+        NewsCategory netCat2 = newsCategoryDao.getById(netCat.getId());
 
-        categoryDao.delete(netCat2);
+        newsCategoryDao.delete(netCat2);
 
-        root = categoryDao.getById(progCat.getId());
-        assert 1 == categoryDao.getChildren(root).size();
+        root = newsCategoryDao.getById(progCat.getId());
+        assert 1 == newsCategoryDao.getChildren(root).size();
         assert 1 == root.getLeftIndex();
         assert 4 == root.getRightIndex();
     }

@@ -12,8 +12,9 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "news_category")
+@Inheritance
+public class NewsCategory extends NestedSet {
 
     @Id
     @Column(name = "id")
@@ -28,16 +29,7 @@ public class Category {
     @Column(name = "isPriority")
     private boolean priority;
 
-    @Column(name = "level", updatable = false)
-    private int level;
-
-    @Column(name = "leftIndex", updatable = false)
-    private int leftIndex;
-
-    @Column(name = "rightIndex", updatable = false)
-    private int rightIndex;
-
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "newsCategory")
     private Collection<Feed> feeds;
 
     public int getId() {
@@ -62,30 +54,6 @@ public class Category {
 
     public void setPriority(boolean priority) {
         this.priority = priority;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public int getLeftIndex() {
-        return leftIndex;
-    }
-
-    public void setLeftIndex(int leftIndex) {
-        this.leftIndex = leftIndex;
-    }
-
-    public int getRightIndex() {
-        return rightIndex;
-    }
-
-    public void setRightIndex(int rightIndex) {
-        this.rightIndex = rightIndex;
     }
 
     public Collection<Feed> getFeeds() {

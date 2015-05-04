@@ -7,9 +7,9 @@
 package io.robonews.worker.crawler.dao;
 
 import io.robonews.dao.StoryDao;
-import io.robonews.domain.Category;
 import io.robonews.domain.Channel;
 import io.robonews.domain.Feed;
+import io.robonews.domain.NewsCategory;
 import io.robonews.domain.Story;
 import io.robonews.service.syndication.SyndicationEntry;
 import io.robonews.service.syndication.impl.SyndicationEntryImpl;
@@ -83,22 +83,22 @@ public class CrawlerDaoTest {
         syndEntry.setPubDate(new Date());
         syndEntry.setDescription("story-description");
 
-        Category oldCategory = new Category();
-        oldCategory.setId(1);
-        oldCategory.setLevel(10);
-        oldCategory.setPriority(true);
+        NewsCategory oldNewsCategory = new NewsCategory();
+        oldNewsCategory.setId(1);
+        oldNewsCategory.setLevel(10);
+        oldNewsCategory.setPriority(true);
 
-        Category newCategory = new Category();
-        newCategory.setId(2);
-        newCategory.setLevel(20);
-        newCategory.setPriority(true);
+        NewsCategory newNewsCategory = new NewsCategory();
+        newNewsCategory.setId(2);
+        newNewsCategory.setLevel(20);
+        newNewsCategory.setPriority(true);
 
         Feed newFeed = new Feed();
-        newFeed.setCategory(newCategory);
+        newFeed.setNewsCategory(newNewsCategory);
         newFeed.setVideo(true);
 
         Story story = new Story();
-        story.setCategory(oldCategory);
+        story.setNewsCategory(oldNewsCategory);
         story.setVideo(false);
 
         when(storyDao.getByGuid(any(Channel.class), eq("test-unique-guid"))).thenReturn(story);
@@ -109,7 +109,7 @@ public class CrawlerDaoTest {
         verify(storyDao, times(0)).create(any(Story.class));
 
         Assert.assertTrue(story.isVideo());
-        Assert.assertEquals(newCategory.getId(), story.getCategory().getId());
+        Assert.assertEquals(newNewsCategory.getId(), story.getNewsCategory().getId());
     }
 
     @Test
@@ -121,22 +121,22 @@ public class CrawlerDaoTest {
         syndEntry.setPubDate(new Date());
         syndEntry.setDescription("story-description");
 
-        Category oldCategory = new Category();
-        oldCategory.setId(1);
-        oldCategory.setLevel(10);
-        oldCategory.setPriority(false);
+        NewsCategory oldNewsCategory = new NewsCategory();
+        oldNewsCategory.setId(1);
+        oldNewsCategory.setLevel(10);
+        oldNewsCategory.setPriority(false);
 
-        Category newCategory = new Category();
-        newCategory.setId(2);
-        newCategory.setLevel(5);
-        newCategory.setPriority(true);
+        NewsCategory newNewsCategory = new NewsCategory();
+        newNewsCategory.setId(2);
+        newNewsCategory.setLevel(5);
+        newNewsCategory.setPriority(true);
 
         Feed newFeed = new Feed();
-        newFeed.setCategory(newCategory);
+        newFeed.setNewsCategory(newNewsCategory);
         newFeed.setVideo(true);
 
         Story story = new Story();
-        story.setCategory(oldCategory);
+        story.setNewsCategory(oldNewsCategory);
         story.setVideo(false);
 
         when(storyDao.getByGuid(any(Channel.class), eq("test-unique-guid"))).thenReturn(story);
@@ -147,7 +147,7 @@ public class CrawlerDaoTest {
         verify(storyDao, times(0)).create(any(Story.class));
 
         Assert.assertTrue(story.isVideo());
-        Assert.assertEquals(newCategory.getId(), story.getCategory().getId());
+        Assert.assertEquals(newNewsCategory.getId(), story.getNewsCategory().getId());
     }
 
 }

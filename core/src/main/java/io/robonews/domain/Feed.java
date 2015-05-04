@@ -23,8 +23,12 @@ public class Feed {
     private Channel channel;
 
     @ManyToOne
-    @JoinColumn(name = "categoryId", referencedColumnName = "id", nullable = false)
-    private Category category;
+    @JoinColumn(name = "geoCategoryId", referencedColumnName = "id", nullable = false)
+    private GeoCategory geoCategory;
+
+    @ManyToOne
+    @JoinColumn(name = "newsCategoryId", referencedColumnName = "id", nullable = false)
+    private NewsCategory newsCategory;
 
     @Column(name = "url", unique = true, nullable = false, length = 255)
     private String url;
@@ -102,12 +106,20 @@ public class Feed {
         this.channel = channel;
     }
 
-    public Category getCategory() {
-        return category;
+    public GeoCategory getGeoCategory() {
+        return geoCategory;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setGeoCategory(GeoCategory geoCategory) {
+        this.geoCategory = geoCategory;
+    }
+
+    public NewsCategory getNewsCategory() {
+        return newsCategory;
+    }
+
+    public void setNewsCategory(NewsCategory newsCategory) {
+        this.newsCategory = newsCategory;
     }
 
     public String getUrl() {

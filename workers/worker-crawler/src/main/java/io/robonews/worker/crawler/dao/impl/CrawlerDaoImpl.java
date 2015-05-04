@@ -7,8 +7,8 @@
 package io.robonews.worker.crawler.dao.impl;
 
 import io.robonews.dao.StoryDao;
-import io.robonews.domain.Category;
 import io.robonews.domain.Feed;
+import io.robonews.domain.NewsCategory;
 import io.robonews.domain.Story;
 import io.robonews.service.syndication.SyndicationEntry;
 import io.robonews.worker.crawler.dao.CrawlerDao;
@@ -43,7 +43,7 @@ public class CrawlerDaoImpl implements CrawlerDao {
 
             Story story = new Story();
             story.setAuthor(syndEntry.getAuthor());
-            story.setCategory(feed.getCategory());
+            story.setNewsCategory(feed.getNewsCategory());
             story.setChannel(feed.getChannel());
             story.setCreatedDate(checkTime);
             story.setDescription(syndEntry.getDescription());
@@ -62,20 +62,20 @@ public class CrawlerDaoImpl implements CrawlerDao {
 
     private void updateExistentStory(Story oldStory, Feed newFeed) {
 
-        Category oldCategory = oldStory.getCategory();
-        Category newCategory = newFeed.getCategory();
+        NewsCategory oldNewsCategory = oldStory.getNewsCategory();
+        NewsCategory newNewsCategory = newFeed.getNewsCategory();
 
         boolean updated = false;
 
-        if (oldCategory.getId() != newCategory.getId()) {
-            if (newCategory.isPriority() == oldCategory.isPriority()) {
-                if (newCategory.getLevel() > oldCategory.getLevel()) {
-                    oldStory.setCategory(newCategory);
+        if (oldNewsCategory.getId() != newNewsCategory.getId()) {
+            if (newNewsCategory.isPriority() == oldNewsCategory.isPriority()) {
+                if (newNewsCategory.getLevel() > oldNewsCategory.getLevel()) {
+                    oldStory.setNewsCategory(newNewsCategory);
                     updated = true;
                 }
             }
-            else if (newCategory.isPriority()) {
-                oldStory.setCategory(newCategory);
+            else if (newNewsCategory.isPriority()) {
+                oldStory.setNewsCategory(newNewsCategory);
                 updated = true;
             }
         }
