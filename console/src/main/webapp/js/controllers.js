@@ -228,56 +228,14 @@ app.controller('ChannelIconController', function ($scope, $state, $http, channel
     };
 });
 
-app.controller('MasterdataAreaController', function ($scope, $state) {
-    $scope.areas = [{
-        id: 1,
-        name: "World",
-        children: [
-            {
-                id: 2,
-                name: "America",
-                children: [
-                    {
-                        id: 3,
-                        name: "USA",
-                        children: []
-                    },
-                    {
-                        id: 4,
-                        name: "Canada",
-                        children: []
-                    }
-                ]
-            },
-            {
-                id: 5,
-                name: "Europe",
-                children: [
-                    {
-                        id: 6,
-                        name: "EU",
-                        children: [
-                            {
-                                id: 7,
-                                name: "UK",
-                                children: []
-                            },
-                            {
-                                id: 8,
-                                name: "Germany",
-                                children: []
-                            }
-                        ]
-                    },
-                    {
-                        id: 9,
-                        name: "Switzerland",
-                        children: []
-                    }
-                ]
-            }
-        ]}];
+app.controller('MasterdataAreaController', function ($scope, areas) {
+    $scope.areas = areas;
 
+    $scope.delete = function(area) {
+        if (confirm("Are you sure to delete '" + area.name + "' area?")) {
+            alert("ye");
+        }
+    };
 });
 
 app.controller('MastedataAreaNewController', function ($scope, $state, $http, areas) {
