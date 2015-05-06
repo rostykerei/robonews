@@ -26,7 +26,8 @@ public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implem
     public List<Feed> getAll() {
         return getSession().
             createQuery("from Feed f" +
-                    " left join fetch f.newsCategory" +
+                    " left join fetch f.area" +
+                    " left join fetch f.topic" +
                     " left join fetch f.channel" +
                     " order by f.name").
             list();
@@ -37,7 +38,8 @@ public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implem
     public Feed pollFeedToProcess() {
         Feed feed = (Feed) getSession().
             createQuery("from Feed f" +
-                    " left join fetch f.newsCategory" +
+                    " left join fetch f.area" +
+                    " left join fetch f.topic" +
                     " left join fetch f.channel" +
                     " where f.inProcessSince is null" +
                     " and f.plannedCheck <= :now" +

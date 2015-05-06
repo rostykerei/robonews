@@ -6,20 +6,20 @@
  */
 package io.robonews.dao.hibernate;
 
-import io.robonews.dao.NewsCategoryDao;
-import io.robonews.domain.NewsCategory;
+import io.robonews.dao.TopicDao;
+import io.robonews.domain.Topic;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class NewsCategoryDaoHibernate
-        extends NestedSetDaoHibernate<NewsCategory> implements NewsCategoryDao {
+public class TopicDaoHibernate
+        extends NestedSetDaoHibernate<Topic> implements TopicDao {
 
     private SessionFactory sessionFactory;
 
-    public NewsCategoryDaoHibernate() {
-        super(NewsCategory.class);
+    public TopicDaoHibernate() {
+        super(Topic.class);
     }
 
     protected Session getSession() {
@@ -31,8 +31,8 @@ public class NewsCategoryDaoHibernate
     }
 
     @Override
-    public NewsCategory createRoot(String name) {
-        NewsCategory root = new NewsCategory();
+    public Topic createRoot(String name) {
+        Topic root = new Topic();
         root.setName(name);
 
         return createAsRoot(root);

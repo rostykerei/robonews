@@ -7,7 +7,7 @@
 package io.robonews.dao.hibernate;
 
 import io.robonews.dao.NestedSetDao;
-import io.robonews.domain.NestedSet;
+import io.robonews.domain.NestedNode;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by rosty on 04/05/15.
  */
-abstract public class NestedSetDaoHibernate<T extends NestedSet>
+abstract public class NestedSetDaoHibernate<T extends NestedNode>
         implements NestedSetDao<T> {
 
     private SessionFactory sessionFactory;
@@ -81,13 +81,13 @@ abstract public class NestedSetDaoHibernate<T extends NestedSet>
 
     @Override
     @Transactional
-    public int create(T newsCategory, int parentCategoryId) {
-        T parentCategory = getById(parentCategoryId);
+    public int create(T node, int parentNodeId) {
+        T parentCategory = getById(parentNodeId);
         if (parentCategory == null) {
             throw new IllegalArgumentException("Parent category cannot be null");
         }
 
-        return create(newsCategory, parentCategory);
+        return create(node, parentCategory);
     }
 
     @Override

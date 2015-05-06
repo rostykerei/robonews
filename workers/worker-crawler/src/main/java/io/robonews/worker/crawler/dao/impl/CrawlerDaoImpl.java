@@ -8,8 +8,8 @@ package io.robonews.worker.crawler.dao.impl;
 
 import io.robonews.dao.StoryDao;
 import io.robonews.domain.Feed;
-import io.robonews.domain.NewsCategory;
 import io.robonews.domain.Story;
+import io.robonews.domain.Topic;
 import io.robonews.service.syndication.SyndicationEntry;
 import io.robonews.worker.crawler.dao.CrawlerDao;
 import io.robonews.worker.crawler.util.Sanitizer;
@@ -43,7 +43,7 @@ public class CrawlerDaoImpl implements CrawlerDao {
 
             Story story = new Story();
             story.setAuthor(syndEntry.getAuthor());
-            story.setNewsCategory(feed.getNewsCategory());
+            story.setTopic(feed.getTopic());
             story.setChannel(feed.getChannel());
             story.setCreatedDate(checkTime);
             story.setDescription(syndEntry.getDescription());
@@ -62,20 +62,20 @@ public class CrawlerDaoImpl implements CrawlerDao {
 
     private void updateExistentStory(Story oldStory, Feed newFeed) {
 
-        NewsCategory oldNewsCategory = oldStory.getNewsCategory();
-        NewsCategory newNewsCategory = newFeed.getNewsCategory();
+        Topic oldTopic = oldStory.getTopic();
+        Topic newTopic = newFeed.getTopic();
 
         boolean updated = false;
 
-        if (oldNewsCategory.getId() != newNewsCategory.getId()) {
-            if (newNewsCategory.isPriority() == oldNewsCategory.isPriority()) {
-                if (newNewsCategory.getLevel() > oldNewsCategory.getLevel()) {
-                    oldStory.setNewsCategory(newNewsCategory);
+        if (oldTopic.getId() != newTopic.getId()) {
+            if (newTopic.isPriority() == oldTopic.isPriority()) {
+                if (newTopic.getLevel() > oldTopic.getLevel()) {
+                    oldStory.setTopic(newTopic);
                     updated = true;
                 }
             }
-            else if (newNewsCategory.isPriority()) {
-                oldStory.setNewsCategory(newNewsCategory);
+            else if (newTopic.isPriority()) {
+                oldStory.setTopic(newTopic);
                 updated = true;
             }
         }

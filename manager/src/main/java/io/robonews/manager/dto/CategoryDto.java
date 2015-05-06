@@ -6,7 +6,7 @@
  */
 package io.robonews.manager.dto;
 
-import io.robonews.domain.NewsCategory;
+import io.robonews.domain.Topic;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -18,10 +18,10 @@ public class CategoryDto {
         super();
     }
 
-    public CategoryDto(NewsCategory newsCategory) {
-        setId(newsCategory.getId());
-        setName(newsCategory.getName());
-        setPriority(newsCategory.isPriority());
+    public CategoryDto(Topic topic) {
+        setId(topic.getId());
+        setName(topic.getName());
+        setPriority(topic.isPriority());
     }
 
     private int id;
@@ -32,16 +32,16 @@ public class CategoryDto {
     private boolean priority;
 
     @NotNull
-    @Min(value = 1, message = "Parent newsCategory cannot be empty")
+    @Min(value = 1, message = "Parent topic cannot be empty")
     private int parentCategoryId;
 
-    public NewsCategory toCategory(){
-        NewsCategory newsCategory = new NewsCategory();
-        newsCategory.setId(getId());
-        newsCategory.setName(getName());
-        newsCategory.setPriority(isPriority());
+    public Topic toCategory(){
+        Topic topic = new Topic();
+        topic.setId(getId());
+        topic.setName(getName());
+        topic.setPriority(isPriority());
 
-        return newsCategory;
+        return topic;
     }
     public int getId() {
         return id;

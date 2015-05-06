@@ -1,6 +1,6 @@
 package io.robonews.console.dto.geoCategory;
 
-import io.robonews.domain.GeoCategory;
+import io.robonews.domain.Area;
 
 import javax.validation.constraints.Size;
 
@@ -20,29 +20,29 @@ public class GeoCategoryDto {
 
     private int rightIndex;
 
-    public static GeoCategoryDto fromGeoCategory(GeoCategory geoCategory) {
+    public static GeoCategoryDto fromGeoCategory(Area area) {
         GeoCategoryDto dto = new GeoCategoryDto();
-        dto.setId(geoCategory.getId());
-        dto.setName(geoCategory.getName());
-        dto.setLevel(geoCategory.getLevel());
-        dto.setLeftIndex(geoCategory.getLeftIndex());
-        dto.setRightIndex(geoCategory.getRightIndex());
+        dto.setId(area.getId());
+        dto.setName(area.getName());
+        dto.setLevel(area.getLevel());
+        dto.setLeftIndex(area.getLeftIndex());
+        dto.setRightIndex(area.getRightIndex());
 
         return dto;
     }
 
-    public GeoCategory updateGeoCategory(GeoCategory geoCategory) {
-        geoCategory.setId(getId());
-        geoCategory.setName(getName());
-        geoCategory.setLevel(getLevel());
-        geoCategory.setLeftIndex(getLeftIndex());
-        geoCategory.setRightIndex(getRightIndex());
+    public Area updateGeoCategory(Area area) {
+        area.setId(getId());
+        area.setName(getName());
+        area.setLevel(getLevel());
+        area.setLeftIndex(getLeftIndex());
+        area.setRightIndex(getRightIndex());
 
-        return geoCategory;
+        return area;
     }
 
-    public GeoCategory toGeoCategory() {
-        return updateGeoCategory(new GeoCategory());
+    public Area toGeoCategory() {
+        return updateGeoCategory(new Area());
     }
 
     public int getId() {

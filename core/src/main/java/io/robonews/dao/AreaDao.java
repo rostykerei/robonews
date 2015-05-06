@@ -6,12 +6,12 @@
  */
 package io.robonews.dao;
 
-import io.robonews.domain.GeoCategory;
+import io.robonews.domain.Area;
 
 /**
  * Created by rosty on 04/05/15.
  */
-public interface GeoCategoryDao extends NestedSetDao<GeoCategory> {
+public interface AreaDao extends NestedSetDao<Area> {
 
-    GeoCategory createRoot(String name);
+    Area createRoot(String name);
 }

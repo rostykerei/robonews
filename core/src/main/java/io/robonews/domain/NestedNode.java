@@ -13,7 +13,7 @@ import javax.persistence.MappedSuperclass;
  * Created by rosty on 04/05/15.
  */
 @MappedSuperclass
-public abstract class NestedSet {
+public abstract class NestedNode {
 
     @Column(name = "level", updatable = false)
     private int level;

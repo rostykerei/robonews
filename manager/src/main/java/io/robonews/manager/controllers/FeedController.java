@@ -9,10 +9,10 @@ package io.robonews.manager.controllers;
 
 import io.robonews.dao.ChannelDao;
 import io.robonews.dao.FeedDao;
-import io.robonews.dao.NewsCategoryDao;
+import io.robonews.dao.TopicDao;
 import io.robonews.domain.Channel;
 import io.robonews.domain.Feed;
-import io.robonews.domain.NewsCategory;
+import io.robonews.domain.Topic;
 import io.robonews.manager.datatable.PagingCriteria;
 import io.robonews.manager.datatable.TableParam;
 import io.robonews.manager.dto.CategoryDto;
@@ -55,7 +55,7 @@ public class FeedController extends AbstractController {
     private ChannelDao channelDao;
 
     @Autowired
-    private NewsCategoryDao newsCategoryDao;
+    private TopicDao topicDao;
 
     @Autowired
     private HttpService httpService;
@@ -75,14 +75,14 @@ public class FeedController extends AbstractController {
     @ModelAttribute("categories")
     public List<CategoryDto> parentCategoriesList(){
         List<CategoryDto> categories = new ArrayList<CategoryDto>();
-        for (NewsCategory newsCategory : newsCategoryDao.getAll()) {
+        for (Topic topic : topicDao.getAll()) {
             CategoryDto parent = new CategoryDto();
-            parent.setId(newsCategory.getId());
+            parent.setId(topic.getId());
             parent.setName(
                     new String(
-                            new char[newsCategory.getLevel()]).
+                            new char[topic.getLevel()]).
                             replace("\0", "- ") +
-                            newsCategory.getName()
+                            topic.getName()
             );
 
             categories.add(parent);
@@ -210,7 +210,7 @@ public class FeedController extends AbstractController {
         try {
             Feed feed = feedDto.toFeed();
             feed.setChannel(channelDao.getById(feedDto.getChannelId()));
-            feed.setNewsCategory(newsCategoryDao.getById(feedDto.getCategoryId()));
+            feed.setTopic(topicDao.getById(feedDto.getCategoryId()));
 
             feedDao.createOrUpdate(feed);
         }

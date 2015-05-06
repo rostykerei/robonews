@@ -39,10 +39,10 @@ public class ImageDaoTest {
     private ChannelDao channelDao;
 
     @Autowired
-    private GeoCategoryDao geoCategoryDao;
+    private AreaDao areaDao;
 
     @Autowired
-    private NewsCategoryDao newsCategoryDao;
+    private TopicDao topicDao;
 
     @Autowired
     private ImageDao imageDao;
@@ -57,13 +57,13 @@ public class ImageDaoTest {
 
         channelDao.create(channel);
 
-        GeoCategory rootGeoCategory = geoCategoryDao.createRoot("world");
-        NewsCategory rootNewsCategory = newsCategoryDao.createRoot("test-category-1");
+        Area rootArea = areaDao.createRoot("world");
+        Topic rootTopic = topicDao.createRoot("test-category-1");
 
         Feed feed = new Feed();
         feed.setChannel(channel);
-        feed.setGeoCategory(rootGeoCategory);
-        feed.setNewsCategory(rootNewsCategory);
+        feed.setArea(rootArea);
+        feed.setTopic(rootTopic);
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
@@ -72,8 +72,8 @@ public class ImageDaoTest {
 
         Story story1 = new Story();
         story1.setOriginalFeed(feed);
-        story1.setGeoCategory(rootGeoCategory);
-        story1.setNewsCategory(rootNewsCategory);
+        story1.setArea(rootArea);
+        story1.setTopic(rootTopic);
         story1.setChannel(channel);
         story1.setDescription("test-story-descr-1");
         story1.setTitle("test-story-title-1");

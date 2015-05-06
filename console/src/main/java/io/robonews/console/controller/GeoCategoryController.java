@@ -2,8 +2,8 @@ package io.robonews.console.controller;
 
 import io.robonews.console.dto.geoCategory.GeoCategoryDto;
 import io.robonews.console.dto.response.DataResponse;
-import io.robonews.dao.GeoCategoryDao;
-import io.robonews.domain.GeoCategory;
+import io.robonews.dao.AreaDao;
+import io.robonews.domain.Area;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +19,11 @@ import java.util.stream.Collectors;
 public class GeoCategoryController {
 
     @Autowired
-    private GeoCategoryDao geoCategoryDao;
+    private AreaDao areaDao;
 
     @RequestMapping(value = "/geo_category/list", method = RequestMethod.GET)
     public @ResponseBody List<GeoCategoryDto> getList() {
-        return geoCategoryDao
+        return areaDao
                 .getAll()
                 .stream()
                 .map(GeoCategoryDto::fromGeoCategory)
@@ -36,11 +36,11 @@ public class GeoCategoryController {
 
         DataResponse<Integer> response = new DataResponse<>();
 
-        GeoCategory geoCategory = new GeoCategory();
-        geoCategory.setName(name);
+        Area area = new Area();
+        area.setName(name);
 
         try {
-            int id = geoCategoryDao.create(geoCategory, parentId);
+            int id = areaDao.create(area, parentId);
             response.setData(id);
         }
         catch (Exception e) {

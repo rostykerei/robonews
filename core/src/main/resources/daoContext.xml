@@ -23,11 +23,11 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="geoCategoryDao" class="io.robonews.dao.hibernate.GeoCategoryDaoHibernate">
+    <bean id="areaDao" class="io.robonews.dao.hibernate.AreaDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-    <bean id="newsCategoryDao" class="io.robonews.dao.hibernate.NewsCategoryDaoHibernate">
+    <bean id="topicDao" class="io.robonews.dao.hibernate.TopicDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 

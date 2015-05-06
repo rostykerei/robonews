@@ -6,14 +6,14 @@
  */
 package io.robonews.dao;
 
-import io.robonews.domain.NestedSet;
+import io.robonews.domain.NestedNode;
 
 import java.util.List;
 
 /**
  * Created by rosty on 04/05/15.
  */
-public interface NestedSetDao<T extends NestedSet> {
+public interface NestedSetDao<T extends NestedNode> {
 
     T getById(int id);
 

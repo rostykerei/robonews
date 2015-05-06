@@ -15,9 +15,9 @@ import java.util.Collection;
  * Created by rosty on 04/05/15.
  */
 @Entity
-@Table(name = "geo_category")
+@Table(name = "area")
 @Inheritance
-public class GeoCategory extends NestedSet {
+public class Area extends NestedNode {
     @Id
     @Column(name = "id")
     @GeneratedValue
@@ -28,7 +28,7 @@ public class GeoCategory extends NestedSet {
     @Size(min = 1, max = 255)
     private String name;
 
-    @OneToMany(mappedBy = "geoCategory")
+    @OneToMany(mappedBy = "area")
     private Collection<Feed> feeds;
 
     public int getId() {

@@ -26,7 +26,8 @@ public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> impleme
         return (Story) getSession().
                 createQuery("from Story s " +
                         "left join fetch s.channel " +
-                        "left join fetch s.newsCategory " +
+                        "left join fetch s.area " +
+                        "left join fetch s.topic " +
                         "left join fetch s.originalFeed " +
                         "left join fetch s.tags " +
                         "where s.id = :id").
@@ -40,7 +41,8 @@ public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> impleme
         return (Story) getSession().
                 createQuery("from Story s " +
                         "left join fetch s.channel " +
-                        "left join fetch s.newsCategory " +
+                        "left join fetch s.area " +
+                        "left join fetch s.topic " +
                         "left join fetch s.originalFeed " +
                         "where s.channel.id = :channelId " +
                         "and s.guidHash = :guidHash").

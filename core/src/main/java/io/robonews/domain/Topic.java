@@ -12,9 +12,9 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Entity
-@Table(name = "news_category")
+@Table(name = "topic")
 @Inheritance
-public class NewsCategory extends NestedSet {
+public class Topic extends NestedNode {
 
     @Id
     @Column(name = "id")
@@ -29,7 +29,7 @@ public class NewsCategory extends NestedSet {
     @Column(name = "isPriority")
     private boolean priority;
 
-    @OneToMany(mappedBy = "newsCategory")
+    @OneToMany(mappedBy = "topic")
     private Collection<Feed> feeds;
 
     public int getId() {

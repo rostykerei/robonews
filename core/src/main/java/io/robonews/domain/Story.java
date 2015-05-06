@@ -40,13 +40,13 @@ public class Story {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "geoCategoryId", referencedColumnName = "id", nullable = false)
-    private GeoCategory geoCategory;
+    @JoinColumn(name = "areaId", referencedColumnName = "id", nullable = false)
+    private Area area;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "newsCategoryId", referencedColumnName = "id", nullable = false)
-    private NewsCategory newsCategory;
+    @JoinColumn(name = "topicId", referencedColumnName = "id", nullable = false)
+    private Topic topic;
 
     @NotNull
     @ManyToOne
@@ -116,20 +116,20 @@ public class Story {
         this.channel = channel;
     }
 
-    public GeoCategory getGeoCategory() {
-        return geoCategory;
+    public Area getArea() {
+        return area;
     }
 
-    public void setGeoCategory(GeoCategory geoCategory) {
-        this.geoCategory = geoCategory;
+    public void setArea(Area area) {
+        this.area = area;
     }
 
-    public NewsCategory getNewsCategory() {
-        return newsCategory;
+    public Topic getTopic() {
+        return topic;
     }
 
-    public void setNewsCategory(NewsCategory newsCategory) {
-        this.newsCategory = newsCategory;
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 
     public Feed getOriginalFeed() {

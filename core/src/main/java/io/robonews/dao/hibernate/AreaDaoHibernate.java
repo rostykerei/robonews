@@ -6,20 +6,20 @@
  */
 package io.robonews.dao.hibernate;
 
-import io.robonews.dao.GeoCategoryDao;
-import io.robonews.domain.GeoCategory;
+import io.robonews.dao.AreaDao;
+import io.robonews.domain.Area;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class GeoCategoryDaoHibernate
-        extends NestedSetDaoHibernate<GeoCategory> implements GeoCategoryDao {
+public class AreaDaoHibernate
+        extends NestedSetDaoHibernate<Area> implements AreaDao {
 
     private SessionFactory sessionFactory;
 
-    public GeoCategoryDaoHibernate() {
-        super(GeoCategory.class);
+    public AreaDaoHibernate() {
+        super(Area.class);
     }
 
     protected Session getSession() {
@@ -31,8 +31,8 @@ public class GeoCategoryDaoHibernate
     }
 
     @Override
-    public GeoCategory createRoot(String name) {
-        GeoCategory root = new GeoCategory();
+    public Area createRoot(String name) {
+        Area root = new Area();
         root.setName(name);
 
         return createAsRoot(root);

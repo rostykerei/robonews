@@ -6,10 +6,10 @@
  */
 package io.robonews.dao;
 
+import io.robonews.domain.Area;
 import io.robonews.domain.Channel;
 import io.robonews.domain.Feed;
-import io.robonews.domain.GeoCategory;
-import io.robonews.domain.NewsCategory;
+import io.robonews.domain.Topic;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,10 +39,10 @@ public class FeedDaoTest {
     private ChannelDao channelDao;
 
     @Autowired
-    private NewsCategoryDao newsCategoryDao;
+    private TopicDao topicDao;
 
     @Autowired
-    private GeoCategoryDao geoCategoryDao;
+    private AreaDao areaDao;
 
     @Test
     public void testGetAll() throws Exception {
@@ -57,13 +57,13 @@ public class FeedDaoTest {
 
         channelDao.create(channel);
 
-        GeoCategory rootGeoCategory = geoCategoryDao.createRoot("world");
-        NewsCategory rootNewsCategory = newsCategoryDao.createRoot("test-category-1");
+        Area rootArea = areaDao.createRoot("world");
+        Topic rootTopic = topicDao.createRoot("test-category-1");
 
         Feed feed = new Feed();
         feed.setChannel(channel);
-        feed.setGeoCategory(rootGeoCategory);
-        feed.setNewsCategory(rootNewsCategory);
+        feed.setArea(rootArea);
+        feed.setTopic(rootTopic);
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
@@ -75,8 +75,8 @@ public class FeedDaoTest {
 
         Feed feed2 = new Feed();
         feed2.setChannel(channel);
-        feed2.setGeoCategory(rootGeoCategory);
-        feed2.setNewsCategory(rootNewsCategory);
+        feed2.setArea(rootArea);
+        feed2.setTopic(rootTopic);
         feed2.setUrl("test-url-2");
         feed2.setName("test-feed-2");
         feed2.setLink("test-link-2");
@@ -105,21 +105,21 @@ public class FeedDaoTest {
 
         channelDao.create(channel);
 
-        NewsCategory rootNewsCategory = newsCategoryDao.createRoot("test-category-1");
-        GeoCategory rootGeoCategory = geoCategoryDao.createRoot("world");
+        Topic rootTopic = topicDao.createRoot("test-category-1");
+        Area rootArea = areaDao.createRoot("world");
 
         Feed feed = new Feed();
         feed.setChannel(channel);
-        feed.setGeoCategory(rootGeoCategory);
-        feed.setNewsCategory(rootNewsCategory);
+        feed.setArea(rootArea);
+        feed.setTopic(rootTopic);
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
 
         int feedId = feedDao.create(feed);
         Feed feed2 = feedDao.getById(feedId);
-        Assert.assertEquals(rootGeoCategory.getId(), feed2.getGeoCategory().getId());
-        Assert.assertEquals(rootNewsCategory.getId(), feed2.getNewsCategory().getId());
+        Assert.assertEquals(rootArea.getId(), feed2.getArea().getId());
+        Assert.assertEquals(rootTopic.getId(), feed2.getTopic().getId());
         Assert.assertEquals(channel.getId(), feed2.getChannel().getId());
     }
 
@@ -138,13 +138,13 @@ public class FeedDaoTest {
 
         channelDao.create(channel);
 
-        GeoCategory rootGeoCategory = geoCategoryDao.createRoot("world");
-        NewsCategory rootNewsCategory = newsCategoryDao.createRoot("test-category-1");
+        Area rootArea = areaDao.createRoot("world");
+        Topic rootTopic = topicDao.createRoot("test-category-1");
 
         Feed feed1 = new Feed();
         feed1.setChannel(channel);
-        feed1.setGeoCategory(rootGeoCategory);
-        feed1.setNewsCategory(rootNewsCategory);
+        feed1.setArea(rootArea);
+        feed1.setTopic(rootTopic);
         feed1.setUrl("test-url-1");
         feed1.setName("test-feed-1");
         feed1.setLink("test-link-1");
@@ -154,8 +154,8 @@ public class FeedDaoTest {
 
         Feed feed2 = new Feed();
         feed2.setChannel(channel);
-        feed2.setGeoCategory(rootGeoCategory);
-        feed2.setNewsCategory(rootNewsCategory);
+        feed2.setArea(rootArea);
+        feed2.setTopic(rootTopic);
         feed2.setUrl("test-url-2");
         feed2.setName("test-feed-2");
         feed2.setLink("test-link-2");
