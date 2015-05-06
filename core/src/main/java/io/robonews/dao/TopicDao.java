@@ -8,7 +8,7 @@ package io.robonews.dao;
 
 import io.robonews.domain.Topic;
 
-public interface TopicDao extends NestedSetDao<Topic> {
+public interface TopicDao extends NestedNodeDao<Topic> {
 
     Topic createRoot(String name);
 

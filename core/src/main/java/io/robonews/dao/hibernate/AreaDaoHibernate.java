@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class AreaDaoHibernate
-        extends NestedSetDaoHibernate<Area> implements AreaDao {
+        extends NestedNodeDaoHibernate<Area> implements AreaDao {
 
     private SessionFactory sessionFactory;
 

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by rosty on 04/05/15.
  */
-public interface NestedSetDao<T extends NestedNode> {
+public interface NestedNodeDao<T extends NestedNode> {
 
     T getById(int id);
 

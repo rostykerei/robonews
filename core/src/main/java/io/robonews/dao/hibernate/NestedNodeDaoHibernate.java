@@ -6,7 +6,7 @@
  */
 package io.robonews.dao.hibernate;
 
-import io.robonews.dao.NestedSetDao;
+import io.robonews.dao.NestedNodeDao;
 import io.robonews.domain.NestedNode;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -18,15 +18,15 @@ import java.util.List;
 /**
  * Created by rosty on 04/05/15.
  */
-abstract public class NestedSetDaoHibernate<T extends NestedNode>
-        implements NestedSetDao<T> {
+abstract public class NestedNodeDaoHibernate<T extends NestedNode>
+        implements NestedNodeDao<T> {
 
     private SessionFactory sessionFactory;
 
     private Class<T> type;
     private String typeName;
 
-    public NestedSetDaoHibernate(Class<T> type) {
+    public NestedNodeDaoHibernate(Class<T> type) {
         this.type = type;
         this.typeName = type.getName();
     }

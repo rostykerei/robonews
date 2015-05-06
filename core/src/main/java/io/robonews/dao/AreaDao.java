@@ -11,7 +11,7 @@ import io.robonews.domain.Area;
 /**
  * Created by rosty on 04/05/15.
  */
-public interface AreaDao extends NestedSetDao<Area> {
+public interface AreaDao extends NestedNodeDao<Area> {
 
     Area createRoot(String name);
 }
