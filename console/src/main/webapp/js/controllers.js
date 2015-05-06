@@ -228,8 +228,8 @@ app.controller('ChannelIconController', function ($scope, $state, $http, channel
     };
 });
 
-app.controller('CategoryGeoController', function ($scope, $state) {
-    $scope.geo_categories = [{
+app.controller('MasterdataAreaController', function ($scope, $state) {
+    $scope.areas = [{
         id: 1,
         name: "World",
         children: [
@@ -280,17 +280,17 @@ app.controller('CategoryGeoController', function ($scope, $state) {
 
 });
 
-app.controller('CategoryGeoNewController', function ($scope, $state, $http, parents) {
+app.controller('MastedataAreaNewController', function ($scope, $state, $http, areas) {
 
-    $scope.parents = parents;
+    $scope.parents = areas;
     $scope.form = {
         parentId: 1,
         name: ""
     };
 
-    $scope.addSpaces= function(geoCategory){
+    $scope.addSpaces= function(area){
         var result = "";
-        for(var i=0; i < geoCategory.level; i++){
+        for(var i=0; i < area.level; i++){
             result += String.fromCharCode(160) +
                 String.fromCharCode(160) + String.fromCharCode(160) + String.fromCharCode(160);
         }
@@ -302,13 +302,13 @@ app.controller('CategoryGeoNewController', function ($scope, $state, $http, pare
 
         $http({
             method : 'POST',
-            url : 'rest/geo_category/save',
+            url : 'rest/area/save',
             data : $.param($scope.form),
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
             .success(function(data) {
                 if (!data.error) {
-                    $state.go('categories.geo.list');
+                    $state.go('masterdata.area.list');
 
                 } else {
                     $scope.showErrors = true;

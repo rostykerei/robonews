@@ -1,4 +1,10 @@
-package io.robonews.console.dto.geoCategory;
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2015 Rosty Kerei.
+ * All rights reserved.
+ */
+package io.robonews.console.dto;
 
 import io.robonews.domain.Area;
 
@@ -7,7 +13,7 @@ import javax.validation.constraints.Size;
 /**
  * Created by rosty on 04/05/15.
  */
-public class GeoCategoryDto {
+public class AreaDto {
 
     private int id;
 
@@ -20,8 +26,8 @@ public class GeoCategoryDto {
 
     private int rightIndex;
 
-    public static GeoCategoryDto fromGeoCategory(Area area) {
-        GeoCategoryDto dto = new GeoCategoryDto();
+    public static AreaDto fromGeoCategory(Area area) {
+        AreaDto dto = new AreaDto();
         dto.setId(area.getId());
         dto.setName(area.getName());
         dto.setLevel(area.getLevel());

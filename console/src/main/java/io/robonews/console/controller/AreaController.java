@@ -1,6 +1,12 @@
+/**
+ * Robonews.io
+ *
+ * Copyright (c) 2013-2015 Rosty Kerei.
+ * All rights reserved.
+ */
 package io.robonews.console.controller;
 
-import io.robonews.console.dto.geoCategory.GeoCategoryDto;
+import io.robonews.console.dto.AreaDto;
 import io.robonews.console.dto.response.DataResponse;
 import io.robonews.dao.AreaDao;
 import io.robonews.domain.Area;
@@ -15,22 +21,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("rest")
-public class GeoCategoryController {
+@RequestMapping("rest/area")
+public class AreaController {
 
     @Autowired
     private AreaDao areaDao;
 
-    @RequestMapping(value = "/geo_category/list", method = RequestMethod.GET)
-    public @ResponseBody List<GeoCategoryDto> getList() {
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public @ResponseBody List<AreaDto> getList() {
         return areaDao
                 .getAll()
                 .stream()
-                .map(GeoCategoryDto::fromGeoCategory)
+                .map(AreaDto::fromGeoCategory)
                 .collect(Collectors.toList());
     }
 
-    @RequestMapping(value = "/geo_category/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public @ResponseBody DataResponse<Integer> save(
             @RequestParam("parentId") int parentId, @RequestParam("name") String name) {
 

@@ -105,40 +105,44 @@ function config($stateProvider, $urlRouterProvider) {
             templateUrl: "views/channel/feeds.html",
             data: { pageTitle: 'Channel | Feeds', subpageTitle: 'Feeds' }
         })
-        .state('categories', {
+        .state('masterdata', {
             abstract: true,
-            url: "/categories",
+            url: "/masterdata",
             templateUrl: "views/common/content.html"
         })
-        .state('categories.geo', {
+        .state('masterdata.area', {
             abstract: true,
-            url: "/geo",
-            templateUrl: "views/common/content.html"
-        })
-        .state('categories.geo.list', {
-            url: "/list",
-            controller: "CategoryGeoController",
-            templateUrl: "views/categories/geo/list.html",
-            data: { pageTitle: 'Categories | Geo' }
-        })
-        .state('categories.geo.new', {
-            url: "/new",
-            templateUrl: "views/categories/geo/new.html",
-            controller: "CategoryGeoNewController",
-            data: { pageTitle: 'Categories | Geo | New' },
+            url: "/area",
+            templateUrl: "views/common/content.html",
             resolve: {
-                parents: function($http) {
+                areas: function($http) {
                     return $http
-                        .get('rest/geo_category/list')
+                        .get('rest/area/list')
                         .then(function success(response) { return response.data; });
                 }
             }
-
         })
-        .state('categories.news', {
-            url: "/news",
-            templateUrl: "views/categories/news.html",
-            data: { pageTitle: 'News categories' }
+        .state('masterdata.area.list', {
+            url: "/list",
+            controller: "MasterdataAreaController",
+            templateUrl: "views/masterdata/area/list.html",
+            data: { pageTitle: 'Master data | Area' }
+        })
+        .state('masterdata.area.new', {
+            url: "/new",
+            templateUrl: "views/masterdata/area/new.html",
+            controller: "MastedataAreaNewController",
+            data: { pageTitle: 'Master data | Area | New' }
+        })
+        .state('masterdata.topic', {
+            abstract: true,
+            url: "/topic",
+            templateUrl: "views/common/content.html"
+        })
+        .state('masterdata.topic.list', {
+            url: "/list",
+            templateUrl: "views/masterdata/topic/list.html",
+            data: { pageTitle: 'Master data | Area' }
         })
         .state('minor', {
             url: "/minor",

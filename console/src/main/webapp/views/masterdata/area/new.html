@@ -1,15 +1,15 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-md-8">
-        <h2>New geographic category</h2>
+        <h2>New area</h2>
         <ol class="breadcrumb">
             <li>
                 <a ui-sref="home">Home</a>
             </li>
             <li>
-                Categories
+                Master Data
             </li>
             <li>
-                <a ui-sref="categories.geo.list">Geo</a>
+                <a ui-sref="masterdata.area.list">Areas</a>
             </li>
             <li class="active">
                 <strong>New</strong>
@@ -19,7 +19,7 @@
 
     <div class="col-md-4">
         <div class="title-action">
-            <a ui-sref="categories.geo.new()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Create new geo category</a>
+            <a ui-sref="masterdata.area.new()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Create new area</a>
         </div>
     </div>
 </div>
@@ -29,12 +29,12 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Create geographic category</h5>
+                    <h5>Create new area</h5>
                 </div>
                 <div class="ibox-content">
 
                     <form class="form-horizontal" ng-submit="submit()" name="htmlForm">
-                        <div class="form-group"><label class="col-md-2 control-label" for="form-parent">Parent category</label>
+                        <div class="form-group"><label class="col-md-2 control-label" for="form-parent">Parent area</label>
                             <div class="col-md-10">
                                 <select id="form-parent" ng-model="form.parentId" class="form-control">
                                     <option ng-repeat="p in parents" ng-selected="{{p.id == form.parentId}}" value="{{p.id}}">{{addSpaces(p)}} {{p.name}}</option>
@@ -44,7 +44,7 @@
 
                         <div class="form-group"><label class="col-md-2 control-label" for="form-name">Name</label>
                             <div class="col-md-10">
-                                <input type="text" required ng-minlength="2" ng-maxlength="255" id="form-name" placeholder="Category name" class="form-control" ng-model="form.name" autocomplete="off">
+                                <input type="text" required ng-minlength="2" ng-maxlength="255" id="form-name" placeholder="Name" class="form-control" ng-model="form.name" autocomplete="off">
                             </div>
                         </div>
 

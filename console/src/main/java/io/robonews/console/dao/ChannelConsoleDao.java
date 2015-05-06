@@ -25,7 +25,7 @@ public interface ChannelConsoleDao {
      * @param id Channel ID
      * @return ChannelForm
      */
-    public ChannelForm getChannelForm(int id);
+    ChannelForm getChannelForm(int id);
 
     /**
      * Returns filled {@link io.robonews.console.datatable.Datatable}
@@ -34,8 +34,8 @@ public interface ChannelConsoleDao {
      * @param criteria Datatable criteria
      * @return Datatable
      */
-    public Datatable<ChannelDatatableItem> getDatatable(DatatableCriteria criteria);
+    Datatable<ChannelDatatableItem> getDatatable(DatatableCriteria criteria);
 
-    public Channel saveChannel(ChannelForm channelForm);
+    Channel saveChannel(ChannelForm channelForm);
 
 }

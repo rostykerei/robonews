@@ -30,11 +30,11 @@
             </li>
 
 
-            <li ng-class="{active: $state.includes('categories')}">
-                <a href="index.html"><i class="fa fa-list"></i> <span class="nav-label">Categories</span> <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level" ng-class="{in: $state.includes('categories')}">
-                    <li ng-class="{active: $state.includes('categories.geo')}"><a ui-sref="categories.geo.list">Geo categories</a></li>
-                    <li ng-class="{active: $state.includes('categories.news')}"><a ui-sref="categories.news">News categories</a></li>
+            <li ng-class="{active: $state.includes('masterdata')}">
+                <a href="index.html"><i class="fa fa-list"></i> <span class="nav-label">Master Data</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level" ng-class="{in: $state.includes('masterdata')}">
+                    <li ng-class="{active: $state.includes('masterdata.area')}"><a ui-sref="masterdata.area.list">Areas</a></li>
+                    <li ng-class="{active: $state.includes('masterdata.topic')}"><a ui-sref="masterdata.topic.list">Topics</a></li>
                 </ul>
             </li>
 

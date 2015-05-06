@@ -69,6 +69,6 @@ public class DatatableCriteria {
     }
 
     public enum SortDirection {
-        ASC, DESC;
+        ASC, DESC
     }
 }
