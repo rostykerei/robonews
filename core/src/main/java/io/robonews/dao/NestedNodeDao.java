@@ -13,9 +13,7 @@ import java.util.List;
 /**
  * Created by rosty on 04/05/15.
  */
-public interface NestedNodeDao<T extends NestedNode> {
-
-    T getById(int id);
+public interface NestedNodeDao<T extends NestedNode> extends AbstractDao<T, Integer> {
 
     T createAsRoot(T rootCategory);
 

@@ -31,19 +31,13 @@
                     <div ibox-tools-datatable></div>
                 </div>
                 <div class="ibox-content">
-
                     <ul>
-                        <li style="margin-left: {{area.level * 25}}px;" ng-repeat="area in areas">
+                        <li style="margin-left: {{area.level * 25}}px;" ng-repeat="area in areas" ng-mouseover="hoverEdit = true" ng-mouseleave="hoverEdit = false">
                             <span style="margin-right: 15px;">{{ area.name }}</span>
-                            <a ng-click="delete(area);" style="color: maroon;"><i class="fa fa-minus-circle"></i></a>
+                            <a ng-show="hoverEdit" ng-click="rename(area);"><i class="fa fa-edit"></i></a>
+                            <a ng-show="hoverEdit" ng-click="delete(area);" style="color: maroon;"><i class="fa fa-minus-circle"></i></a>
                         </li>
                     </ul>
-
-
-
-                    <!--<ul>
-                        <li ng-repeat="data in areas" ng-include="'tree_item_renderer.html'"></li>
-                    </ul>-->
                 </div>
             </div>
         </div>

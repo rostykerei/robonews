@@ -19,31 +19,16 @@ import java.util.List;
  * Created by rosty on 04/05/15.
  */
 abstract public class NestedNodeDaoHibernate<T extends NestedNode>
+    extends AbstractDaoHibernate<T, Integer>
         implements NestedNodeDao<T> {
 
     private SessionFactory sessionFactory;
 
-    private Class<T> type;
     private String typeName;
 
     public NestedNodeDaoHibernate(Class<T> type) {
-        this.type = type;
-        this.typeName = type.getName();
-    }
-
-    protected Session getSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    @Transactional(readOnly = true)
-    public T getById(int id) {
-        return (T) getSession().get(this.type, id);
+        super(type);
+        typeName = type.getName();
     }
 
     @Override

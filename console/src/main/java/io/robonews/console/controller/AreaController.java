@@ -6,16 +6,15 @@
  */
 package io.robonews.console.controller;
 
+import io.robonews.console.controller.error.NotFoundException;
 import io.robonews.console.dto.AreaDto;
 import io.robonews.console.dto.response.DataResponse;
 import io.robonews.dao.AreaDao;
 import io.robonews.domain.Area;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,5 +54,30 @@ public class AreaController {
         }
 
         return response;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/rename/{id}", method = RequestMethod.POST)
+    public void rename(@PathVariable("id") int id, @RequestParam("newName") String newName) {
+        Area area = areaDao.getById(id);
+
+        if (area == null) {
+            throw new NotFoundException();
+        }
+
+        area.setName(newName);
+        areaDao.update(area);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") int id) {
+        Area area = areaDao.getById(id);
+
+        if (area == null) {
+            throw new NotFoundException();
+        }
+
+        areaDao.delete(area);
     }
 }

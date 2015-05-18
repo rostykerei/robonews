@@ -6,6 +6,11 @@ app.controller('MainCtrl', function MainCtrl($scope) {
 });
 
 app.controller('ChannelsDatatable', function ($scope, $timeout, DTOptionsBuilder, DTColumnBuilder, $compile) {
+
+    $scope.reloadData = function() {
+        $scope.dtOptions.reloadData();
+    }
+
     $scope.dtOptions = DTOptionsBuilder.newOptions()
         .withOption('ajax', {
             dataSrc: 'data',
@@ -228,12 +233,40 @@ app.controller('ChannelIconController', function ($scope, $state, $http, channel
     };
 });
 
-app.controller('MasterdataAreaController', function ($scope, areas) {
+app.controller('MasterdataAreaController', function ($scope, $http, $state, areas) {
     $scope.areas = areas;
+
+    $scope.reloadData = function() {
+        $state.go($state.current, {}, {reload: true});
+    };
+
+    $scope.rename = function(area) {
+        var newName = prompt("Rename '" + area.name + "':", area.name);
+
+        if (newName != null && newName != "" && newName != area.name) {
+            $http({
+                method : 'POST',
+                url: 'rest/area/rename/' + area.id,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param({
+                    newName: newName
+                })
+            })
+            .success(function() {
+                area.name = newName;
+            });
+        }
+    };
 
     $scope.delete = function(area) {
         if (confirm("Are you sure to delete '" + area.name + "' area?")) {
-            alert("ye");
+            $http({
+                method : 'DELETE',
+                url : 'rest/area/delete/' + area.id
+            })
+            .success(function() {
+                $state.go($state.current, {}, {reload: true});
+            });
         }
     };
 });

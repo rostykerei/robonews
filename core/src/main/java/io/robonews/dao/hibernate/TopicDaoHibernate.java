@@ -16,18 +16,8 @@ import org.springframework.stereotype.Repository;
 public class TopicDaoHibernate
         extends NestedNodeDaoHibernate<Topic> implements TopicDao {
 
-    private SessionFactory sessionFactory;
-
     public TopicDaoHibernate() {
         super(Topic.class);
-    }
-
-    protected Session getSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
     }
 
     @Override

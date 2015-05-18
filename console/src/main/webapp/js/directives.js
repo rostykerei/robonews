@@ -91,16 +91,12 @@ function iboxToolsDatatable($timeout) {
                     ibox.resize();
                     ibox.find('[id^=map-]').resize();
                 }, 50);
-            },
+            };
 
             $scope.closebox = function () {
                 var ibox = $element.closest('div.ibox');
                 ibox.remove();
-            },
-
-            $scope.reloadData = function() {
-                $scope.dtOptions.reloadData();
-            }
+            };
         }
     };
 };
