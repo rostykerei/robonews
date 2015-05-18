@@ -1,11 +1,53 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-md-8">
+        <h2>Topics</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="home">Home</a>
+            </li>
+            <li>
+                Master Data
+            </li>
+            <li class="active">
+                <strong>Topics</strong>
+            </li>
+        </ol>
+    </div>
+
+    <div class="col-md-4">
+        <div class="title-action">
+            <a ui-sref="masterdata.topic.new()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Create new topic</a>
+        </div>
+    </div>
+</div>
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
-            <div class="text-center m-t-lg">
-                <h1>
-                    topics
-                </h1>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>List of topics</h5>
+
+                    <div ibox-tools-datatable></div>
+                </div>
+                <div class="ibox-content">
+                    <ul>
+                        <li style="margin-left: {{topic.level * 25}}px;" ng-repeat="topic in topics" ng-mouseover="hoverEdit = true" ng-mouseleave="hoverEdit = false">
+                            <span style="margin-right: 15px;">{{ topic.name }}</span>
+                            <a ng-show="hoverEdit" ng-click="rename(topic);"><i class="fa fa-edit"></i></a>
+                            <a ng-show="hoverEdit" ng-click="delete(topic);" style="color: maroon;"><i class="fa fa-minus-circle"></i></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/ng-template"  id="tree_item_renderer.html">
+    {{data.name}}
+    <button ng-click="delete(data)" ng-show="data.children.length == 0">Delete</button>
+    <ul>
+        <li ng-repeat="data in data.children" ng-include="'tree_item_renderer.html'"></li>
+    </ul>
+</script>

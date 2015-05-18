@@ -299,8 +299,89 @@ app.controller('MastedataAreaNewController', function ($scope, $state, $http, ar
         })
             .success(function(data) {
                 if (!data.error) {
-                    $state.go('masterdata.area.list');
+                    $state.go('masterdata.area.list', {}, {reload: true});
 
+                } else {
+                    $scope.showErrors = true;
+                    $scope.err = {
+                        exceptionName: data.exceptionName,
+                        exceptionMessage: data.exceptionMessage,
+                        stackTrace: data.stackTrace
+                    }
+                }
+            });
+    };
+
+});
+
+app.controller('MasterdataTopicController', function ($scope, $http, $state, topics) {
+    $scope.topics = topics;
+
+/*    $scope.reloadData = function() {
+        $state.go($state.current, {}, {reload: true});
+    };
+
+    $scope.rename = function(area) {
+        var newName = prompt("Rename '" + area.name + "':", area.name);
+
+        if (newName != null && newName != "" && newName != area.name) {
+            $http({
+                method : 'POST',
+                url: 'rest/area/rename/' + area.id,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                data: $.param({
+                    newName: newName
+                })
+            })
+                .success(function() {
+                    area.name = newName;
+                });
+        }
+    };
+
+    $scope.delete = function(area) {
+        if (confirm("Are you sure to delete '" + area.name + "' area?")) {
+            $http({
+                method : 'DELETE',
+                url : 'rest/area/delete/' + area.id
+            })
+                .success(function() {
+                    $state.go($state.current, {}, {reload: true});
+                });
+        }
+    };*/
+});
+
+app.controller('MastedataTopicNewController', function ($scope, $state, $http, topics) {
+
+    $scope.parents = topics;
+    $scope.form = {
+        parentId: 1,
+        name: "",
+        priority: false
+    };
+
+    $scope.addSpaces= function(area){
+        var result = "";
+        for(var i=0; i < area.level; i++){
+            result += String.fromCharCode(160) +
+                String.fromCharCode(160) + String.fromCharCode(160) + String.fromCharCode(160);
+        }
+        return result;
+    };
+
+    $scope.submit = function() {
+        $scope.showErrors = false;
+
+        $http({
+            method : 'POST',
+            url : 'rest/topic/save',
+            data : $.param($scope.form),
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+            .success(function(data) {
+                if (!data.error) {
+                    $state.go('masterdata.topic.list', {}, {reload: true});
                 } else {
                     $scope.showErrors = true;
                     $scope.err = {

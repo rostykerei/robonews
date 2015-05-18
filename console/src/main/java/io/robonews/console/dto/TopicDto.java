@@ -6,14 +6,11 @@
  */
 package io.robonews.console.dto;
 
-import io.robonews.domain.Area;
+import io.robonews.domain.Topic;
 
 import javax.validation.constraints.Size;
 
-/**
- * Created by rosty on 04/05/15.
- */
-public class AreaDto {
+public class TopicDto {
 
     private int id;
 
@@ -26,29 +23,33 @@ public class AreaDto {
 
     private int rightIndex;
 
-    public static AreaDto fromArea(Area area) {
-        AreaDto dto = new AreaDto();
-        dto.setId(area.getId());
-        dto.setName(area.getName());
-        dto.setLevel(area.getLevel());
-        dto.setLeftIndex(area.getLeftIndex());
-        dto.setRightIndex(area.getRightIndex());
+    private boolean priority;
+
+    public static TopicDto fromTopic(Topic topic) {
+        TopicDto dto = new TopicDto();
+        dto.setId(topic.getId());
+        dto.setName(topic.getName());
+        dto.setPriority(topic.isPriority());
+        dto.setLevel(topic.getLevel());
+        dto.setLeftIndex(topic.getLeftIndex());
+        dto.setRightIndex(topic.getRightIndex());
 
         return dto;
     }
 
-    public Area updateArea(Area area) {
-        area.setId(getId());
-        area.setName(getName());
-        area.setLevel(getLevel());
-        area.setLeftIndex(getLeftIndex());
-        area.setRightIndex(getRightIndex());
+    public Topic updateTopic(Topic topic) {
+        topic.setId(getId());
+        topic.setName(getName());
+        topic.setLevel(getLevel());
+        topic.setPriority(isPriority());
+        topic.setLeftIndex(getLeftIndex());
+        topic.setRightIndex(getRightIndex());
 
-        return area;
+        return topic;
     }
 
-    public Area toArea() {
-        return updateArea(new Area());
+    public Topic toTopic() {
+        return updateTopic(new Topic());
     }
 
     public int getId() {
@@ -89,5 +90,13 @@ public class AreaDto {
 
     public void setRightIndex(int rightIndex) {
         this.rightIndex = rightIndex;
+    }
+
+    public boolean isPriority() {
+        return priority;
+    }
+
+    public void setPriority(boolean priority) {
+        this.priority = priority;
     }
 }

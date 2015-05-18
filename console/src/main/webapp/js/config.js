@@ -137,12 +137,26 @@ function config($stateProvider, $urlRouterProvider) {
         .state('masterdata.topic', {
             abstract: true,
             url: "/topic",
-            templateUrl: "views/common/content.html"
+            templateUrl: "views/common/content.html",
+            resolve: {
+                topics: function($http) {
+                    return $http
+                        .get('rest/topic/list')
+                        .then(function success(response) { return response.data; });
+                }
+            }
         })
         .state('masterdata.topic.list', {
             url: "/list",
+            controller: "MasterdataTopicController",
             templateUrl: "views/masterdata/topic/list.html",
-            data: { pageTitle: 'Master data | Area' }
+            data: { pageTitle: 'Master data | Topics' }
+        })
+        .state('masterdata.topic.new', {
+            url: "/new",
+            templateUrl: "views/masterdata/topic/new.html",
+            controller: "MastedataTopicNewController",
+            data: { pageTitle: 'Master data | Topic | New' }
         })
         .state('minor', {
             url: "/minor",

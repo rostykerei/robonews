@@ -31,7 +31,7 @@ public class AreaController {
         return areaDao
                 .getAll()
                 .stream()
-                .map(AreaDto::fromGeoCategory)
+                .map(AreaDto::fromArea)
                 .collect(Collectors.toList());
     }
 
