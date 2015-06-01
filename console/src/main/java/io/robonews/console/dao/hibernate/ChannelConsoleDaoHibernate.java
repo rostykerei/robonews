@@ -161,4 +161,20 @@ public class ChannelConsoleDaoHibernate extends AbstractConsoleDaoHibernate impl
         return channelDao.getById(id);
     }
 
+    @Override
+    public Channel guessByHostname(String hostname) {
+
+        while (hostname.indexOf('.') > 0) {
+            Channel channel = channelDao.getByCN(hostname);
+
+            if (channel != null) {
+                return channel;
+            }
+
+            hostname = hostname.substring(hostname.indexOf('.') + 1);
+        }
+
+        return null;
+    }
+
 }

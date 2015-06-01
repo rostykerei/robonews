@@ -1,0 +1,204 @@
+    <div class="alert alert-danger" ng-show="showError">
+        An error happened while saving channel:
+        <code ng-show="err.exceptionName" class="m-l-md" style="white-space: normal">{{err.exceptionName}} : {{err.exceptionMessage}}</code>
+        <br/><br/>
+        <a class="btn btn-sm btn-danger" ng-show="err.stackTrace" ng-click="showStacktrace = !showStacktrace" ><i class="fa fa-info-circle"></i> Show stack trace</a>
+        <pre ng-show="showStacktrace">{{err.stackTrace}}</pre>
+    </div>
+
+    <form id="channel-form" class="form-horizontal" ng-submit="saveForm()">
+
+        <input type="hidden" ng-model="feed.id">
+
+        <div class="form-group" id="f-url"><label class="col-md-2 control-label" for="form-url">URL</label>
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><a ng-class="feed.url ? 'text-success' : 'disabled'" ng-href="{{feed.url}}" target="_blank"><i class="fa fa-rss"></i></a></span>
+                    <input type="url" id="form-url" ng-model="feed.url" placeholder="URL" class="form-control" required>
+                </div>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-name">
+            <label class="col-md-2 control-label" for="form-name">Name</label>
+
+            <div class="col-md-10">
+                <input type="text" id="form-name" placeholder="Name" class="form-control" ng-model="feed.name" >
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-link"><label class="col-md-2 control-label" for="form-link">Link</label>
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><a ng-class="feed.link ? 'text-success' : 'disabled'" ng-href="{{feed.link}}" target="_blank"><i class="fa fa-globe"></i></a></span>
+                    <input type="url" id="form-link" ng-model="feed.link" placeholder="Link (Page URL)" class="form-control" required>
+                </div>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="hr-line-dashed"></div>
+
+        <div class="form-group" id="f-channel"><label class="col-md-2 control-label" for="form-channel">Channel</label>
+            <div class="col-md-10">
+                <select id="form-channel" class="form-control" ng-model="feed.channelId">
+                    <option ng-repeat="c in channels" ng-selected="{{c.id == feed.channelId}}" value="{{c.id}}">{{c.name}}</option>
+                </select>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-area"><label class="col-md-2 control-label" for="form-area">Area</label>
+            <div class="col-md-10">
+                <select id="form-area" class="form-control" ng-model="feed.areaId">
+                    <option ng-repeat="a in areas" ng-selected="{{a.id == feed.areaId}}" value="{{a.id}}">{{a.name}}</option>
+                </select>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-topic"><label class="col-md-2 control-label" for="form-area">Topic</label>
+            <div class="col-md-10">
+                <select id="form-topic" class="form-control" ng-model="feed.topicId">
+                    <option ng-repeat="t in topics" ng-selected="{{t.id == feed.topicId}}" value="{{t.id}}">{{t.name}}</option>
+                </select>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-is-video"><label class="col-md-2 control-label">Video Feed</label>
+            <div class="col-md-10">
+                <div class="radio">
+                    <label> <input type="radio" name="isVideo" ng-model="feed.isVideo" ng-value="true"> Yes</label>
+                    <label class="m-l"> <input type="radio" name="isVideo" ng-model="feed.isVideo" ng-value="false"> No</label>
+                </div>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="hr-line-dashed"></div>
+
+        <div class="form-group" id="f-author">
+            <label class="col-md-2 control-label" for="form-author">Author</label>
+
+            <div class="col-md-10">
+                <input type="text" id="form-author" placeholder="Author" class="form-control" ng-model="feed.author" >
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-copyright">
+            <label class="col-md-2 control-label" for="form-copyright">Copyright</label>
+
+            <div class="col-md-10">
+                <input type="text" id="form-copyright" placeholder="Copyright" class="form-control" ng-model="feed.copyright" >
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-image-url"><label class="col-md-2 control-label" for="form-image-url">Image URL</label>
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><a ng-class="feed.imageUrl ? 'text-success' : 'disabled'" ng-href="{{feed.imageUrl}}" target="_blank"><i class="fa fa-image"></i></a></span>
+                    <input type="url" id="form-image-url" ng-model="feed.imageUrl" placeholder="Image URL" class="form-control" required>
+                </div>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+
+        <div class="form-group" id="f-description"><label class="col-md-2 control-label" for="form-description">Description</label>
+            <div class="col-md-10">
+                <textarea id="form-description" placeholder="Description" class="form-control" maxlength="255" ng-model="channel.description"></textarea>
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+        <div class="hr-line-dashed"></div>
+
+
+        <div class="form-group" id="f-last-check">
+            <label class="col-md-2 control-label" >Last crawled</label>
+
+            <div class="col-md-10">
+                <p class="form-control-static">2015-03-15 12:00:00</p>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-planned-check"><label class="col-md-2 control-label">Planned check</label>
+            <div class="col-md-10">
+                <p class="form-control-static">
+                    2015-03-15 12:00:00
+                </p>
+                <span class="btn btn-danger btn-xs"><i class="fa fa-clock-o"></i> Check now</span>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-current-velocity">
+            <label class="col-md-2 control-label">Current velocity</label>
+
+            <div class="col-md-10">
+                <p class="form-control-static">4h</p>
+            </div>
+        </div>
+
+        <div class="form-group" id="f-velocity"><label class="col-md-2 control-label">Crawling velocity</label>
+            <div class="col-md-10">
+                <div id="velocity_range"></div>
+            </div>
+        </div>
+
+        <div class="hr-line-dashed"></div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-primary" type="submit">Save</button>
+                <button back class="btn btn-white">Back</button>
+                <button class="btn btn-white" type="button" ng-click="reset()">Reset</button>
+            </div>
+        </div>
+    </form>
+
+    <script type="text/ng-template" id="fbTypeAheadTemplate.html">
+        <a>
+            <img class="pull-left m-r-sm" ng-src="{{match.model.pictureUrl}}" height="48">
+            <i class="fa fa-check-circle text-navy" ng-show="match.model.verified"></i>
+            {{match.model.name}} (<span bind-html-unsafe="match.model.username | typeaheadHighlight:query"></span>) {{match.model.website}}<br/>
+            {{match.model.likes | number}} likes | {{match.model.category}}
+        </a>
+    </script>
+
+    <script type="text/ng-template" id="twitterTypeAheadTemplate.html">
+        <a>
+            <img class="pull-left m-r-sm" ng-src="{{match.model.profileImageUrl}}" height="48">
+            <i class="fa fa-check-circle text-navy" ng-show="match.model.verified"></i>
+            {{match.model.name}} (<span bind-html-unsafe="match.model.screenName | typeaheadHighlight:query"></span>) {{match.model.url}}<br/>
+            {{match.model.followersCount | number}} followers {{match.model.location ? '| ' + match.model.location : ''}}
+        </a>
+    </script>
+
+    <script type="text/ng-template" id="googlePlusTypeAheadTemplate.html">
+        <a>
+            <img class="pull-left m-r-sm" ng-src="{{match.model.imageUrl}}" height="48">
+            <span bind-html-unsafe="match.model.name | typeaheadHighlight:query"></span><br/>
+            {{match.model.url}}
+        </a>
+    </script>
+
+    <script>
+        $("#velocity_range").ionRangeSlider({
+            type: "double",
+            grid: true,
+            values: ['6h', '5h', '4h', '3h', '2h', '1h', '30m', '20m', '15m', '10m', '5m', '1m']
+        });
+
+        $('#planned_check').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+    </script>

@@ -158,10 +158,30 @@ function config($stateProvider, $urlRouterProvider) {
             controller: "MastedataTopicNewController",
             data: { pageTitle: 'Master data | Topic | New' }
         })
-        .state('minor', {
-            url: "/minor",
-            templateUrl: "views/minor.html",
-            data: { pageTitle: 'Example view' }
+        .state('feed', {
+            abstract: true,
+            url: "/feed",
+            templateUrl: "views/common/content.html"
+        })
+        .state('feed.list', {
+            url: "/list",
+            templateUrl: "views/feed/list.html",
+            data: { pageTitle: 'Feeds' }
+        })
+        .state('feed.new', {
+            abstract: true,
+            url: "/new",
+            templateUrl: "views/feed/new.html",
+            data: { pageTitle: 'Feed | New' }
+        })
+        .state('feed.new.url', {
+            url: "",
+            templateUrl: "views/feed/new.url.html"
+        })
+        .state('feed.new.details', {
+            url: "/details",
+            controller: "FeedEditController",
+            templateUrl: "views/feed/edit.html"
         })
 }
 angular

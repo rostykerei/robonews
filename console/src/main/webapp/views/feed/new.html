@@ -1,0 +1,35 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-md-8">
+        <h2>New feed</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a ui-sref="home">Home</a>
+            </li>
+            <li>
+                <a ui-sref="feed.list">Feeds</a>
+            </li>
+            <li class="active">
+                <strong>New</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-md-4">
+        <div class="title-action">
+            <a ui-sref="feed.new.url()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Create new feed</a>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Create feed</h5>
+                </div>
+                <div class="ibox-content" ui-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

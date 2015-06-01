@@ -22,6 +22,7 @@
     <import resource="classpath:serviceFacebook.xml"/>
     <import resource="classpath:serviceTwitter.xml"/>
     <import resource="classpath:serviceGooglePlus.xml"/>
+    <import resource="classpath:serviceSyndicationContext.xml"/>
 
     <!-- Console DAOs -->
 

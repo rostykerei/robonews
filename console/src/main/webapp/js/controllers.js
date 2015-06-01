@@ -317,7 +317,7 @@ app.controller('MastedataAreaNewController', function ($scope, $state, $http, ar
 app.controller('MasterdataTopicController', function ($scope, $http, $state, topics) {
     $scope.topics = topics;
 
-/*    $scope.reloadData = function() {
+    $scope.reloadData = function() {
         $state.go($state.current, {}, {reload: true});
     };
 
@@ -327,7 +327,7 @@ app.controller('MasterdataTopicController', function ($scope, $http, $state, top
         if (newName != null && newName != "" && newName != area.name) {
             $http({
                 method : 'POST',
-                url: 'rest/area/rename/' + area.id,
+                url: 'rest/topic/rename/' + area.id,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 data: $.param({
                     newName: newName
@@ -343,13 +343,13 @@ app.controller('MasterdataTopicController', function ($scope, $http, $state, top
         if (confirm("Are you sure to delete '" + area.name + "' area?")) {
             $http({
                 method : 'DELETE',
-                url : 'rest/area/delete/' + area.id
+                url : 'rest/topic/delete/' + area.id
             })
                 .success(function() {
                     $state.go($state.current, {}, {reload: true});
                 });
         }
-    };*/
+    };
 });
 
 app.controller('MastedataTopicNewController', function ($scope, $state, $http, topics) {
@@ -395,6 +395,94 @@ app.controller('MastedataTopicNewController', function ($scope, $state, $http, t
 
 });
 
+
+///////////////// FEEDS ////////////////////////////
+app.controller('FeedCreatePrefillController', function ($scope, $http, $state) {
+    $scope.urlForm = {};
+
+    $scope.prefillDetailsForm = function() {
+        $scope.showPrefillError = false;
+
+        $http({
+            method : 'POST',
+            url : 'rest/feed/new/prefill',
+            data : $.param($scope.urlForm),
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .success(function(data) {
+            if (!data.error) {
+/*                ChannelService.form = data.data;
+                ChannelService.form.id = 0;
+                ChannelService.form.active = true;
+*/
+                $state.go('feed.new.details', {'input' : 111});
+
+            } else {
+                $scope.showPrefillError = true;
+                $scope.err = {
+                    exceptionName: data.exceptionName,
+                    exceptionMessage: data.exceptionMessage,
+                    stackTrace: data.stackTrace
+                }
+            }
+        });
+    };
+});
+
+app.controller('FeedEditController', function ($scope, $http, $state, $stateParams) {
+
+    var data = $stateParams.input;
+    if (!$scope.feed) {
+        //$scope.feed = ChannelService.form;
+    }
+
+    $scope.backup = angular.copy($scope.feed);
+
+    $scope.showError = false;
+    $('#channel-form .help-block').empty();
+    $('#channel-form .form-group').removeClass('has-error');
+
+
+    $scope.saveForm = function () {
+        $http({
+            method : 'POST',
+            url : 'rest/channel/save',
+            data : $scope.channel
+        })
+        .success(function(data) {
+            if (!data.error) {
+                $state.go('feed.list');
+            }
+            else {
+                if (data.exceptionName) {
+                    $scope.showError = true;
+                    $scope.err = {
+                        exceptionName: data.exceptionName,
+                        exceptionMessage: data.exceptionMessage,
+                        stackTrace: data.stackTrace
+                    }
+                }
+
+                for (var key in data.errors) {
+                    if (data.errors.hasOwnProperty(key)) {
+                        $('#f-' + key).addClass('has-error');
+                        var msg = "<ul>";
+                        for (var m in data.errors[key]) {
+                            msg += "<li>" + data.errors[key][m] + "</li>";
+                        }
+                        msg += "</ul>";
+                        $('#f-' + key + ' .help-block').html( msg );
+                    }
+                }
+            }
+        });
+    };
+
+    $scope.reset = function() {
+        $scope.feed = angular.copy($scope.backup);
+    };
+});
+////////////////////////////////////////////////////
 app.controller('RetryController', function($scope, $modalInstance, rejection) {
 
     $scope.rejection = rejection;

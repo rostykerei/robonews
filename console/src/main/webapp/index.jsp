@@ -58,7 +58,7 @@
 
     <!-- Ion Range Slider -->
     <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
-    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinModern.css" rel="stylesheet">
 
     <!-- Cropper -->
     <link href="css/plugins/cropper/cropper.min.css" rel="stylesheet">
@@ -119,6 +119,12 @@
 
 <!-- Cropper -->
 <script src="js/plugins/cropper/cropper.min.js"></script>
+
+<!-- IonRangeSlider -->
+<script src="js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+
+<!-- Data picker -->
+<script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="js/inspinia.js"></script>

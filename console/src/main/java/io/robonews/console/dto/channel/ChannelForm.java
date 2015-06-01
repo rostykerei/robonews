@@ -19,14 +19,14 @@ public class ChannelForm {
     private int id;
 
     @Domain
-    @Size(max = 255)
+    @Size(min = 1, max = 255)
     private String canonicalName;
 
     @Size(min = 1, max = 255)
     private String title;
 
     @Url
-    @Size(max = 255)
+    @Size(min = 6, max = 255)
     private String url;
 
     @Size(max = 2)

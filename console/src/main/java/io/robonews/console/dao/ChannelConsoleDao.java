@@ -38,4 +38,6 @@ public interface ChannelConsoleDao {
 
     Channel saveChannel(ChannelForm channelForm);
 
+    Channel guessByHostname(String hostname);
+
 }

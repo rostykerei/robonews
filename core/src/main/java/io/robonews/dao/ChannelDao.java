@@ -18,4 +18,6 @@ public interface ChannelDao extends AbstractDao<Channel, Integer> {
      */
     List<Channel> getAll();
 
+    Channel getByCN(String cn);
+
 }

@@ -1,0 +1,29 @@
+<div ng-controller="FeedCreatePrefillController">
+
+<div class="alert alert-danger" ng-show="showPrefillError">
+    An error happened while gathering feed information: <code ng-show="err.exceptionName" class="m-l-md">{{err.exceptionName}} : {{err.exceptionMessage}}</code>
+
+    <br/><br/>
+
+    <a class="btn btn-sm btn-danger" ng-show="err.stackTrace" ng-click="showStacktrace = !showStacktrace" ><i class="fa fa-info-circle"></i> Show stack trace</a>
+    <a ui-sref="feed.new.details()" class="btn btn-sm btn-primary"><i class="fa fa-play"></i> Skip auto pre-fill</a>
+
+    <pre ng-show="showStacktrace">{{err.stackTrace}}</pre>
+</div>
+
+<form class="form-horizontal" ng-submit="prefillDetailsForm()" name="urlFormHtml">
+    <div class="form-group"><label class="col-md-2 control-label" for="form-url">URL</label>
+        <div class="col-md-10">
+            <input type="url" required ng-minlength="10" ng-maxlength="255" id="form-url" placeholder="Feed URL" class="form-control" ng-model="urlForm.url" autocomplete="off">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-primary" type="submit" ng-disabled="urlFormHtml.$invalid">Next</button>
+            <a class="btn btn-white" ui-sref="feed.new.details()">Skip auto pre-fill</a>
+        </div>
+    </div>
+</form>
+
+</div>

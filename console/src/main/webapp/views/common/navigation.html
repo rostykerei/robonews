@@ -42,6 +42,9 @@
                 <a ui-sref="channel.list"><i class="fa fa-files-o"></i> <span class="nav-label">Channels</span> </a>
             </li>
 
+            <li ng-class="{active: $state.includes('feed')}">
+                <a ui-sref="feed.list"><i class="fa fa-rss"></i> <span class="nav-label">Feeds</span> </a>
+            </li>
         </ul>
 
     </div>

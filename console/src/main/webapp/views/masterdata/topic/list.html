@@ -33,7 +33,10 @@
                 <div class="ibox-content">
                     <ul>
                         <li style="margin-left: {{topic.level * 25}}px;" ng-repeat="topic in topics" ng-mouseover="hoverEdit = true" ng-mouseleave="hoverEdit = false">
-                            <span style="margin-right: 15px;">{{ topic.name }}</span>
+                            <span style="margin-right: 15px;">
+                                <span style="font-weight: bold; color: darkred;" ng-show="{{ topic.priority }}"><i class="fa fa-warning"></i></span>
+                                {{ topic.name }}
+                            </span>
                             <a ng-show="hoverEdit" ng-click="rename(topic);"><i class="fa fa-edit"></i></a>
                             <a ng-show="hoverEdit" ng-click="delete(topic);" style="color: maroon;"><i class="fa fa-minus-circle"></i></a>
                         </li>

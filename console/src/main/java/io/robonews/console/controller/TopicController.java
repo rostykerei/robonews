@@ -6,16 +6,15 @@
  */
 package io.robonews.console.controller;
 
+import io.robonews.console.controller.error.NotFoundException;
 import io.robonews.console.dto.TopicDto;
 import io.robonews.console.dto.response.DataResponse;
 import io.robonews.dao.TopicDao;
 import io.robonews.domain.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,8 +36,7 @@ public class TopicController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public @ResponseBody
-    DataResponse<Integer> save(
+    public @ResponseBody DataResponse<Integer> save(
             @RequestParam("parentId") int parentId,
             @RequestParam("name") String name, @RequestParam("priority") boolean priority) {
 
@@ -58,5 +56,30 @@ public class TopicController {
         }
 
         return response;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/rename/{id}", method = RequestMethod.POST)
+    public void rename(@PathVariable("id") int id, @RequestParam("newName") String newName) {
+        Topic topic = topicDao.getById(id);
+
+        if (topic == null) {
+            throw new NotFoundException();
+        }
+
+        topic.setName(newName);
+        topicDao.update(topic);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") int id) {
+        Topic topic = topicDao.getById(id);
+
+        if (topic == null) {
+            throw new NotFoundException();
+        }
+
+        topicDao.delete(topic);
     }
 }

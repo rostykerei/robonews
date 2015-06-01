@@ -74,6 +74,12 @@
 
         <dependency>
             <groupId>io.robonews</groupId>
+            <artifactId>service-syndication</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.robonews</groupId>
             <artifactId>service-image-tools</artifactId>
             <version>${project.version}</version>
         </dependency>

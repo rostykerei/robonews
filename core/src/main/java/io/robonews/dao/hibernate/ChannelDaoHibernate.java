@@ -32,4 +32,14 @@ public class ChannelDaoHibernate extends AbstractDaoHibernate<Channel, Integer> 
                 list();
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Channel getByCN(String cn) {
+        return (Channel) getSession()
+                .createQuery("from Channel where canonicalName = :cn")
+                .setString("cn", cn)
+                .setMaxResults(1)
+                .uniqueResult();
+    }
+
 }
