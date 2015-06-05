@@ -6,6 +6,7 @@
  */
 package io.robonews.console.controller;
 
+import io.robonews.console.controller.error.FormBindException;
 import io.robonews.console.dao.ChannelConsoleDao;
 import io.robonews.console.dto.feed.FeedForm;
 import io.robonews.console.dto.response.DataResponse;
@@ -20,14 +21,14 @@ import io.robonews.service.syndication.SyndicationServiceException;
 import io.robonews.service.syndication.SyndicationServiceParsingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 
 @Controller
 @RequestMapping("rest/feed")
@@ -41,6 +42,10 @@ public class FeedController {
 
     @Autowired
     ChannelConsoleDao channelConsoleDao;
+
+    private static final double MIN_VELOCITY = (double) 1 / 6;
+    private static final double MAX_VELOCITY = 60;
+
 
     @RequestMapping(value = "/new/prefill", method = RequestMethod.POST)
     public @ResponseBody  DataResponse<FeedForm> createChannelInit(@RequestParam("url") String url) {
@@ -82,15 +87,63 @@ public class FeedController {
         form.setAuthor(syndicationFeed.getAuthor());
         form.setCopyright(syndicationFeed.getCopyright());
         form.setImageUrl(syndicationFeed.getImageUrl());
+        form.setVideo(false);
+
+        double minVelocity = MIN_VELOCITY;
 
         Channel guessedChannel = channelConsoleDao.guessByHostname(feedUrl.getHost());
 
         if (guessedChannel != null) {
             form.setChannelId(guessedChannel.getId());
+            form.setChannelCN(guessedChannel.getCanonicalName());
+
+            if (guessedChannel.getScale() == Channel.Scale.GLOBAL) {
+                minVelocity = 1;
+            }
+            else if (guessedChannel.getScale() == Channel.Scale.REGIONAL) {
+                minVelocity = .5;
+            }
         }
+
+        double estimatedVelocity = syndicationFeed.estimateVelocity();
+
+        if (estimatedVelocity < minVelocity) {
+            form.setVelocity(minVelocity);
+        }
+        else if (estimatedVelocity > MAX_VELOCITY) {
+            form.setVelocity(MAX_VELOCITY);
+        }
+        else {
+            form.setVelocity(estimatedVelocity);
+        }
+
+        form.setMinVelocityThreshold(minVelocity);
+        form.setMaxVelocityThreshold(MAX_VELOCITY);
+        form.setPlannedCheck(new Date());
 
         response.setData(form);
 
         return response;
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public @ResponseBody DataResponse<Integer> saveChannel(@Valid @RequestBody FeedForm form,  BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            throw new FormBindException(bindingResult);
+        }
+
+        DataResponse<Integer> result = new DataResponse<>();
+
+        try {
+            //Channel channel = channelConsoleDao.saveChannel(form);
+            //result.setData(channel.getId());
+        }
+        catch (Exception e) {
+            result.setException(e);
+            result.setError(true);
+        }
+
+        return result;
     }
 }

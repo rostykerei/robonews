@@ -53,13 +53,13 @@
     </properties>
 
     <build>
-        <extensions>
+<!--        <extensions>
             <extension>
                 <groupId>org.kuali.maven.wagons</groupId>
                 <artifactId>maven-s3-wagon</artifactId>
                 <version>1.2.1</version>
             </extension>
-        </extensions>
+        </extensions>-->
 
         <plugins>
 
@@ -181,7 +181,31 @@
         </dependencies>
     </dependencyManagement>
 
+    <repositories>
+        <repository>
+            <id>spark-releases</id>
+            <url>http://spark.robonews.io:8081/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <distributionManagement>
+        <repository>
+            <id>spark-releases</id>
+            <url>http://spark.robonews.io:8081/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>spark-snapshots</id>
+            <url>http://spark.robonews.io:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+<!--    <distributionManagement>
         <site>
             <id>s3.dist.corp.robonews.io</id>
             <url>s3://dist.corp.robonews.io/site</url>
@@ -194,6 +218,6 @@
             <id>s3.dist.corp.robonews.io</id>
             <url>s3://dist.corp.robonews.io/snapshot</url>
         </snapshotRepository>
-    </distributionManagement>
+    </distributionManagement>-->
 
 </project>

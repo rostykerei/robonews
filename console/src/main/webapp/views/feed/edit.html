@@ -1,12 +1,12 @@
     <div class="alert alert-danger" ng-show="showError">
-        An error happened while saving channel:
+        An error happened while saving feed:
         <code ng-show="err.exceptionName" class="m-l-md" style="white-space: normal">{{err.exceptionName}} : {{err.exceptionMessage}}</code>
         <br/><br/>
         <a class="btn btn-sm btn-danger" ng-show="err.stackTrace" ng-click="showStacktrace = !showStacktrace" ><i class="fa fa-info-circle"></i> Show stack trace</a>
         <pre ng-show="showStacktrace">{{err.stackTrace}}</pre>
     </div>
 
-    <form id="channel-form" class="form-horizontal" ng-submit="saveForm()">
+    <form id="feed-form" class="form-horizontal" ng-submit="saveForm()">
 
         <input type="hidden" ng-model="feed.id">
 
@@ -41,28 +41,31 @@
 
         <div class="hr-line-dashed"></div>
 
-        <div class="form-group" id="f-channel"><label class="col-md-2 control-label" for="form-channel">Channel</label>
+        <div class="form-group" id="f-channelId"><label class="col-md-2 control-label" for="form-channel-id">Channel</label>
             <div class="col-md-10">
-                <select id="form-channel" class="form-control" ng-model="feed.channelId">
-                    <option ng-repeat="c in channels" ng-selected="{{c.id == feed.channelId}}" value="{{c.id}}">{{c.name}}</option>
+                <div class="input-group">
+                    <span class="input-group-addon">{{feed.channelId}}</span>
+                    <input type="text" autocomplete="off" id="form-channel-id"  typeahead-on-select="feed.channelId = channelBox.id" typeahead="channel as channel.canonicalName for channel in channelTypeAhead($viewValue)" typeahead-template-url="channelTypeAheadTemplate.html" ng-model="channelBox" placeholder="Channel" class="form-control" required>
+                </div>
+
+                <span class="help-block m-b-none"></span>
+            </div>
+        </div>
+
+
+        <div class="form-group" id="f-areaId"><label class="col-md-2 control-label" for="form-area">Area</label>
+            <div class="col-md-10">
+                <select id="form-area" class="form-control" ng-model="feed.areaId" required>
+                    <option ng-repeat="a in areas" ng-selected="{{a.id == feed.areaId}}" value="{{a.id}}">{{addSpaces(a.level)}}{{a.name}}</option>
                 </select>
                 <span class="help-block m-b-none"></span>
             </div>
         </div>
 
-        <div class="form-group" id="f-area"><label class="col-md-2 control-label" for="form-area">Area</label>
+        <div class="form-group" id="f-topicId"><label class="col-md-2 control-label" for="form-area">Topic</label>
             <div class="col-md-10">
-                <select id="form-area" class="form-control" ng-model="feed.areaId">
-                    <option ng-repeat="a in areas" ng-selected="{{a.id == feed.areaId}}" value="{{a.id}}">{{a.name}}</option>
-                </select>
-                <span class="help-block m-b-none"></span>
-            </div>
-        </div>
-
-        <div class="form-group" id="f-topic"><label class="col-md-2 control-label" for="form-area">Topic</label>
-            <div class="col-md-10">
-                <select id="form-topic" class="form-control" ng-model="feed.topicId">
-                    <option ng-repeat="t in topics" ng-selected="{{t.id == feed.topicId}}" value="{{t.id}}">{{t.name}}</option>
+                <select id="form-topic" class="form-control" ng-model="feed.topicId" required>
+                    <option ng-repeat="t in topics" ng-selected="{{t.id == feed.topicId}}" value="{{t.id}}">{{addSpaces(t.level)}}{{t.name}}</option>
                 </select>
                 <span class="help-block m-b-none"></span>
             </div>
@@ -71,8 +74,8 @@
         <div class="form-group" id="f-is-video"><label class="col-md-2 control-label">Video Feed</label>
             <div class="col-md-10">
                 <div class="radio">
-                    <label> <input type="radio" name="isVideo" ng-model="feed.isVideo" ng-value="true"> Yes</label>
-                    <label class="m-l"> <input type="radio" name="isVideo" ng-model="feed.isVideo" ng-value="false"> No</label>
+                    <label> <input type="radio" name="isVideo" ng-model="feed.video" ng-value="true"> Yes</label>
+                    <label class="m-l"> <input type="radio" name="isVideo" ng-model="feed.video" ng-value="false"> No</label>
                 </div>
                 <span class="help-block m-b-none"></span>
             </div>
@@ -98,11 +101,11 @@
             </div>
         </div>
 
-        <div class="form-group" id="f-image-url"><label class="col-md-2 control-label" for="form-image-url">Image URL</label>
+        <div class="form-group" id="f-imageUrl"><label class="col-md-2 control-label" for="form-image-url">Image URL</label>
             <div class="col-md-10">
                 <div class="input-group">
                     <span class="input-group-addon"><a ng-class="feed.imageUrl ? 'text-success' : 'disabled'" ng-href="{{feed.imageUrl}}" target="_blank"><i class="fa fa-image"></i></a></span>
-                    <input type="url" id="form-image-url" ng-model="feed.imageUrl" placeholder="Image URL" class="form-control" required>
+                    <input type="url" id="form-image-url" ng-model="feed.imageUrl" placeholder="Image URL" class="form-control">
                 </div>
                 <span class="help-block m-b-none"></span>
             </div>
@@ -111,7 +114,7 @@
 
         <div class="form-group" id="f-description"><label class="col-md-2 control-label" for="form-description">Description</label>
             <div class="col-md-10">
-                <textarea id="form-description" placeholder="Description" class="form-control" maxlength="255" ng-model="channel.description"></textarea>
+                <textarea id="form-description" placeholder="Description" class="form-control" maxlength="255" ng-model="feed.description"></textarea>
                 <span class="help-block m-b-none"></span>
             </div>
         </div>
@@ -123,16 +126,13 @@
             <label class="col-md-2 control-label" >Last crawled</label>
 
             <div class="col-md-10">
-                <p class="form-control-static">2015-03-15 12:00:00</p>
+                <p class="form-control-static">{{(feed.lastCheck | date:'yyyy-MM-dd HH:mm:ss ') || "Unknown"}}</p>
             </div>
         </div>
 
         <div class="form-group" id="f-planned-check"><label class="col-md-2 control-label">Planned check</label>
             <div class="col-md-10">
-                <p class="form-control-static">
-                    2015-03-15 12:00:00
-                </p>
-                <span class="btn btn-danger btn-xs"><i class="fa fa-clock-o"></i> Check now</span>
+                <p class="form-control-static">{{(feed.plannedCheck | date:'yyyy-MM-dd HH:mm:ss ') || "Unknown"}}</p>
             </div>
         </div>
 
@@ -140,7 +140,7 @@
             <label class="col-md-2 control-label">Current velocity</label>
 
             <div class="col-md-10">
-                <p class="form-control-static">4h</p>
+                <p class="form-control-static">{{velocityTxt}}</p>
             </div>
         </div>
 
@@ -161,44 +161,10 @@
         </div>
     </form>
 
-    <script type="text/ng-template" id="fbTypeAheadTemplate.html">
+    <script type="text/ng-template" id="channelTypeAheadTemplate.html">
         <a>
-            <img class="pull-left m-r-sm" ng-src="{{match.model.pictureUrl}}" height="48">
-            <i class="fa fa-check-circle text-navy" ng-show="match.model.verified"></i>
-            {{match.model.name}} (<span bind-html-unsafe="match.model.username | typeaheadHighlight:query"></span>) {{match.model.website}}<br/>
-            {{match.model.likes | number}} likes | {{match.model.category}}
+            <img class="pull-left m-r-sm" style="height: 48px; width: 48px; border-radius: 50%; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);" src="rest/channel/image/{{match.model.id}}"/>
+            {{match.model.title}}<br/>
+            <span bind-html-unsafe="match.model.canonicalName | typeaheadHighlight:query"></span>
         </a>
-    </script>
-
-    <script type="text/ng-template" id="twitterTypeAheadTemplate.html">
-        <a>
-            <img class="pull-left m-r-sm" ng-src="{{match.model.profileImageUrl}}" height="48">
-            <i class="fa fa-check-circle text-navy" ng-show="match.model.verified"></i>
-            {{match.model.name}} (<span bind-html-unsafe="match.model.screenName | typeaheadHighlight:query"></span>) {{match.model.url}}<br/>
-            {{match.model.followersCount | number}} followers {{match.model.location ? '| ' + match.model.location : ''}}
-        </a>
-    </script>
-
-    <script type="text/ng-template" id="googlePlusTypeAheadTemplate.html">
-        <a>
-            <img class="pull-left m-r-sm" ng-src="{{match.model.imageUrl}}" height="48">
-            <span bind-html-unsafe="match.model.name | typeaheadHighlight:query"></span><br/>
-            {{match.model.url}}
-        </a>
-    </script>
-
-    <script>
-        $("#velocity_range").ionRangeSlider({
-            type: "double",
-            grid: true,
-            values: ['6h', '5h', '4h', '3h', '2h', '1h', '30m', '20m', '15m', '10m', '5m', '1m']
-        });
-
-        $('#planned_check').datepicker({
-            todayBtn: "linked",
-            keyboardNavigation: false,
-            forceParse: false,
-            calendarWeeks: true,
-            autoclose: true
-        });
     </script>

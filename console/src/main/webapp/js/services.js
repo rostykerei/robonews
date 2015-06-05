@@ -8,6 +8,12 @@ app.service("ChannelService", function( $http, $resource ) {
     }
 );
 
+app.service("FeedService", function() {
+    return({
+        form: {}
+    });
+});
+
 app.factory('RetryInterceptor', function($injector, $timeout, $q) {
     return {
         'responseError': function(rejection) {

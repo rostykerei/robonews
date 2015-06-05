@@ -181,7 +181,19 @@ function config($stateProvider, $urlRouterProvider) {
         .state('feed.new.details', {
             url: "/details",
             controller: "FeedEditController",
-            templateUrl: "views/feed/edit.html"
+            templateUrl: "views/feed/edit.html",
+            resolve: {
+                topics: function($http) {
+                    return $http
+                        .get('rest/topic/list')
+                        .then(function success(response) { return response.data; });
+                },
+                areas: function($http) {
+                    return $http
+                        .get('rest/area/list')
+                        .then(function success(response) { return response.data; });
+                }
+            }
         })
 }
 angular

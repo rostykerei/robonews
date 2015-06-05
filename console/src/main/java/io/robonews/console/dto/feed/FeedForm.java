@@ -9,9 +9,12 @@ package io.robonews.console.dto.feed;
 import io.robonews.console.dto.validator.Url;
 import io.robonews.domain.Feed;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class FeedForm {
 
@@ -19,16 +22,21 @@ public class FeedForm {
 
     private int id;
 
+    @Min(1)
     private int channelId;
 
+    private String channelCN;
+
+    @Min(1)
     private int areaId;
 
+    @Min(1)
     private int topicId;
 
     @Url
     private String url;
 
-    @Size(max = 255)
+    @Size(min = 1, max = 255)
     private String name;
 
     @Url
@@ -49,16 +57,18 @@ public class FeedForm {
 
     private boolean video = false;
 
-    @Size(max = 255)
-    private String lastCheck;
+    private Date lastCheck;
 
-    @Size(max = 255)
-    private String plannedCheck;
+    private Date plannedCheck;
 
     private double velocity;
 
+    @Min(0)
+    @Max(60)
     private double minVelocityThreshold;
 
+    @Min(0)
+    @Max(60)
     private double maxVelocityThreshold;
 
     public static FeedForm fromFeed(Feed feed) {
@@ -79,8 +89,8 @@ public class FeedForm {
         form.setImageUrl(feed.getImageUrl());
         form.setVideo(feed.isVideo());
 
-        form.setLastCheck(feed.getLastCheck() != null ? DATE_FORMAT.format(feed.getLastCheck()) : "Never");
-        form.setPlannedCheck(feed.getPlannedCheck() != null ? DATE_FORMAT.format(feed.getPlannedCheck()) : "Never");
+        form.setLastCheck(feed.getLastCheck());
+        form.setPlannedCheck(feed.getPlannedCheck());
 
         form.setMinVelocityThreshold(feed.getMinVelocityThreshold());
         form.setMaxVelocityThreshold(feed.getMaxVelocityThreshold());
@@ -102,6 +112,14 @@ public class FeedForm {
 
     public void setChannelId(int channelId) {
         this.channelId = channelId;
+    }
+
+    public String getChannelCN() {
+        return channelCN;
+    }
+
+    public void setChannelCN(String channelCN) {
+        this.channelCN = channelCN;
     }
 
     public int getAreaId() {
@@ -184,19 +202,19 @@ public class FeedForm {
         this.video = video;
     }
 
-    public String getLastCheck() {
+    public Date getLastCheck() {
         return lastCheck;
     }
 
-    public void setLastCheck(String lastCheck) {
+    public void setLastCheck(Date lastCheck) {
         this.lastCheck = lastCheck;
     }
 
-    public String getPlannedCheck() {
+    public Date getPlannedCheck() {
         return plannedCheck;
     }
 
-    public void setPlannedCheck(String plannedCheck) {
+    public void setPlannedCheck(Date plannedCheck) {
         this.plannedCheck = plannedCheck;
     }
 

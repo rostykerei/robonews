@@ -75,16 +75,14 @@
                     </executions>
                     <configuration>
                         <name>robonews-${project.artifactId}</name>
-                        <copyright>Copyright (c) 2013-2014 Rosty Kerei</copyright>
+                        <license>Copyright (c) 2013-2014 Rosty Kerei</license>
+                        <description>${project.name}</description>
                         <group>Applications/System</group>
                         <packager>Robonews.io</packager>
                         <prefix>/usr/local/robonews</prefix>
                         <needarch>false</needarch>
                         <defaultGroupname>robonews</defaultGroupname>
                         <defaultUsername>robonews</defaultUsername>
-                        <requires>
-                            <require>jdk</require>
-                        </requires>
                         <mappings>
                             <mapping>
                                 <directory>/usr/local/robonews/${project.artifactId}/bin</directory>

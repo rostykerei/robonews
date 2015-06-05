@@ -397,8 +397,10 @@ app.controller('MastedataTopicNewController', function ($scope, $state, $http, t
 
 
 ///////////////// FEEDS ////////////////////////////
-app.controller('FeedCreatePrefillController', function ($scope, $http, $state) {
+app.controller('FeedCreatePrefillController', function ($scope, $http, $state, FeedService) {
     $scope.urlForm = {};
+
+    FeedService.form = {};
 
     $scope.prefillDetailsForm = function() {
         $scope.showPrefillError = false;
@@ -411,11 +413,9 @@ app.controller('FeedCreatePrefillController', function ($scope, $http, $state) {
         })
         .success(function(data) {
             if (!data.error) {
-/*                ChannelService.form = data.data;
-                ChannelService.form.id = 0;
-                ChannelService.form.active = true;
-*/
-                $state.go('feed.new.details', {'input' : 111});
+                FeedService.form = data.data;
+                FeedService.form.id = 0;
+                $state.go('feed.new.details');
 
             } else {
                 $scope.showPrefillError = true;
@@ -429,12 +429,48 @@ app.controller('FeedCreatePrefillController', function ($scope, $http, $state) {
     };
 });
 
-app.controller('FeedEditController', function ($scope, $http, $state, $stateParams) {
+app.controller('FeedEditController', function ($scope, $http, $state, $stateParams, FeedService, areas, topics) {
+    var velocityVals = {'6h': 1/6, '5h': 1/5, '4h': 1/4, '3h': 1/3, '2h': 1/2, '1h': 1, '30m': 2, '20m': 3, '15m': 4, '10m': 6, '5m': 12, '1m': 60}
 
-    var data = $stateParams.input;
     if (!$scope.feed) {
-        //$scope.feed = ChannelService.form;
+        $scope.feed = FeedService.form;
     }
+
+    if ($scope.feed.channelId) {
+        $scope.channelBox = {
+            id: $scope.feed.channelId,
+            canonicalName: $scope.feed.channelCN
+        }
+    }
+
+    if ($scope.feed.velocity && $scope.feed.velocity > 0) {
+        var v = 1 / $scope.feed.velocity;
+
+        $scope.velocityTxt = "";
+
+        if (v >= 1) {
+            $scope.velocityTxt += Math.floor(v) + "h ";
+        }
+
+        v = (v - Math.floor(v)) * 60;
+
+        if (v >= 1) {
+            $scope.velocityTxt += Math.floor(v) + "m ";
+        }
+
+        v = (v - Math.floor(v)) * 60;
+
+        if (v >= 1) {
+            $scope.velocityTxt += Math.floor(v) + "s";
+        }
+    }
+    else {
+        $scope.velocityTxt = "N/A";
+    }
+
+
+    $scope.areas = areas;
+    $scope.topics = topics;
 
     $scope.backup = angular.copy($scope.feed);
 
@@ -443,11 +479,31 @@ app.controller('FeedEditController', function ($scope, $http, $state, $statePara
     $('#channel-form .form-group').removeClass('has-error');
 
 
+    $scope.addSpaces= function(level){
+        var result = "";
+        for(var i=0; i < level; i++){
+            result += String.fromCharCode(160) +
+                String.fromCharCode(160) + String.fromCharCode(160) + String.fromCharCode(160);
+        }
+        return result;
+    };
+
+    $scope.channelTypeAhead = function(val) {
+        return $http.get('rest/channel/list?draw=100&columns[0][data]=canonicalName&order[0][column]=0&order[0][dir]=asc&start=0&length=5&search[value]=' + val).then(function(response){
+            return response.data.data;
+        });
+    };
+
     $scope.saveForm = function () {
+        var form = angular.copy($scope.feed);
+        var range =  $("#velocity_range").data("ionRangeSlider").result;
+        form.minVelocityThreshold = velocityVals[range.from_value];
+        form.maxVelocityThreshold = velocityVals[range.to_value];
+
         $http({
             method : 'POST',
-            url : 'rest/channel/save',
-            data : $scope.channel
+            url : 'rest/feed/save',
+            data : form
         })
         .success(function(data) {
             if (!data.error) {
@@ -481,6 +537,24 @@ app.controller('FeedEditController', function ($scope, $http, $state, $statePara
     $scope.reset = function() {
         $scope.feed = angular.copy($scope.backup);
     };
+
+    var range_from = 0, range_to = 11, i =0;
+
+    for(var key in velocityVals)
+    {
+        range_from = $scope.feed.minVelocityThreshold >= velocityVals[key] ? i : range_from;
+        range_to = $scope.feed.maxVelocityThreshold >= velocityVals[key] ? i : range_to;
+        i++;
+    }
+
+    $("#velocity_range").ionRangeSlider({
+        type: "double",
+        grid: true,
+        values: Object.keys(velocityVals),
+        from: range_from,
+        to: range_to
+    });
+
 });
 ////////////////////////////////////////////////////
 app.controller('RetryController', function($scope, $modalInstance, rejection) {
