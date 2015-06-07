@@ -44,7 +44,7 @@ public class NamedEntityRecognizerServiceTest {
     public void test2() {
         //Set<NamedEntity> n = namedEntityRecognizerService.getNamedEntities("Youth Football Leagues Hope for Boost From NFL Settlement.");
         //Youth/UPPER Football/LOWER Leagues/LOWER Hope/INIT_UPPER for/LOWER Boost/LOWER From/UPPER NFL/O Settlement/LOWER./O
-        Set<NamedEntity> n = namedEntityRecognizerService.getNamedEntities("Youth Football Leagues Hope for Boost From NFL Settlement");
+        Set<NamedEntity> n = namedEntityRecognizerService.getNamedEntities("Joe, John and David Smith were walking in San Francisco, US with John");
 
         System.out.print(n);
     }

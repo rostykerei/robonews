@@ -34,6 +34,16 @@ public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implem
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Feed getByUrl(String url) {
+        return (Feed) getSession()
+                .createQuery("from Feed where url = :url")
+                .setString("url", url)
+                .setMaxResults(1)
+                .uniqueResult();
+    }
+
+    @Override
     @Transactional
     public Feed pollFeedToProcess() {
         Feed feed = (Feed) getSession().

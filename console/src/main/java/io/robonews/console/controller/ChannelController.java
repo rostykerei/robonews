@@ -106,7 +106,7 @@ public class ChannelController {
     }
 
     @RequestMapping(value = "/channel/save", method = RequestMethod.POST)
-    public @ResponseBody DataResponse<Integer> saveChannel(@Valid @RequestBody ChannelForm form,  BindingResult bindingResult) {
+    public @ResponseBody DataResponse<Integer> saveChannel(@Valid @RequestBody ChannelForm form, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             throw new FormBindException(bindingResult);

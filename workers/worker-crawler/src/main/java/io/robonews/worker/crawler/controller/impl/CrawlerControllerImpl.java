@@ -234,6 +234,7 @@ public class CrawlerControllerImpl implements CrawlerController {
         }
         else {
             // Should never happens, but prevents division by 0
+            logger.error("Velocity is zero or negative value: " + velocity);
             return new Date(checkTime.getTime() + 3600000L);
         }
     }

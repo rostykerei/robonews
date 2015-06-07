@@ -52,6 +52,13 @@ public class ChannelDaoTest {
         Channel channel2 = channelDao.getById(id);
         Assert.assertEquals("test-1", channel2.getTitle());
 
+        Channel channel2cn = channelDao.getByCN("test-1.com");
+        Assert.assertEquals("test-1", channel2cn.getTitle());
+
+
+        Channel channel2cnNull = channelDao.getByCN("does-not-exist");
+        Assert.assertNull(channel2cnNull);
+
         channel2.setTitle("test-1-updated");
         channelDao.update(channel2);
 

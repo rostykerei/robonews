@@ -397,6 +397,60 @@ app.controller('MastedataTopicNewController', function ($scope, $state, $http, t
 
 
 ///////////////// FEEDS ////////////////////////////
+app.controller('FeedsDatatable', function ($scope, $timeout, DTOptionsBuilder, DTColumnBuilder, $compile) {
+
+    $scope.reloadData = function() {
+        $scope.dtOptions.reloadData();
+    };
+
+    $scope.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('ajax', {
+            dataSrc: 'data',
+            url: 'rest/feed/list'
+        })
+        .withOption('serverSide', true)
+        .withOption('processing', true)
+        .withOption('search', {
+            "search": $scope.channel ? $scope.channel.canonicalName : ""
+        })
+        .withOption('columnDefs', [
+            {
+                "targets": 0,
+                "data": null,
+                "render": function ( data, type, row ) {
+                    var label = row['video'] ? '<i class="fa fa-file-video-o"></i> ' : '';
+
+                    return label + ' <a ui-sref="feed.details.edit({id: ' + row['id'] +'})">' + row['name'] + '</a>';
+                }
+            },
+            {
+                "targets": 1,
+                "data": null,
+                "render": function ( data, type, row ) {
+                    return '<img src="rest/channel/image/' + row['channelId'] + '" width="16" height="16"/> ' +  row['channelCN'];
+                }
+            },
+            {
+                "targets": 2,
+                "data": null,
+                "render": function ( data, type, row ) {
+                    return '<a href="' + row['url'] + '" target="_blank"><i class="fa fa-external-link"></i> ' + row['url'] + '</a>';
+                }
+            }
+        ])
+        .withOption('fnRowCallback', function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+            $compile(nRow)($scope);
+        }
+    )
+        .withPaginationType('full_numbers');
+
+    $scope.dtColumns = [
+        DTColumnBuilder.newColumn('name').withTitle('Name'),
+        DTColumnBuilder.newColumn('channelCN').withTitle('Channel'),
+        DTColumnBuilder.newColumn('url').withTitle('URL')
+    ];
+});
+
 app.controller('FeedCreatePrefillController', function ($scope, $http, $state, FeedService) {
     $scope.urlForm = {};
 
@@ -445,24 +499,11 @@ app.controller('FeedEditController', function ($scope, $http, $state, $statePara
 
     if ($scope.feed.velocity && $scope.feed.velocity > 0) {
         var v = 1 / $scope.feed.velocity;
-
-        $scope.velocityTxt = "";
-
-        if (v >= 1) {
-            $scope.velocityTxt += Math.floor(v) + "h ";
-        }
-
+        $scope.velocityTxt = (v >= 1) ? Math.floor(v) + "h " : "";
         v = (v - Math.floor(v)) * 60;
-
-        if (v >= 1) {
-            $scope.velocityTxt += Math.floor(v) + "m ";
-        }
-
+        $scope.velocityTxt += (v >= 1) ? Math.floor(v) + "m " : "";
         v = (v - Math.floor(v)) * 60;
-
-        if (v >= 1) {
-            $scope.velocityTxt += Math.floor(v) + "s";
-        }
+        $scope.velocityTxt += (v >= 1) ? Math.floor(v) + "s" : "";
     }
     else {
         $scope.velocityTxt = "N/A";

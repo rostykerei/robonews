@@ -13,6 +13,12 @@ public class Starter {
     public Starter(CrawlerController crawlerController) {
         while (true) {
             crawlerController.execute();
+
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -14,11 +14,11 @@
 
     <import resource="crawlerContext.xml"/>
 
-    <jdbc:initialize-database data-source="dataSource">
+<!--    <jdbc:initialize-database data-source="dataSource">
         <jdbc:script location="classpath:sql/db-schema.sql"/>
         <jdbc:script location="classpath:sql/db-masterdata.sql"/>
         <jdbc:script location="classpath:sql/db-data.sql"/>
-    </jdbc:initialize-database>
+    </jdbc:initialize-database>-->
 
     <bean class="io.robonews.worker.crawler.util.Starter">
         <constructor-arg ref="crawler"/>

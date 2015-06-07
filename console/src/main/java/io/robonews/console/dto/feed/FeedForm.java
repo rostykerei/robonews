@@ -98,6 +98,28 @@ public class FeedForm {
         return form;
     }
 
+    public Feed toFeed() {
+        return updateFeed(new Feed());
+    }
+
+    public Feed updateFeed(Feed feed) {
+        feed.setId(getId());
+        feed.setUrl(getUrl());
+        feed.setName(getName());
+        feed.setLink(getLink());
+        feed.setDescription(getDescription());
+        feed.setAuthor(getAuthor());
+        feed.setCopyright(getCopyright());
+        feed.setImageUrl(getImageUrl());
+        feed.setVideo(isVideo());
+
+        feed.setVelocity(getVelocity());
+        feed.setMinVelocityThreshold(getMinVelocityThreshold());
+        feed.setMaxVelocityThreshold(getMaxVelocityThreshold());
+
+        return feed;
+    }
+
     public int getId() {
         return id;
     }

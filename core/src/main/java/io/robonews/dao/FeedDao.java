@@ -14,6 +14,8 @@ public interface FeedDao extends AbstractDao<Feed, Integer> {
 
     List<Feed> getAll();
 
+    Feed getByUrl(String url);
+
     /**
      * Returns top planned feed and sets inProgressSince = now
      *

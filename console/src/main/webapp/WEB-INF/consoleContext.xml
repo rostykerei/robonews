@@ -32,6 +32,14 @@
         <constructor-arg name="countryDao" ref="countryDao"/>
     </bean>
 
+    <bean id="feedConsoleDao" class="io.robonews.console.dao.hibernate.FeedConsoleDaoHibernate">
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+        <constructor-arg name="feedDao" ref="feedDao"/>
+        <constructor-arg name="channelDao" ref="channelDao"/>
+        <constructor-arg name="areaDao" ref="areaDao"/>
+        <constructor-arg name="topicDao" ref="topicDao"/>
+    </bean>
+
     <!-- Development stuff -->
 
     <beans profile="development">

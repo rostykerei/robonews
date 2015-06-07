@@ -183,7 +183,7 @@
 
     <repositories>
         <repository>
-            <id>spark-releases</id>
+            <id>spark</id>
             <url>http://spark.robonews.io:8081/nexus/content/groups/public</url>
             <releases>
                 <enabled>true</enabled>
@@ -196,28 +196,13 @@
 
     <distributionManagement>
         <repository>
-            <id>spark-releases</id>
+            <id>spark</id>
             <url>http://spark.robonews.io:8081/nexus/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
-            <id>spark-snapshots</id>
+            <id>spark</id>
             <url>http://spark.robonews.io:8081/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
-
-<!--    <distributionManagement>
-        <site>
-            <id>s3.dist.corp.robonews.io</id>
-            <url>s3://dist.corp.robonews.io/site</url>
-        </site>
-        <repository>
-            <id>s3.dist.corp.robonews.io</id>
-            <url>s3://dist.corp.robonews.io/release</url>
-        </repository>
-        <snapshotRepository>
-            <id>s3.dist.corp.robonews.io</id>
-            <url>s3://dist.corp.robonews.io/snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>-->
 
 </project>

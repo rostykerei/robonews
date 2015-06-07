@@ -43,6 +43,7 @@ public class CrawlerDaoImpl implements CrawlerDao {
 
             Story story = new Story();
             story.setAuthor(syndEntry.getAuthor());
+            story.setArea(feed.getArea());
             story.setTopic(feed.getTopic());
             story.setChannel(feed.getChannel());
             story.setCreatedDate(checkTime);

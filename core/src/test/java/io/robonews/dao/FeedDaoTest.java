@@ -124,6 +124,41 @@ public class FeedDaoTest {
     }
 
     @Test
+    public void testGetByUrl() {
+        List<Feed> list = feedDao.getAll();
+        Assert.assertEquals(0, list.size());
+
+        Channel channel = new Channel();
+        channel.setTitle("test-channel-1");
+        channel.setUrl("test-url-1");
+        channel.setCanonicalName("test-1.com");
+        channel.setScale(Channel.Scale.GLOBAL);
+
+        channelDao.create(channel);
+
+        Topic rootTopic = topicDao.createRoot("test-category-1");
+        Area rootArea = areaDao.createRoot("world");
+
+        Feed feed = new Feed();
+        feed.setChannel(channel);
+        feed.setArea(rootArea);
+        feed.setTopic(rootTopic);
+        feed.setUrl("test-url-1");
+        feed.setName("test-feed-1");
+        feed.setLink("test-link-1");
+
+        feedDao.create(feed);
+
+        Feed feed2 = feedDao.getByUrl("test-url-1");
+        Assert.assertEquals(rootArea.getId(), feed2.getArea().getId());
+        Assert.assertEquals(rootTopic.getId(), feed2.getTopic().getId());
+        Assert.assertEquals(channel.getId(), feed2.getChannel().getId());
+
+        Feed feed3 = feedDao.getByUrl("non-existent-url");
+        Assert.assertNull(feed3);
+    }
+
+    @Test
     public void getFeedToProcess() {
         List<Feed> list = feedDao.getAll();
         Assert.assertEquals(0, list.size());
