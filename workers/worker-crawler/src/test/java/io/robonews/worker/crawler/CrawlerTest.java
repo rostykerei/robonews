@@ -4,10 +4,11 @@
  * Copyright (c) 2013-2015 Rosty Kerei.
  * All rights reserved.
  */
-package io.robonews.worker.crawler.controller;
+package io.robonews.worker.crawler;
 
 import io.robonews.dao.FeedDao;
 import io.robonews.domain.Feed;
+import io.robonews.messaging.domain.CrawlMessage;
 import io.robonews.messaging.domain.TagMessage;
 import io.robonews.service.http.HttpRequest;
 import io.robonews.service.http.HttpResponse;
@@ -15,7 +16,6 @@ import io.robonews.service.http.HttpService;
 import io.robonews.service.syndication.SyndicationEntry;
 import io.robonews.service.syndication.SyndicationService;
 import io.robonews.service.syndication.SyndicationServiceParsingException;
-import io.robonews.worker.crawler.controller.impl.CrawlerControllerImpl;
 import io.robonews.worker.crawler.dao.CrawlerDao;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,7 +33,7 @@ import static org.mockito.Mockito.*;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class CrawlerControllerTest {
+public class CrawlerTest {
 
     @Mock
     private FeedDao feedDao;
@@ -51,28 +51,17 @@ public class CrawlerControllerTest {
     private RabbitTemplate messagingTemplate;
 
     @InjectMocks
-    private CrawlerController crawlerController = new CrawlerControllerImpl();
-
-    @Test
-    public void testNoFeed() throws Exception {
-        when(feedDao.pollFeedToProcess()).thenReturn(null);
-
-        crawlerController.execute();
-
-        verify(httpService, times(0)).execute(any(HttpRequest.class));
-        verify(crawlerDao, times(0)).createStory(any(SyndicationEntry.class), any(Feed.class), any(Date.class));
-        verify(messagingTemplate, times(0)).convertAndSend(any(TagMessage.class));
-    }
+    private Crawler crawler = new Crawler();
 
     @Test
     public void testBadUrlFeed() throws Exception {
         Feed feed = new Feed();
         feed.setId(10);
 
-        when(feedDao.pollFeedToProcess()).thenReturn(feed);
+        when(feedDao.getById(10)).thenReturn(feed);
         when(httpService.execute(any(HttpRequest.class))).thenThrow(new IOException());
 
-        crawlerController.execute();
+        crawler.listen(new CrawlMessage(10));
 
         Assert.assertNotNull(feed.getPlannedCheck());
         verify(feedDao).update(feed);
@@ -83,10 +72,10 @@ public class CrawlerControllerTest {
         Feed feed = new Feed();
         feed.setId(10);
 
-        when(feedDao.pollFeedToProcess()).thenReturn(feed);
+        when(feedDao.getById(10)).thenReturn(feed);
         when(httpService.execute(any(HttpRequest.class))).thenReturn(null);
 
-        crawlerController.execute();
+        crawler.listen(new CrawlMessage(10));
 
         Assert.assertNotNull(feed.getPlannedCheck());
         verify(feedDao).update(feed);
@@ -100,14 +89,14 @@ public class CrawlerControllerTest {
         HttpResponse httpResponse = mock(HttpResponse.class);
         when(httpResponse.getHttpStatus()).thenReturn(HttpResponse.STATUS_OK);
 
-        when(feedDao.pollFeedToProcess()).thenReturn(feed);
+        when(feedDao.getById(10)).thenReturn(feed);
         when(httpService.execute(any(HttpRequest.class))).thenReturn(httpResponse);
 
         when(syndicationService.loadFeed(any(InputStream.class))).thenThrow(
             new SyndicationServiceParsingException("test", new Exception())
         );
 
-        crawlerController.execute();
+        crawler.listen(new CrawlMessage(10));
 
         Assert.assertNotNull(feed.getPlannedCheck());
         verify(feedDao).update(feed);
@@ -121,12 +110,12 @@ public class CrawlerControllerTest {
         HttpResponse httpResponse = mock(HttpResponse.class);
         when(httpResponse.getHttpStatus()).thenReturn(HttpResponse.STATUS_OK);
 
-        when(feedDao.pollFeedToProcess()).thenReturn(feed);
+        when(feedDao.getById(10)).thenReturn(feed);
         when(httpService.execute(any(HttpRequest.class))).thenReturn(httpResponse);
 
         when(syndicationService.loadFeed(any(InputStream.class))).thenReturn(null);
 
-        crawlerController.execute();
+        crawler.listen(new CrawlMessage(10));
 
         Assert.assertNotNull(feed.getPlannedCheck());
         verify(feedDao).update(feed);
@@ -140,10 +129,10 @@ public class CrawlerControllerTest {
         HttpResponse httpResponse = mock(HttpResponse.class);
         when(httpResponse.getHttpStatus()).thenReturn(HttpResponse.STATUS_NOT_MODIFIED);
 
-        when(feedDao.pollFeedToProcess()).thenReturn(feed);
+        when(feedDao.getById(10)).thenReturn(feed);
         when(httpService.execute(any(HttpRequest.class))).thenReturn(httpResponse);
 
-        crawlerController.execute();
+        crawler.listen(new CrawlMessage(10));
 
         Assert.assertNotNull(feed.getPlannedCheck());
         verify(feedDao).update(feed);
@@ -157,10 +146,10 @@ public class CrawlerControllerTest {
         HttpResponse httpResponse = mock(HttpResponse.class);
         when(httpResponse.getHttpStatus()).thenReturn(HttpResponse.STATUS_INTERNAL_SERVER_ERROR);
 
-        when(feedDao.pollFeedToProcess()).thenReturn(feed);
+        when(feedDao.getById(10)).thenReturn(feed);
         when(httpService.execute(any(HttpRequest.class))).thenReturn(httpResponse);
 
-        crawlerController.execute();
+        crawler.listen(new CrawlMessage(10));
 
         Assert.assertNotNull(feed.getPlannedCheck());
         verify(feedDao).update(feed);

@@ -4,11 +4,12 @@
  * Copyright (c) 2013-2015 Rosty Kerei.
  * All rights reserved.
  */
-package io.robonews.worker.crawler.controller.impl;
+package io.robonews.worker.crawler;
 
 import io.robonews.dao.FeedDao;
 import io.robonews.domain.Feed;
 import io.robonews.domain.Story;
+import io.robonews.messaging.domain.CrawlMessage;
 import io.robonews.messaging.domain.ImageMessage;
 import io.robonews.messaging.domain.PageMessage;
 import io.robonews.messaging.domain.TagMessage;
@@ -20,7 +21,6 @@ import io.robonews.service.syndication.SyndicationEntry;
 import io.robonews.service.syndication.SyndicationFeed;
 import io.robonews.service.syndication.SyndicationService;
 import io.robonews.service.syndication.SyndicationServiceParsingException;
-import io.robonews.worker.crawler.controller.CrawlerController;
 import io.robonews.worker.crawler.dao.CrawlerDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,13 +28,12 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.scheduling.annotation.Async;
 
 import java.io.IOException;
 import java.util.Date;
 
 
-public class CrawlerControllerImpl implements CrawlerController {
+public class Crawler {
 
     @Autowired
     private FeedDao feedDao;
@@ -60,12 +59,10 @@ public class CrawlerControllerImpl implements CrawlerController {
     @Qualifier("pageMessagingTemplate")
     private RabbitTemplate pageMessaging;
 
-    private Logger logger = LoggerFactory.getLogger(CrawlerControllerImpl.class);
+    private Logger logger = LoggerFactory.getLogger(Crawler.class);
 
-    @Async
-    @Override
-    public void execute() {
-        Feed feed = feedDao.pollFeedToProcess();
+    public void listen(CrawlMessage crawlMessage) {
+        Feed feed = feedDao.getById(crawlMessage.getFeedId());
 
         if (feed != null) {
             processFeed(feed);

@@ -13,6 +13,9 @@ public class CrawlMessage {
 
     private int feedId;
 
+    public CrawlMessage() {
+    }
+
     public CrawlMessage(int feedId) {
         this.feedId = feedId;
     }
