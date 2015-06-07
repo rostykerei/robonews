@@ -28,6 +28,7 @@
         <module>worker-tagger</module>
         <module>worker-image-crawler</module>
         <module>worker-page-crawler</module>
+        <module>worker-dispatcher</module>
     </modules>
 
     <build>

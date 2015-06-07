@@ -82,10 +82,6 @@ public class Feed {
     @Column(name = "httpLastModified")
     private Date httpLastModified;
 
-    @Version
-    @Column(name = "version")
-    private long version;
-
     public String toString() {
         return "Feed: [id: " + getId() + ", name: " + getName() + "]";
     }
@@ -248,13 +244,5 @@ public class Feed {
 
     public void setHttpLastModified(Date httpLastModified) {
         this.httpLastModified = httpLastModified;
-    }
-
-    public long getVersion() {
-        return version;
-    }
-
-    public void setVersion(long version) {
-        this.version = version;
     }
 }

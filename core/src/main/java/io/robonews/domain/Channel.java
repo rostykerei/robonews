@@ -63,10 +63,6 @@ public class Channel {
     @Column(name = "active", nullable = false)
     private boolean active;
 
-    @Version
-    @Column(name = "version")
-    private long version;
-
     @OneToOne(fetch = FetchType.LAZY, targetEntity = ChannelImage.class, mappedBy = "channel", cascade = CascadeType.ALL)
     private ChannelImage image;
 
@@ -175,14 +171,6 @@ public class Channel {
 
     public void setActive(boolean active) {
         this.active = active;
-    }
-
-    public long getVersion() {
-        return version;
-    }
-
-    public void setVersion(long version) {
-        this.version = version;
     }
 
     public ChannelImage getImage() {

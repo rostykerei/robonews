@@ -28,11 +28,6 @@ public class ChannelImage implements Serializable {
     @Column( name = "data" )
     private byte[] data;
 
-    @Version
-    @Column(name = "version")
-    private long version;
-
-
     public Channel getChannel() {
         return channel;
     }
@@ -55,13 +50,5 @@ public class ChannelImage implements Serializable {
 
     public void setData(byte[] picture) {
         this.data = picture;
-    }
-
-    public long getVersion() {
-        return version;
-    }
-
-    public void setVersion(long version) {
-        this.version = version;
     }
 }

@@ -19,6 +19,12 @@
         password="${rabbit.password}"
     />
 
+    <bean id="crawlMessagingTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="exchange" value="crawlExchange"/>
+        <property name="messageConverter" ref="jsonMessageConverter"/>
+    </bean>
+
     <bean id="tagMessagingTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="exchange" value="tagExchange"/>
@@ -39,11 +45,23 @@
 
     <rabbit:admin connection-factory="connectionFactory" />
 
+    <rabbit:queue name="crawlQueue"  durable="true">
+        <rabbit:queue-arguments value-type="java.lang.Long">
+            <entry key="x-message-ttl" value="300000"/>
+        </rabbit:queue-arguments>
+    </rabbit:queue>
+
     <rabbit:queue name="tagQueue"  durable="true"/>
 
     <rabbit:queue name="imageQueue" durable="true"/>
 
     <rabbit:queue name="pageQueue" durable="true"/>
+
+    <rabbit:fanout-exchange name="crawlExchange" durable="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="crawlQueue"/>
+        </rabbit:bindings>
+    </rabbit:fanout-exchange>
 
     <rabbit:fanout-exchange name="tagExchange" durable="true">
         <rabbit:bindings>

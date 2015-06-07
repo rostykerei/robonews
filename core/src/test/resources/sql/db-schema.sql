@@ -71,7 +71,6 @@ CREATE TABLE `channel` (
   `description` varchar(255) DEFAULT NULL,
   `alexaRank` int(10) unsigned NOT NULL DEFAULT '0',
   `active` bit(1) NOT NULL DEFAULT b'1',
-  `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `channel_idx_1` (`canonicalName`),
   KEY `channel_idx_2` (`scale`),
@@ -94,7 +93,6 @@ CREATE TABLE `channel_image` (
   `channelId` int(10) unsigned NOT NULL,
   `typeId` tinyint(3) unsigned NOT NULL,
   `data` blob NOT NULL,
-  `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`channelId`) USING BTREE,
   CONSTRAINT `channel_image_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT `channel_image_fk_2` FOREIGN KEY (`typeId`) REFERENCES `image_type` (`id`) ON UPDATE CASCADE
@@ -147,7 +145,6 @@ CREATE TABLE `feed` (
   `maxVelocityThreshold` double NOT NULL DEFAULT '60',
   `httpLastEtag` varchar(255) DEFAULT NULL,
   `httpLastModified` timestamp NULL DEFAULT NULL,
-  `version` bigint(20) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `feed_idx_1` (`url`),
   KEY `feed_idx_2` (`channelId`),

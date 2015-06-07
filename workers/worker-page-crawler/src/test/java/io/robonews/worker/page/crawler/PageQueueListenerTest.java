@@ -53,12 +53,9 @@ public class PageQueueListenerTest {
 
     @Test
     public void testPageQueueListener() throws Exception {
-        final Date deadline = new Date( new Date().getTime() + 900000L);
-
         PageMessage pageMessage = new PageMessage();
         pageMessage.setPageUrl("http://www.robonews.io/test.html");
         pageMessage.setStoryId(100);
-        pageMessage.setDeadline(deadline);
 
         HttpResponse httpResponse = mock(HttpResponse.class);
 
@@ -85,20 +82,16 @@ public class PageQueueListenerTest {
             public boolean matches(Object argument) {
                 ImageMessage msg = (ImageMessage) argument;
                 return msg.getImageUrl().equals("http://i.robonews.io/image.jpg") &&
-                    msg.getStoryId() == 100 &&
-                    msg.getDeadline().equals(deadline);
+                    msg.getStoryId() == 100;
             }
         }) );
     }
 
     @Test
     public void testPageQueueListener404() throws Exception {
-        final Date deadline = new Date( new Date().getTime() + 900000L);
-
         PageMessage pageMessage = new PageMessage();
         pageMessage.setPageUrl("http://www.robonews.io/test.html");
         pageMessage.setStoryId(100);
-        pageMessage.setDeadline(deadline);
 
         HttpResponse httpResponse = mock(HttpResponse.class);
 
@@ -116,12 +109,9 @@ public class PageQueueListenerTest {
 
     @Test
     public void testPageQueueListenerBlankResponse() throws Exception {
-        final Date deadline = new Date( new Date().getTime() + 900000L);
-
         PageMessage pageMessage = new PageMessage();
         pageMessage.setPageUrl("http://www.robonews.io/test.html");
         pageMessage.setStoryId(100);
-        pageMessage.setDeadline(deadline);
 
         HttpResponse httpResponse = mock(HttpResponse.class);
 
@@ -139,12 +129,9 @@ public class PageQueueListenerTest {
 
     @Test
     public void testPageQueueListenerConnectTimeoutException() throws Exception {
-        final Date deadline = new Date( new Date().getTime() + 900000L);
-
         PageMessage pageMessage = new PageMessage();
         pageMessage.setPageUrl("http://www.robonews.io/test.html");
         pageMessage.setStoryId(100);
-        pageMessage.setDeadline(deadline);
 
         when(httpService.execute(any(HttpRequest.class))).thenThrow(new ConnectTimeoutException("test"));
 
@@ -155,12 +142,9 @@ public class PageQueueListenerTest {
 
     @Test
     public void testPageQueueListenerSocketTimeoutException() throws Exception {
-        final Date deadline = new Date( new Date().getTime() + 900000L);
-
         PageMessage pageMessage = new PageMessage();
         pageMessage.setPageUrl("http://www.robonews.io/test.html");
         pageMessage.setStoryId(100);
-        pageMessage.setDeadline(deadline);
 
         when(httpService.execute(any(HttpRequest.class))).thenThrow(new SocketTimeoutException("test"));
 
@@ -171,12 +155,9 @@ public class PageQueueListenerTest {
 
     @Test
     public void testPageQueueListenerClientProtocolException() throws Exception {
-        final Date deadline = new Date( new Date().getTime() + 900000L);
-
         PageMessage pageMessage = new PageMessage();
         pageMessage.setPageUrl("http://www.robonews.io/test.html");
         pageMessage.setStoryId(100);
-        pageMessage.setDeadline(deadline);
 
         when(httpService.execute(any(HttpRequest.class))).thenThrow(new ClientProtocolException("test"));
 
@@ -187,12 +168,9 @@ public class PageQueueListenerTest {
 
     @Test
     public void testPageQueueListenerContentTooLongException() throws Exception {
-        final Date deadline = new Date( new Date().getTime() + 900000L);
-
         PageMessage pageMessage = new PageMessage();
         pageMessage.setPageUrl("http://www.robonews.io/test.html");
         pageMessage.setStoryId(100);
-        pageMessage.setDeadline(deadline);
 
         when(httpService.execute(any(HttpRequest.class))).thenThrow(new ContentTooLongException("test"));
 
@@ -203,12 +181,9 @@ public class PageQueueListenerTest {
 
     @Test
     public void testPageQueueListenerIOException() throws Exception {
-        final Date deadline = new Date( new Date().getTime() + 900000L);
-
         PageMessage pageMessage = new PageMessage();
         pageMessage.setPageUrl("http://www.robonews.io/test.html");
         pageMessage.setStoryId(100);
-        pageMessage.setDeadline(deadline);
 
         when(httpService.execute(any(HttpRequest.class))).thenThrow(new IOException("test"));
 
@@ -219,12 +194,9 @@ public class PageQueueListenerTest {
 
     @Test
     public void testPageQueueListenerException() throws Exception {
-        final Date deadline = new Date( new Date().getTime() + 900000L);
-
         PageMessage pageMessage = new PageMessage();
         pageMessage.setPageUrl("http://www.robonews.io/test.html");
         pageMessage.setStoryId(100);
-        pageMessage.setDeadline(deadline);
 
         when(httpService.execute(any(HttpRequest.class))).thenThrow(new RuntimeException("test"));
 

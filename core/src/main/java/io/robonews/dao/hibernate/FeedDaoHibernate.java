@@ -11,6 +11,7 @@ import io.robonews.domain.Feed;
 import org.hibernate.LockMode;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -46,26 +47,52 @@ public class FeedDaoHibernate extends AbstractDaoHibernate<Feed, Integer> implem
     @Override
     @Transactional
     public Feed pollFeedToProcess() {
-        Feed feed = (Feed) getSession().
-            createQuery("from Feed f" +
-                    " left join fetch f.area" +
-                    " left join fetch f.topic" +
-                    " left join fetch f.channel" +
-                    " where f.inProcessSince is null" +
-                    " and f.plannedCheck <= :now" +
-                    " order by f.plannedCheck asc").
-            setTimestamp("now", new Date()).
-            setMaxResults(1).
-            setLockMode("f", LockMode.UPGRADE_NOWAIT).
-            uniqueResult();
+        List<Feed> list = pollFeedsToProcess(1);
 
-        if (feed == null) {
+        if (list.size() == 0) {
             return null;
         }
 
-        feed.setInProcessSince(new Date());
-        update(feed);
-        return feed;
+        return list.get(0);
+    }
+
+    @Override
+    @Transactional
+    @SuppressWarnings("unchecked")
+    public List<Feed> pollFeedsToProcess(int num) {
+        Date now = new Date();
+
+        List<Feed> feeds = getSession().
+                createQuery("from Feed f" +
+                        " left join fetch f.area" +
+                        " left join fetch f.topic" +
+                        " left join fetch f.channel" +
+                        " where f.inProcessSince is null" +
+                        " and f.plannedCheck <= :now" +
+                        " order by f.plannedCheck asc").
+                setTimestamp("now", now).
+                setMaxResults(num).
+                setLockMode("f", LockMode.UPGRADE_NOWAIT).
+                list();
+
+        if (feeds.isEmpty()) {
+            return feeds;
+        }
+
+        List<Integer> ids = new ArrayList<>();
+        for (Feed feed : feeds) {
+            feed.setInProcessSince(now);
+            ids.add(feed.getId());
+        }
+
+        getSession().
+                createQuery("update Feed set inProcessSince = :now " +
+                        "where id in (:ids)")
+                .setTimestamp("now", now)
+                .setParameterList("ids", ids)
+                .executeUpdate();
+
+        return feeds;
     }
 
     @Override

@@ -91,7 +91,6 @@ public class PageQueueListener {
             ImageMessage imageMessage = new ImageMessage();
             imageMessage.setStoryId(message.getStoryId());
             imageMessage.setImageUrl(imageUrl);
-            imageMessage.setDeadline(message.getDeadline());
 
             imageMessaging.convertAndSend(imageMessage);
         }

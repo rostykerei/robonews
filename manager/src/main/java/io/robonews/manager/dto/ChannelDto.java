@@ -26,9 +26,6 @@ public class ChannelDto {
     @Size(max = 255, message = "Description has to be less than 255 characters long")
     private String description;
 
-    @NotNull
-    private long version;
-
     public ChannelDto() {
         super();
     }
@@ -38,7 +35,6 @@ public class ChannelDto {
         setName(channel.getTitle());
         setUrl(channel.getUrl());
         setDescription(channel.getDescription());
-        setVersion(channel.getVersion());
     }
 
     public Channel toChannel() {
@@ -47,7 +43,6 @@ public class ChannelDto {
         channel.setTitle(getName());
         channel.setUrl(getUrl());
         channel.setDescription(getDescription());
-        channel.setVersion(getVersion());
 
         return channel;
     }
@@ -82,13 +77,5 @@ public class ChannelDto {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public long getVersion() {
-        return version;
-    }
-
-    public void setVersion(long version) {
-        this.version = version;
     }
 }

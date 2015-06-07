@@ -107,25 +107,22 @@ public class CrawlerControllerImpl implements CrawlerController {
 
                                 newStories++;
 
-                                // TODO
-                                Date processingDeadline = new Date( new Date().getTime() + 900000L );
-
                                 try {
-                                    sendTagMessage(syndEntry, story, processingDeadline);
+                                    sendTagMessage(syndEntry, story);
                                 }
                                 catch (RuntimeException e) {
                                     logger.warn("Cannot send tagMessage: ", e);
                                 }
 
                                 try {
-                                    sendImageMessage(syndEntry, story, processingDeadline);
+                                    sendImageMessage(syndEntry, story);
                                 }
                                 catch (RuntimeException e) {
                                     logger.warn("Cannot send imageMessage: ", e);
                                 }
 
                                 try {
-                                    sendPageMessage(story, processingDeadline);
+                                    sendPageMessage(story);
                                 }
                                 catch (RuntimeException e) {
                                     logger.warn("Cannot send pageMessage: ", e);
@@ -239,10 +236,9 @@ public class CrawlerControllerImpl implements CrawlerController {
         }
     }
 
-    private void sendTagMessage(SyndicationEntry syndEntry, Story story, Date processingDeadline) {
+    private void sendTagMessage(SyndicationEntry syndEntry, Story story) {
         TagMessage message = new TagMessage();
         message.setStoryId(story.getId());
-        message.setDeadline(processingDeadline);
 
         if (syndEntry.getMediaKeywords() != null && syndEntry.getMediaKeywords().size() > 0) {
             message.setFoundKeywords(
@@ -255,7 +251,7 @@ public class CrawlerControllerImpl implements CrawlerController {
         tagMessaging.convertAndSend(message);
     }
 
-    private void sendImageMessage(SyndicationEntry syndEntry, Story story, Date processingDeadline) {
+    private void sendImageMessage(SyndicationEntry syndEntry, Story story) {
         if (syndEntry.getMediaImages() == null || syndEntry.getMediaImages().size() < 1) {
             return;
         }
@@ -264,17 +260,15 @@ public class CrawlerControllerImpl implements CrawlerController {
             ImageMessage message = new ImageMessage();
             message.setStoryId(story.getId());
             message.setImageUrl(imageUrl);
-            message.setDeadline(processingDeadline);
 
             imageMessaging.convertAndSend(message);
         }
     }
 
-    private void sendPageMessage(Story story, Date processingDeadline) {
+    private void sendPageMessage(Story story) {
         PageMessage pageMessage = new PageMessage();
         pageMessage.setStoryId(story.getId());
         pageMessage.setPageUrl(story.getLink());
-        pageMessage.setDeadline(processingDeadline);
 
         pageMessaging.convertAndSend(pageMessage);
     }
