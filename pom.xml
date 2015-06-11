@@ -14,7 +14,7 @@
 
     <groupId>io.robonews</groupId>
     <artifactId>root-pom</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2-SNAPSHOT</version>
 
     <name>Robonews.io</name>
 
