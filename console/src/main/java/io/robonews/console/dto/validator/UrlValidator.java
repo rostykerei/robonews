@@ -17,6 +17,8 @@ public class UrlValidator implements ConstraintValidator<Url, String> {
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        return io.robonews.service.text.tools.UrlValidator.isValid(s);
+        return s == null || s.isEmpty() || io.robonews.service.text.tools.UrlValidator.isValid(s);
+
+
     }
 }

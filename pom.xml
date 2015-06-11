@@ -14,9 +14,12 @@
 
     <groupId>io.robonews</groupId>
     <artifactId>root-pom</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
     <name>Robonews.io</name>
+
+    <description>Robonews.io</description>
+    <url>http://www.robonews.io/</url>
 
     <developers>
         <developer>
@@ -31,6 +34,20 @@
             </roles>
         </developer>
     </developers>
+
+    <inceptionYear>2013</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>(C) Robonews.io</name>
+            <comments>Copyright (c) 2013-2015 Rosty Kerei.</comments>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>Robonews.io</name>
+        <url>http://www.robonews.io/</url>
+    </organization>
 
     <modules>
         <module>core</module>
@@ -53,14 +70,6 @@
     </properties>
 
     <build>
-<!--        <extensions>
-            <extension>
-                <groupId>org.kuali.maven.wagons</groupId>
-                <artifactId>maven-s3-wagon</artifactId>
-                <version>1.2.1</version>
-            </extension>
-        </extensions>-->
-
         <plugins>
 
             <plugin>
@@ -76,7 +85,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.4</version>
             </plugin>
 
             <plugin>
@@ -103,6 +112,18 @@
                         <phase>generate-sources</phase>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.4</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.wagon</groupId>
+                        <artifactId>wagon-webdav-jackrabbit</artifactId>
+                        <version>2.6</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
@@ -203,6 +224,10 @@
             <id>spark</id>
             <url>http://spark.robonews.io:8081/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
+        <site>
+            <id>spark</id>
+            <url>dav:http://spark.robonews.io:8081/nexus/content/sites/site</url>
+        </site>
     </distributionManagement>
 
 </project>

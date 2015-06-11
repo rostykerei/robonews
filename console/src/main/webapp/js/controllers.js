@@ -133,6 +133,9 @@ app.controller('ChannelEditController', function ($scope, $http, $state, Channel
 
 
     $scope.saveForm = function () {
+        $('.help-block').html("");
+        $('.form-group').removeClass('has-error');
+
         $http({
             method : 'POST',
             url : 'rest/channel/save',
@@ -540,6 +543,9 @@ app.controller('FeedEditController', function ($scope, $http, $state, $statePara
         var range =  $("#velocity_range").data("ionRangeSlider").result;
         form.minVelocityThreshold = velocityVals[range.from_value];
         form.maxVelocityThreshold = velocityVals[range.to_value];
+
+        $('.help-block').html("");
+        $('.form-group').removeClass('has-error');
 
         $http({
             method : 'POST',

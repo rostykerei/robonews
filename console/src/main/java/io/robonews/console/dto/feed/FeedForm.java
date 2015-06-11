@@ -11,14 +11,13 @@ import io.robonews.domain.Feed;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FeedForm {
-
-    private static Format DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     private int id;
 
@@ -33,7 +32,7 @@ public class FeedForm {
     @Min(1)
     private int topicId;
 
-    @Url
+    @Size(min = 6, max = 255) @Url
     private String url;
 
     @Size(min = 1, max = 255)

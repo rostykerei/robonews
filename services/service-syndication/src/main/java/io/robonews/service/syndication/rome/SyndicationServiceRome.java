@@ -22,7 +22,7 @@ import java.io.InputStream;
 public class SyndicationServiceRome implements SyndicationService {
 
     @Override
-    public SyndicationFeed loadFeed(InputStream inputStream) throws SyndicationServiceException, IOException {
+    public SyndicationFeed loadFeed(InputStream inputStream) throws IOException {
         try {
             SyndFeedInput syndFeedInput = new SyndFeedInput();
             syndFeedInput.setXmlHealerOn(true);
@@ -33,7 +33,7 @@ public class SyndicationServiceRome implements SyndicationService {
         catch (ParsingFeedException exception) {
             throw new SyndicationServiceParsingException(exception.getMessage(), exception.getCause());
         }
-        catch (FeedException exception) {
+        catch (Exception exception) {
             throw new SyndicationServiceException(exception.getMessage(), exception.getCause());
         }
     }

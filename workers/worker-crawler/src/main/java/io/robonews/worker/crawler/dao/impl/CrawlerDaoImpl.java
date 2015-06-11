@@ -7,6 +7,7 @@
 package io.robonews.worker.crawler.dao.impl;
 
 import io.robonews.dao.StoryDao;
+import io.robonews.domain.Area;
 import io.robonews.domain.Feed;
 import io.robonews.domain.Story;
 import io.robonews.domain.Topic;
@@ -62,11 +63,20 @@ public class CrawlerDaoImpl implements CrawlerDao {
     }
 
     private void updateExistentStory(Story oldStory, Feed newFeed) {
+        Area oldArea = oldStory.getArea();
+        Area newArea = newFeed.getArea();
 
         Topic oldTopic = oldStory.getTopic();
         Topic newTopic = newFeed.getTopic();
 
         boolean updated = false;
+
+        if (newArea.getId() != newTopic.getId()) {
+            if (newArea.getLevel() > oldArea.getLevel()) {
+                oldStory.setArea(newArea);
+                updated = true;
+            }
+        }
 
         if (oldTopic.getId() != newTopic.getId()) {
             if (newTopic.isPriority() == oldTopic.isPriority()) {

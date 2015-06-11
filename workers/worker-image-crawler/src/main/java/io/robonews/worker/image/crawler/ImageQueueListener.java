@@ -27,6 +27,7 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.imageio.ImageIO;
@@ -41,6 +42,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 public class ImageQueueListener {
 
@@ -58,6 +60,9 @@ public class ImageQueueListener {
 
     @Autowired
     private StorageService storageService;
+
+    @Value("#{'${workerImageCrawler.imageSizes}'.split(',')}")
+    private List<Integer> imageSizes;
 
     private Logger logger = LoggerFactory.getLogger(ImageQueueListener.class);
 
@@ -158,16 +163,10 @@ public class ImageQueueListener {
                 return;
             }
 
-            if (image.getWidth() >= 750 && image.getRatio() >= 1.333) {
-                resizeAndUpload(image, imageFile, 750);
-            }
-
-            if (image.getWidth() >= 360) {
-                resizeAndUpload(image, imageFile, 360);
-            }
-
-            if (image.getWidth() >= 165) {
-                resizeAndUpload(image, imageFile, 165);
+            for (Integer size : imageSizes) {
+                if (image.getWidth() >= size) {
+                    resizeAndUpload(image, imageFile, size);
+                }
             }
         }
         finally {

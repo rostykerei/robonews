@@ -7,10 +7,7 @@
 package io.robonews.worker.crawler.dao;
 
 import io.robonews.dao.StoryDao;
-import io.robonews.domain.Channel;
-import io.robonews.domain.Feed;
-import io.robonews.domain.Story;
-import io.robonews.domain.Topic;
+import io.robonews.domain.*;
 import io.robonews.service.syndication.SyndicationEntry;
 import io.robonews.service.syndication.impl.SyndicationEntryImpl;
 import io.robonews.worker.crawler.dao.impl.CrawlerDaoImpl;
@@ -93,17 +90,23 @@ public class CrawlerDaoTest {
         newTopic.setLevel(20);
         newTopic.setPriority(true);
 
+        Area area = new Area();
+        area.setId(1);
+        area.setLevel(1);
+
         Feed newFeed = new Feed();
         newFeed.setTopic(newTopic);
         newFeed.setVideo(true);
+        newFeed.setArea(area);
 
         Story story = new Story();
         story.setTopic(oldTopic);
+        story.setArea(area);
         story.setVideo(false);
 
         when(storyDao.getByGuid(any(Channel.class), eq("test-unique-guid"))).thenReturn(story);
 
-        Story storyResult = crawlerDao.createStory(syndEntry, newFeed, new Date());
+        crawlerDao.createStory(syndEntry, newFeed, new Date());
 
         verify(storyDao).update(story);
         verify(storyDao, times(0)).create(any(Story.class));
@@ -131,17 +134,23 @@ public class CrawlerDaoTest {
         newTopic.setLevel(5);
         newTopic.setPriority(true);
 
+        Area area = new Area();
+        area.setId(1);
+        area.setLevel(1);
+
         Feed newFeed = new Feed();
         newFeed.setTopic(newTopic);
         newFeed.setVideo(true);
+        newFeed.setArea(area);
 
         Story story = new Story();
         story.setTopic(oldTopic);
         story.setVideo(false);
+        story.setArea(area);
 
         when(storyDao.getByGuid(any(Channel.class), eq("test-unique-guid"))).thenReturn(story);
 
-        Story storyResult = crawlerDao.createStory(syndEntry, newFeed, new Date());
+        crawlerDao.createStory(syndEntry, newFeed, new Date());
 
         verify(storyDao).update(story);
         verify(storyDao, times(0)).create(any(Story.class));
@@ -150,4 +159,84 @@ public class CrawlerDaoTest {
         Assert.assertEquals(newTopic.getId(), story.getTopic().getId());
     }
 
+    @Test
+    public void testCreateExistentSameArea() {
+        SyndicationEntry syndEntry = new SyndicationEntryImpl();
+        syndEntry.setTitle("story-title");
+        syndEntry.setLink("http://www.robonews.io/index.html");
+        syndEntry.setGuid("test-unique-guid");
+        syndEntry.setPubDate(new Date());
+        syndEntry.setDescription("story-description");
+
+        Topic topic = new Topic();
+        topic.setId(1);
+        topic.setLevel(10);
+        topic.setPriority(false);
+
+        Area area = new Area();
+        area.setId(1);
+        area.setLevel(1);
+
+        Feed newFeed = new Feed();
+        newFeed.setTopic(topic);
+        newFeed.setVideo(true);
+        newFeed.setArea(area);
+
+        Story story = new Story();
+        story.setTopic(topic);
+        story.setVideo(false);
+        story.setArea(area);
+
+        when(storyDao.getByGuid(any(Channel.class), eq("test-unique-guid"))).thenReturn(story);
+
+        crawlerDao.createStory(syndEntry, newFeed, new Date());
+
+        verify(storyDao).update(story);
+        verify(storyDao, times(0)).create(any(Story.class));
+
+        Assert.assertEquals(area.getId(), story.getArea().getId());
+    }
+
+    @Test
+    public void testCreateExistentDetailedArea() {
+        SyndicationEntry syndEntry = new SyndicationEntryImpl();
+        syndEntry.setTitle("story-title");
+        syndEntry.setLink("http://www.robonews.io/index.html");
+        syndEntry.setGuid("test-unique-guid");
+        syndEntry.setPubDate(new Date());
+        syndEntry.setDescription("story-description");
+
+        Topic topic = new Topic();
+        topic.setId(1);
+        topic.setLevel(10);
+        topic.setPriority(false);
+
+        Area area1 = new Area();
+        area1.setId(1);
+        area1.setLevel(1);
+
+        Area area2 = new Area();
+        area2.setId(2);
+        area2.setLevel(2);
+
+        Feed newFeed = new Feed();
+        newFeed.setTopic(topic);
+        newFeed.setVideo(true);
+        newFeed.setArea(area2);
+
+        Story story = new Story();
+        story.setTopic(topic);
+        story.setVideo(false);
+        story.setArea(area1);
+
+        when(storyDao.getByGuid(any(Channel.class), eq("test-unique-guid"))).thenReturn(story);
+
+        crawlerDao.createStory(syndEntry, newFeed, new Date());
+
+        verify(storyDao).update(story);
+        verify(storyDao, times(0)).create(any(Story.class));
+
+        Assert.assertTrue(story.isVideo());
+        Assert.assertEquals(area2.getId(), story.getArea().getId());
+    }
 }
