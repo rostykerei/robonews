@@ -83,12 +83,6 @@
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.4</version>
-            </plugin>
-
-            <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
                 <version>2.6</version>
@@ -205,7 +199,7 @@
     <repositories>
         <repository>
             <id>spark</id>
-            <url>http://spark.robonews.io:8081/nexus/content/groups/public</url>
+            <url>https://spark.robonews.io:8443/nexus/content/groups/public</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -218,15 +212,15 @@
     <distributionManagement>
         <repository>
             <id>spark</id>
-            <url>http://spark.robonews.io:8081/nexus/content/repositories/releases</url>
+            <url>https://spark.robonews.io:8443/nexus/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
             <id>spark</id>
-            <url>http://spark.robonews.io:8081/nexus/content/repositories/snapshots</url>
+            <url>https://spark.robonews.io:8443/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
             <id>spark</id>
-            <url>dav:http://spark.robonews.io:8081/nexus/content/sites/site</url>
+            <url>dav:https://spark.robonews.io:8443/nexus/content/sites/site</url>
         </site>
     </distributionManagement>
 

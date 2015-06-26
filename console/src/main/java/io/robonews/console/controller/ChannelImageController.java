@@ -192,11 +192,13 @@ public class ChannelImageController {
                         "rnews:thumbnailurl".equalsIgnoreCase(e.getKey()) ||
                         "twitter:image".equalsIgnoreCase(e.getKey()) ||
                         "twitter:image:src".equalsIgnoreCase(e.getKey()) ||
+                        "msapplication-TileImage".equalsIgnoreCase(e.getKey()) ||
                         "msapplication-square70x70logo".equalsIgnoreCase(e.getKey()) ||
                         "msapplication-square150x150logo".equalsIgnoreCase(e.getKey()) ||
                         "msapplication-square310x310logo".equalsIgnoreCase(e.getKey()) ||
                         "icon".equalsIgnoreCase(e.getKey()) ||
                         "shortcut icon".equalsIgnoreCase(e.getKey()) ||
+                        "apple-touch-icon-precomposed".equalsIgnoreCase(e.getKey()) ||
                         "apple-touch-icon".equalsIgnoreCase(e.getKey())
                     )
                     .map(e -> {

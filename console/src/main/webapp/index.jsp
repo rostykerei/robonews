@@ -145,6 +145,7 @@
 <script src="js/services.js"></script>
 <script src="js/controllers.js"></script>
 
+<h1>VERSION = ${project.version}</h1>
 
 </body>
 </html>

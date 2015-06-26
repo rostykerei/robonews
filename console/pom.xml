@@ -37,6 +37,56 @@
                     </systemProperties>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>rpm-maven-plugin</artifactId>
+                <version>2.1.3</version>
+                <executions>
+                    <execution>
+                        <id>attach-rpm</id>
+                        <goals>
+                            <goal>attached-rpm</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <name>robonews-console</name>
+                    <license>Copyright (c) 2013-2015 Rosty Kerei</license>
+                    <description>${project.name}</description>
+                    <group>Applications/System</group>
+                    <packager>Robonews.io</packager>
+                    <prefix>/usr/local/robonews</prefix>
+                    <needarch>false</needarch>
+                    <defaultGroupname>robonews</defaultGroupname>
+                    <defaultUsername>robonews</defaultUsername>
+                    <mappings>
+                        <mapping>
+                            <directory>/etc/robonews/${project.artifactId}</directory>
+                            <filemode>0660</filemode>
+                            <configuration>noreplace</configuration>
+                            <sources>
+                                <source>
+                                    <location>src/test/resources</location>
+                                    <includes>
+                                        <include>*.properties</include>
+                                    </includes>
+                                    <filter>false</filter>
+                                </source>
+                            </sources>
+                        </mapping>
+                        <mapping>
+                            <directory>/usr/local/robonews/console</directory>
+                            <filemode>0664</filemode>
+                            <sources>
+                                <source>
+                                    <location>${project.build.directory}/${project.artifactId}-${project.version}</location>
+                                </source>
+                            </sources>
+                        </mapping>
+                    </mappings>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

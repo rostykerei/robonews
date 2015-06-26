@@ -224,6 +224,7 @@ public class Story {
     }
 
     private void updateContentHash() {
+        // Todo, change it to soundex algorithm or so...
         this.contentHash = DigestUtils.sha1(
             new StringBuilder().append(getTitle()).append(getDescription()).toString()
         );
