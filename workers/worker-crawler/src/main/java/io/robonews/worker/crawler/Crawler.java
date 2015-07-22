@@ -9,10 +9,7 @@ package io.robonews.worker.crawler;
 import io.robonews.dao.FeedDao;
 import io.robonews.domain.Feed;
 import io.robonews.domain.Story;
-import io.robonews.messaging.domain.CrawlMessage;
-import io.robonews.messaging.domain.ImageMessage;
-import io.robonews.messaging.domain.PageMessage;
-import io.robonews.messaging.domain.TagMessage;
+import io.robonews.messaging.domain.*;
 import io.robonews.service.http.HttpRequest;
 import io.robonews.service.http.HttpResponse;
 import io.robonews.service.http.HttpService;
@@ -58,6 +55,10 @@ public class Crawler {
     @Autowired
     @Qualifier("pageMessagingTemplate")
     private RabbitTemplate pageMessaging;
+
+    @Autowired
+    @Qualifier("solrCreateMessagingTemplate")
+    private RabbitTemplate solrCreateMessaging;
 
     private Logger logger = LoggerFactory.getLogger(Crawler.class);
 
@@ -123,6 +124,13 @@ public class Crawler {
                                 }
                                 catch (RuntimeException e) {
                                     logger.warn("Cannot send pageMessage: ", e);
+                                }
+
+                                try {
+                                    sendSolrCreateMessage(story);
+                                }
+                                catch (RuntimeException e) {
+                                    logger.warn("Cannot send solrCreateMessage: ", e);
                                 }
                             }
                             catch (DataIntegrityViolationException e){
@@ -239,9 +247,9 @@ public class Crawler {
 
         if (syndEntry.getMediaKeywords() != null && syndEntry.getMediaKeywords().size() > 0) {
             message.setFoundKeywords(
-                syndEntry.getMediaKeywords().toArray(
-                    new String[syndEntry.getMediaKeywords().size()]
-                )
+                    syndEntry.getMediaKeywords().toArray(
+                            new String[syndEntry.getMediaKeywords().size()]
+                    )
             );
         }
 
@@ -268,5 +276,12 @@ public class Crawler {
         pageMessage.setPageUrl(story.getLink());
 
         pageMessaging.convertAndSend(pageMessage);
+    }
+
+    private void sendSolrCreateMessage(Story story) {
+        SolrCreateMessage solrCreateMessage = new SolrCreateMessage();
+        solrCreateMessage.setStoryId(story.getId());
+
+        solrCreateMessaging.convertAndSend(solrCreateMessage);
     }
 }

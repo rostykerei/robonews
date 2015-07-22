@@ -77,7 +77,7 @@
                         </mapping>
                         <mapping>
                             <directory>/usr/local/robonews/console</directory>
-                            <filemode>0664</filemode>
+                            <filemode>0755</filemode>
                             <sources>
                                 <source>
                                     <location>${project.build.directory}/${project.artifactId}-${project.version}</location>

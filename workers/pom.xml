@@ -29,6 +29,7 @@
         <module>worker-image-crawler</module>
         <module>worker-page-crawler</module>
         <module>worker-dispatcher</module>
+        <module>worker-solr-agent</module>
     </modules>
 
     <build>

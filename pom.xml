@@ -57,6 +57,7 @@
         <module>workers</module>
         <module>services</module>
         <module>console</module>
+        <module>solr</module>
     </modules>
 
     <packaging>pom</packaging>
