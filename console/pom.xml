@@ -86,6 +86,37 @@
                             </sources>
                         </mapping>
                     </mappings>
+                    <preinstallScriptlet>
+                        <script>
+                            echo "Installing robonews-${project.artifactId}..."
+                            groupadd -f -r robonews 2> /dev/null || :
+                            useradd -r -m -c "Robonews.io user" -g robonews robonews 2> /dev/null || :
+                        </script>
+                    </preinstallScriptlet>
+                    <postinstallScriptlet>
+                        <script>
+                            chmod 0750 /etc/robonews/${project.artifactId}/
+                            chkconfig --add robonews-${project.artifactId}
+                        </script>
+                    </postinstallScriptlet>
+                    <preremoveScriptlet>
+                        <script>
+                            if [ "$1" = 0 ] ; then
+                            echo "Removing robonews-${project.artifactId}..."
+                            service robonews-${project.artifactId} stop
+                            chkconfig --del robonews-${project.artifactId}
+                            fi
+                            exit 0
+                        </script>
+                    </preremoveScriptlet>
+                    <postremoveScriptlet>
+                        <script>
+                            if [ "$1" -ge 1 ]; then
+                            service robonews-${project.artifactId} restart
+                            fi
+                            exit 0
+                        </script>
+                    </postremoveScriptlet>
                 </configuration>
             </plugin>
         </plugins>
