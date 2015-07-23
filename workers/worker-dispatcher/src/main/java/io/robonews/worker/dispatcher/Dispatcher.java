@@ -59,7 +59,9 @@ public class Dispatcher {
 
     @Scheduled(fixedDelayString = "${dispatcher.crawlInterval}")
     public void dispatchCrawl() {
-        List<Feed> feedList = feedDao.pollFeedsToProcess(10);
+        List<Feed> feedList = feedDao.pollFeedsToProcess(feedsToCrawl);
+
+        logger.debug(feedList.size() + " feeds to be crawled");
 
         for (Feed feed : feedList) {
             CrawlMessage message = new CrawlMessage(feed.getId());

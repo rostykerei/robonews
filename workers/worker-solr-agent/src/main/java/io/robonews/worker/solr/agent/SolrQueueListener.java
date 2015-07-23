@@ -16,6 +16,7 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 
@@ -26,6 +27,9 @@ public class SolrQueueListener {
 
     @Autowired
     private SolrClient solrClient;
+
+    @Value("${solr.commitWithin}")
+    private int commitWithin;
 
     private Logger logger = LoggerFactory.getLogger(SolrQueueListener.class);
 
@@ -71,8 +75,7 @@ public class SolrQueueListener {
                         .toArray(String[]::new)
         );
 
-        solrClient.addBean(storyDocument);
-        solrClient.commit();
+        solrClient.addBean(storyDocument, commitWithin);
     }
 
 }

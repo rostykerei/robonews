@@ -57,9 +57,10 @@
                     <group>Applications/System</group>
                     <packager>Robonews.io</packager>
                     <prefix>/usr/local/robonews</prefix>
-                    <needarch>false</needarch>
+                    <needarch>noarch</needarch>
                     <defaultGroupname>robonews</defaultGroupname>
                     <defaultUsername>robonews</defaultUsername>
+                    <targetOS>linux</targetOS>
                     <mappings>
                         <mapping>
                             <directory>/etc/robonews/${project.artifactId}</directory>
