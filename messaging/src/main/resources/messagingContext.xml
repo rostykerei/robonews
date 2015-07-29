@@ -65,14 +65,6 @@
 
     <rabbit:queue name="solrCreateQueue" durable="true"/>
 
-    <rabbit:queue name="solrCreateDelayQueue" durable="true">
-        <rabbit:queue-arguments>
-            <entry key="x-message-ttl" value="60000" value-type="java.lang.Long"/>
-            <entry key="x-dead-letter-routing-key" value="solrCreateQueue"/>
-            <entry key="x-dead-letter-exchange" value="solrCreateFinalExchange"/>
-        </rabbit:queue-arguments>
-    </rabbit:queue>
-
     <rabbit:fanout-exchange name="crawlExchange" durable="true">
         <rabbit:bindings>
             <rabbit:binding queue="crawlQueue"/>
@@ -98,12 +90,6 @@
     </rabbit:fanout-exchange>
 
     <rabbit:fanout-exchange name="solrCreateExchange" durable="true">
-        <rabbit:bindings>
-            <rabbit:binding queue="solrCreateDelayQueue"/>
-        </rabbit:bindings>
-    </rabbit:fanout-exchange>
-
-    <rabbit:fanout-exchange name="solrCreateFinalExchange" durable="true">
         <rabbit:bindings>
             <rabbit:binding queue="solrCreateQueue"/>
         </rabbit:bindings>

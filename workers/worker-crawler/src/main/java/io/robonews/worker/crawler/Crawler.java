@@ -56,10 +56,6 @@ public class Crawler {
     @Qualifier("pageMessagingTemplate")
     private RabbitTemplate pageMessaging;
 
-    @Autowired
-    @Qualifier("solrCreateMessagingTemplate")
-    private RabbitTemplate solrCreateMessaging;
-
     private Logger logger = LoggerFactory.getLogger(Crawler.class);
 
     public void listen(CrawlMessage crawlMessage) {
@@ -124,13 +120,6 @@ public class Crawler {
                                 }
                                 catch (RuntimeException e) {
                                     logger.warn("Cannot send pageMessage: ", e);
-                                }
-
-                                try {
-                                    sendSolrCreateMessage(story);
-                                }
-                                catch (RuntimeException e) {
-                                    logger.warn("Cannot send solrCreateMessage: ", e);
                                 }
                             }
                             catch (DataIntegrityViolationException e){
@@ -276,12 +265,5 @@ public class Crawler {
         pageMessage.setPageUrl(story.getLink());
 
         pageMessaging.convertAndSend(pageMessage);
-    }
-
-    private void sendSolrCreateMessage(Story story) {
-        SolrCreateMessage solrCreateMessage = new SolrCreateMessage();
-        solrCreateMessage.setStoryId(story.getId());
-
-        solrCreateMessaging.convertAndSend(solrCreateMessage);
     }
 }

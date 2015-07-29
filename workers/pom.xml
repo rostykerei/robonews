@@ -30,6 +30,7 @@
         <module>worker-page-crawler</module>
         <module>worker-dispatcher</module>
         <module>worker-solr-agent</module>
+        <module>worker-editor</module>
     </modules>
 
     <build>

@@ -11,6 +11,7 @@ import io.robonews.dao.TagDao;
 import io.robonews.domain.Story;
 import io.robonews.domain.StoryTag;
 import io.robonews.domain.Tag;
+import io.robonews.messaging.domain.SolrCreateMessage;
 import io.robonews.messaging.domain.TagMessage;
 import io.robonews.service.freebase.FreebaseService;
 import io.robonews.service.freebase.exception.FreebaseServiceException;
@@ -19,7 +20,9 @@ import io.robonews.service.nlp.NamedEntityRecognizerService;
 import io.robonews.service.nlp.impl.NamedEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.util.StringUtils;
 
@@ -39,6 +42,10 @@ public class TagQueueListener {
 
     @Autowired
     private NamedEntityRecognizerService namedEntityRecognizerService;
+
+    @Autowired
+    @Qualifier("solrCreateMessagingTemplate")
+    private RabbitTemplate solrCreateMessaging;
 
     private ConcurrentHashMap<String, Object> locks = new ConcurrentHashMap<String, Object>();
 
@@ -95,6 +102,16 @@ public class TagQueueListener {
             catch (RuntimeException e) {
                 logger.warn("Cannot process named entity", e);
             }
+        }
+
+        try {
+            SolrCreateMessage solrCreateMessage = new SolrCreateMessage();
+            solrCreateMessage.setStoryId(story.getId());
+
+            solrCreateMessaging.convertAndSend(solrCreateMessage);
+        }
+        catch (RuntimeException e) {
+            logger.warn("Cannot send solrCreateMessage: ", e);
         }
     }
 
