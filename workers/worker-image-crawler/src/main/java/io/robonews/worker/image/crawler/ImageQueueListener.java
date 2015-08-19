@@ -78,7 +78,7 @@ public class ImageQueueListener {
             logger.info("Failed to process image: " + message.getImageUrl() + " error: " + e.getMessage());
         }
         catch (Exception e) {
-            logger.info("Failed to process image", e);
+            logger.error("Failed to process image", e);
         }
     }
 

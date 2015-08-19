@@ -6,10 +6,10 @@
  */
 package io.robonews.dao;
 
-import io.robonews.domain.Channel;
-import io.robonews.domain.Story;
-import io.robonews.domain.StoryImage;
-import io.robonews.domain.StoryTag;
+import io.robonews.domain.*;
+
+import java.util.Date;
+import java.util.List;
 
 public interface StoryDao extends AbstractDao<Story, Long> {
 
@@ -21,4 +21,5 @@ public interface StoryDao extends AbstractDao<Story, Long> {
 
     void saveStoryImage(StoryImage storyImage);
 
+    List<Story> getFeedStories(int feedId, Date dateFrom, Date dateTo, int limit);
 }

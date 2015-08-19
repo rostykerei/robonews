@@ -67,6 +67,8 @@ public class FeedDaoTest {
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
+        feed.setLastCheck(new Date(0L));
+        feed.setPlannedCheck(new Date());
 
         feedDao.createOrUpdate(feed);
 
@@ -80,6 +82,8 @@ public class FeedDaoTest {
         feed2.setUrl("test-url-2");
         feed2.setName("test-feed-2");
         feed2.setLink("test-link-2");
+        feed2.setLastCheck(new Date(0L));
+        feed2.setPlannedCheck(new Date());
 
         feedDao.createOrUpdate(feed2);
 
@@ -115,6 +119,8 @@ public class FeedDaoTest {
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
+        feed.setLastCheck(new Date(0L));
+        feed.setPlannedCheck(new Date());
 
         int feedId = feedDao.create(feed);
         Feed feed2 = feedDao.getById(feedId);
@@ -146,6 +152,8 @@ public class FeedDaoTest {
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
+        feed.setLastCheck(new Date(0L));
+        feed.setPlannedCheck(new Date());
 
         feedDao.create(feed);
 
@@ -183,7 +191,8 @@ public class FeedDaoTest {
         feed1.setUrl("test-url-1");
         feed1.setName("test-feed-1");
         feed1.setLink("test-link-1");
-        feed1.setPlannedCheck(new Date( new Date().getTime() - 10000 ));
+        feed1.setPlannedCheck(new Date(new Date().getTime() - 10000));
+        feed1.setLastCheck(new Date(0L));
 
         int feedId1 = feedDao.create(feed1);
 
@@ -194,7 +203,8 @@ public class FeedDaoTest {
         feed2.setUrl("test-url-2");
         feed2.setName("test-feed-2");
         feed2.setLink("test-link-2");
-        feed2.setPlannedCheck(new Date( new Date().getTime() - 3600000 ));
+        feed2.setPlannedCheck(new Date(new Date().getTime() - 3600000));
+        feed2.setLastCheck(new Date(0L));
 
         int feedId2 = feedDao.create(feed2);
 

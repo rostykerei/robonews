@@ -46,4 +46,9 @@
     <bean id="imageCopyDao" class="io.robonews.dao.hibernate.ImageCopyDaoHibernate">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <bean id="sectionDao" class="io.robonews.dao.hibernate.SectionDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
 </beans>

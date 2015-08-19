@@ -7,12 +7,12 @@
 package io.robonews.dao.hibernate;
 
 import io.robonews.dao.StoryDao;
-import io.robonews.domain.Channel;
-import io.robonews.domain.Story;
-import io.robonews.domain.StoryImage;
-import io.robonews.domain.StoryTag;
+import io.robonews.domain.*;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.List;
 
 public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> implements StoryDao {
 
@@ -62,5 +62,19 @@ public class StoryDaoHibernate extends AbstractDaoHibernate<Story, Long> impleme
     @Transactional
     public void saveStoryImage(StoryImage storyImage) {
         getSession().save(storyImage);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+    public List<Story> getFeedStories(int feedId, Date dateFrom, Date dateTo, int limit) {
+        return getSession().createQuery("from Story s " +
+                "where s.originalFeed.id = :feedId and (s.createdDate between :dateFrom and :dateTo) " +
+                "order by s.id desc")
+                .setInteger("feedId", feedId)
+                .setTimestamp("dateFrom", dateFrom)
+                .setTimestamp("dateTo", dateTo)
+                .setMaxResults(limit)
+                .list();
     }
 }

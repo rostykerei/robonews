@@ -67,6 +67,8 @@ public class ImageDaoTest {
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
+        feed.setLastCheck(new Date(0L));
+        feed.setPlannedCheck(new Date());
 
         feedDao.create(feed);
 
@@ -81,6 +83,7 @@ public class ImageDaoTest {
         story1.setGuid("test-story-guid-1");
         story1.setCreatedDate(new Date());
         story1.setPublicationDate(new Date());
+        story1.setAdjustedPublicationDate(new Date());
 
         storyDao.create(story1);
 

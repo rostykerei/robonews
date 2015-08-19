@@ -43,6 +43,8 @@ public class CrawlerDaoTest {
 
         Feed feed = new Feed();
         feed.setName("feed-name");
+        feed.setLastCheck(new Date(0L));
+        feed.setPlannedCheck(new Date());
 
         Story story = crawlerDao.createStory(syndEntry, feed, new Date());
 

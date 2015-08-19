@@ -53,6 +53,22 @@ public class CrawlerDaoImpl implements CrawlerDao {
             story.setLink(syndEntry.getLink());
             story.setOriginalFeed(feed);
             story.setPublicationDate(syndEntry.getPubDate());
+
+            if (syndEntry.getPubDate() != null) {
+                if (syndEntry.getPubDate().getTime() > checkTime.getTime()) {
+                    story.setAdjustedPublicationDate(checkTime);
+                }
+                else if (syndEntry.getPubDate().getTime() < feed.getLastCheck().getTime()) {
+                    story.setAdjustedPublicationDate(feed.getLastCheck());
+                }
+                else {
+                    story.setAdjustedPublicationDate(syndEntry.getPubDate());
+                }
+            }
+            else {
+                story.setAdjustedPublicationDate(checkTime);
+            }
+
             story.setTitle(syndEntry.getTitle());
             story.setVideo(feed.isVideo());
 

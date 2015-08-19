@@ -49,6 +49,12 @@
         <property name="messageConverter" ref="jsonMessageConverter"/>
     </bean>
 
+    <bean id="sectionComposeMessagingTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="exchange" value="sectionComposeExchange"/>
+        <property name="messageConverter" ref="jsonMessageConverter"/>
+    </bean>
+
     <rabbit:admin connection-factory="connectionFactory" />
 
     <rabbit:queue name="crawlQueue"  durable="true">
@@ -64,6 +70,12 @@
     <rabbit:queue name="pageQueue" durable="true"/>
 
     <rabbit:queue name="solrCreateQueue" durable="true"/>
+
+    <rabbit:queue name="sectionComposeQueue" durable="true">
+        <rabbit:queue-arguments value-type="java.lang.Long">
+            <entry key="x-message-ttl" value="200000"/>
+        </rabbit:queue-arguments>
+    </rabbit:queue>
 
     <rabbit:fanout-exchange name="crawlExchange" durable="true">
         <rabbit:bindings>
@@ -92,6 +104,12 @@
     <rabbit:fanout-exchange name="solrCreateExchange" durable="true">
         <rabbit:bindings>
             <rabbit:binding queue="solrCreateQueue"/>
+        </rabbit:bindings>
+    </rabbit:fanout-exchange>
+
+    <rabbit:fanout-exchange name="sectionComposeExchange" durable="true">
+        <rabbit:bindings>
+            <rabbit:binding queue="sectionComposeQueue"/>
         </rabbit:bindings>
     </rabbit:fanout-exchange>
 

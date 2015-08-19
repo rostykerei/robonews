@@ -19,7 +19,6 @@
 
     <artifactId>service-alexa</artifactId>
 
-
     <name>Robonews.io - Services - Alexa</name>
 
     <dependencies>

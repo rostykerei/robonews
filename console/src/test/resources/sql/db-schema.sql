@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.41, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.44, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: news-test
 -- ------------------------------------------------------
--- Server version	5.5.41-0ubuntu0.12.04.1
+-- Server version	5.5.44-0ubuntu0.12.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,13 +33,13 @@ CREATE TABLE `area` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `topic`
+-- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `topic`;
+DROP TABLE IF EXISTS `category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `topic` (
+CREATE TABLE `category` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `isPriority` bit(1) NOT NULL DEFAULT b'0',
@@ -94,8 +94,25 @@ CREATE TABLE `channel_image` (
   `typeId` tinyint(3) unsigned NOT NULL,
   `data` blob NOT NULL,
   PRIMARY KEY (`channelId`) USING BTREE,
-  CONSTRAINT `channel_image_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  KEY `channel_image_fk_2` (`typeId`),
+  CONSTRAINT `channel_image_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `channel_image_fk_2` FOREIGN KEY (`typeId`) REFERENCES `image_type` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `channel_picture`
+--
+
+DROP TABLE IF EXISTS `channel_picture`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `channel_picture` (
+  `channelId` int(10) unsigned NOT NULL,
+  `picture` blob NOT NULL,
+  `version` bigint(20) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`channelId`) USING BTREE,
+  CONSTRAINT `channel_picture_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -114,7 +131,7 @@ CREATE TABLE `country` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `country_idx_1` (`isoCode2`),
   UNIQUE KEY `country_idx_2` (`isoCode3`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,19 +154,20 @@ CREATE TABLE `feed` (
   `copyright` varchar(255) DEFAULT NULL,
   `imageUrl` varchar(255) DEFAULT NULL,
   `isVideo` bit(1) NOT NULL DEFAULT b'0',
-  `lastCheck` timestamp NULL DEFAULT NULL,
-  `plannedCheck` timestamp NULL DEFAULT NULL,
-  `inProcessSince` timestamp NULL DEFAULT NULL,
+  `lastCheck` DATETIME NOT NULL DEFAULT '1970-01-01 00:00:00',
+  `plannedCheck` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `inProcessSince` DATETIME NULL DEFAULT NULL,
   `velocity` double NOT NULL DEFAULT '0',
   `minVelocityThreshold` double NOT NULL DEFAULT '0',
   `maxVelocityThreshold` double NOT NULL DEFAULT '60',
   `httpLastEtag` varchar(255) DEFAULT NULL,
-  `httpLastModified` timestamp NULL DEFAULT NULL,
+  `httpLastModified` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `feed_idx_1` (`url`),
   KEY `feed_idx_2` (`channelId`),
   KEY `feed_idx_3` (`topicId`),
   KEY `feed_idx_4` (`inProcessSince`,`plannedCheck`),
+  KEY `feed_fk_2` (`areaId`),
   CONSTRAINT `feed_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `feed_fk_2` FOREIGN KEY (`areaId`) REFERENCES `area` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `feed_fk_3` FOREIGN KEY (`topicId`) REFERENCES `topic` (`id`) ON UPDATE CASCADE
@@ -175,7 +193,7 @@ CREATE TABLE `image` (
   `ratio` float NOT NULL,
   `crcHash` bigint(20) NOT NULL,
   `pHash` binary(8) NOT NULL,
-  `createdDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `image_idx_1` (`url`),
   UNIQUE KEY `image_idx_2` (`sourceChannelId`,`size`,`crcHash`),
@@ -209,8 +227,8 @@ CREATE TABLE `image_copy` (
   `height` smallint(6) NOT NULL,
   `ratio` float NOT NULL,
   `size` bigint(20) NOT NULL,
-  `createdDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `deleteAfterDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `createdDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleteAfterDate` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `image_copy_uid` (`uid`),
   KEY `image_copy_idx_1` (`imageId`),
@@ -237,6 +255,41 @@ CREATE TABLE `image_type` (
   `type` varchar(8) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `type` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `section`
+--
+
+DROP TABLE IF EXISTS `section`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `section` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `active` bit(1) NOT NULL DEFAULT b'1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `section_idx_1` (`name`),
+  KEY `section_idx_2` (`active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `section_lead_feed`
+--
+
+DROP TABLE IF EXISTS `section_lead_feed`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `section_lead_feed` (
+  `sectionId` int(10) unsigned NOT NULL,
+  `feedId` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`sectionId`,`feedId`),
+  KEY `section_lead_feed_idx_1` (`sectionId`),
+  KEY `section_lead_feed_idx_2` (`feedId`),
+  CONSTRAINT `section_lead_feed_fk_1` FOREIGN KEY (`sectionId`) REFERENCES `section` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `section_lead_feed_fk_2` FOREIGN KEY (`feedId`) REFERENCES `feed` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -255,7 +308,7 @@ CREATE TABLE `state` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `state_idx_1` (`countryId`,`isoCode`),
   CONSTRAINT `state_fk_1` FOREIGN KEY (`countryId`) REFERENCES `country` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,17 +332,18 @@ CREATE TABLE `story` (
   `link` varchar(255) NOT NULL,
   `guid` varchar(255) NOT NULL,
   `isVideo` bit(1) NOT NULL DEFAULT b'0',
-  `publicationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `createdDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `publicationDate` DATETIME NOT NULL,
+  `adjustedPublicationDate` DATETIME NOT NULL,
+  `createdDate` DATETIME NOT NULL,
   `description` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `story_uid` (`uid`),
   UNIQUE KEY `story_idx_1` (`channelId`,`guidHash`),
   UNIQUE KEY `story_idx_2` (`channelId`,`contentHash`),
-  KEY `story_idx_3` (`channelId`,`publicationDate`),
-  KEY `story_idx_4` (`areaId`, `topicId`,`publicationDate`),
-  KEY `story_idx_5` (`originalFeedId`,`publicationDate`),
-  KEY `story_idx_6` (`publicationDate`),
+  KEY `story_idx_3` (`channelId`,`adjustedPublicationDate`),
+  KEY `story_idx_4` (`areaId`,`topicId`,`adjustedPublicationDate`),
+  KEY `story_idx_5` (`originalFeedId`,`adjustedPublicationDate`),
+  KEY `story_idx_6` (`adjustedPublicationDate`),
   CONSTRAINT `story_fk_1` FOREIGN KEY (`channelId`) REFERENCES `channel` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `story_fk_2` FOREIGN KEY (`areaId`) REFERENCES `area` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `story_fk_3` FOREIGN KEY (`topicId`) REFERENCES `topic` (`id`) ON UPDATE CASCADE,
@@ -386,6 +440,24 @@ CREATE TABLE `tag_type` (
   `type` varchar(64) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `type` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `topic`
+--
+
+DROP TABLE IF EXISTS `topic`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `topic` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `isPriority` bit(1) NOT NULL DEFAULT b'0',
+  `level` int(10) unsigned NOT NULL,
+  `leftIndex` int(10) unsigned NOT NULL,
+  `rightIndex` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -398,4 +470,4 @@ CREATE TABLE `tag_type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-01 20:31:28
+-- Dump completed on 2015-08-05 22:21:28

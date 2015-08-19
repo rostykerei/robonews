@@ -11,6 +11,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Launcher {
 
     public static void main(String... args) {
-        // new ClassPathXmlApplicationContext("workerTaggerContext.xml");
+        new ClassPathXmlApplicationContext("workerEditorContext.xml");
     }
 }

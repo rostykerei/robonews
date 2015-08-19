@@ -18,15 +18,15 @@ public class Feed {
     @GeneratedValue
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "channelId", referencedColumnName = "id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "channelId",  referencedColumnName = "id", nullable = false)
     private Channel channel;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "areaId", referencedColumnName = "id", nullable = false)
     private Area area;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "topicId", referencedColumnName = "id", nullable = false)
     private Topic topic;
 
@@ -55,11 +55,11 @@ public class Feed {
     private boolean video;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "lastCheck")
+    @Column(name = "lastCheck", nullable = false)
     private Date lastCheck;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "plannedCheck")
+    @Column(name = "plannedCheck", nullable = true)
     private Date plannedCheck;
 
     @Temporal(TemporalType.TIMESTAMP)

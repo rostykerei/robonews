@@ -95,6 +95,7 @@ public class FeedConsoleDaoHibernate extends AbstractConsoleDaoHibernate impleme
             feed.setTopic(topic);
 
             feed.setPlannedCheck(new Date());
+            feed.setLastCheck(new Date(0L));
 
             id = feedDao.create(feed);
         }

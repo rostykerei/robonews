@@ -32,6 +32,18 @@
             <artifactId>core</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.robonews</groupId>
+            <artifactId>messaging</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.robonews</groupId>
+            <artifactId>service-clustering</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 

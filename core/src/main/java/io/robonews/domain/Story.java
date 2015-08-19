@@ -34,22 +34,22 @@ public class Story {
     private String uid = KeyGenerator.generateKey();
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "channelId", referencedColumnName = "id", nullable = false)
     private Channel channel;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "areaId", referencedColumnName = "id", nullable = false)
     private Area area;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "topicId", referencedColumnName = "id", nullable = false)
     private Topic topic;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "originalFeedId", referencedColumnName = "id", nullable = false)
     private Feed originalFeed;
 
@@ -77,6 +77,10 @@ public class Story {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "publicationDate", unique = false, nullable = false)
     private Date publicationDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "adjustedPublicationDate", unique = false, nullable = false)
+    private Date adjustedPublicationDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createdDate", unique = false, nullable = false)
@@ -196,6 +200,14 @@ public class Story {
 
     public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
+    }
+
+    public Date getAdjustedPublicationDate() {
+        return adjustedPublicationDate;
+    }
+
+    public void setAdjustedPublicationDate(Date adjustedPublicationDate) {
+        this.adjustedPublicationDate = adjustedPublicationDate;
     }
 
     public Date getCreatedDate() {

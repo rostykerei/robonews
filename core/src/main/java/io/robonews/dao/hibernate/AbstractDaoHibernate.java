@@ -24,7 +24,7 @@ abstract class AbstractDaoHibernate <T, PK extends Serializable>
 
     private Class<T> type;
 
-    public AbstractDaoHibernate(Class<T> type) {
+    protected AbstractDaoHibernate(Class<T> type) {
         this.type = type;
     }
 

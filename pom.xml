@@ -52,7 +52,6 @@
     <modules>
         <module>core</module>
         <module>web</module>
-        <module>manager</module>
         <module>messaging</module>
         <module>workers</module>
         <module>services</module>

@@ -33,6 +33,7 @@
         <module>service-text-tools</module>
         <module>service-alexa</module>
         <module>service-social-media</module>
+        <module>service-clustering</module>
     </modules>
 
 </project>

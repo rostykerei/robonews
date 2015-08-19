@@ -24,6 +24,7 @@
         <mapping class="io.robonews.domain.TagAlternative"/>
         <mapping class="io.robonews.domain.StoryTag"/>
         <mapping class="io.robonews.domain.Image"/>
+        <mapping class="io.robonews.domain.Section"/>
         <mapping class="io.robonews.domain.State"/>
         <mapping class="io.robonews.domain.StoryImage"/>
         <mapping class="io.robonews.domain.ImageCopy"/>

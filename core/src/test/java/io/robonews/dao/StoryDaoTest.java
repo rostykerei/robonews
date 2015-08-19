@@ -19,6 +19,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @TransactionConfiguration(defaultRollback = true)
 @ContextConfiguration({ "classpath:testContext.xml" })
@@ -66,6 +67,8 @@ public class StoryDaoTest {
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
+        feed.setLastCheck(new Date(0L));
+        feed.setPlannedCheck(new Date());
 
         feedDao.create(feed);
 
@@ -78,8 +81,9 @@ public class StoryDaoTest {
         story1.setTitle("test-story-title-1");
         story1.setLink("test-story-link-1");
         story1.setGuid("test-story-guid-1");
-        story1.setCreatedDate(new Date());
-        story1.setPublicationDate(new Date());
+        story1.setCreatedDate(new Date(1420070401000L));
+        story1.setPublicationDate(new Date(1420070401000L));
+        story1.setAdjustedPublicationDate(new Date(1420070401000L));
 
         storyDao.create(story1);
 
@@ -92,8 +96,9 @@ public class StoryDaoTest {
         story2.setTitle("test-story-title-2");
         story2.setLink("test-story-link-2");
         story2.setGuid("test-story-guid-2");
-        story2.setCreatedDate(new Date());
-        story2.setPublicationDate(new Date());
+        story2.setCreatedDate(new Date(1420070402000L));
+        story2.setPublicationDate(new Date(1420070402000L));
+        story2.setAdjustedPublicationDate(new Date(1420070402000L));
 
         storyDao.create(story2);
 
@@ -104,6 +109,11 @@ public class StoryDaoTest {
 
         Assert.assertEquals(story1.getContentHash(), story3.getContentHash());
         Assert.assertEquals(story1.getUid(), story3.getUid());
+
+        List<Story>  stories = storyDao.getFeedStories(feed.getId(), new Date(1420070400000L), new Date(1420070402000L), 100);
+        Assert.assertEquals(2, stories.size());
+
+
     }
 
     @Test
@@ -126,6 +136,8 @@ public class StoryDaoTest {
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
+        feed.setLastCheck(new Date(0L));
+        feed.setPlannedCheck(new Date());
 
         feedDao.create(feed);
 
@@ -140,6 +152,7 @@ public class StoryDaoTest {
         story1.setGuid("test-story-guid-1");
         story1.setCreatedDate(new Date());
         story1.setPublicationDate(new Date());
+        story1.setAdjustedPublicationDate(new Date());
 
         storyDao.create(story1);
 
@@ -190,6 +203,8 @@ public class StoryDaoTest {
         feed.setUrl("test-url-1");
         feed.setName("test-feed-1");
         feed.setLink("test-link-1");
+        feed.setLastCheck(new Date(0L));
+        feed.setPlannedCheck(new Date());
 
         feedDao.create(feed);
 
@@ -204,6 +219,7 @@ public class StoryDaoTest {
         story1.setGuid("test-story-guid-1");
         story1.setCreatedDate(new Date());
         story1.setPublicationDate(new Date());
+        story1.setAdjustedPublicationDate(new Date());
 
         storyDao.create(story1);
 

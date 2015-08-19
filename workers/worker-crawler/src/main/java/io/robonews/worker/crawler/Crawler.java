@@ -69,7 +69,7 @@ public class Crawler {
     private void processFeed(Feed feed) {
         // Crawl feed
         HttpResponse httpResponse = null;
-        SyndicationFeed syndicationFeed = null;
+        SyndicationFeed syndicationFeed;
         int newStories = 0;
         Date checkTime = new Date();
         Date httpExpires = null;
@@ -124,14 +124,11 @@ public class Crawler {
                             }
                             catch (DataIntegrityViolationException e){
                                 // do nothing
-                                continue;
                             }
                             catch (RuntimeException e) {
                                 logger.info("Failed to create story: ", e);
-                                continue;
                             }
                         }
-
                     }
                     else {
                         logger.info("Failed to parse feed [" + feed + "], Syndication service returned null");
