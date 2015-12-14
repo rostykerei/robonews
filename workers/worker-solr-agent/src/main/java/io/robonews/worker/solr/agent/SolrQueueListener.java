@@ -59,6 +59,7 @@ public class SolrQueueListener {
         storyDocument.setLink(story.getLink());
         storyDocument.setVideo(story.isVideo());
         storyDocument.setPublicationDate(story.getPublicationDate());
+        storyDocument.setAdjustedPublicationDate(story.getAdjustedPublicationDate());
         storyDocument.setCreatedDate(story.getCreatedDate());
         storyDocument.setText(story.getDescription());
         storyDocument.setChannel(story.getChannel().getCanonicalName());

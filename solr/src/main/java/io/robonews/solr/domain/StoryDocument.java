@@ -34,6 +34,9 @@ public class StoryDocument {
     private Date publicationDate;
 
     @Field
+    private Date adjustedPublicationDate;
+
+    @Field
     private Date createdDate;
 
     @Field
@@ -108,6 +111,14 @@ public class StoryDocument {
 
     public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
+    }
+
+    public Date getAdjustedPublicationDate() {
+        return adjustedPublicationDate;
+    }
+
+    public void setAdjustedPublicationDate(Date adjustedPublicationDate) {
+        this.adjustedPublicationDate = adjustedPublicationDate;
     }
 
     public Date getCreatedDate() {

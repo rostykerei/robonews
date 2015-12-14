@@ -9,12 +9,14 @@
         $indicatorAnimationDelayed = $.extend({}, $indicatorAnimation, {delay: 90}),
 
         $html5history = !!(window.history && history.pushState),
-        $currentState = {tab: null, story: null};
+        $currentState = {tab: null, story: null},
+
+        $masonryActive = false;
 
     $.app = $.app || {
         init: function() {
             $nav = $('#nav');
-            $indicator = $nav.find('#indicator'),
+            $indicator = $nav.find('#indicator');
 
             $window.bind('load popstate statechange', $.app._stateChange);
 
@@ -31,11 +33,13 @@
 
             $window.resize($.app._winResize);
 
+            var $navBarArrow = $('#nav-bar').find('.arrow');
+
             if ($nav.width() < $nav.prop('scrollWidth')) {
-                $('#nav-bar .arrow').show();
+                $navBarArrow.show();
             }
 
-            $('#nav-bar .arrow').click(function() {
+            $navBarArrow.click(function() {
                 $nav.animate({scrollLeft: $nav.scrollLeft() + ($(this).hasClass('left') ? -1 : 1) * $nav.width()}, 500);
             });
         },
@@ -87,7 +91,7 @@
             $('body').append($(document.createElement('div')).attr('id', 'loader'));
         },
         hideLoader: function() {
-            $('#loader').fadeOut('slow', function() { $('#loader').remove() });
+            $('#loader').fadeOut('250', function() { $('#loader').remove() });
         },
         _stateChange: function(e) {
             var $location = window.history.location || window.location;
@@ -158,15 +162,98 @@
                 }, 50);
             }
 
-            $('#log').append("<hr/>[TAB: " + $state.tab + " | STORY: " + ($state.story ? $state.story : 'NONE') + "]");
+            console.debug("TAB: " + $state.tab + " | STORY: " + ($state.story ? $state.story : 'NONE'));
+
+            if (! $state.story) {
+                $.app._loadSection($state.tab)
+            }
 
             $currentState = $state;
         },
-        _winResize: function() {
+        _loadSection: function(section) {
 
-            $('#test').append($nav.innerWidth() + " / " + $nav[0].scrollWidth + "<hr/>");
+            var $page = $('#p');
+            $page.html('');
+
+            if ($masonryActive) {
+                $page.masonry('destroy');
+                $masonryActive = false;
+            }
+
+            $page.css('opacity', '0');
+
+            $.app.showLoader();
+
+            $.getJSON("/data/" + section +".json")
+                .done(function( json ) {
+                    document.title = 'Robonews.io - ' + json.title;
+
+                    var i = 0;
+                    $.each( json.cards, function( card ) {
+                        $page.append($.app._renderCard( this, i++ ));
+                    });
+
+                    $page.imagesLoaded( function(){
+                        $page.masonry({
+                            itemSelector : '.card'
+                        });
+
+                        $masonryActive = true;
+
+                        $.app.hideLoader();
+                        $.app._showCards();
+
+                        $page.addClass('showPage');
+
+                        setTimeout(function () {
+                            $page.css('opacity', '1');
+                            $page.removeClass('showPage');
+                        }, 250);
+                    });
+                })
+                .fail(function( jqxhr, textStatus, error ) {
+                    var err = textStatus + ", " + error;
+                    console.log( "Request Failed: " + err );
+                    // todo error?
+                    $.app.hideLoader();
+                });
+        },
+        _showCards: function() {
+            var windowHeight = $(window).height(),
+                scrollable = $((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html'),
+                initScreenBottom = scrollable.scrollTop() + windowHeight,
+                cards = $(".card");
+
+            var sc = function(){
+                var bottom = scrollable.scrollTop() + windowHeight - 50;
+
+                cards.each(function(){
+                    var card = $(this);
+                    if (card.hasClass('visible')){
+                        return;
+                    }
+
+                    if (card.offset().top < bottom){
+                        card.addClass('visible showCard');
+                    }
+                });
+            };
+
+            cards.each(function() {
+                $(this).addClass(($(this).offset().top <= initScreenBottom) ? 'visible' : 'hidden');
+            });
+
+            $(window).scroll(sc);
+            sc();
+
+            /* todo
+            $(window).resize(function(e){
+                windowHeight = e.currentTarget.innerHeight;
+            });*/
+        },
+        _winResize: function() {
             if ($nav.width() < $nav.prop('scrollWidth')) {
-                $('#nav-bar .arrow').show();hhnk.nl
+                $('#nav-bar .arrow').show();
             }
             else {
                 // todo this doesnt work if latest tab selected
@@ -176,6 +263,26 @@
             setTimeout(function() {
                 $.app.resetNavIndicator(false);
             }, 50);
+        },
+        _renderCard: function( card, position ) {
+            if ( card.type == 'hero') {
+                return $.app._renderTemplate('tpl-card-hero', card);
+            }
+            else {
+                return '<div class="card"><div>'+
+                        //'<div  style="border: solid 1px red; margin: 0; background: red; height: 400px; width: 50%;"></div>'
+                    '<img style="display: block;" width="50%" height="' + card.height + '" src="http://lorempixel.com/280/' + card.height + '/?' + (Math.random() * 10000) +'"/>' +
+                    '</div></div>';
+            }
+        },
+        _renderTemplate: function( templateId, data ) {
+            var template = $('#' + templateId).html();
+
+            for (var key in data) {
+                template = template.replace("${" + key + "}", data[key]);
+            }
+
+            return template;
         }
     };
 })(jQuery);

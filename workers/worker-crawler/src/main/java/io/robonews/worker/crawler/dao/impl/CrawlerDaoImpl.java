@@ -78,6 +78,7 @@ public class CrawlerDaoImpl implements CrawlerDao {
         }
     }
 
+    @Transactional
     private void updateExistentStory(Story oldStory, Feed newFeed) {
         Area oldArea = oldStory.getArea();
         Area newArea = newFeed.getArea();

@@ -18,15 +18,15 @@ public class Feed {
     @GeneratedValue
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "channelId",  referencedColumnName = "id", nullable = false)
     private Channel channel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "areaId", referencedColumnName = "id", nullable = false)
     private Area area;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "topicId", referencedColumnName = "id", nullable = false)
     private Topic topic;
 

@@ -19,99 +19,112 @@ import java.util.List;
 
 public class SyndicationFeedRome implements SyndicationFeed {
 
-    private SyndFeed syndFeed;
+    private String title;
+
+    private String description;
+
+    private String link;
+
+    private String copyright;
+
+    private String author;
+
+    private String imageUrl;
+
+    private List<SyndicationEntry> entries;
 
     public SyndicationFeedRome(SyndFeed syndFeed) {
-        this.syndFeed = syndFeed;
-    }
 
-    @Override
-    public String getTitle() {
         if (syndFeed.getTitle() != null) {
-            return syndFeed.getTitle().trim();
+            title = syndFeed.getTitle().trim();
         }
 
-        return null;
-    }
-
-    @Override
-    public String getDescription() {
         if (syndFeed.getDescription() != null) {
-            return syndFeed.getDescription().trim();
+            description = syndFeed.getDescription().trim();
         }
 
-        return null;
-    }
-
-    @Override
-    public String getLink() {
         if (syndFeed.getLink() != null) {
-            return syndFeed.getLink().trim();
+            link = syndFeed.getLink().trim();
         }
 
-        return null;
-    }
-
-    @Override
-    public String getCopyright() {
         if (syndFeed.getCopyright() != null) {
-            return syndFeed.getCopyright().trim();
+            copyright = syndFeed.getCopyright().trim();
         }
 
-        return null;
-    }
-
-    @Override
-    public String getAuthor() {
         if (syndFeed.getAuthor() != null) {
-            return syndFeed.getAuthor().trim();
+            author = syndFeed.getAuthor().trim();
         }
 
-        return null;
-    }
-
-    @Override
-    public String getImageUrl() {
         if (syndFeed.getImage() != null && syndFeed.getImage().getUrl() != null) {
-            return syndFeed.getImage().getUrl().trim();
+            imageUrl = syndFeed.getImage().getUrl().trim();
         }
 
-        return null;
-    }
-
-    @Override
-    public List<SyndicationEntry> getEntries() {
-        List<SyndicationEntry> list = new ArrayList<SyndicationEntry>();
+        entries = new ArrayList<>();
 
         Iterator iterator = syndFeed.getEntries().iterator();
         while (iterator.hasNext()) {
             SyndEntry syndEntry = (SyndEntry) iterator.next();
 
-            if (StringUtils.isEmpty(syndEntry.getTitle())) {
+            SyndicationEntry entry = new SyndicationEntryRome(syndEntry);
+
+            if (StringUtils.isEmpty(entry.getTitle())) {
                 continue;
             }
 
-            if (StringUtils.isEmpty(syndEntry.getLink())) {
+            if (StringUtils.isEmpty(entry.getLink())) {
                 continue;
             }
 
-            if (StringUtils.isEmpty(syndEntry.getUri())) {
+            if (StringUtils.isEmpty(entry.getGuid())) {
                 continue;
             }
 
-            if (syndEntry.getPublishedDate() == null) {
-                syndEntry.setPublishedDate(new Date());
+            if (entry.getPubDate() == null) {
+                continue;
             }
 
-            list.add(new SyndicationEntryRome(syndEntry));
+            entries.add(entry);
         }
+    }
 
-        return list;
+    @Override
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public String getLink() {
+        return link;
+    }
+
+    @Override
+    public String getCopyright() {
+        return copyright;
+    }
+
+    @Override
+    public String getAuthor() {
+        return author;
+    }
+
+    @Override
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    @Override
+    public List<SyndicationEntry> getEntries() {
+        return entries;
     }
 
     @Override
     public double estimateVelocity() {
-        int size = syndFeed.getEntries().size();
+        int size = getEntries().size();
         if (size < 2) {
             return 0;
         }
@@ -119,10 +132,9 @@ public class SyndicationFeedRome implements SyndicationFeed {
         long minDate = Long.MAX_VALUE;
         long maxDate = 0;
 
-        Iterator iterator = syndFeed.getEntries().iterator();
-        while (iterator.hasNext()) {
-            SyndEntry entry = (SyndEntry) iterator.next();
-            long pubDate = entry.getPublishedDate().getTime();
+        Iterator iterator = getEntries().iterator();
+        for (SyndicationEntry entry : getEntries()) {
+            long pubDate = entry.getPubDate().getTime();
 
             minDate = pubDate < minDate ? pubDate : minDate;
             maxDate = pubDate > maxDate ? pubDate : maxDate;

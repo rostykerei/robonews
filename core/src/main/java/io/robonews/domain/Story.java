@@ -34,22 +34,22 @@ public class Story {
     private String uid = KeyGenerator.generateKey();
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "channelId", referencedColumnName = "id", nullable = false)
     private Channel channel;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "areaId", referencedColumnName = "id", nullable = false)
     private Area area;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "topicId", referencedColumnName = "id", nullable = false)
     private Topic topic;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "originalFeedId", referencedColumnName = "id", nullable = false)
     private Feed originalFeed;
 

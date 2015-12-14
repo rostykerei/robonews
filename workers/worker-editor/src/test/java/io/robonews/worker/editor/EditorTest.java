@@ -7,6 +7,7 @@
 package io.robonews.worker.editor;
 
 import io.robonews.messaging.domain.SectionComposeMessage;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,10 @@ public class EditorTest {
     private Editor editor;
 
     @Test
+    @Ignore
     public void test() {
         editor.listen(
-            new SectionComposeMessage(1, new Date(1438128000000L), new Date(1438214400000L))
+            new SectionComposeMessage(1, new Date( new Date().getTime() - 43200000L ), new Date())
         );
     }
 

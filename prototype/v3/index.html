@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <link type="text/css" rel="stylesheet" href="css/robonews.io.css"/>
-    <link type="text/css" rel="stylesheet" href="css/waves.min.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>test project</title>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript"  src="js/velocity.min.js"></script>
+
+    <script src="http://imagesloaded.desandro.com/imagesloaded.pkgd.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/masonry/3.2.2/masonry.pkgd.min.js"></script>
+
+    <script type="text/javascript" src="js/robonews.io.js"></script>
 </head>
 <base href="/"/>
 <body>
@@ -23,47 +30,31 @@
             <li><a href="/tech">Tech</a></li>
             <li><a href="/entertainment">Entertainment</a></li>
             <li><a href="/health">Health</a></li>
+            <li><a href="/sports">Sports</a></li>
         </ul>
     </div>
 </div>
 
-<div id="test" style="border: dotted 2px pink;"></div>
-
-<a class="internal" href="/us?xxx">xxx</a>
-<a class="internal" href="/top?yyy">yyy</a>
-<a href="#t0p?yyy">wrong</a>
-
-<div class="waves-effect"  style="height: 50px; width: 200px; background-color: lightcoral; border: solid 1px red;">
-    xxx
-</div>
-
-<button onclick="$.app.showLoader();"> ON</button>
-<button onclick="$.app.hideLoader();">OFF</button>
-
-
-
-
-<div id="log"></div>
 <div id="container">
-    <div class="card">
-        <div  style="background-color: lightgoldenrodyellow; height: 200px;">
-            1
-        </div>
-    </div>
-
-    <div class="card">
-        <div style="background-color: lightgoldenrodyellow; height: 200px;">
-        1
-        </div>
-    </div>
+    <div id="p"></div>
 </div>
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript"  src="js/velocity.min.js"></script>
-<script type="text/javascript" src="js/robonews.io.js"></script>
-<script type="text/javascript" src="js/waves.min.js"></script>
-<script type="text/javascript">
-    Waves.displayEffect();
+<script type="text/html" id="tpl-card-hero">
+    <div class="card">
+        <div class="hero">
+            <img src="img/5.jpg">
+            <div class="caption">
+                <h1>${title}</h1>
+                <span>${teaser}</span>
+            </div>
+<!--            <div class="button">
+                <md-button class="md-fab" aria-label="CNN" style="width: 46px; height: 46px;">
+                    <md-icon icon="img/cnn.jpg" style="position: absolute; top: 0px; left: 0px; width: 46px; height: 46px;"></md-icon>
+                </md-button>
+            </div>-->
+        </div>
+    </div>
 </script>
+
 </body>
 </html>

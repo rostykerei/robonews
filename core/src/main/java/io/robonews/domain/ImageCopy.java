@@ -68,7 +68,7 @@ public class ImageCopy {
     private Date createdDate;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "deleteAfterDate", unique = false, nullable = false)
+    @Column(name = "deleteAfterDate", unique = false, nullable = true)
     private Date deleteAfterDate;
 
     public long getId() {

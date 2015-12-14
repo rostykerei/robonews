@@ -1,0 +1,85 @@
+{
+  "title": "Top news",
+  "cards": [
+    {
+      "type": "hero",
+      "title": "'God bless his memory,' Obama delivers eulogy at Beau Biden's funeral - Obama delivers the eulogy for Beau Biden - Family and friends honor Beau Biden",
+      "teaser": "SAN FRANCISCO (AP) — When technology breaks down now, people's lives go haywire, too. Wednesday's confounding confluence of computer outages at United Airlines, the New York Stock Exchange and The Wall Street Journal delivered a jolting reminder about our deepening dependence on interconnected networks to get through each day.",
+      "channel": "CNN",
+      "channelImg": "cnn.png",
+      "height": 490
+    },
+    {
+      "height": 410,
+      "bg": "red"
+    },
+    {
+      "height": 450,
+      "bg": "red"
+    },
+    {
+      "height": 240,
+      "bg": "red"
+    },
+    {
+      "height": 170,
+      "bg": "red"
+    },
+    {
+      "height": 260,
+      "bg": "red"
+    },
+    {
+      "height": 360,
+      "bg": "red"
+    },
+    {
+      "height": 110,
+      "bg": "red"
+    },
+    {
+      "height": 430,
+      "bg": "red"
+    },
+    {
+      "height": 440,
+      "bg": "red"
+    },
+    {
+      "height": 390,
+      "bg": "red"
+    },
+    {
+      "height": 390,
+      "bg": "red"
+    },
+    {
+      "height": 270,
+      "bg": "red"
+    },
+    {
+      "height": 210,
+      "bg": "red"
+    },
+    {
+      "height": 130,
+      "bg": "red"
+    },
+    {
+      "height": 100,
+      "bg": "red"
+    },
+    {
+      "height": 210,
+      "bg": "red"
+    },
+    {
+      "height": 100,
+      "bg": "red"
+    },
+    {
+      "height": 470,
+      "bg": "red"
+    }
+  ]
+}

@@ -51,7 +51,6 @@
 
     <modules>
         <module>core</module>
-        <module>web</module>
         <module>messaging</module>
         <module>workers</module>
         <module>services</module>
@@ -196,7 +195,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <repositories>
+<!--    <repositories>
         <repository>
             <id>spark</id>
             <url>https://spark.robonews.io:8443/nexus/content/groups/public</url>
@@ -222,6 +221,6 @@
             <id>spark</id>
             <url>dav:https://spark.robonews.io:8443/nexus/content/sites/site</url>
         </site>
-    </distributionManagement>
+    </distributionManagement>-->
 
 </project>

@@ -165,25 +165,94 @@ ul#nav #indicator {
     max-width: 1300px;
 }
 
-div.card {
+.card {
     width: 100%;
     float: left;
     margin: 0;
     padding: 0;
 }
 
-div.card > div {
+.card > div {
     background-color: #ffffff;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    border-radius: 3px;
+    overflow: hidden;
     margin: 8px;
-    border-radius: 2px;
+    padding: 0;
 }
 
 @media (min-width: 800px) {
-    div.card {
+    .card {
         width: 50%;
     }
 }
+
+.showCard {
+    animation: fadeInUp 0.25s both ease-in-out;
+    -webkit-animation: fadeInUp 0.25s both ease-in;
+}
+
+.hidden{
+    opacity: 0;
+}
+
+.visible{
+    opacity: 1;
+}
+
+.showPage {
+    animation: fadeIn 0.25s both ease-in-out;
+    -webkit-animation: fadeIn 0.25s both ease-in;
+}
+
+/** CARD TYPES **/
+
+.hero {
+    position: relative;
+    color: white;
+    cursor: pointer;
+}
+
+.hero img {
+    width: 100%;
+    display: block;
+}
+
+.hero .caption {
+    float: left;
+    position: absolute;
+    left: 0.75em;
+    bottom: 0.75em;
+    right: 0.75em;
+    background-color:rgba(0,0,0,0.5);
+    border-radius: 0.3334em;
+    padding: 0.5em;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.hero .button {
+    float: right;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
+
+.hero h1 {
+    font-size: 1.5em;
+    margin: 0 0 0.25em;
+    text-shadow: 1px 2px 3px #666;
+}
+
+.hero span {
+    font-size: 0.75em;
+}
+/*********************************/
+
 
 /*** LOADER ***/
 #loader {
@@ -264,4 +333,49 @@ div.card > div {
         box-shadow: inset #f44336 0 0 0 6px;
         -webkit-transform: rotate(180deg);
     }
+}
+
+/*** ANIMATION ***/
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 25%, 0);
+        transform: translate3d(0, 25%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 25%, 0);
+        transform: translate3d(0, 25%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
 }
